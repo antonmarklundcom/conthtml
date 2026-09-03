@@ -1547,3 +1547,425 @@ h3 {
 .mt-4 { margin-top: var(--s-4); }
 .text-muted { color: var(--muted); }
 .flow > * + * { margin-top: var(--s-3); }
+
+/* == home ================================================================ */
+/* The 1B artboard, section by section. Everything below the tokens block, no
+   inline styles (plan §5.2.7). Shared with /servicios/ where the same block
+   appears there. */
+
+/* The header is sticky and ~77px tall, so an in-page jump (#servicios from the
+   hero, #como-trabajamos from the hub) has to leave room for it or the heading
+   lands underneath the bar. */
+section[id] {
+  scroll-margin-top: 92px;
+}
+
+/* --- hero: copy left, the monthly-report panel flush at the bottom right --- */
+
+.hero--home {
+  padding-block: 80px 0;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+
+.hero--home .hero__copy {
+  padding-bottom: 80px;
+  max-width: none;
+}
+
+.hero__panel {
+  align-self: end;
+}
+
+.status-panel__note {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* --- servicios: six numbered cards, then the "¿no sabe qué necesita?" strip - */
+
+/* A card that carries secondary links cannot be one big anchor, so it is an
+   article whose heading holds the primary link. These rules give it the same
+   affordance as .card--link. */
+.card--service {
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card--service:hover,
+.card--service:focus-within {
+  border-color: var(--outline);
+  transform: translateY(-2px);
+}
+
+.card--service .card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card--service .card-title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}
+
+.card__links a {
+  display: inline-block;
+  font-size: var(--t-label);
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+}
+
+.card__links a:hover {
+  color: var(--ink);
+  border-color: var(--outline);
+}
+
+.unsure {
+  margin-top: var(--s-3);
+  background: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--r-card);
+  padding: var(--s-4) 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+
+.unsure__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  max-width: 620px;
+}
+
+.unsure__copy p {
+  margin: 0;
+  font-size: var(--t-small);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.unsure .btn {
+  flex: none;
+}
+
+/* --- credibilidad: two image slots plus the amber badge ------------------- */
+
+.figures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.figures__col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 40px;
+}
+
+.figures__tall,
+.figures__square {
+  border-radius: var(--r-card);
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.figures__tall {
+  aspect-ratio: 3 / 4;
+}
+
+.figures__square {
+  aspect-ratio: 1;
+}
+
+/* Until B4 supplies the photography (plan §6.4.1) the slots are a neutral
+   decorative texture, not a broken image and not a captioned identity claim. */
+.figures__slot {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--border) 0 10px,
+    #eef1f6 10px 20px
+  );
+}
+
+.figures__badge {
+  background: var(--amber);
+  color: var(--ink);
+  border-radius: var(--r-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.figures__badge-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.figures__badge-note {
+  font-size: var(--t-label);
+  font-weight: 500;
+}
+
+/* No founding year yet, so the badge carries the neutral line on its own and
+   needs the weight the missing number would have given it. */
+.figures__badge-note--solo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-lead);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* --- proceso: four steps on ink blue ------------------------------------- */
+
+.section-head--narrow {
+  max-width: 680px;
+}
+
+.process {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-3);
+}
+
+.process__step {
+  background: var(--on-ink-panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-card);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.process__num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--amber);
+}
+
+.process__title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--t-lead);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.process__text {
+  margin: 0;
+  font-size: var(--t-note);
+  line-height: 1.55;
+  color: var(--on-ink-muted);
+}
+
+/* Reused on a white band by B-phases: the ink-only colours have to come back. */
+.section:not(.section--ink) > .container > .process .process__step {
+  background: var(--bg);
+  border-color: var(--border);
+}
+
+.section:not(.section--ink) > .container > .process .process__num {
+  color: var(--amber-text);
+}
+
+.section:not(.section--ink) > .container > .process .process__text {
+  color: var(--muted);
+}
+
+/* --- casos: one featured quote plus the rest ----------------------------- */
+
+.quotes {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: var(--s-3);
+}
+
+.quote {
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.quote--feature {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+  padding: 36px;
+  gap: 28px;
+}
+
+.quote__text {
+  margin: 0;
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.quote--feature .quote__text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-d4);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.quote__by {
+  font-size: var(--t-note);
+  line-height: 1.5;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+}
+
+.quote__by strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.quote--feature .quote__by {
+  color: var(--on-ink-faint);
+}
+
+.quote--feature .quote__by strong {
+  color: var(--on-ink);
+}
+
+/* --- rubros: the band that stands in while there are no testimonials ------ */
+
+.industries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-3);
+}
+
+.industries__item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 24px var(--s-4);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-card);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  /* "Profesionales independientes" is wider than a half-column on a 390px
+     screen and Bricolage 600 gives it nowhere to break. */
+  overflow-wrap: break-word;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero--home .hero__copy {
+    padding-bottom: 0;
+  }
+  .quotes {
+    grid-template-columns: 1fr 1fr;
+  }
+  .quote--feature {
+    grid-column: 1 / -1;
+  }
+  .industries {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero--home {
+    padding-block: 56px 0;
+  }
+  .process {
+    grid-template-columns: 1fr;
+  }
+  .quotes {
+    grid-template-columns: 1fr;
+  }
+  .unsure {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--s-4);
+  }
+  .figures {
+    gap: var(--s-2);
+  }
+  .figures__col {
+    padding-top: var(--s-4);
+    gap: var(--s-2);
+  }
+  /* Empty slots are worth a screenful of texture on a desktop composition and
+     nothing at all on a phone. The badge stays. */
+  .figures--empty {
+    grid-template-columns: 1fr;
+  }
+  .figures--empty .figures__slot {
+    display: none;
+  }
+  .figures--empty .figures__col {
+    padding-top: 0;
+  }
+  .status-panel__note {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 560px) {
+  .industries {
+    grid-template-columns: 1fr;
+  }
+}

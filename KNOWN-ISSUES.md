@@ -43,3 +43,39 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   say plainly that the page is being prepared, and offer the conversion path. They
   are `noindex` and excluded from `sitemap.xml` until the phase that owns each one
   sets `'stub' => false` in `content/pages.php`.
+
+## A2 — Homepage, shared partials, Servicios hub (2026-09-03)
+
+- **The WhatsApp button's white-on-green is 3.24:1**, below the 4.5:1 WCAG AA
+  threshold. `#25A35A` is WhatsApp's own brand green and is locked by the 1B
+  style guide (plan §1.1), so A2 kept it rather than inventing a shade.
+  `#1E7A45` — already a token, `--ok-text` — is 5.3:1 against white and would
+  fix it without leaving the palette, if B4's accessibility pass (plan §6.4.2,
+  target 100 a11y) decides to move it. This and the `--amber-text` eyebrow
+  above are the only two contrast failures Lighthouse reports on `/`; together
+  they are the whole gap between 96 and 100 on accessibility.
+
+- **The two "Quiénes somos" photo slots are empty.** B4 supplies the imagery
+  (plan §6.4.1). Until then they render as a neutral diagonal texture rather
+  than a broken image or a captioned identity claim, and on screens ≤ 768px
+  they are hidden entirely (`.figures--empty`) so a phone does not get a
+  screenful of placeholder. Setting `site('photos')['portrait'|'team']` to
+  `['src' => ..., 'alt' => ...]` swaps in real `<img>`s with no code change.
+
+- **The amber badge carries a line of text instead of a number.** 1B's
+  "14 años · de ejercicio profesional" needs `foundedYear`, which is still
+  pending (plan §7), so the badge shows the neutral "Contadores públicos
+  matriculados" at display weight. Filling `foundedYear` restores the figure
+  and the badge computes the years itself.
+
+- **The Auditoría cluster on `/servicios/` lists its own sub-hub alongside its
+  three children**, so `/auditoria/` appears as a peer of the pages it
+  contains. All four are real, indexed URLs and the hub has to link every one
+  of the 14 services, so A2 left the grid flat rather than inventing a nesting
+  treatment. B1 owns `/auditoria/` (plan §6.1.4) and is better placed to decide
+  whether the children should be visually subordinate there.
+
+- **`addressCountry` in the JSON-LD is the word "Paraguay", not the ISO code
+  `PY`.** Both are valid schema.org and the block passes, but Google's
+  structured-data guidance prefers the two-letter code. One-word change in
+  `content/site.php` whenever the address is confirmed anyway.

@@ -20,6 +20,16 @@ return [
         'auditoria' => 'Auditoría',
     ],
 
+    // One line under each cluster heading on /servicios/. Keyed by cluster id.
+    'cluster_leads' => [
+        'digital'   => 'Todo lo que la DNIT le exige hacer en línea: facturación electrónica '
+                     . 'en SIFEN, su cuenta en Marangatu y la inscripción de RUC.',
+        'gestion'   => 'La operación mensual y anual de su empresa: contabilidad, IVA, IRE, IRP, '
+                     . 'nómina e IPS, apertura de sociedades y asesoría tributaria.',
+        'auditoria' => 'Informes con respaldo profesional para bancos, socios y organismos de '
+                     . 'control, y peritajes cuando hay algo que probar.',
+    ],
+
     'nav' => [
         'home'        => 'Inicio',
         'services'    => 'Servicios',
@@ -53,16 +63,184 @@ return [
         // Month-neutral by design: the 1B mock said "cierre de septiembre",
         // which would be wrong eleven months a year.
         'eyebrow' => 'Aceptamos nuevas empresas este mes',
-        'h1_lead' => 'Deje los impuestos y la contabilidad a un equipo que ',
-        'h1_accent' => 'nunca llega tarde.',
+        // Plan §5.2.6: 1B's promise headline, rebuilt around "estudio contable" —
+        // the highest-volume commercial term in docs/keyword-research.md, and the
+        // keyword the H1 has to carry (plan §4.11).
+        'h1_lead'   => 'Estudio contable en Asunción: impuestos, contabilidad y nómina ',
+        'h1_accent' => 'sin llegar tarde.',
         'lead'    => 'Contadores matriculados que llevan sus libros, presentan IVA y renta, '
                    . 'liquidan la nómina y lo dejan habilitado en SIFEN. Un solo contacto.',
+
+        // The homepage services band. Its own copy, so the /servicios/ hub can
+        // say something different without either page losing its voice.
+        'services_eyebrow' => 'Servicios',
+        'services_title'   => 'Seis servicios. Un solo equipo responsable.',
+        'services_lead'    => 'Contrate lo que necesita hoy y sume servicios cuando su empresa '
+                            . 'crezca. Todo bajo el mismo honorario mensual.',
+
+        // The six cards of plan §1.8: the five from the 1B mock plus Auditoría.
+        // 'path' is the card's own page; 'links' are the sibling legacy pages the
+        // card covers, so every URL the old site ranks on stays one click away.
+        'cards' => [
+            [
+                'title' => 'Contabilidad mensual',
+                'text'  => 'Libro de compras y ventas, conciliaciones y estados financieros. '
+                         . 'Cierre antes del día 5, con un informe en lenguaje claro.',
+                'path'  => '/contabilidad/',
+                'links' => [],
+            ],
+            [
+                'title' => 'Impuestos: IVA e IRE',
+                'text'  => 'Liquidación mensual de IVA y presentación anual del IRE (F.120) en '
+                         . 'Marangatu, control de vencimientos y respuesta ante la DNIT.',
+                'path'  => '/iva/',
+                'links' => [
+                    ['label' => 'IRE Simple', 'path' => '/ire-simple/'],
+                    ['label' => 'IRP',        'path' => '/irp/'],
+                    ['label' => 'Marangatu',  'path' => '/marangatu/'],
+                    ['label' => 'Asesoría',   'path' => '/asesoria/'],
+                ],
+            ],
+            [
+                'title' => 'Nómina',
+                'text'  => 'Salarios, aguinaldo, vacaciones, planillas de IPS y MTESS, altas y '
+                         . 'bajas. Recibos listos para firmar todos los meses.',
+                'path'  => '/ips/',
+                'links' => [],
+            ],
+            [
+                'title' => 'Apertura de empresas y RUC',
+                'text'  => 'E.A.S., S.R.L. o S.A. constituida, inscripción de RUC, patente y '
+                         . 'registro patronal, con el seguimiento de cada trámite.',
+                'path'  => '/eas/',
+                'links' => [
+                    ['label' => 'Inscripción de RUC', 'path' => '/ruc/'],
+                ],
+            ],
+            [
+                'title' => 'Facturación electrónica',
+                'text'  => "Habilitación en SIFEN, timbrado y puesta en marcha de Ekuatia'i. "
+                         . 'Emita factura electrónica válida desde el primer día.',
+                'path'  => '/ekuatia/',
+                'links' => [],
+            ],
+            [
+                'title' => 'Auditoría',
+                'text'  => 'Auditoría impositiva, interna y forense, con informes que resisten '
+                         . 'la lectura de un banco, un socio o un organismo de control.',
+                'path'  => '/auditoria/',
+                'links' => [
+                    ['label' => 'Impositiva', 'path' => '/auditoria-auditoria-impositiva/'],
+                    ['label' => 'Interna',    'path' => '/auditoria-auditoria-interna/'],
+                    ['label' => 'Forense',    'path' => '/auditoria-auditoria-forense/'],
+                ],
+            ],
+        ],
+
+        // The strip under the service grid. In the 1B mock this was a seventh
+        // tile; with six real services it reads better as a full-width band.
+        'unsure_title' => '¿No sabe qué necesita?',
+        'unsure_text'  => 'Cuéntenos su situación y le decimos qué corresponde, sin costo.',
+    ],
+
+    // The hero panel. It illustrates what the monthly report covers — it is not
+    // a client portal (plan §8 parks that) and never shows a client name or an
+    // invented figure. Labels only; no amounts, no dates, no percentages.
+    'panel' => [
+        'title' => 'Su cierre mensual, a la vista',
+        'badge' => 'Al día',
+        'tiles' => [
+            ['label' => 'IVA mensual',                'value' => 'Presentado'],
+            ['label' => 'Nómina e IPS',               'value' => 'Liquidada'],
+            ['label' => 'Libro de compras y ventas',  'value' => 'Conciliado'],
+        ],
+        'foot'  => 'Próximo vencimiento: IRE · F.120',
+        'note'  => 'Ejemplo del informe mensual',
+    ],
+
+    // "Quiénes somos" on the homepage. Every line here is a commitment about how
+    // we work, never a claim about size, seniority or results — those would need
+    // Anton's confirmation (plan §7) and none has arrived.
+    'about' => [
+        'eyebrow' => 'Quiénes somos',
+        'title'   => 'Contadores de verdad, con procesos digitales que un despacho tradicional '
+                   . 'no tiene.',
+        'text'    => 'Somos contadores públicos matriculados. Llevamos la contabilidad, los '
+                   . 'impuestos y la nómina de empresas de comercio, servicios, construcción e '
+                   . 'importación, con un proceso digital en el que cada comprobante se registra '
+                   . 'una sola vez: menos errores de carga, cierres en días y su información '
+                   . 'disponible cuando la pida.',
+        // Shown when content/site.php has no credentials[] yet (plan §1.4).
+        'credentials' => [
+            'Contadores públicos matriculados',
+            'Un contador asignado a su empresa, no una mesa de entrada',
+            'Cada comprobante se registra una sola vez, sin doble carga',
+            'Honorario mensual fijo, con el alcance acordado por escrito',
+        ],
+        'badge_note'     => 'de ejercicio profesional',
+        'badge_fallback' => 'Contadores públicos matriculados',
+        'link'           => 'Conocer al equipo',
+    ],
+
+    // The four-step "Cómo trabajamos" block, reused on service pages (plan §5.2.3).
+    // Timings follow the A1 house rule: "siguiente día hábil" and "por escrito",
+    // never an SLA in hours or days that nobody has confirmed.
+    'process' => [
+        'eyebrow' => 'Cómo trabajamos',
+        'title'   => 'De la primera conversación al primer cierre, con fechas acordadas.',
+        'steps'   => [
+            [
+                'title' => 'Conversación inicial',
+                'text'  => 'Media hora para entender su rubro, su volumen y su situación actual '
+                         . 'ante la DNIT y el IPS.',
+            ],
+            [
+                'title' => 'Propuesta por escrito',
+                'text'  => 'Alcance detallado y honorario mensual fijo, con lo que está incluido '
+                         . 'y lo que no. Sin letra chica.',
+            ],
+            [
+                'title' => 'Traspaso',
+                'text'  => 'Recibimos su documentación, regularizamos lo pendiente y cargamos su '
+                         . 'historial antes del primer cierre.',
+            ],
+            [
+                'title' => 'Cierre mensual',
+                'text'  => 'Un contador asignado, cierre antes del día 5 e informe mensual en '
+                         . 'lenguaje claro.',
+            ],
+        ],
+    ],
+
+    // Rendered in place of the "Casos" band while content/site.php has no
+    // testimonials (plan §5.2.1). Rubros, not clients: nothing to verify.
+    'industries' => [
+        'eyebrow' => 'Rubros',
+        'title'   => 'Rubros que atendemos',
+        'lead'    => 'Cada rubro tiene sus propias trampas tributarias. Estos son los que '
+                   . 'trabajamos todos los meses.',
+        'items'   => [
+            'Comercio',
+            'Servicios',
+            'Construcción',
+            'Importación',
+            'Profesionales independientes',
+            'Gastronomía',
+        ],
+    ],
+
+    // The band renders only when content/site.php has testimonials (plan §1.4).
+    'testimonials' => [
+        'eyebrow' => 'Casos',
+        'title'   => 'Lo que dicen las empresas que atendemos',
     ],
 
     'services_hub' => [
         'eyebrow' => 'Servicios',
-        'title'   => 'Un solo equipo para todo su cumplimiento.',
-        'lead'    => 'Contrate lo que necesita hoy y sume servicios cuando su empresa crezca.',
+        'title'   => 'Servicios contables en Paraguay, de la apertura al cierre anual.',
+        'lead'    => 'Contrate lo que necesita hoy y sume servicios cuando su empresa crezca. '
+                   . 'Los tres bloques de abajo son la forma en que trabajamos: cumplimiento '
+                   . 'digital ante la DNIT, gestión mensual de su empresa y auditoría.',
     ],
 
     'cta_band' => [
