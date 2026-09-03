@@ -8,7 +8,7 @@ Hand off ONLY when all four gates pass:
 
 Then spawn the next phase as a NEW session with the claude-code-remote `create_session` tool:
 `source_url` = `https://github.com/antonmarklundcom/conthtml` (so the session starts with the repo attached
-instead of "default"), inherit environment and permission mode (never `plan`), `model` = the next phase's model from the
+instead of "default"), `title` = `conthtml — Phase <id> <name> (<Model>) · contador.com.py`, inherit environment and permission mode (never `plan`), `model` = the next phase's model from the
 plan.md phase table (Opus or Sonnet only — NEVER Fable). Always pass `model` explicitly as the current
 model id of that family (look it up in the `claude-api` skill; `create_session` otherwise inherits the
 caller's model, which is wrong at a model switch). `prompt` exactly:
