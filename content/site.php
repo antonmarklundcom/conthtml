@@ -42,6 +42,14 @@ return [
     'foundedYear' => null,                       // int — drives the "N años" badge in A2
     'teamSize'    => null,                       // int
 
+    // --- imagery (§7 / plan §6.4.1: B4 supplies the files) -------------------
+    // While these are null the homepage "Quiénes somos" slots render as neutral
+    // decorative panels — never a broken image, never a captioned identity claim.
+    'photos' => [
+        'portrait' => null,                      // ['src' => '/assets/img/...', 'alt' => '...']
+        'team'     => null,
+    ],
+
     // --- collections: every one of these renders only when non-empty ---------
     'socials'      => [],                        // ['https://www.facebook.com/...', ...]
     'stats'        => [],                        // [['value' => '100 %', 'label' => '...'], ...]
