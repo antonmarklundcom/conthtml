@@ -1,0 +1,15 @@
+# contador.com.py
+User-agent: *
+Allow: /
+
+# Application internals — never useful to a crawler.
+Disallow: /content/
+Disallow: /lib/
+Disallow: /partials/
+Disallow: /templates/
+Disallow: /logs/
+Disallow: /enviar.php
+Disallow: /*?enviado=
+Disallow: /*?error=
+
+Sitemap: https://contador.com.py/sitemap.xml
