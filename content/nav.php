@@ -1,0 +1,80 @@
+<?php
+/**
+ * The header and footer link trees. Navigation is data, not markup (plan §4.13):
+ * partials/header.php and partials/footer.php render whatever this file returns,
+ * and B-phases add tools, legal pages and articles by extending the arrays here
+ * rather than editing the (locked) partials. Empty lists render nothing.
+ *
+ * Service links are derived from content/services.php, so a service added there
+ * appears in the mega-menu and the footer automatically.
+ */
+
+declare(strict_types=1);
+
+$services = content('services');
+$clusters = content('ui')['clusters'];
+
+/** Services grouped by cluster, in the order content/ui.php lists the clusters. */
+$byCluster = [];
+foreach ($clusters as $key => $label) {
+    $byCluster[$key] = ['label' => $label, 'items' => []];
+}
+foreach ($services as $slug => $service) {
+    $cluster = $service['cluster'];
+    if (!isset($byCluster[$cluster])) {
+        continue;
+    }
+    $byCluster[$cluster]['items'][] = [
+        'label'  => $service['navLabel'],
+        'path'   => $service['path'],
+        'slug'   => $slug,
+        'parent' => $service['parent'] ?? null,
+    ];
+}
+
+/** Flat list of all services, for the footer column. */
+$allServices = [];
+foreach ($byCluster as $cluster) {
+    foreach ($cluster['items'] as $item) {
+        $allServices[] = $item;
+    }
+}
+
+return [
+    // Header bar, left to right. 'mega' opens the services panel.
+    'primary' => [
+        ['label' => ui('nav.services'), 'path' => '/servicios/', 'mega' => true],
+        ['label' => ui('nav.pricing'),  'path' => '/precios/'],
+        ['label' => ui('nav.tools'),    'path' => '/herramientas/'],
+        ['label' => ui('nav.about'),    'path' => '/nosotros/'],
+        ['label' => ui('nav.blog'),     'path' => '/blog/'],
+        ['label' => ui('nav.contact'),  'path' => '/contacto/'],
+    ],
+
+    // The three clusters inside the Servicios mega-menu.
+    'mega' => $byCluster,
+
+    // Footer column 2.
+    'services' => $allServices,
+
+    // Footer column 3. Tools are appended by B3 through the 'tools' key below.
+    'firm' => [
+        ['label' => ui('nav.about'),   'path' => '/nosotros/'],
+        ['label' => ui('nav.pricing'), 'path' => '/precios/'],
+        ['label' => ui('nav.tools'),   'path' => '/herramientas/'],
+        ['label' => ui('nav.blog'),    'path' => '/blog/'],
+        ['label' => ui('nav.contact'), 'path' => '/contacto/'],
+    ],
+
+    // B3 fills this with ['label' => ..., 'path' => '/herramientas/<slug>/'].
+    // Empty in A1, so the footer renders the Herramientas link and no children.
+    'tools' => [],
+
+    'legal' => [
+        ['label' => ui('nav.privacy'), 'path' => '/privacidad/'],
+        ['label' => ui('nav.terms'),   'path' => '/terminos/'],
+    ],
+
+    // Rendered only when content/site.php has social URLs (plan §1.4).
+    'socials' => array_values(array_filter((array) site('socials'))),
+];

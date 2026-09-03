@@ -1,0 +1,65 @@
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # Hostinger shared hosting runs PHP 8.2; CI matches production.
+          php-version: "8.2"
+          extensions: curl, mbstring
+          coverage: none
+
+      - name: verify.sh
+        run: ./verify.sh
+
+      - name: Deploy zip builds and passes the same checks
+        run: |
+          ./deploy/make-zip.sh
+          stage=$(find dist -maxdepth 1 -type d -name 'contador-*' | head -1)
+          ./verify.sh --root "$stage" --port 8740
+
+  screenshots:
+    runs-on: ubuntu-latest
+    # Preview images for the PR body. Never blocks the merge on its own.
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: curl, mbstring
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright
+        working-directory: tests
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Capture
+        run: |
+          php -S 127.0.0.1:8080 router.php &
+          for _ in $(seq 1 40); do curl -sf -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.25; done
+          cd tests
+          node screenshots.mjs --phase ci --base http://127.0.0.1:8080 \
+            / /servicios/ /marangatu/ /contacto/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: docs/screenshots/ci/
