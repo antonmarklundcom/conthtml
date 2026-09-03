@@ -74,15 +74,45 @@ require ROOT_DIR . '/partials/header.php';
     </div>
   </section>
 
-  <?php if ($service['includes'] !== []): ?>
+  <?php
+    $svcExcludes = $service['excludes'] ?? [];
+    $svcWeNeed   = $service['weNeed'] ?? [];
+  ?>
+  <?php if ($service['includes'] !== [] || $svcExcludes !== [] || $svcWeNeed !== []): ?>
     <section class="section">
       <div class="container">
-        <h2><?= e(ui('service.includes')) ?></h2>
-        <ul class="checklist mt-4">
-          <?php foreach ($service['includes'] as $item): ?>
-            <li><span><?= e($item) ?></span></li>
-          <?php endforeach; ?>
-        </ul>
+        <div class="checklist-grid">
+          <?php if ($service['includes'] !== []): ?>
+            <div>
+              <h2><?= e(ui('service.includes')) ?></h2>
+              <ul class="checklist mt-4">
+                <?php foreach ($service['includes'] as $item): ?>
+                  <li><span><?= e($item) ?></span></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endif; ?>
+          <?php if ($svcExcludes !== []): ?>
+            <div>
+              <h2><?= e(ui('service.excludes')) ?></h2>
+              <ul class="checklist checklist--no mt-4">
+                <?php foreach ($svcExcludes as $item): ?>
+                  <li><span><?= e($item) ?></span></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endif; ?>
+          <?php if ($svcWeNeed !== []): ?>
+            <div>
+              <h2><?= e(ui('service.we_need')) ?></h2>
+              <ul class="checklist checklist--need mt-4">
+                <?php foreach ($svcWeNeed as $item): ?>
+                  <li><span><?= e($item) ?></span></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endif; ?>
+        </div>
       </div>
     </section>
   <?php endif; ?>

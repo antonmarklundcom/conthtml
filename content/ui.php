@@ -301,6 +301,8 @@ return [
 
     'service' => [
         'includes'  => 'Qué incluye',
+        'excludes'  => 'Qué no incluye',
+        'we_need'   => 'Qué necesitamos de usted',
         'benefits'  => 'Beneficios',
         'faq'       => 'Preguntas frecuentes',
         'related'   => 'Servicios relacionados',
