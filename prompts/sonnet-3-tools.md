@@ -11,6 +11,7 @@ Phase rules:
 - Load skill: `paraguay-business-apps` (§1 guaraní formatting, RUC rules).
 - Six tools under `/herramientas/`, in this order: calculadora de aguinaldo (with "proporcional" mode), liquidación de salario/finiquito (IPS 9 % line shown), vencimientos by RUC terminación, IVA calculator, comparador EAS/SRL/Unipersonal, "¿Qué necesita?" quiz. Labour rules live in `content/laboral.php`, vencimientos in `content/vencimientos.php`, both with a visible `lastReviewed` date; results carry an "orientativo" disclaimer. Do not scrape.
 - Each tool page has 200–300 words of SEO copy readable without JS and a CTA that opens the lead form prefilled with the result.
+- Register each tool in `content/nav.php` `tools[]` so header/footer list them; never edit the partials (plan §4.13).
 - Keyboard-operable, no console errors, `tool_used` analytics event through `assets/js/analytics.js`.
 - Re-runnable; minor issues → `KNOWN-ISSUES.md`; stop only per §4.4.
 

@@ -13,9 +13,11 @@ Phase rules:
 - Load skills at the matching step: `vendercrm-lead-capture` (static HTML+PHP section), `nextjs-national-lead-gen` (§2 architecture, §3 SEO only), `paraguay-business-apps` (§1 money, §2 RUC), `nextjs-deploy-hostinger` (shared-hosting hPanel/File Manager/Git-deploy mechanics only).
 - The content model in plan §2 is the contract every later phase consumes: write `content/services.php` seed and `templates/service.php` first, document the array shape in `README.md`.
 - Directory-per-route with `index.php`; `.htaccess` per plan §5.1.6; `router.php` for `php -S` mimics the same rules so `verify.sh` can assert 200/301/410 on all 21 scan §2 URLs plus the new routes.
-- Design tokens come from the 1b style guide verbatim as CSS custom properties; do not invent colors. Self-host Bricolage Grotesque woff2.
+- Design tokens come from the 1b style guide verbatim as CSS custom properties; do not invent colors. Self-host Bricolage Grotesque (600/800, display) and Onest (400/500/600, body) woff2 per plan §1.1.
+- Header and footer render from `content/nav.php` (plan §4.13, §5.1.3), including an empty `tools[]` list and the legal links, because Sonnet phases may not edit the partials later.
 - `enviar.php` must work with no `config.php` (degraded mode) — never block on the VenderCRM key.
-- Do not write service copy; seed `services.php` with slug/path/title/cluster/navLabel only.
+- Do not write service copy; seed `services.php` with slug/path/title/cluster/navLabel plus a provisional unique one-line `metaDescription` only (plan §5.1.4).
+- Create `assets/js/analytics.js` per plan §5.1.4b.
 - Re-runnable; minor issues → `KNOWN-ISSUES.md`; stop only per §4.4.
 
 Exit: `./verify.sh` green (php -l + route smoke test + duplicate title/description check); `/` renders header, footer, WhatsApp FAB with 1b tokens; `enviar.php` returns `{ok:true, degraded:true}` without a key; GitHub Actions runs `verify.sh` on PRs; `deploy/make-zip.sh` produces a zip that passes the smoke test when unzipped into a fresh `php -S` root; `config.example.php`, `README.md` ("Preview locally", "Deploy to Hostinger", "Content model"), `KNOWN-ISSUES.md` exist;
