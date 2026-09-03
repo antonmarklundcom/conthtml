@@ -1969,3 +1969,34 @@ section[id] {
     grid-template-columns: 1fr;
   }
 }
+
+/* == b1 service pages ===================================================== */
+
+/* Qué incluye / Qué no incluye / Qué necesitamos de usted, side by side when
+   more than one list is present, single column with 1-3 lists gracefully. */
+.checklist-grid {
+  display: grid;
+  gap: var(--s-5) var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.checklist--no li::before {
+  content: "✕";
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.checklist--need li::before {
+  content: "→";
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+/* Guía rápida sub-cards inside a body section (see templates/service.php
+   $block['items']) read better as a tighter, surface-toned tile than the
+   related-services card, so they don't compete with it visually. */
+.section--surface .card {
+  background: var(--bg);
+}

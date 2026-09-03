@@ -110,6 +110,8 @@ change a `path` — the legacy URLs are frozen for SEO (plan §1.2).
     'metaDescription' => '…',                  // 120–155 chars, unique site-wide
     'hero'     => ['eyebrow' => '', 'h1' => '', 'h2' => '', 'lead' => ''],
     'includes' => [],                          // "Qué incluye" checklist
+    'excludes' => [],                          // "Qué no incluye" checklist (optional, B1)
+    'weNeed'   => [],                          // "Qué necesitamos de usted" checklist (optional, B1)
     'sections' => [],                          // [['h2', 'body' => [...], 'items' => [...]]]
     'benefits' => [],                          // [['title', 'text']]
     'faq'      => [],                          // [['q', 'a']] → FAQPage JSON-LD

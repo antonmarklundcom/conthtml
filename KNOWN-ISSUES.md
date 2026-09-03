@@ -79,3 +79,41 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   `PY`.** Both are valid schema.org and the block passes, but Google's
   structured-data guidance prefers the two-letter code. One-word change in
   `content/site.php` whenever the address is confirmed anyway.
+
+## B1 — Service pages (2026-09-03)
+
+- **Marangatu's Guía rápida links to the DNIT institutional page, not a raw
+  login URL.** This session's network egress is blocked for both `dnit.gov.py`
+  and `marangatu.set.gov.py`, so the login endpoint found via search
+  (`marangatu.set.gov.py/eset/login`) could not be fetched to confirm it
+  still resolves. See `docs/facts-to-verify.md` — a human check before launch
+  should either confirm that URL or swap in whatever DNIT currently links
+  from its own Sistema Marangatu page.
+
+- **IRP tax brackets, rates and deduction limits are not stated on `/irp/`.**
+  This phase could not find a confidently current primary source for them
+  within the session, so the page says "consulte el monto vigente" instead
+  of a number, per the copy brief's fact-discipline rule (never state a
+  figure that isn't verified). Logged in `docs/facts-to-verify.md` as an
+  open input for Anton or a later phase.
+
+- **`/auditoria/` and `/auditoria-auditoria-impositiva/` no longer quote the
+  legacy site's "4 a 8 semanas" audit duration.** That figure wasn't on the
+  copy brief's whitelist of reusable scan figures, so both pages now say the
+  duration depends on the engagement and is confirmed in the initial
+  diagnosis. If the firm has a real typical range, it's a one-line addition.
+
+- **The `/servicios/` hub still lists `/auditoria/` as a peer of its three
+  children** (flagged by A2, plan §6.1.4 handed the decision to B1). B1 left
+  it as is: `service-card-grid.php` is a locked partial (plan §4.7) and the
+  flat grid is still accurate information architecture — all four are real,
+  indexed pages. A nested treatment there would need a partial change, which
+  is out of scope for a Model-B phase; noted here as a backlog item instead.
+
+- **`templates/service.php` gained one new section** (the "Qué incluye / Qué
+  no incluye / Qué necesitamos de usted" checklist grid, `content/services.php`
+  keys `excludes` and `weNeed`) and **`assets/css/site.css` gained a "b1
+  service pages" block below the tokens** (`.checklist-grid`, `.checklist--no`,
+  `.checklist--need`). Both are additive per plan §4.7 (new content keys, new
+  CSS below the tokens are allowed) — no existing section, partial, or token
+  was changed.
