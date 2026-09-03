@@ -1,0 +1,7 @@
+config.php
+logs/*
+!logs/.gitkeep
+dist/
+tests/node_modules/
+tests/output/
+.DS_Store
