@@ -26,7 +26,7 @@ return [
     // service CTA point at /contacto/ instead of wa.me. See partials/whatsapp-fab.php.
     'phone'    => '+595 995 628 862',
     'whatsapp' => '+595 995 628 862',
-    'email'    => null,
+    'email'    => 'contacto@contador.com.py',
 
     // --- address (§7: "Edificio Skytower, Asunción" unconfirmed, scan §6.3) --
     'street'  => null,
