@@ -9,8 +9,8 @@
 # no prompts, no tests, no deploy scripts, no git metadata, no config.php (that
 # is created on the server from config.example.php) and no logs.
 #
-# Upload it in hPanel → File Manager, extract into public_html/, then create
-# config.php. See README.md, "Deploy to Hostinger".
+# Upload it in hPanel → File Manager, extract inside public_html/ (the archive is
+# flat, so files land directly there), then create config.php. See README.md, "Deploy to Hostinger".
 #
 set -euo pipefail
 
@@ -72,7 +72,9 @@ for forbidden in docs prompts tests deploy .git config.php dist plan.md README.m
   fi
 done
 
-( cd "$DIST" && zip -qr "$NAME.zip" "$NAME" )
+# Flat archive: extracting it inside public_html/ puts index.php, .htaccess and
+# every page directory directly in place — no wrapper folder to move out of.
+( cd "$STAGE" && zip -qr "$DIST/$NAME.zip" . )
 
 echo "dist/$NAME.zip  ($(du -h "$DIST/$NAME.zip" | cut -f1), $(find "$STAGE" -type f | wc -l) files)"
 echo "staged at dist/$NAME/ — verify it with:  ./verify.sh --root dist/$NAME"

@@ -59,7 +59,9 @@ The zip holds exactly what belongs in `public_html/` — no `docs/`, `prompts/`,
 `tests/`, `deploy/`, git metadata, `config.php` or logs.
 
 1. hPanel → **File Manager** → open `public_html/` and upload the zip, then
-   *Extract*. (Or use hPanel's **Git** deploy pointed at this repository; the
+   *Extract* into `public_html/` itself. The archive is flat: `index.php`,
+   `.htaccess` and the page directories land directly in `public_html/`, with
+   no wrapper folder. (Or use hPanel's **Git** deploy pointed at this repository; the
    excluded directories are harmless there, `.htaccess` already denies them.)
 2. Copy `config.example.php` to `config.php` **on the server** and fill it in.
    `config.php` is gitignored and must never be committed.
@@ -76,6 +78,31 @@ The zip holds exactly what belongs in `public_html/` — no `docs/`, `prompts/`,
 | `SITE_URL` | canonical/OG URLs fall back to the request host |
 | `VENDERCRM_URL`, `VENDERCRM_API_KEY` | the lead form runs in degraded mode: submissions are appended to `logs/leads.log`, the visitor still gets a success state |
 | `GA4_ID`, `ADS_ID` | `assets/js/analytics.js` is a silent no-op |
+
+### Replacing the WordPress site
+
+The zip does not remove anything already in `public_html/`, and WordPress must
+not stay alongside it: its `wp-*` directories would remain reachable, its own
+`.htaccess` would be overwritten but `wp-config.php` and the database would
+still be live. Do the cutover in this order:
+
+1. hPanel → **Backups** → take a fresh files + database backup of the
+   WordPress site (the legacy copy is what `docs/reference/` was scanned from,
+   nothing else needs it after this).
+2. hPanel → **File Manager** → `public_html/` → select everything (including
+   `.htaccess` and `wp-config.php`) → **Delete**. Leave `public_html/` empty.
+3. Upload the zip into the empty `public_html/` and **Extract** there.
+   Delete the zip afterwards.
+4. Create `config.php` from `config.example.php` (step 2 above).
+5. hPanel → **PHP Configuration** → PHP 8.2, `curl` on. Then open `/`,
+   `/marangatu/`, `/sitemap.xml` and `/hello-world/` (must answer 410).
+6. Optional, later: hPanel → **Databases** → drop the old WordPress database
+   once you are sure the backup restores.
+
+Before the cutover fill `content/site.php` (WhatsApp number, phone, email,
+address, hours). Those values ship inside the zip, not in `config.php`, so a
+site published with them empty has no WhatsApp button and no NAP line until
+the next upload.
 
 ## Content model
 
