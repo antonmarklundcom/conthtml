@@ -1,6 +1,6 @@
 ---
 name: phased-autonomous-build
-description: Plan and run a full project build as autonomous, phased Claude Code sessions with minimal human time at the keyboard — idea sketch → reviewed plan.md → per-phase prompt files → two lanes (short sequential Opus foundation lane, then all Sonnet content phases spawned at once in parallel, each owning its own files) → one PR per phase merged green → an hourly Sonnet watcher Routine instead of any live supervision. Includes the HTML+PHP template profile (start the next brochure site from antonmarklundcom/conthtml and skip the foundation phases). Use EVERY time Anton plans a new app/site build, shares an idea sketch, asks to "make a plan", "review the plan", "split work between Opus and Sonnet", "build this AFK", "phased build", "one PR per step", "start from conthtml", "another PHP brochure site", or asks how to structure prompts for an unsupervised end-to-end build. Also when a build session says "continue with the next phase". Proven on alquilar.com.py (rent) and contador.com.py (conthtml).
+description: Plan and run a full project build as autonomous, phased Claude Code sessions with minimal human time at the keyboard — idea sketch → reviewed plan.md → per-phase prompt files → two lanes (short sequential Opus foundation lane, then all Sonnet content phases spawned at once in parallel, each owning its own files) → one PR per phase merged green → an hourly Sonnet watcher Routine instead of any live supervision. Includes the HTML+PHP template profile (start the next brochure site from the antonmarklundcom/php-site-template repo and skip the foundation phases). Use EVERY time Anton plans a new app/site build, shares an idea sketch, asks to "make a plan", "review the plan", "split work between Opus and Sonnet", "build this AFK", "phased build", "one PR per step", "from the template", "another PHP brochure site", or asks how to structure prompts for an unsupervised end-to-end build. Also when a build session says "continue with the next phase". Proven on alquilar.com.py (rent) and contador.com.py (conthtml).
 ---
 
 # Phased Autonomous Build
@@ -24,7 +24,7 @@ contador.com.py — a static HTML+PHP brochure site, no database, no framework �
 
 Input is a raw idea sketch (a markdown doc, a voice-note transcript, a chat message — rawness is fine; do NOT ask the user to have another model "improve" it first).
 
-0. **Check for a template first.** A local-business brochure/tools/blog site in HTML+PHP starts from the conthtml template profile (below) and skips the foundation lane. A Next.js listings/app build starts from the stack skills. Say which applies before anything else.
+0. **Check for a template first.** A local-business brochure/tools/blog site in HTML+PHP starts from `antonmarklundcom/php-site-template` (profile below) and skips the foundation lane. Anton does not need to name the template; "HTML+PHP site" or "brochure site" is enough. A Next.js listings/app build starts from the stack skills. Say which applies before anything else.
 1. Read the sketch. Identify the decisions that BLOCK a build start (business model, vertical sequencing, market, monetization) vs. ones that don't.
 2. For each blocking decision, give a concrete recommendation with reasoning — the goal is that the user can reply with "yes" or short corrections, not homework.
 3. Ask for the stack only if it isn't obvious; default to the user's proven stack skills (for Anton: `nodejs-mysql-hostinger-stack` + `nextjs-deploy-hostinger`, market skills for PY/SE).
@@ -123,20 +123,20 @@ Tell the user:
 5. The human-inputs checklist (§7) and when each item is first needed. Anything that needs a human network step (e.g. downloading generated images past a CDN the sandbox cannot reach) is a §7 item with a manual step, never a phase: the conthtml imagery import was attempted twice against a known 403 and finished neither time.
 6. Where Fable comes back in, if at all (the two optional review points above), and that each is a session Anton opens and closes.
 
-## Template profile: HTML+PHP brochure site from conthtml
+## Template profile: HTML+PHP brochure site from php-site-template
 
-Use when the next site is a local-business brochure / tools / blog site on shared PHP hosting (Paraguayan or Swedish local business, contador.com.py's shape). The template is `antonmarklundcom/conthtml` at its latest main; `docs/template-reuse.md` in that repo is the executable checklist. What it contains that is generic: `lib/` (bootstrap, helpers, seo/JSON-LD), all `partials/`, `templates/` (service, article, tool, page-stub), the design-system CSS with a tokens block, `enviar.php` + `config.example.php` (lead form → VenderCRM, Resend, log fallback), `router.php` + `.htaccess` + `sitemap.php`, `verify.sh`, `deploy/` (zip, CSS minify, font subset, image optimize, live verify), `tests/screenshots.mjs`, CI, `prompts/_handoff.md`, and every `content/*.php` file's key shape.
+Use when the next site is a local-business brochure / tools / blog site on shared PHP hosting (Paraguayan or Swedish local business, contador.com.py's shape). The template is `antonmarklundcom/php-site-template` (built once from conthtml's foundation, no client content); its README "Start a new site" section is the executable T0 checklist. Create the new repo with GitHub's "Use this template". What it contains: `lib/` (bootstrap, helpers, seo/JSON-LD), all `partials/`, `templates/` (service, article, tool, page-stub), the design-system CSS with a tokens block, `enviar.php` + `config.example.php` (lead form → VenderCRM, Resend, log fallback), `router.php` + `.htaccess` + `sitemap.php`, `verify.sh`, `deploy/` (zip, CSS minify, font subset, image optimize, live verify), `tests/screenshots.mjs`, CI, `prompts/_handoff.md`, and every `content/*.php` file's key shape.
 
 Phases for a template start (replaces lane 1 entirely; A1 and A2 are never rebuilt):
 
 | Phase | Lane | Model | What |
 |---|---|---|---|
-| T0 Adopt | 1 | Sonnet | Fork conthtml, run `docs/template-reuse.md`: delete the old content values, routes, blog, tools, logs, screenshots; rename brand/site facts, title suffix, zip name; swap the tokens block to the new design canvas' style guide; verify green with stub pages; PR. ≤ 1 h. |
+| T0 Adopt | 1 | Sonnet | New repo from the template; fill `content/site.php`, pick the market module (py/se), swap the tokens block to the new design canvas' style guide, add plan.md + prompts; verify green with stub pages; PR. ≤ 30 min. |
 | T1 Home | 1 | Opus if the design canvas is a new layout, Sonnet if it reuses conthtml's homepage layout with new tokens/copy | Homepage + hub from the design canvas, using the existing partials. Creates the watcher, spawns lane 2. |
 | Lane 2 | 2 | Sonnet, parallel | Services, secondary pages + blog, tools, guides/segments — each owning its content file, template, route dirs, JS dir. |
 | Link pass | — | Sonnet | Cross-links, nav additions, KNOWN-ISSUES promotion, closing report. |
 
-Expected cost: T0 $5–8, T1 $10–15, lane 2 $8–12 per phase in parallel, link pass ~$3 → $45–60; wall-clock ~1 h + ~1 h + ~1.5 h + ~0.5 h ≈ 4 h. Market swaps live in named places: `assets/js/py.js` + `lib/helpers.php` (RUC/Gs formatting → org.nr/SEK), `content/laboral.php` / `content/vencimientos.php` (PY labour and DNIT tables — delete for a non-PY site), and the market skill loaded in prompts (`paraguay-business-apps` ↔ `sweden-business-apps`).
+Expected cost: T0 $2–4, T1 $10–15, lane 2 $8–12 per phase in parallel, link pass ~$3 → $45–60; wall-clock ~1 h + ~1 h + ~1.5 h + ~0.5 h ≈ 4 h. Market-specific code (tax-id validation, currency formatting, labour/tax tables) lives in the template's market modules (`py`, `se`); the site picks one in `content/site.php`. The market skill loaded in prompts follows (`paraguay-business-apps` ↔ `sweden-business-apps`). Until the template repo exists, `antonmarklundcom/conthtml` + its `docs/template-reuse.md` is the fallback.
 
 ## After the build
 
