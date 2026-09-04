@@ -64,13 +64,16 @@ else
   echo "warning: no assets/css/site.min.css (run deploy/minify-css.mjs), shipping unminified site.css" >&2
 fi
 
-# Page directories: every top-level directory holding an index.php.
-while IFS= read -r dir; do
-  name="$(basename "$dir")"
-  cp -R "$dir" "$STAGE/$name"
-done < <(find "$ROOT" -mindepth 2 -maxdepth 2 -name index.php \
+# Page directories: every top-level directory that has an index.php anywhere
+# under it, at any depth. A route can be one level deep (marangatu/index.php)
+# or nested (blog/<slug>/index.php, herramientas/<slug>/index.php,
+# contador-para/<slug>/index.php, C3) — either way the top-level directory
+# name is what matters, since cp -R below brings its whole subtree along.
+while IFS= read -r name; do
+  cp -R "$ROOT/$name" "$STAGE/$name"
+done < <(find "$ROOT" -mindepth 2 -name index.php \
            -not -path "$ROOT/dist/*" -not -path "$ROOT/tests/*" \
-           -printf '%h\n' | sort)
+           -printf '%P\n' | cut -d/ -f1 | sort -u)
 
 # logs/ must exist and be writable for the lead handler's degraded mode, and it
 # must never be readable over HTTP.

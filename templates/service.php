@@ -196,6 +196,29 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endif; ?>
 
+  <!-- Guía relacionada (plan §6.5.3, C2): additive next to the related-services
+       block above — a service with a matching how-to guide links to it. -->
+  <?php $svcGuides = $service['guides'] ?? []; ?>
+  <?php if ($svcGuides !== []): ?>
+    <section class="section section--surface">
+      <div class="container">
+        <h2><?= e(ui('service.guides')) ?></h2>
+        <div class="grid grid--3 mt-4">
+          <?php foreach ($svcGuides as $svcGuideSlug): ?>
+            <?php $svcGuide = content('guias')[$svcGuideSlug] ?? null; ?>
+            <?php if ($svcGuide === null): ?>
+              <?php continue; ?>
+            <?php endif; ?>
+            <a class="card card--link" href="<?= e($svcGuide['path']) ?>">
+              <h3 class="card-title"><?= e($svcGuide['navLabel']) ?></h3>
+              <p class="card__text"><?= e($svcGuide['metaDescription']) ?></p>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
+
   <!-- Solicitar: the service's own lead form (plan §5.3.2). Every service page
        needs one, because a lead is only worth routing if it arrives carrying
        the service it came from — the CTA band above sends people to WhatsApp,
