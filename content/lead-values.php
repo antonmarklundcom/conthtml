@@ -273,6 +273,26 @@ return [
             ],
             'crmTag' => 'irp',
         ],
+
+        /* --- /en/ (C5): foreign founders opening a company in Paraguay ------
+           Tier A per docs/lead-value.md ("Foreign founders are the highest
+           ticket of all"). The only lead-values record whose whatsappText and
+           menuLabel are English, not Spanish — the only pages that ever
+           resolve to this slug are the /en/ ones (content/en.php,
+           partials/lead-form-en.php), which never render through the Spanish
+           WhatsApp menu (plan §5.3.8b's whatsappMenu[] does not list it). */
+        'empresas-extranjeras' => [
+            'menuLabel'    => 'Open a company in Paraguay',
+            'need'         => 'apertura',
+            'tier'         => 'A',
+            'whatsappText' => 'Hello, I am opening a company in Paraguay as a foreign founder and would like to talk to an accountant.',
+            'nextStep'     => [
+                "We reply within the next business day with the entity type, timeline and budget for your case.",
+                'Have ready: passports/IDs of every shareholder, a resident legal representative in Paraguay (or tell us if you need one), and an idea of your planned activity.',
+                'If you already have a Paraguayan bank account or a local partner in mind, mention it — it changes the timeline.',
+            ],
+            'crmTag' => 'en-empresas-extranjeras',
+        ],
     ],
 
     /* ----------------------------------------------------------------- tools */

@@ -6,7 +6,13 @@
  *
  * Locked for B-phases (plan §4.7), except the gtag.js block below: B4's
  * analytics config wiring is an explicitly named exception (plan §6.4.3,
- * prompts/sonnet-4-polish-launch.md) — nothing else in this file changed.
+ * prompts/sonnet-4-polish-launch.md) — nothing else in this file changed
+ * until C5, which is a second named exception: an optional $page['lang']
+ * (default 'es-PY', unchanged for every page that does not set it) and an
+ * optional $page['hreflang'] => [locale => path, ...] that emits one
+ * <link rel="alternate" hreflang="..."> per entry, read by the /en/ pages and
+ * their Spanish counterparts (plan §6.8.1). No other page sets either key, so
+ * every page that predates C5 renders byte-identical to before.
  */
 
 declare(strict_types=1);
@@ -16,9 +22,10 @@ $page        = $page ?? [];
 $currentPath = $page['path'] ?? '/';
 $ga4         = cfg('GA4_ID', '');
 $ads         = cfg('ADS_ID', '');
+$htmlLang    = $page['lang'] ?? 'es-PY';
 ?>
 <!doctype html>
-<html lang="es-PY">
+<html lang="<?= e($htmlLang) ?>">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,13 +34,16 @@ $ads         = cfg('ADS_ID', '');
 <meta name="description" content="<?= e($page['description']) ?>">
 <?php endif; ?>
 <link rel="canonical" href="<?= e(seo_canonical($page)) ?>">
+<?php foreach ($page['hreflang'] ?? [] as $hrefLocale => $hrefPath): ?>
+<link rel="alternate" hreflang="<?= e($hrefLocale) ?>" href="<?= e(url($hrefPath)) ?>">
+<?php endforeach; ?>
 <?php if (!empty($page['noindex'])): ?>
 <meta name="robots" content="noindex, follow">
 <?php endif; ?>
 
 <meta property="og:type" content="<?= e($page['ogType'] ?? 'website') ?>">
 <meta property="og:site_name" content="<?= e(site('name')) ?>">
-<meta property="og:locale" content="es_PY">
+<meta property="og:locale" content="<?= e($htmlLang === 'en' ? 'en_US' : 'es_PY') ?>">
 <meta property="og:title" content="<?= e(seo_title($page)) ?>">
 <?php if (!empty($page['description'])): ?>
 <meta property="og:description" content="<?= e($page['description']) ?>">

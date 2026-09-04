@@ -63,6 +63,19 @@ page hedges with "consulte el monto vigente" instead of a hard figure.
 
 No figure not already whitelisted by B1/B2/B3 was introduced this phase. Every guide that would otherwise need a specific peso amount, percentage or day count not already confirmed states "consulte el monto/plazo vigente" or an equivalent hedge instead, per the copy brief.
 
+## C5 — English section for foreign founders (2026-09-04)
+
+| Page(s) | Statement | Source | Confidence / action |
+|---|---|---|---|
+| `/en/taxes-in-paraguay-for-foreigners/` | Resimple threshold Gs. 80,000,000/year; IRE Simple threshold Gs. 2,000,000,000/year | Same B1 `/ire-simple/` row above (`docs/facts-to-verify.md`), reused verbatim in English, same caveat: confirm the current thresholds before the next tax season. | No new claim — a translation of an already-whitelisted figure. |
+| `/en/taxes-in-paraguay-for-foreigners/` | VAT: 10% general, 5% reduced on a limited list (mainly basic foodstuffs, certain real-estate/financial operations) | Same B1 `/iva/` row above, reused verbatim. | No new claim. |
+| `/en/taxes-in-paraguay-for-foreigners/`, `/en/open-a-company-in-paraguay/` | IRP threshold, deduction limits and IRE tax rate are **not stated** — deliberately hedged ("set by regulation... confirm on request"), same treatment as `/irp/` since B1 | Same open item as the B1 `/irp/` row: this phase did not find a confidently current source either, and did not attempt to — it inherits B1's finding rather than re-researching it. | **Anton or a future phase should supply the current IRP tramos/tasas/deducciones and the current IRE rate so both the Spanish `/irp/` and this English page can state them.** |
+| `/en/taxes-in-paraguay-for-foreigners/` | Individual tax residency is determined "mainly by time physically present in the country and by where your main economic activity is based" — **no day-count threshold is stated** | Not independently sourced this phase; this is a description of the *mechanism* (a territorial/economic-presence system), not a specific rule. Deliberately hedged rather than inventing a day count (e.g. "183 days") that no source in this session confirmed. | **Open**: if the firm has a specific, confirmed day-count or other bright-line residency test, add it as a follow-up — this phase would not state one without a source. |
+| `/en/open-a-company-in-paraguay/`, `/en/eas-vs-srl-paraguay/` | EAS: single shareholder of any nationality, formed via SUACE, no notarial deed, no legal minimum capital; SRL: minimum two partners, no legal minimum capital either | Same B1 `/eas/` row and the B3 comparador row above, reused and extended for a foreign-founder audience (legal representative, consular documentation) — the representative/consular-documentation points are general knowledge of how a non-resident shareholder registers in Paraguay, **not independently re-verified against a primary DNIT/SUACE source this phase** | Same B1 caveat carried forward, plus a new one: confirm the exact consular-legalisation requirements (apostille vs. consular legalisation, which documents) with a primary source before quoting a specific document list to a foreign client. |
+| `/en/open-a-company-in-paraguay/` | RUC processing "typically a matter of business days" | Same B1 `/ruc/` row above ("24 a 72 horas hábiles"), deliberately loosened to avoid restating an unconfirmed exact figure in a page aimed at readers less likely to already know Paraguay's administrative norms | Same caveat as the original B1 row. |
+
+No figure beyond what B1/B3 already whitelisted was introduced. IRP brackets/rates, the IRE corporate rate itself, and the exact tax-residency day-count remain open items — carried forward from B1 rather than newly discovered — for whenever Anton or a future phase can supply a confirmed primary source.
+
 ## Notes on method
 
 - Two figures the copy brief explicitly named as reusable (`site.stats`-style

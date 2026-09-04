@@ -330,6 +330,70 @@ while IFS=$'\t' read -r path expected; do
 done <<< "$ROUTE_LIST"
 [ "$generic" -eq 0 ] && ok "no wa.me link on the site carries a generic message"
 
+# --------------------------------------------------- 9. /en/ section (C5) ----
+# Plan §6.8. Five /en/ pages plus the hub, all through the route contract
+# already (deploy/routes.php's content('en') loop) — this step checks the
+# language-specific promises the route contract alone cannot: hreflang pairs,
+# lang="en", the English WhatsApp prefill, and a lang=en test lead resolving
+# to service=empresas-extranjeras at tier A.
+step "/en/ section (C5)"
+
+en_home=$(curl -s "${BASE}/en/")
+if printf '%s' "$en_home" | grep -q '<html lang="en">'; then
+  ok "/en/ renders lang=\"en\""
+else
+  fail "/en/ does not render lang=\"en\""
+fi
+if printf '%s' "$en_home" | grep -q 'hreflang="es"' && printf '%s' "$en_home" | grep -q 'hreflang="x-default"'; then
+  ok "/en/ carries hreflang alternates to its Spanish counterpart"
+else
+  fail "/en/ is missing an hreflang alternate"
+fi
+
+en_contact=$(curl -s "${BASE}/en/contact/")
+if printf '%s' "$en_contact" | grep -q 'name="service" value="empresas-extranjeras"' \
+  && printf '%s' "$en_contact" | grep -q 'name="lang" value="en"'; then
+  ok "/en/contact/ form presets service=empresas-extranjeras and carries lang=en"
+else
+  fail "/en/contact/ form is missing service or lang"
+fi
+if printf '%s' "$en_contact" | grep -qF 'https://wa.me/' \
+  && ! (printf '%s' "$en_contact" | grep -o 'https://wa\.me/[^"]*' | grep -qiE 'consulta%20gratis|text=$'); then
+  ok "/en/contact/'s WhatsApp link carries an English, service-specific message"
+else
+  fail "/en/contact/'s WhatsApp link is missing or generic"
+fi
+
+rm -f "$SITE_ROOT/logs/leads.log"
+en_lead=$(curl -s -X POST "$BASE/enviar.php" \
+  -H 'Accept: application/json' -H "Origin: $BASE" \
+  -d 'name=Verify+EN&phone=0981000995&service=empresas-extranjeras&lang=en&form_id=contacto-en&source_page=/en/contact/&idempotency_key=verify-sh-en-fixture')
+if why=$(json_says "$en_lead" ok=true service=empresas-extranjeras value_tier=A value=1000000 currency=PYG); then
+  ok "a POST with service=empresas-extranjeras (lang=en) answers tier A, ₲1 000 000"
+else
+  fail "service=empresas-extranjeras: $why"
+fi
+en_logline=$(tail -1 "$SITE_ROOT/logs/leads.log" 2>/dev/null)
+if printf '%s' "$en_logline" | grep -q '"formulario":"contacto-en"'; then
+  ok "leads.log distinguishes the English lead via fields.formulario=contacto-en"
+else
+  fail "leads.log line does not carry fields.formulario=contacto-en: $en_logline"
+fi
+rm -f "$SITE_ROOT/logs/leads.log"
+
+# Every /en/ page must carry the reduced English nav (Services, Open a
+# company, Taxes, Contact), not the Spanish header.
+missing_en_nav=0
+for enpath in /en/ /en/open-a-company-in-paraguay/ /en/eas-vs-srl-paraguay/ \
+              /en/taxes-in-paraguay-for-foreigners/ /en/accounting-services-paraguay/ /en/contact/; do
+  html=$(curl -s "${BASE}${enpath}")
+  if ! printf '%s' "$html" | grep -q 'href="/en/contact/"'; then
+    fail "$enpath — reduced English nav did not render"
+    missing_en_nav=1
+  fi
+done
+[ "$missing_en_nav" -eq 0 ] && ok "all six /en/ pages render the reduced English nav"
+
 rm -rf "$SITE_ROOT/logs/rate" "$SITE_ROOT/logs/leads.log"
 
 # ------------------------------------------------------------------ result ----
