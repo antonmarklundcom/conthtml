@@ -86,7 +86,16 @@ require ROOT_DIR . '/partials/header.php';
       </div>
 
       <div>
-        <h2>7. Sus derechos</h2>
+        <h2>7. Analítica y publicidad</h2>
+        <p>Este sitio puede usar Google Analytics y Google Ads para entender qué páginas visita y medir el
+          resultado de nuestras campañas, mediante cookies y tecnologías similares que identifican su
+          navegador, no a usted como persona. La normativa paraguaya no exige un aviso de cookies para este
+          tipo de analítica, pero se lo informamos igualmente. Puede desactivarlas desde la configuración de
+          su navegador o con las herramientas de exclusión que ofrece Google.</p>
+      </div>
+
+      <div>
+        <h2>8. Sus derechos</h2>
         <p>Puede solicitarnos el acceso, la corrección o la eliminación de sus datos personales en
           cualquier momento, salvo la documentación que estemos legalmente obligados a conservar por
           nuestra relación con la DNIT u otros organismos. Para ejercer estos derechos, escríbanos desde
@@ -95,7 +104,7 @@ require ROOT_DIR . '/partials/header.php';
       </div>
 
       <div>
-        <h2>8. Cambios a esta política</h2>
+        <h2>9. Cambios a esta política</h2>
         <p>Podemos actualizar esta política cuando cambie la normativa vigente o la forma en que
           prestamos nuestros servicios. La fecha de la última actualización se indica al pie de esta
           página.</p>

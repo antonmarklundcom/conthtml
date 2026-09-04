@@ -127,4 +127,10 @@ $faq = [
     ],
 ];
 
+$toolLink = [
+    'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+    'label' => 'Compare EAS, SRL y Unipersonal',
+    'text'  => 'Vea la tabla comparativa y responda tres preguntas para saber cuál estructura le conviene.',
+];
+
 require ROOT_DIR . '/templates/article.php';

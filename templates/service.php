@@ -158,6 +158,22 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endif; ?>
 
+  <?php $svcToolLinks = $service['toolLinks'] ?? []; ?>
+  <?php if ($svcToolLinks !== []): ?>
+    <section class="section section--surface">
+      <div class="container">
+        <?php if (count($svcToolLinks) > 1): ?><div class="grid grid--2"><?php endif; ?>
+          <?php foreach ($svcToolLinks as $svcToolLink): ?>
+            <a class="card card--link" href="<?= e($svcToolLink['path']) ?>">
+              <h2 class="card-title"><?= e($svcToolLink['label'] ?? '') ?></h2>
+              <p class="card__text"><?= e($svcToolLink['text'] ?? '') ?></p>
+            </a>
+          <?php endforeach; ?>
+        <?php if (count($svcToolLinks) > 1): ?></div><?php endif; ?>
+      </div>
+    </section>
+  <?php endif; ?>
+
   <?php if ($service['faq'] !== []): ?>
     <section class="section section--surface">
       <div class="container">

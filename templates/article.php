@@ -8,10 +8,11 @@
  *   $slug      string  required — looked up in content/blog.php
  *   $sections  array   [['h2' => ..., 'body' => string[], 'items'? => [...]]]
  *   $faq       array   optional [['q' => ..., 'a' => ...], ...]
- *   $toolLink  array   optional ['path' => '/herramientas/<slug>/', 'label' => ...,
- *                       'text' => ...] — a calculator callout rendered right
- *                       after the article body (plan §10 backlog: articles
- *                       link to their calculator once B3 ships one)
+ *   $toolLink  array   optional calculator callout(s) rendered right after the
+ *                       article body: either one ['path' => '/herramientas/<slug>/',
+ *                       'label' => ..., 'text' => ...] or a list of those
+ *                       (plan §10 backlog, extended B4 §6.4 review decision 3
+ *                       to allow more than one calculator per article)
  */
 
 declare(strict_types=1);
@@ -156,13 +157,18 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endif; ?>
 
-  <?php if (!empty($toolLink['path'])): ?>
+  <?php $toolLinkList = array_key_exists('path', $toolLink) ? [$toolLink] : $toolLink; ?>
+  <?php if ($toolLinkList !== []): ?>
     <section class="section section--surface">
       <div class="container">
-        <a class="card card--link" href="<?= e($toolLink['path']) ?>">
-          <h2 class="card-title"><?= e($toolLink['label'] ?? '') ?></h2>
-          <p class="card__text"><?= e($toolLink['text'] ?? '') ?></p>
-        </a>
+        <?php if (count($toolLinkList) > 1): ?><div class="grid grid--2"><?php endif; ?>
+          <?php foreach ($toolLinkList as $oneToolLink): ?>
+            <a class="card card--link" href="<?= e($oneToolLink['path']) ?>">
+              <h2 class="card-title"><?= e($oneToolLink['label'] ?? '') ?></h2>
+              <p class="card__text"><?= e($oneToolLink['text'] ?? '') ?></p>
+            </a>
+          <?php endforeach; ?>
+        <?php if (count($toolLinkList) > 1): ?></div><?php endif; ?>
       </div>
     </section>
   <?php endif; ?>

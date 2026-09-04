@@ -4,7 +4,9 @@
  * link. Every page requires this after setting $page (see lib/seo.php for the
  * keys it understands), then partials/header.php.
  *
- * Locked for B-phases (plan §4.7).
+ * Locked for B-phases (plan §4.7), except the gtag.js block below: B4's
+ * analytics config wiring is an explicitly named exception (plan §6.4.3,
+ * prompts/sonnet-4-polish-launch.md) — nothing else in this file changed.
  */
 
 declare(strict_types=1);
@@ -13,6 +15,7 @@ declare(strict_types=1);
 $page        = $page ?? [];
 $currentPath = $page['path'] ?? '/';
 $ga4         = cfg('GA4_ID', '');
+$ads         = cfg('ADS_ID', '');
 ?>
 <!doctype html>
 <html lang="es-PY">
@@ -49,6 +52,20 @@ $ga4         = cfg('GA4_ID', '');
 <?php foreach (seo_jsonld($page) as $block): ?>
 <script type="application/ld+json"><?= json_ld($block) ?></script>
 <?php endforeach; ?>
+
+<?php if ($ga4 !== '' || $ads !== ''): ?>
+<!-- GA4 / Google Ads (plan §6.4.3). No-op until config.php sets GA4_ID/ADS_ID;
+     assets/js/analytics.js's dataLayer.push() calls are inert until this
+     snippet is present, so filling in the ids here is what turns them on. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= e($ga4 !== '' ? $ga4 : $ads) ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  <?php if ($ga4 !== ''): ?>gtag('config', '<?= e($ga4) ?>');<?php endif; ?>
+  <?php if ($ads !== ''): ?>gtag('config', '<?= e($ads) ?>');<?php endif; ?>
+</script>
+<?php endif; ?>
 </head>
 <body data-ga4="<?= e($ga4 ?? '') ?>">
 <a class="skip-link" href="#main"><?= e(ui('nav.skip')) ?></a>

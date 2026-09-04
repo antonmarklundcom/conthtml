@@ -125,10 +125,18 @@ $faq = [
 ];
 
 $toolLink = [
-    'path'  => '/herramientas/calculadora-aguinaldo/',
-    'label' => 'Calcule su aguinaldo',
-    'text'  => 'Cargue sus salarios y obtenga el monto en guaraníes, con el aguinaldo proporcional '
-             . 'ya calculado si no trabajó el año completo.',
+    [
+        'path'  => '/herramientas/calculadora-aguinaldo/',
+        'label' => 'Calcule su aguinaldo',
+        'text'  => 'Cargue sus salarios y obtenga el monto en guaraníes, con el aguinaldo proporcional '
+                 . 'ya calculado si no trabajó el año completo.',
+    ],
+    [
+        'path'  => '/herramientas/liquidacion-de-salario/',
+        'label' => 'Calculadora de liquidación de salario',
+        'text'  => 'Si además dejó su empleo, calcule el finiquito completo: salario, vacaciones y '
+                 . 'aguinaldo proporcionales, preaviso e indemnización si corresponde.',
+    ],
 ];
 
 require ROOT_DIR . '/templates/article.php';

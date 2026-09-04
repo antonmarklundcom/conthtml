@@ -48,6 +48,22 @@ for item in "${SHIP[@]}"; do
   cp -R "$ROOT/$item" "$STAGE/"
 done
 
+# Ship the minified stylesheet in place of the source (plan §6.4.2): the repo
+# keeps the readable, commented assets/css/site.css for editing; production
+# gets deploy/minify-css.mjs's committed output under the same filename, so
+# head.php needs no change. Regenerate first if Node is on this machine, so a
+# forgotten re-run after editing site.css never ships stale CSS; otherwise
+# fall back to whatever assets/css/site.min.css is already committed.
+if command -v node >/dev/null; then
+  node "$ROOT/deploy/minify-css.mjs"
+fi
+if [ -f "$ROOT/assets/css/site.min.css" ]; then
+  cp "$ROOT/assets/css/site.min.css" "$STAGE/assets/css/site.css"
+  rm -f "$STAGE/assets/css/site.min.css"
+else
+  echo "warning: no assets/css/site.min.css (run deploy/minify-css.mjs), shipping unminified site.css" >&2
+fi
+
 # Page directories: every top-level directory holding an index.php.
 while IFS= read -r dir; do
   name="$(basename "$dir")"
