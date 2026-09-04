@@ -385,6 +385,13 @@ h3 {
   color: var(--amber);
 }
 
+/* Persona/segment pages get the second accent instead of amber, so they read
+   as visually distinct from the compliance pages at a glance - not just by
+   having a photo (redesign pass, audit rec #6). */
+.page-hero--photo .eyebrow {
+  color: var(--accent2-tint);
+}
+
 .section-head {
   display: flex;
   flex-direction: column;
