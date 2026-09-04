@@ -33,13 +33,18 @@ require ROOT_DIR . '/partials/header.php';
 ?>
 <main id="main">
 
-  <section class="page-hero">
+  <section class="page-hero page-hero--photo">
     <div class="container">
       <?php require ROOT_DIR . '/partials/breadcrumbs.php'; ?>
-      <div class="page-hero__inner">
-        <p class="eyebrow"><?= e(ui('contact.eyebrow')) ?></p>
-        <h1><?= e(ui('contact.title')) ?></h1>
-        <p class="lead"><?= e(ui('contact.lead')) ?></p>
+      <div class="page-hero__grid">
+        <div class="page-hero__inner">
+          <p class="eyebrow"><?= e(ui('contact.eyebrow')) ?></p>
+          <h1><?= e(ui('contact.title')) ?></h1>
+          <p class="lead"><?= e(ui('contact.lead')) ?></p>
+        </div>
+        <img class="page-hero__photo" src="<?= e(asset('/assets/img/consulta-contable-conversacion-cliente-1280.avif')) ?>"
+             alt="Contador conversando con un cliente en una consulta cálida en una oficina moderna"
+             loading="lazy" width="800" height="600">
       </div>
     </div>
   </section>

@@ -49,19 +49,26 @@ require ROOT_DIR . '/partials/header.php';
 ?>
 <main id="main">
 
-  <section class="page-hero">
+  <?php $heroImage = $record['heroImage'] ?? null; ?>
+  <section class="page-hero<?= $heroImage ? ' page-hero--photo' : '' ?>">
     <div class="container">
       <?php require ROOT_DIR . '/partials/breadcrumbs.php'; ?>
-      <div class="page-hero__inner">
-        <p class="eyebrow"><?= e($hero['eyebrow']) ?></p>
-        <h1><?= e($hero['h1']) ?></h1>
-        <p class="lead"><?= e($hero['lead']) ?></p>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="#solicitar"><?= e(ui('cta.consult')) ?></a>
-          <?php if (($wa = whatsapp_link($ctaWhatsapp)) !== null): ?>
-            <a class="btn btn--secondary" href="<?= e($wa) ?>" rel="noopener"><?= e(ui('cta.whatsapp')) ?></a>
-          <?php endif; ?>
+      <div class="page-hero__grid">
+        <div class="page-hero__inner">
+          <p class="eyebrow"><?= e($hero['eyebrow']) ?></p>
+          <h1><?= e($hero['h1']) ?></h1>
+          <p class="lead"><?= e($hero['lead']) ?></p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="#solicitar"><?= e(ui('cta.consult')) ?></a>
+            <?php if (($wa = whatsapp_link($ctaWhatsapp)) !== null): ?>
+              <a class="btn btn--secondary" href="<?= e($wa) ?>" rel="noopener"><?= e(ui('cta.whatsapp')) ?></a>
+            <?php endif; ?>
+          </div>
         </div>
+        <?php if ($heroImage): ?>
+          <img class="page-hero__photo" src="<?= e(asset($heroImage['src'])) ?>"
+               alt="<?= e($heroImage['alt']) ?>" loading="lazy" width="800" height="600">
+        <?php endif; ?>
       </div>
     </div>
   </section>
