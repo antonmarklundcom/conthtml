@@ -32,6 +32,10 @@ return [
         'updated'     => null,
         'tags'        => ['Aguinaldo', 'Nómina', 'IPS'],
         'service'     => 'ips',
+        'thumbnail'   => [
+            'src' => '/assets/img/aguinaldo-calculadora-salario-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de un calendario de diciembre con una moneda dorada que representa el cálculo del aguinaldo en Paraguay.',
+        ],
     ],
     [
         'slug'        => 'ire-simple-resimple-ire-general-formulario-120',
@@ -125,6 +129,10 @@ return [
         'updated'     => null,
         'tags'        => ['Aguinaldo', 'Nómina'],
         'service'     => 'ips',
+        'thumbnail'   => [
+            'src' => '/assets/img/aguinaldo-calculadora-salario-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de un calendario de diciembre con una moneda dorada que representa el cálculo del aguinaldo en Paraguay.',
+        ],
     ],
     [
         'slug'        => 'multas-dnit-cuanto-son-y-como-evitarlas',
