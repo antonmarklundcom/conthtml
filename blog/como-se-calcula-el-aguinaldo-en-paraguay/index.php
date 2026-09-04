@@ -124,4 +124,11 @@ $faq = [
     ],
 ];
 
+$toolLink = [
+    'path'  => '/herramientas/calculadora-aguinaldo/',
+    'label' => 'Calcule su aguinaldo',
+    'text'  => 'Cargue sus salarios y obtenga el monto en guaraníes, con el aguinaldo proporcional '
+             . 'ya calculado si no trabajó el año completo.',
+];
+
 require ROOT_DIR . '/templates/article.php';

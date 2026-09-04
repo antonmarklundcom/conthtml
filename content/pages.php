@@ -83,8 +83,9 @@ return [
         'description' => 'Calculadoras y guías gratuitas: aguinaldo, liquidación de salario, IVA y el '
                        . 'calendario de vencimientos de la DNIT según su terminación de RUC.',
         'h1'          => 'Herramientas',
-        'lead'        => 'Calculadoras gratuitas para resolver las cuentas más frecuentes.',
-        'stub'        => true,
+        'lead'        => 'Calculadoras gratuitas para resolver las cuentas más frecuentes: aguinaldo, '
+                       . 'finiquito, vencimientos, IVA y el tipo de empresa que le conviene.',
+        'stub'        => false,
         'changefreq'  => 'monthly',
         'priority'    => '0.7',
     ],

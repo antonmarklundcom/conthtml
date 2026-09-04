@@ -8,6 +8,10 @@
  *   $slug      string  required — looked up in content/blog.php
  *   $sections  array   [['h2' => ..., 'body' => string[], 'items'? => [...]]]
  *   $faq       array   optional [['q' => ..., 'a' => ...], ...]
+ *   $toolLink  array   optional ['path' => '/herramientas/<slug>/', 'label' => ...,
+ *                       'text' => ...] — a calculator callout rendered right
+ *                       after the article body (plan §10 backlog: articles
+ *                       link to their calculator once B3 ships one)
  */
 
 declare(strict_types=1);
@@ -16,6 +20,7 @@ declare(strict_types=1);
 /** @var array $sections */
 $sections = $sections ?? [];
 $faq      = $faq ?? [];
+$toolLink = $toolLink ?? [];
 
 $article = null;
 foreach (content('blog') as $entry) {
@@ -147,6 +152,17 @@ require ROOT_DIR . '/partials/header.php';
             <?php endif; ?>
           </div>
         <?php endforeach; ?>
+      </div>
+    </section>
+  <?php endif; ?>
+
+  <?php if (!empty($toolLink['path'])): ?>
+    <section class="section section--surface">
+      <div class="container">
+        <a class="card card--link" href="<?= e($toolLink['path']) ?>">
+          <h2 class="card-title"><?= e($toolLink['label'] ?? '') ?></h2>
+          <p class="card__text"><?= e($toolLink['text'] ?? '') ?></p>
+        </a>
       </div>
     </section>
   <?php endif; ?>

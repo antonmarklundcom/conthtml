@@ -66,9 +66,11 @@ return [
         ['label' => ui('nav.contact'), 'path' => '/contacto/'],
     ],
 
-    // B3 fills this with ['label' => ..., 'path' => '/herramientas/<slug>/'].
-    // Empty in A1, so the footer renders the Herramientas link and no children.
-    'tools' => [],
+    // One entry per content/tools.php record, in the same order (plan §6.3).
+    'tools' => array_map(
+        static fn (array $tool): array => ['label' => $tool['navLabel'], 'path' => $tool['path']],
+        content('tools')
+    ),
 
     'legal' => [
         ['label' => ui('nav.privacy'), 'path' => '/privacidad/'],

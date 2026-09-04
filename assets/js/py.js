@@ -6,15 +6,17 @@
 (function (window) {
   "use strict";
 
-  var gs = new Intl.NumberFormat("es-PY", {
-    style: "currency",
-    currency: "PYG",
-    maximumFractionDigits: 0
-  });
+  // Intl's { style: "currency", currency: "PYG" } is not used here: its
+  // symbol depends on the browser's ICU data, which renders "Gs." instead of
+  // "₲" in several runtimes (Node's bundled ICU among them) — inconsistent
+  // with lib/helpers.php's fmt_gs(), which always emits the literal "₲ "
+  // prefix. Formatting only the grouping and prepending "₲ " ourselves keeps
+  // the client and the server byte-for-byte identical.
+  var groups = new Intl.NumberFormat("es-PY", { maximumFractionDigits: 0 });
 
   /** Whole guaraníes, es-PY: ₲ 1.500.000. Never decimals. */
   function fmtGs(amount) {
-    return gs.format(Math.round(Number(amount) || 0));
+    return "₲ " + groups.format(Math.round(Number(amount) || 0));
   }
 
   /**
