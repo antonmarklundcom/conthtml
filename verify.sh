@@ -332,6 +332,49 @@ done <<< "$ROUTE_LIST"
 
 rm -rf "$SITE_ROOT/logs/rate" "$SITE_ROOT/logs/leads.log"
 
+# --------------------------------------------------- 9. internal-link mesh ---
+# Plan §6.7 (C4): every service page links to >= 1 article and >= 1 guide;
+# every article links to >= 2 services (its own `service` field plus that
+# service's own `related[]`, which templates/article.php already resolves —
+# checked here against the same content arrays, not by scraping rendered HTML).
+step "internal-link mesh (C4)"
+links_out=$(php -r '
+require "'"$SITE_ROOT"'/lib/bootstrap.php";
+$fail = 0;
+$say  = function (string $m) use (&$fail) { echo $m, "\n"; $fail = 1; };
+
+foreach (services() as $slug => $s) {
+    $arts   = $s["articles"] ?? [];
+    $guides = $s["guides"] ?? [];
+    count($arts) >= 1   || $say("service {$slug}: no articles[] entry");
+    count($guides) >= 1 || $say("service {$slug}: no guides[] entry");
+    foreach ($arts as $a) {
+        $found = false;
+        foreach (content("blog") as $b) { if ($b["slug"] === $a) { $found = true; break; } }
+        $found || $say("service {$slug}: articles[] names unknown slug {$a}");
+    }
+    foreach ($guides as $g) {
+        isset(content("guias")[$g]) || $say("service {$slug}: guides[] names unknown slug {$g}");
+    }
+}
+
+foreach (content("blog") as $article) {
+    $svc = $article["service"] ?? null;
+    $n = 0;
+    if ($svc !== null && isset(services()[$svc])) {
+        $n = 1 + min(2, count(services($svc)["related"] ?? []));
+    }
+    $n >= 2 || $say("article {$article["slug"]}: fewer than 2 linked services");
+}
+exit($fail);
+' 2>&1)
+if [ -z "$links_out" ]; then
+  ok "every service links to >=1 article and >=1 guide; every article to >=2 services"
+else
+  fail "internal-link mesh incomplete"
+  echo "$links_out" | sed 's/^/        /'
+fi
+
 # ------------------------------------------------------------------ result ----
 echo
 if [ "$FAILURES" -eq 0 ]; then

@@ -219,6 +219,36 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endif; ?>
 
+  <!-- Artículo relacionado (plan §6.7, C4): additive next to the guides block
+       above — a curated link to the blog article(s) that best cover this
+       service's topic, independent of the article's own `service` field. -->
+  <?php $svcArticles = $service['articles'] ?? []; ?>
+  <?php if ($svcArticles !== []): ?>
+    <section class="section">
+      <div class="container">
+        <h2><?= e(ui('service.articles')) ?></h2>
+        <div class="grid grid--3 mt-4">
+          <?php foreach ($svcArticles as $svcArticleSlug): ?>
+            <?php $svcArticle = null; ?>
+            <?php foreach (content('blog') as $svcArticleEntry): ?>
+              <?php if ($svcArticleEntry['slug'] === $svcArticleSlug): ?>
+                <?php $svcArticle = $svcArticleEntry; ?>
+                <?php break; ?>
+              <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($svcArticle === null): ?>
+              <?php continue; ?>
+            <?php endif; ?>
+            <a class="card card--link" href="<?= e('/blog/' . $svcArticle['slug'] . '/') ?>">
+              <h3 class="card-title"><?= e($svcArticle['title']) ?></h3>
+              <p class="card__text"><?= e($svcArticle['description']) ?></p>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
+
   <!-- Solicitar: the service's own lead form (plan §5.3.2). Every service page
        needs one, because a lead is only worth routing if it arrives carrying
        the service it came from — the CTA band above sends people to WhatsApp,
