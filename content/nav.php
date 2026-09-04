@@ -46,6 +46,7 @@ return [
         ['label' => ui('nav.services'), 'path' => '/servicios/', 'mega' => true],
         ['label' => ui('nav.pricing'),  'path' => '/precios/'],
         ['label' => ui('nav.tools'),    'path' => '/herramientas/'],
+        ['label' => ui('nav.guides'),   'path' => '/guias/'],
         ['label' => ui('nav.about'),    'path' => '/nosotros/'],
         ['label' => ui('nav.blog'),     'path' => '/blog/'],
         ['label' => ui('nav.contact'),  'path' => '/contacto/'],
@@ -62,6 +63,7 @@ return [
         ['label' => ui('nav.about'),   'path' => '/nosotros/'],
         ['label' => ui('nav.pricing'), 'path' => '/precios/'],
         ['label' => ui('nav.tools'),   'path' => '/herramientas/'],
+        ['label' => ui('nav.guides'),  'path' => '/guias/'],
         ['label' => ui('nav.blog'),    'path' => '/blog/'],
         ['label' => ui('nav.contact'), 'path' => '/contacto/'],
     ],
@@ -70,6 +72,12 @@ return [
     'tools' => array_map(
         static fn (array $tool): array => ['label' => $tool['navLabel'], 'path' => $tool['path']],
         content('tools')
+    ),
+
+    // One entry per content/guias.php record, in the same order (plan §6.5).
+    'guias' => array_map(
+        static fn (array $guide): array => ['label' => $guide['navLabel'], 'path' => $guide['path']],
+        content('guias')
     ),
 
     'legal' => [

@@ -1897,6 +1897,7 @@ section[id] {
 }
 
 .industries__item {
+  display: block;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--r-card);
@@ -1906,9 +1907,23 @@ section[id] {
   font-size: var(--t-card);
   letter-spacing: -0.02em;
   line-height: 1.15;
+  color: var(--ink);
+  text-decoration: none;
   /* "Profesionales independientes" is wider than a half-column on a 390px
      screen and Bricolage 600 gives it nowhere to break. */
   overflow-wrap: break-word;
+}
+
+/* Since C3 (plan §6.6.1), every item is a link to its /contador-para/<slug>/
+   page — a small affordance so the band reads as navigation, not decoration. */
+a.industries__item {
+  transition: border-color .15s ease, color .15s ease;
+}
+
+a.industries__item:hover,
+a.industries__item:focus-visible {
+  border-color: var(--amber);
+  color: var(--amber-text);
 }
 
 /* --- responsive ---------------------------------------------------------- */
@@ -2372,5 +2387,61 @@ section[id] {
 
 .remind__row .field {
   flex: 1 1 220px;
+  margin: 0;
+}
+
+/* == c2 guides ==============================================================
+   The numbered steps list on templates/guide.php (plan §6.5.1). Below the
+   tokens block; no existing rule changed. */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  counter-reset: steps;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.steps__item {
+  counter-increment: steps;
+  position: relative;
+  padding-left: 48px;
+}
+
+.steps__item::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.steps__item h2 {
+  font-size: var(--t-card);
+  margin-bottom: var(--s-1);
+}
+
+.steps__item p {
+  color: var(--muted);
+}
+
+.steps__item p + p {
+  margin-top: var(--s-1);
+}
+
+.guide-reviewed {
   margin: 0;
 }

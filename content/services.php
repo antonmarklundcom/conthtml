@@ -32,6 +32,10 @@
  *                              'text' => ...], ...] — calculator callouts (B4,
  *                              optional; plan §6.4 review decision 3)
  *   related          string[] sibling slugs, 3 per page
+ *   guides           string[] guide slugs from content/guias.php (C2, optional;
+ *                             plan §6.5.3) — rendered as a small "Guía
+ *                             relacionada" block by templates/service.php,
+ *                             additive next to the existing related section
  *
  * B1 (plan §6.1) wrote hero/includes/excludes/weNeed/sections/benefits/faq/cta
  * for all 14 pages, rewriting the legacy scan copy in "usted" per the copy
@@ -130,6 +134,7 @@ return [
         ],
         'cta'     => ['label' => 'Habilitar mi facturación electrónica', 'whatsappText' => ''],
         'related' => ['marangatu', 'ruc', 'iva'],
+        'guides'  => ['ekuatiai-paso-a-paso', 'que-es-sifen'],
     ],
 
     'marangatu' => [
@@ -216,6 +221,7 @@ return [
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea la fecha de este mes y el próximo para IVA, IRE e IPS.'],
         ],
         'related' => ['iva', 'ire-simple', 'ekuatia'],
+        'guides'  => ['como-ingresar-a-marangatu', 'certificado-de-cumplimiento-tributario'],
     ],
 
     'ruc' => [
@@ -294,6 +300,7 @@ return [
         ],
         'cta'     => ['label' => 'Inscribir mi RUC', 'whatsappText' => ''],
         'related' => ['eas', 'marangatu', 'ekuatia'],
+        'guides'  => ['inscripcion-de-ruc-paso-a-paso', 'consulta-de-ruc'],
     ],
 
     // === Gestión empresarial ================================================
@@ -456,6 +463,7 @@ return [
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su Formulario 120 este mes.'],
         ],
         'related' => ['ire-simple', 'contabilidad', 'marangatu'],
+        'guides'  => ['formulario-120-paso-a-paso'],
     ],
 
     'ire-simple' => [
@@ -628,6 +636,7 @@ return [
         ],
         'cta'     => ['label' => 'Consultar si debo presentar IRP', 'whatsappText' => ''],
         'related' => ['ire-simple', 'asesoria', 'ruc'],
+        'guides'  => ['irp-quien-debe-pagar'],
     ],
 
     'ips' => [
@@ -709,6 +718,7 @@ return [
             ['path' => '/herramientas/liquidacion-de-salario/', 'label' => 'Calculadora de liquidación de salario', 'text' => 'Estime un finiquito por renuncia o despido, con el aporte del 9 % al IPS como línea aparte.'],
         ],
         'related' => ['contabilidad', 'asesoria', 'eas'],
+        'guides'  => ['inscripcion-patronal-ips'],
     ],
 
     'eas' => [

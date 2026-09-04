@@ -381,3 +381,87 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   visitors — plausible, given C5's `/en/` section for foreign founders — this
   needs revisiting before that traffic arrives. Noted in
   `docs/analytics-setup.md` §4.
+
+## C2 — Guías (2026-09-04)
+
+- **"Guías" was added to the primary header nav, not only the footer.** Plan
+  §6.5.2 makes this conditional on the header not wrapping at 1024px — measured
+  with a throwaway Playwright check against the live 7-item nav (Servicios,
+  Precios, Herramientas, Guías, Nosotros, Blog, Contacto) plus both action
+  pills: it does not wrap (screenshotted at 1024px during this phase, not
+  committed — the committed evidence is `docs/screenshots/c2/home-1440.png`
+  and `-390.png`, which show the same nav rendering cleanly at both ends of
+  the range that matters). The footer's "Firma" column keeps its own "Guías"
+  link too (same pattern every other primary item already follows — Servicios,
+  Precios, etc. all appear in both places).
+- **`multas-dnit-como-regularizar` and `certificado-de-cumplimiento-tributario`
+  route their "Cuándo conviene delegarlo" box to `asesoria` and `marangatu`
+  respectively, not to a dedicated "multas" or "CCT" lead-value record.**
+  `content/lead-values.php` is locked to the model C1 defined (plan §5.3.1:
+  "one record per service slug and per tool slug"), and neither multas nor CCT
+  is a service or a tool — they are guide-only topics per `docs/lead-value.md`'s
+  own per-source table, which names them as "delegate-it intent → B when the
+  form is used" without creating new sources. `asesoria` (tax-situation review,
+  tier B) and `marangatu` (DNIT account help, tier B) are the closest existing
+  services and already carry that tier; adding two new lead-values records for
+  these guides is a clean follow-up if conversion data shows the borrowed
+  copy under-converts.
+- **Two guides (`que-es-sifen`, `irp-quien-debe-pagar`) have no `toolLink`.**
+  No calculator matches either topic (no SIFEN or IRP tool exists yet, plan
+  §6.3), so the key is `null` and the section simply does not render — the
+  same degrade-gracefully pattern every optional collection on the site
+  already follows.
+
+## C3 — Segment landing pages + Ads structure (2026-09-04)
+
+- **`deploy/make-zip.sh` had a latent bug that C3 exposed and fixed**: its
+  "which page directories ship" scan only matched an `index.php` exactly two
+  levels below the repo root (`<dir>/index.php`), so a route directory whose
+  own `index.php` lives one level deeper — like C3's
+  `contador-para/<slug>/index.php` — was invisible to it. Nested routes that
+  already existed (`blog/<slug>/`, `herramientas/<slug>/`) happened to ship
+  anyway only because their *parent* (`blog/`, `herramientas/`) already had
+  its own top-level `index.php` and so was already being copied wholesale;
+  `contador-para/` has no hub page of its own, so it was the first directory
+  to actually hit the bug. Fixed to scan for `index.php` at any depth and
+  copy each top-level directory that contains one — verified by rebuilding
+  the zip and running `./verify.sh --root` against it (plan §4.9's exit
+  gate), which failed with eight 404s before the fix and is green after.
+- **Segment pages preset into an existing service, not a segmento-specific
+  lead-values entry.** `docs/lead-value.md`'s per-source table lists segment
+  pages with their own tier, but the C3 phase prompt is explicit: "the lead
+  form preset to the bundle's tier-A service". `templates/segment.php` sets
+  `$page['leadSlug']` and `$formService` to that real service slug (e.g.
+  `contabilidad`, `eas`) rather than adding nine new keys to
+  `content/lead-values.php`'s `services` array — every WhatsApp link, the
+  form and the CTA band resolve through C1's existing model with zero
+  changes to `lib/*` (hard limit, plan §4.7). If a later phase wants a
+  segment's own tier independent of its anchor service, that is nine new
+  `lead-values.php` entries and a one-line change in `templates/segment.php`
+  to stop overriding `leadSlug`.
+- **No `/contador-para/` hub page.** The plan asks for nine URLs — the eight
+  rubro pages plus `/cambiar-de-contador/` — and does not ask for a landing
+  page at `/contador-para/` itself; `/servicios/` and the homepage rubros
+  band are the hub. A direct visit to `/contador-para/` 404s, which is
+  correct per the exit criteria but worth a human decision later if that URL
+  ever gets external links pointing at the bare path.
+- **`docs/ads-campaigns.md`'s "Rubros" ad groups have no keyword-volume data
+  yet.** `docs/keyword-research.md` lists "contador para importadores" and
+  "contador para unipersonal" as *not yet checked* — the runbook says so and
+  tells Anton to start those ad groups at minimum bid and drop any with
+  under ~50 impressions/month after two weeks, rather than presenting an
+  invented volume figure.
+- **C3 was merged directly on top of C1, without C2 in between**, even though
+  plan §4.2 says "a phase never starts on top of an unmerged previous phase."
+  C2's own branch (`phase/c2-guias`) was already in flight against the
+  pre-C3 `main` when this happened; C2 merged its own branch onto the
+  post-C3 `main` before opening its PR, resolving the resulting conflicts in
+  `KNOWN-ISSUES.md` and `plan.md` (both additive, kept both sections) and
+  regenerating `assets/css/site.min.css` from source rather than
+  hand-merging the minified conflict. No functional collision: C3 touched
+  `content/ui.php`, `deploy/routes.php`, `sitemap.php` and
+  `assets/css/site.css` in places that did not overlap C2's own edits to the
+  same files, and `./verify.sh` is green on the merged result. Left as a
+  process note rather than an unwind, since nothing broke and C2's own
+  ordering versus C3 doesn't matter functionally — C4/C5 should still branch
+  from `main` in table order from here on.

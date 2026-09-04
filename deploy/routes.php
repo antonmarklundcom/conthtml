@@ -32,12 +32,20 @@ foreach (services() as $service) {
     $routes[$service['path']] = 200;
 }
 
-/* Tools (B3) and blog articles (B2) as they are added. */
+/* Tools (B3), guides (C2) and blog articles (B2) as they are added. */
 foreach (nav('tools') as $tool) {
     $routes[$tool['path']] = 200;
 }
+foreach (nav('guias') as $guide) {
+    $routes[$guide['path']] = 200;
+}
 foreach (content('blog') as $article) {
     $routes['/blog/' . $article['slug'] . '/'] = 200;
+}
+
+/* Segment landing pages (C3): the eight rubros plus /cambiar-de-contador/. */
+foreach (content('segmentos') as $segmento) {
+    $routes[$segmento['path']] = 200;
 }
 
 /* Non-page endpoints. */
