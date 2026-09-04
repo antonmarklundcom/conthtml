@@ -13,10 +13,11 @@ Phase rules:
 - Load skills: `vendercrm-lead-capture`, `paraguay-business-apps`.
 - `content/lead-values.php` is the single source: tier, adsValueGs, whatsappText, nextStep, crmTag per service and tool slug. Pages never hardcode a tier.
 - The site is LIVE from B4 on: keep every existing URL and status code; verify.sh must stay green at every commit; run `deploy/make-zip.sh` at the end so main is redeployable.
+- WhatsApp: every `wa.me` prefill comes from `content/lead-values.php` through `whatsapp_text_for_page()`; the header pill, floating button and mobile bar open the service menu (plan §5.3.8). Never send "consulta gratis" as a message — name the service the visitor was reading about.
 - Test the Resend subject and the CSV export against a real leads.log line from verify.sh.
 - Re-runnable; minor issues → KNOWN-ISSUES.md; stop only per §4.4.
 
-Exit: plan §5.3.8 checks green in `verify.sh`; thank-you screenshots for one tier-A and one tier-C service in `docs/screenshots/c1/`; `docs/analytics-setup.md` written; PR merged.
+Exit: plan §5.3.9 checks green in `verify.sh`; WhatsApp menu screenshots (open, 1440 + 390) and zero generic-text `wa.me` links in rendered HTML; thank-you screenshots for one tier-A and one tier-C service in `docs/screenshots/c1/`; `docs/analytics-setup.md` written; PR merged.
 
 ## After this phase
 Follow `prompts/_handoff.md`. Next: `prompts/sonnet-5-guias.md`, model **Sonnet** (model switch — pass the Sonnet model id explicitly).

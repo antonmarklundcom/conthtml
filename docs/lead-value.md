@@ -55,4 +55,5 @@ The values are optimisation proxies for Google Ads (so bidding favours A over C 
 2. Tier is set by the **page**, not by the visitor. A tier-C page may upgrade to B through one explicit question ("¿Es empleador?"); nothing else changes tiers client-side.
 3. Thank-you text always names the next concrete step and offers WhatsApp with a service-specific prefill. Tier C thank-you pages mention the monthly retainer once.
 4. Never bid on the navigational giants. Guides are organic only.
-5. Revisit this table after four weeks of GA4 data: the tiers are a starting hypothesis, the file is one edit.
+5. Every WhatsApp link names the service the visitor was reading about ("Hola, quiero inscribir mi RUC."), never a generic "consulta gratis". The header and floating buttons open a menu whose first option is the current page's service, then EAS, RUC, contabilidad mensual, SIFEN, "otra consulta".
+6. Revisit this table after four weeks of GA4 data: the tiers are a starting hypothesis, the file is one edit.
