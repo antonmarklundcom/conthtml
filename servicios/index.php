@@ -74,6 +74,11 @@ require ROOT_DIR . '/partials/header.php';
     </div>
   </section>
 
+  <?php /* Rubros band (plan §6.6.1): links to the real /contador-para/<slug>/
+           pages, same partial the homepage uses. White, since the next band
+           (Cómo trabajamos) is forced to surface below. */ ?>
+  <?php $industriesSurface = false; require ROOT_DIR . '/partials/industries.php'; ?>
+
   <?php
   /* The Auditoría cluster above is white and the closing CTA band below is ink:
      a surface band here keeps the three apart instead of merging the last two

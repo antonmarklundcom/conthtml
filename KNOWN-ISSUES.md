@@ -381,3 +381,43 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   visitors — plausible, given C5's `/en/` section for foreign founders — this
   needs revisiting before that traffic arrives. Noted in
   `docs/analytics-setup.md` §4.
+
+## C3 — Segment landing pages + Ads structure (2026-09-04)
+
+- **`deploy/make-zip.sh` had a latent bug that C3 exposed and fixed**: its
+  "which page directories ship" scan only matched an `index.php` exactly two
+  levels below the repo root (`<dir>/index.php`), so a route directory whose
+  own `index.php` lives one level deeper — like C3's
+  `contador-para/<slug>/index.php` — was invisible to it. Nested routes that
+  already existed (`blog/<slug>/`, `herramientas/<slug>/`) happened to ship
+  anyway only because their *parent* (`blog/`, `herramientas/`) already had
+  its own top-level `index.php` and so was already being copied wholesale;
+  `contador-para/` has no hub page of its own, so it was the first directory
+  to actually hit the bug. Fixed to scan for `index.php` at any depth and
+  copy each top-level directory that contains one — verified by rebuilding
+  the zip and running `./verify.sh --root` against it (plan §4.9's exit
+  gate), which failed with eight 404s before the fix and is green after.
+- **Segment pages preset into an existing service, not a segmento-specific
+  lead-values entry.** `docs/lead-value.md`'s per-source table lists segment
+  pages with their own tier, but the C3 phase prompt is explicit: "the lead
+  form preset to the bundle's tier-A service". `templates/segment.php` sets
+  `$page['leadSlug']` and `$formService` to that real service slug (e.g.
+  `contabilidad`, `eas`) rather than adding nine new keys to
+  `content/lead-values.php`'s `services` array — every WhatsApp link, the
+  form and the CTA band resolve through C1's existing model with zero
+  changes to `lib/*` (hard limit, plan §4.7). If a later phase wants a
+  segment's own tier independent of its anchor service, that is nine new
+  `lead-values.php` entries and a one-line change in `templates/segment.php`
+  to stop overriding `leadSlug`.
+- **No `/contador-para/` hub page.** The plan asks for nine URLs — the eight
+  rubro pages plus `/cambiar-de-contador/` — and does not ask for a landing
+  page at `/contador-para/` itself; `/servicios/` and the homepage rubros
+  band are the hub. A direct visit to `/contador-para/` 404s, which is
+  correct per the exit criteria but worth a human decision later if that URL
+  ever gets external links pointing at the bare path.
+- **`docs/ads-campaigns.md`'s "Rubros" ad groups have no keyword-volume data
+  yet.** `docs/keyword-research.md` lists "contador para importadores" and
+  "contador para unipersonal" as *not yet checked* — the runbook says so and
+  tells Anton to start those ad groups at minimum bid and drop any with
+  under ~50 impressions/month after two weeks, rather than presenting an
+  invented volume figure.
