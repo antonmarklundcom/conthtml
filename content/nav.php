@@ -87,4 +87,16 @@ return [
 
     // Rendered only when content/site.php has social URLs (plan §1.4).
     'socials' => array_values(array_filter((array) site('socials'))),
+
+    // The reduced English nav for /en/ pages (plan §6.8.2, C5): Services, Open
+    // a company, Taxes, Contact — read by partials/header-en.php and
+    // partials/footer-en.php, new additive files (not the locked
+    // partials/header.php / footer.php). Additive key; the Spanish 'primary'
+    // tree above is unchanged.
+    'primary_en' => [
+        ['label' => 'Services',        'path' => '/en/accounting-services-paraguay/'],
+        ['label' => 'Open a company',  'path' => '/en/open-a-company-in-paraguay/'],
+        ['label' => 'Taxes',           'path' => '/en/taxes-in-paraguay-for-foreigners/'],
+        ['label' => 'Contact',         'path' => '/en/contact/'],
+    ],
 ];
