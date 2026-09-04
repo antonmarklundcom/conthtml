@@ -309,6 +309,19 @@ return [
         'breadcrumb' => 'Ruta de navegación',
     ],
 
+    // Shared microcopy across the six /herramientas/ tools (plan §6.3).
+    // Calculator-specific labels (field names, quiz questions) live in each
+    // tool's own PHP/JS; only the strings repeated on every tool page are here.
+    'tools' => [
+        'reviewed_prefix' => 'Datos legales revisados el',
+        'orientativo'     => 'Los resultados son orientativos y no reemplazan una liquidación oficial.',
+        'calculate'       => 'Calcular',
+        'result_title'    => 'Resultado',
+        'use_result'      => 'Usar este resultado en el formulario',
+        'need_js'         => 'Esta calculadora necesita JavaScript activado en su navegador.',
+        'restart'         => 'Volver a empezar',
+    ],
+
     'placeholder' => [
         // Shown on the A1 stub pages until the phase that owns each one writes it.
         'notice' => 'Estamos preparando esta página.',

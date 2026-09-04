@@ -145,3 +145,46 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   consistent with the rest of the site, but logged in
   `docs/facts-to-verify.md` alongside the B1 items for a primary-source check
   before B4's launch pass.
+
+## B3 — Tools (2026-09-04)
+
+- **`assets/js/py.js`'s `fmtGs()` no longer uses `Intl.NumberFormat`'s
+  `style: "currency"` mode.** Building the first calculator that displays a
+  computed amount (`calculadora-aguinaldo`) surfaced that Node's — and
+  potentially some browsers' — bundled ICU data renders the PYG currency
+  symbol as `"Gs."` instead of `"₲"`, which would have disagreed with every
+  server-rendered price on the site (`lib/helpers.php`'s `fmt_gs()` always
+  emits the literal `"₲ "` prefix). The fix formats only the number grouping
+  through `Intl.NumberFormat` and prepends `"₲ "` itself, making the two
+  helpers byte-for-byte identical regardless of a browser's ICU
+  completeness. `assets/js/py.js` predates B3 (A1) but had never rendered a
+  currency value in the UI before this phase.
+
+- **The liquidación de salario calculator treats every month as 30 days**,
+  the conventional basis Paraguayan payroll practice uses, rather than each
+  month's real length. The page states this next to the result. A finiquito
+  computed on real calendar days would differ by at most a day or two per
+  proportional line — immaterial next to the "valores orientativos"
+  disclaimer the plan requires (plan §6.3.1c).
+
+- **The IPS 9 % deduction line on the finiquito calculator applies only to
+  the salario and vacaciones proporcionales**, not to the aguinaldo
+  proporcional, the preaviso or the indemnización. This split is not
+  independently verified against a primary IPS source this phase — see
+  `docs/facts-to-verify.md` B3 section — and is the same category of hedge
+  B1 and B2 already carry for the aguinaldo/IPS relationship.
+
+- **The vencimientos calculator does not check a holiday calendar.** When a
+  computed date falls on a weekend or a Paraguayan public holiday, the DNIT
+  moves it to the next business day; the page states this in its copy and
+  FAQ but does not compute the adjusted date, since that would require a
+  maintained holiday list (plan §6.3.2 explicitly rules out scraping a live
+  feed). The Calendario Perpetuo digit-to-day table itself
+  (`content/vencimientos.php`) is the stable part and is unaffected.
+
+- **The IRE anual vencimiento shown is a month range with a note, not a
+  single date** — the exact month is DNIT's own annual administrative
+  decision (typically March for IRE Simple/IRP, April for IRE General), so
+  the calculator only computes the day-of-month from the RUC digit and asks
+  the visitor to confirm the month, consistent with how B1's `/ire-simple/`
+  and `/iva/` already hedge this same fact.
