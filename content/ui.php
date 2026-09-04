@@ -241,6 +241,13 @@ return [
         'lead'    => 'Contrate lo que necesita hoy y sume servicios cuando su empresa crezca. '
                    . 'Los tres bloques de abajo son la forma en que trabajamos: cumplimiento '
                    . 'digital ante la DNIT, gestión mensual de su empresa y auditoría.',
+        // B4 review decision 3 (prompts/sonnet-4-polish-launch.md): the hub's
+        // "¿No sabe qué necesita?" strip points at the quiz, not WhatsApp —
+        // the homepage's own strip (home.unsure_*) already covers the direct
+        // human-contact path.
+        'unsure_title' => '¿No sabe qué necesita?',
+        'unsure_text'  => 'Responda 4 preguntas y le decimos qué servicios le corresponden, con un enlace directo a cada uno.',
+        'unsure_cta'   => 'Hacer el test',
     ],
 
     'cta_band' => [

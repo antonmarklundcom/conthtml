@@ -23,6 +23,9 @@
  *   benefits         array    [['title' => ..., 'text' => ...], ...]
  *   faq              array    [['q' => ..., 'a' => ...], ...] → FAQPage JSON-LD
  *   cta              array    label + whatsappText (the wa.me prefill)
+ *   toolLinks        array    [['path' => '/herramientas/<slug>/', 'label' => ...,
+ *                              'text' => ...], ...] — calculator callouts (B4,
+ *                              optional; plan §6.4 review decision 3)
  *   related          string[] sibling slugs, 3 per page
  *
  * B1 (plan §6.1) wrote hero/includes/excludes/weNeed/sections/benefits/faq/cta
@@ -204,6 +207,9 @@ return [
             ['q' => '¿Qué cambió con Marangatu 2.0?', 'a' => 'La DNIT renovó la interfaz del sistema y reorganizó varios accesos y pantallas, aunque los trámites de fondo —declaraciones, cuenta corriente, certificados— siguen siendo los mismos. Si busca algo que antes encontraba fácilmente y ya no aparece donde recuerda, coméntenos y se lo ubicamos de inmediato.'],
         ],
         'cta'     => ['label' => 'Ordenar mi cuenta en Marangatu', 'whatsappText' => 'Hola, necesito ayuda con mi cuenta en Marangatu.'],
+        'toolLinks' => [
+            ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea la fecha de este mes y el próximo para IVA, IRE e IPS.'],
+        ],
         'related' => ['iva', 'ire-simple', 'ekuatia'],
     ],
 
@@ -440,6 +446,10 @@ return [
             ['q' => '¿Cuándo vence mi IVA según mi RUC?', 'a' => 'La DNIT asigna la fecha de vencimiento mensual del Formulario 120 según la terminación numérica de su RUC, y ese calendario puede variar entre contribuyentes. Se lo confirmamos apenas empieza a trabajar con nosotros y se lo recordamos cada mes.'],
         ],
         'cta'     => ['label' => 'Poner mi IVA al día', 'whatsappText' => 'Hola, quiero poner mi liquidación de IVA al día.'],
+        'toolLinks' => [
+            ['path' => '/herramientas/calculadora-iva/', 'label' => 'Calculadora de IVA', 'text' => 'Calcule el 10 % o el 5 % sobre un monto, incluido o excluido del precio, en segundos.'],
+            ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su Formulario 120 este mes.'],
+        ],
         'related' => ['ire-simple', 'contabilidad', 'marangatu'],
     ],
 
@@ -526,6 +536,9 @@ return [
             ['q' => '¿Cuándo se presenta el Formulario 120 del IRE?', 'a' => 'El plazo cae dentro de los primeros meses del año siguiente al cierre de su ejercicio, y la fecha exacta depende de la terminación de su RUC. Se lo confirmamos con anticipación como parte de nuestro servicio, para que nunca dependa de que usted recuerde la fecha.'],
         ],
         'cta'     => ['label' => 'Revisar mi régimen de IRE', 'whatsappText' => 'Hola, quiero revisar mi régimen de IRE.'],
+        'toolLinks' => [
+            ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su IRE anual.'],
+        ],
         'related' => ['iva', 'contabilidad', 'irp'],
     ],
 
@@ -686,6 +699,10 @@ return [
             ['q' => '¿Cuánto aporta el empleado y cuánto la empresa?', 'a' => 'El empleado aporta el 9% de su salario bruto y la empresa suma un 16,5% adicional como aporte patronal, sobre la misma base salarial. Ambos montos se calculan y presentan juntos cada mes ante IPS, y se lo mostramos como una línea separada y clara en cada recibo de sueldo.'],
         ],
         'cta'     => ['label' => 'Poner mi nómina al día', 'whatsappText' => 'Hola, quiero poner al día la nómina y el IPS de mi empresa.'],
+        'toolLinks' => [
+            ['path' => '/herramientas/calculadora-aguinaldo/', 'label' => 'Calculadora de aguinaldo', 'text' => 'Calcule el aguinaldo de un empleado, completo o proporcional, en guaraníes.'],
+            ['path' => '/herramientas/liquidacion-de-salario/', 'label' => 'Calculadora de liquidación de salario', 'text' => 'Estime un finiquito por renuncia o despido, con el aporte del 9 % al IPS como línea aparte.'],
+        ],
         'related' => ['contabilidad', 'asesoria', 'eas'],
     ],
 
@@ -763,6 +780,9 @@ return [
             ['q' => '¿Cuánto tarda la apertura de una EAS?', 'a' => 'Al ser un trámite digital por el SUACE, se resuelve en semanas y no en meses como los modelos societarios tradicionales. El plazo exacto depende de la carga del sistema y de que la documentación llegue completa desde el inicio.'],
         ],
         'cta'     => ['label' => 'Iniciar mi apertura', 'whatsappText' => 'Hola, quiero abrir una EAS.'],
+        'toolLinks' => [
+            ['path' => '/herramientas/comparador-eas-srl-unipersonal/', 'label' => 'Comparador EAS / SRL / Unipersonal', 'text' => 'Compare las tres estructuras y responda tres preguntas para saber cuál le conviene.'],
+        ],
         'related' => ['ruc', 'ekuatia', 'contabilidad'],
     ],
 

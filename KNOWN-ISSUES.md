@@ -188,3 +188,106 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   the calculator only computes the day-of-month from the RUC digit and asks
   the visitor to confirm the month, consistent with how B1's `/ire-simple/`
   and `/iva/` already hedge this same fact.
+
+## B4 — Imagery, polish, launch (2026-09-04)
+
+- **The 9 Higgsfield-generated images are not yet in the repo.** This
+  session's network egress allows the Higgsfield MCP generation calls but
+  denies the CloudFront CDN the result images are served from
+  (`d8j0ntlcm91z4.cloudfront.net` — 403, "organization policy"), and no human
+  was present in this run to do the one-step manual bridge (download →
+  upload back) the `higgsfield-web-imagery` skill's sandbox path calls for.
+  All 9 generations completed successfully, cost preflighted (≤ 12 cap, ~9–14
+  credits actually spent), two style Elements registered for consistency.
+  Every job ID, prompt, target filename and destination is in
+  `docs/imagery-manifest.md`, along with the one-time manual step and the
+  `deploy/optimize-images.mjs` / `deploy/subset-fonts.sh`-style conversion
+  script that finishes the job once the PNGs are downloaded. Until then the
+  homepage photo slots keep A2's neutral decorative texture (never a broken
+  image), the six service cards have no icon, and `assets/img/og-default.png`
+  stays A1's placeholder — nothing is broken, the polish is incomplete.
+
+- **`--amber-text` moved again, past what plan §6.4.2 suggested.** The plan
+  named `#996F17` (4.53:1 on white) as the fix for A1's `#B4831B` (3.39:1).
+  Measuring it against `--surface` (`#F4F6FA`) — the darker of the two
+  alternating light section bands most eyebrows actually sit on, not just
+  white — gave only 4.18:1, still short of AA. `#8F6A17` (4.95:1 on white,
+  4.58:1 on `--surface`) is what's shipped; see the token's own comment in
+  `assets/css/site.css`. Still the one sanctioned token *value* change per
+  plan §6.4.2 — same token, a different final hex than the plan's draft
+  suggestion because the plan's number wasn't checked against both bands.
+
+- **WhatsApp buttons and the floating action button both moved to
+  `--ok-text`, not just the buttons.** The B4 prompt's review-decision 1 says
+  "`#25A35A` stays for the icon/FAB accent only," which reads two ways: the
+  fab's *background* stays green, or only its *icon glyph* does. Keeping the
+  fab's background green would leave Lighthouse's colour-contrast audit
+  failing on every page (the fab renders on all of them, and 3.24:1 white-on-
+  `#25A35A` fails AA at its 14–16px label size) — directly against this same
+  phase's 100 a11y target. Both `.btn--whatsapp` and `.wa-fab` now use
+  `--ok-text` for the background; `--whatsapp` (`#25A35A`) is kept as the
+  fab's SVG icon fill (`fill: var(--whatsapp)` instead of `currentColor`), so
+  the brand green still appears as the icon's own accent, per the more
+  literal reading of "icon ... accent."
+
+- **Google Ads conversion actions are not individually wired.** `gtag('config',
+  ADS_ID)` loads and fires once `config.php` sets `ADS_ID` (plan §6.4.3), which
+  is enough for the base Ads tag and remarketing audiences, but a specific
+  conversion action (its own label per goal — WhatsApp click, lead submit)
+  needs a decision only whoever owns the Ads account can make, then a
+  one-line addition next to the matching `track()` call. Logged in
+  `docs/launch-checklist.md` §4.
+
+- **`content/services.php` gained an optional `toolLinks` key and
+  `templates/service.php` gained one new additive section** (a calculator
+  callout, same `card card--link` pattern B3's `templates/article.php`
+  `$toolLink` slot already used) — the B4 review decision 3 wiring (aguinaldo
+  article + `/ips/` → both salary calculators; `/iva/` → the IVA calculator
+  and vencimientos; `/marangatu/`, `/ire-simple/` → vencimientos; EAS article
+  + `/eas/` → the comparador). `templates/article.php`'s `$toolLink` now also
+  accepts a list of link arrays (previously exactly one), used by the
+  aguinaldo article's two links. Both are additive per plan §4.7's precedent
+  (B1's checklist-grid section) — no locked file's existing structure changed.
+
+- **`/servicios/` gained an "¿No sabe qué necesita?" strip it didn't have
+  before**, reusing the homepage's `.unsure` component but pointing its CTA
+  at `/herramientas/que-necesita/` (the quiz) instead of WhatsApp — the
+  review decision names `/servicios/` specifically, and the hub is where a
+  visitor comparing all 14 services is most likely to want the self-service
+  triage. The homepage's own strip is untouched and still opens WhatsApp/
+  contact, which is the right default for that page. New `services_hub.unsure_*`
+  strings in `content/ui.php`; no partial touched.
+
+- **Lighthouse was measured against the deploy zip, not the raw repository.**
+  `deploy/make-zip.sh` now ships `assets/css/site.css` minified (35–36%
+  smaller); the working tree keeps the readable source, which real browsers
+  never see in production. Measuring the raw repo would report a lower,
+  less representative number, so `/`, `/marangatu/` and the aguinaldo article
+  were all measured against an unzipped `dist/` build:
+  **95 / 100 / 100** (perf/a11y/SEO) on `/`, **98 / 100 / 100** on
+  `/marangatu/`, **98 / 100 / 100** on the article — all against
+  `php -S`, mobile throttling, matching A2's own measurement methodology.
+
+- **Fonts were subset to the characters this site actually renders**
+  (`deploy/subset-fonts.sh`, `pyftsubset`): ASCII + the Latin-1 letters and
+  typographic marks Spanish copy uses, plus the guaraní sign (₲, U+20B2) and
+  the right-arrow (→, U+2192) found in real page output. The four webfont
+  files went from ~166 KB combined to ~90 KB (the two "latin" files ~20%
+  smaller; the two "latin-ext" files, which exist almost solely to carry ₲
+  and →, ~93% smaller — most of Google's original "latin-ext" subset is
+  Vietnamese/IPA/historic-Latin glyphs this site never uses). The `→`
+  character was not in either face's original `unicode-range` at all (a gap
+  in Google's own subset, unrelated to this session) — added to the
+  latin-ext `@font-face` blocks so it now renders in the brand typeface
+  instead of silently falling back to the system font.
+
+- **VenderCRM, Hostinger and analytics credentials are all still pending**
+  (plan §7, unchanged): the lead form still runs in degraded mode
+  (`logs/leads.log`), there is no staging subdomain to run
+  `deploy/verify-live.sh` against yet, and `GA4_ID`/`ADS_ID` are unset so the
+  new gtag.js snippet in `partials/head.php` never loads. All three are
+  numbered, actionable steps in `docs/launch-checklist.md` rather than a
+  blocker — consistent with every prior phase's handling of missing §7 inputs.
+  This is also why `docs/launch-checklist.md`'s own exit step
+  (`deploy/verify-live.sh` against a real URL) could only be exercised
+  against `php -S` in this session, not a real Hostinger deployment.

@@ -104,6 +104,25 @@ address, hours). Those values ship inside the zip, not in `config.php`, so a
 site published with them empty has no WhatsApp button and no NAP line until
 the next upload.
 
+### Verifying a live deploy
+
+```sh
+./deploy/verify-live.sh https://staging.contador.com.py
+```
+
+Curls every URL in the route contract (`deploy/routes.php`) against the live
+URL and asserts the status plan §5.1.6 requires — the same check `verify.sh`
+runs locally, plus an HTTPS check and a check that `.htaccess`-protected
+paths (`config.php`, `lib/`, `logs/`) aren't publicly readable. Run it after
+every upload and again after the DNS cutover. Full numbered launch steps —
+config, PHP version, DNS, Search Console, GBP — are in
+`docs/launch-checklist.md`.
+
+`deploy/make-zip.sh` also ships `assets/css/site.css` minified in place
+(`deploy/minify-css.mjs`, regenerated automatically if `node` is on the
+machine building the zip) — the repository's own copy stays the readable,
+commented source.
+
 ## Content model
 
 No database. Every piece of content is a PHP array under `content/`, loaded once
@@ -199,7 +218,8 @@ content/                                                  all content, as arrays
 lib/{bootstrap,helpers,seo}.php                           config, helpers, metadata
 partials/                                                 header, footer, form, …
 templates/{service,page-stub,article}.php                 page shells
-deploy/{make-zip.sh,routes.php}                           deploy artifact, route contract
+deploy/{make-zip.sh,routes.php,verify-live.sh}            deploy artifact, route contract, live smoke test
+deploy/{minify-css.mjs,subset-fonts.sh,optimize-images.mjs}  build-time asset pipeline (B4, plan §6.4.2/§6.4.1)
 tests/                                                    Playwright screenshots only
 docs/                                                     scan, keyword research, canvas
 ```

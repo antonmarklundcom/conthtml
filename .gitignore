@@ -5,3 +5,10 @@ dist/
 tests/node_modules/
 tests/output/
 .DS_Store
+
+# B4 imagery pipeline (docs/imagery-manifest.md): raw Higgsfield downloads land
+# here before deploy/optimize-images.mjs converts them into assets/img/. Never
+# commit the source PNGs, only the converted AVIF/WebP output.
+deploy/imagery-src/*
+!deploy/imagery-src/.gitkeep
+deploy/node_modules/

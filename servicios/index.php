@@ -62,6 +62,18 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endforeach; ?>
 
+  <section class="section">
+    <div class="container">
+      <div class="unsure">
+        <div class="unsure__copy">
+          <h3 class="card-title"><?= e(ui('services_hub.unsure_title')) ?></h3>
+          <p><?= e(ui('services_hub.unsure_text')) ?></p>
+        </div>
+        <a class="btn btn--primary" href="/herramientas/que-necesita/"><?= e(ui('services_hub.unsure_cta')) ?></a>
+      </div>
+    </div>
+  </section>
+
   <?php
   /* The Auditoría cluster above is white and the closing CTA band below is ink:
      a surface band here keeps the three apart instead of merging the last two
