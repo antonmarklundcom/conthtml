@@ -93,6 +93,18 @@ per request by `content('<name>')` and reached through the helpers in
 | `content/precios.php` | pricing plans |
 | `content/blog.php` | the article index (bodies live in `/blog/<slug>/index.php`) |
 
+### `content/blog.php` and `/blog/<slug>/index.php`
+
+The index holds only metadata — `slug`, `title` (H1), `seoTitle` (optional,
+`<title>`, same fallback pattern as `services.php`), `description`, `date`,
+`updated`, `tags`, `service` (the related-service slug). Each article's own
+`/blog/<slug>/index.php` sets `$slug` plus a local `$sections` array
+(`[['h2', 'body' => [...], 'items'? => [...]]]`) and an optional `$faq`, then
+requires `templates/article.php`, which looks up the metadata, renders the
+body, computes reading time from the word count, and emits `Article` JSON-LD.
+Body content lives in the article file because nothing else reuses it — unlike
+`services.php`, where the same record feeds the mega-menu and the footer.
+
 ### `content/services.php`
 
 The shape below is the contract later phases consume. **B-phases fill the empty
@@ -159,7 +171,7 @@ assets/{css,js,fonts,img}                                 one CSS file, vanilla 
 content/                                                  all content, as arrays
 lib/{bootstrap,helpers,seo}.php                           config, helpers, metadata
 partials/                                                 header, footer, form, …
-templates/{service,page-stub}.php                         page shells
+templates/{service,page-stub,article}.php                 page shells
 deploy/{make-zip.sh,routes.php}                           deploy artifact, route contract
 tests/                                                    Playwright screenshots only
 docs/                                                     scan, keyword research, canvas

@@ -2000,3 +2000,25 @@ section[id] {
 .section--surface .card {
   background: var(--bg);
 }
+
+/* == b2 pages ============================================================= */
+
+/* Article byline (date · reading time) and tag row, on the ink page-hero
+   (templates/article.php). */
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  font-size: var(--t-note);
+  color: var(--on-ink-faint);
+  margin: 0;
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  list-style: none;
+  padding: 0;
+  margin: var(--s-1) 0 0;
+}

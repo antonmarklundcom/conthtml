@@ -117,3 +117,31 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   `.checklist--need`). Both are additive per plan §4.7 (new content keys, new
   CSS below the tokens are allowed) — no existing section, partial, or token
   was changed.
+
+## B2 — Secondary pages and blog (2026-09-04)
+
+- **The six blog articles link to their related service page, not a calculator.**
+  Plan §6.2.6 says "each article links to its calculator/service", written with
+  the assumption B3's tools would exist by then. They don't yet — B2 runs before
+  B3 in phase order — so every article links to the closest service page
+  instead (e.g. the aguinaldo article links to `/ips/`). Logged as a follow-up
+  in plan §10 for once B3 ships.
+
+- **`/nosotros/`'s "Equipo" section is hidden.** `content/site.php`'s `team[]`
+  is still empty (plan §7), so the section that would list team members simply
+  doesn't render — same degrade-gracefully pattern as every other empty
+  collection on the site. Filling `site('team')` switches it on with no code
+  change.
+
+- **`/precios/` shows "Cotización en 48 h" on all three plans.** None of
+  `content/precios.php`'s `priceGs` values are set (plan §7 still lists this as
+  pending). The scope lines (`includes[]`) are real; only the guaraní figures
+  are missing.
+
+- **The aguinaldo article's IPS-exemption claim is not independently
+  re-verified against a primary source this phase.** "El aguinaldo está
+  exceptuado del aporte obrero del 9 % al IPS" is well-established practice
+  among Paraguayan payroll professionals, phrased with a hedge ("en general")
+  consistent with the rest of the site, but logged in
+  `docs/facts-to-verify.md` alongside the B1 items for a primary-source check
+  before B4's launch pass.

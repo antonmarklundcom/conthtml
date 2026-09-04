@@ -24,6 +24,14 @@ page hedges with "consulte el monto vigente" instead of a hard figure.
 | `/irp/` | IRP tax brackets, rates and specific deduction categories | Not stated on the page — deliberately hedged | This phase did **not** find a confidently current source for IRP brackets/rates/deduction limits, so the page says "consulte el monto vigente" instead of a number, per the copy brief's fact-discipline rule. **Anton or a future phase should supply the current IRP tramos/tasas/deducciones so the page can state them.** |
 | `/auditoria-auditoria-impositiva/`, `/auditoria/` | Duration of a full audit engagement | Scan §3.10/§3.11 said "4 a 8 semanas" — **not reused**, because it is not on the whitelist in the copy brief | Pages now say duration "depende del volumen de sus operaciones... se lo confirmamos en el diagnóstico inicial" instead of quoting a week range. If the firm has a real typical range, it can be added later. |
 
+## B2 — Secondary pages and blog (2026-09-04)
+
+| Page(s) | Statement | Source | Confidence / action |
+|---|---|---|---|
+| `/blog/como-se-calcula-el-aguinaldo-en-paraguay/` | "En general, el aguinaldo está exceptuado del aporte obrero del 9 % al IPS" | Well-established public knowledge among Paraguayan payroll practitioners (aguinaldo is not part of the base for the ordinary IPS worker contribution) — not independently re-verified against a primary IPS resolution this phase | Phrased with "en general" and a suggestion to confirm special regimes, per the site's existing hedging pattern. Recommend a primary-source check (IPS resolution) before the B4 launch pass, alongside the other B1 hedged items above. |
+| `/privacidad/`, `/terminos/` | Cites **Ley N.º 1682/2001** (información de carácter privado) and its modification by **Ley N.º 6534/2020** | Plan §6.2.4 explicitly authorizes citing exactly these two laws for the privacy page | Pre-authorized by the plan, not independently verified against the law text this phase. High confidence — both are real, publicly known Paraguayan statutes — but a legal review before launch is still advisable for any accounting-firm privacy policy. |
+| `/blog/ire-simple-resimple-ire-general-formulario-120/`, `/blog/certificado-de-cumplimiento-tributario-marangatu/`, `/blog/abrir-una-eas-en-paraguay/`, `/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/` | Reuse the IRE thresholds (Gs. 80.000.000 / Gs. 2.000.000.000), the Ekuatia/Ekuatia'i distinction and the SUACE/EAS process already logged above for the matching service pages | Same sources as the B1 rows above — no new figures introduced | Same caveats as the original B1 rows apply; nothing new to confirm beyond what is already listed there. |
+
 ## Notes on method
 
 - Two figures the copy brief explicitly named as reusable (`site.stats`-style
