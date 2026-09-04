@@ -22,7 +22,12 @@
  *                              'items' => [['title' => ..., 'text' => ...]]], ...]
  *   benefits         array    [['title' => ..., 'text' => ...], ...]
  *   faq              array    [['q' => ..., 'a' => ...], ...] → FAQPage JSON-LD
- *   cta              array    label + whatsappText (the wa.me prefill)
+ *   cta              array    label (the button text). `whatsappText` is kept
+ *                             for shape compatibility but is EMPTY and unused
+ *                             since C1: every wa.me prefill on the site now
+ *                             comes from content/lead-values.php through
+ *                             whatsapp_text_for_page() (plan §5.3.8a), so there
+ *                             is exactly one copy of each message.
  *   toolLinks        array    [['path' => '/herramientas/<slug>/', 'label' => ...,
  *                              'text' => ...], ...] — calculator callouts (B4,
  *                              optional; plan §6.4 review decision 3)
@@ -123,7 +128,7 @@ return [
             ['q' => '¿Puedo seguir usando facturas preimpresas?', 'a' => 'Una vez que la DNIT lo designa emisor electrónico obligatorio, tiene un plazo de transición para migrar. Pasado ese plazo, sus comprobantes en papel dejan de tener validez legal, así que conviene habilitarse antes de esa fecha, no después.'],
             ['q' => '¿Qué pasa si se cae el internet?', 'a' => 'El sistema SIFEN contempla planes de contingencia, así que puede seguir emitiendo sus comprobantes sin conexión y sincronizarlos con la DNIT apenas la recupere. Dejamos ese procedimiento documentado y a mano de su equipo, para que la emisión no se detenga el día que falle el internet en su local.'],
         ],
-        'cta'     => ['label' => 'Habilitar mi facturación electrónica', 'whatsappText' => "Hola, quiero habilitarme en SIFEN / Ekuatia'i."],
+        'cta'     => ['label' => 'Habilitar mi facturación electrónica', 'whatsappText' => ''],
         'related' => ['marangatu', 'ruc', 'iva'],
     ],
 
@@ -206,7 +211,7 @@ return [
             ['q' => '¿Es seguro delegar mi clave de acceso a un estudio contable?', 'a' => 'Es una práctica habitual, pero requiere confianza absoluta. Manejamos las credenciales de nuestros clientes bajo protocolos estrictos de confidencialidad y ética profesional, y las usamos únicamente para los trámites que usted autorizó por escrito, nunca para gestiones fuera de ese alcance.'],
             ['q' => '¿Qué cambió con Marangatu 2.0?', 'a' => 'La DNIT renovó la interfaz del sistema y reorganizó varios accesos y pantallas, aunque los trámites de fondo —declaraciones, cuenta corriente, certificados— siguen siendo los mismos. Si busca algo que antes encontraba fácilmente y ya no aparece donde recuerda, coméntenos y se lo ubicamos de inmediato.'],
         ],
-        'cta'     => ['label' => 'Ordenar mi cuenta en Marangatu', 'whatsappText' => 'Hola, necesito ayuda con mi cuenta en Marangatu.'],
+        'cta'     => ['label' => 'Ordenar mi cuenta en Marangatu', 'whatsappText' => ''],
         'toolLinks' => [
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea la fecha de este mes y el próximo para IVA, IRE e IPS.'],
         ],
@@ -287,7 +292,7 @@ return [
             ['q' => '¿Tener RUC me obliga a declarar aunque no venda nada?', 'a' => 'Sí. Un RUC activo obliga a presentar sus declaraciones juradas incluso sin movimiento, en cuyo caso se presentan en cero. Automatizamos esas presentaciones dentro de su plan mensual, para que su historial ante la DNIT nunca caiga en mora por falta de una declaración.'],
             ['q' => '¿Qué régimen me conviene?', 'a' => 'Depende de su facturación proyectada y de su actividad: Resimple, IRE Simple o IRE General cambian tanto el impuesto que paga como la carga administrativa mensual que asume. Lo evaluamos con usted antes de inscribirlo, no después de que ya eligió el régimen equivocado.'],
         ],
-        'cta'     => ['label' => 'Inscribir mi RUC', 'whatsappText' => 'Hola, quiero inscribir mi RUC.'],
+        'cta'     => ['label' => 'Inscribir mi RUC', 'whatsappText' => ''],
         'related' => ['eas', 'marangatu', 'ekuatia'],
     ],
 
@@ -367,7 +372,7 @@ return [
             ['q' => '¿Para qué sirve el flujo de efectivo?', 'a' => 'Le muestra cuándo entra y cuándo sale el dinero, no solo cuánto gana en el papel. Una empresa rentable puede quedarse sin caja si sus cobros tardan más que sus pagos; el flujo de efectivo se lo anticipa.'],
             ['q' => '¿Puedo cambiarme de contador a mitad de año?', 'a' => 'Sí, y es más simple de lo que parece. Solicitamos sus libros y declaraciones presentadas hasta la fecha, verificamos que estén al día ante la DNIT y continuamos desde ahí, sin reiniciar el ejercicio ni perder historial ni presentaciones ya realizadas por su contador anterior.'],
         ],
-        'cta'     => ['label' => 'Ordenar mi contabilidad mensual', 'whatsappText' => 'Hola, quiero ordenar la contabilidad mensual de mi empresa.'],
+        'cta'     => ['label' => 'Ordenar mi contabilidad mensual', 'whatsappText' => ''],
         'related' => ['iva', 'ire-simple', 'asesoria'],
     ],
 
@@ -445,7 +450,7 @@ return [
             ['q' => '¿Puedo deducir gastos personales en mi IVA?', 'a' => 'No: la ley exige que el gasto esté directamente relacionado con la generación de su renta para poder deducirlo del IVA. Le indicamos con precisión qué rubros son aceptados para su actividad específica, así evita observaciones y ajustes de la DNIT.'],
             ['q' => '¿Cuándo vence mi IVA según mi RUC?', 'a' => 'La DNIT asigna la fecha de vencimiento mensual del Formulario 120 según la terminación numérica de su RUC, y ese calendario puede variar entre contribuyentes. Se lo confirmamos apenas empieza a trabajar con nosotros y se lo recordamos cada mes.'],
         ],
-        'cta'     => ['label' => 'Poner mi IVA al día', 'whatsappText' => 'Hola, quiero poner mi liquidación de IVA al día.'],
+        'cta'     => ['label' => 'Poner mi IVA al día', 'whatsappText' => ''],
         'toolLinks' => [
             ['path' => '/herramientas/calculadora-iva/', 'label' => 'Calculadora de IVA', 'text' => 'Calcule el 10 % o el 5 % sobre un monto, incluido o excluido del precio, en segundos.'],
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su Formulario 120 este mes.'],
@@ -535,7 +540,7 @@ return [
             ['q' => '¿Qué pasa si me olvido de presentar mi declaración anual?', 'a' => 'La DNIT aplica multas automáticas y bloquea su Certificado de Cumplimiento Tributario, lo que le impide operar con normalidad frente a bancos y proveedores. Nuestro servicio incluye alertas preventivas para que esta situación simplemente no llegue a ocurrir.'],
             ['q' => '¿Cuándo se presenta el Formulario 120 del IRE?', 'a' => 'El plazo cae dentro de los primeros meses del año siguiente al cierre de su ejercicio, y la fecha exacta depende de la terminación de su RUC. Se lo confirmamos con anticipación como parte de nuestro servicio, para que nunca dependa de que usted recuerde la fecha.'],
         ],
-        'cta'     => ['label' => 'Revisar mi régimen de IRE', 'whatsappText' => 'Hola, quiero revisar mi régimen de IRE.'],
+        'cta'     => ['label' => 'Revisar mi régimen de IRE', 'whatsappText' => ''],
         'toolLinks' => [
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su IRE anual.'],
         ],
@@ -621,7 +626,7 @@ return [
             ['q' => '¿Cuándo se presenta la declaración anual del IRP?', 'a' => 'Se presenta una vez al año en Marangatu, con el detalle de sus ingresos y deducciones del ejercicio completo. El plazo exacto se confirma según el calendario vigente que publica la DNIT cada año, y se lo recordamos con anticipación.'],
             ['q' => '¿Qué pasa si tengo IRP y también soy dueño de una empresa?', 'a' => 'Son dos obligaciones separadas: el IRP grava sus ingresos personales y el IRE grava la renta de su empresa como persona jurídica o unipersonal. Coordinamos ambas liquidaciones para que no haya inconsistencias entre lo que declara como persona y lo que declara su empresa.'],
         ],
-        'cta'     => ['label' => 'Consultar si debo presentar IRP', 'whatsappText' => 'Hola, quiero saber si me corresponde presentar el IRP.'],
+        'cta'     => ['label' => 'Consultar si debo presentar IRP', 'whatsappText' => ''],
         'related' => ['ire-simple', 'asesoria', 'ruc'],
     ],
 
@@ -698,7 +703,7 @@ return [
             ['q' => '¿Es obligatorio presentar planillas anuales al MTESS?', 'a' => 'Sí, toda empresa con empleados debe presentar la planilla anual (Resumen General) dentro de los primeros meses del año ante el Ministerio de Trabajo. Consolidamos su información y hacemos esa presentación digital obligatoria en su nombre, dentro del plazo.'],
             ['q' => '¿Cuánto aporta el empleado y cuánto la empresa?', 'a' => 'El empleado aporta el 9% de su salario bruto y la empresa suma un 16,5% adicional como aporte patronal, sobre la misma base salarial. Ambos montos se calculan y presentan juntos cada mes ante IPS, y se lo mostramos como una línea separada y clara en cada recibo de sueldo.'],
         ],
-        'cta'     => ['label' => 'Poner mi nómina al día', 'whatsappText' => 'Hola, quiero poner al día la nómina y el IPS de mi empresa.'],
+        'cta'     => ['label' => 'Poner mi nómina al día', 'whatsappText' => ''],
         'toolLinks' => [
             ['path' => '/herramientas/calculadora-aguinaldo/', 'label' => 'Calculadora de aguinaldo', 'text' => 'Calcule el aguinaldo de un empleado, completo o proporcional, en guaraníes.'],
             ['path' => '/herramientas/liquidacion-de-salario/', 'label' => 'Calculadora de liquidación de salario', 'text' => 'Estime un finiquito por renuncia o despido, con el aporte del 9 % al IPS como línea aparte.'],
@@ -779,7 +784,7 @@ return [
             ['q' => '¿Qué documentos necesito para empezar hoy?', 'a' => 'Solo su cédula de identidad vigente y una descripción básica de su actividad comercial. El resto del proceso —reserva del nombre, redacción de estatutos, obtención del RUC— lo llevamos nosotros de forma remota, sin que tenga que presentarse en ninguna oficina.'],
             ['q' => '¿Cuánto tarda la apertura de una EAS?', 'a' => 'Al ser un trámite digital por el SUACE, se resuelve en semanas y no en meses como los modelos societarios tradicionales. El plazo exacto depende de la carga del sistema y de que la documentación llegue completa desde el inicio.'],
         ],
-        'cta'     => ['label' => 'Iniciar mi apertura', 'whatsappText' => 'Hola, quiero abrir una EAS.'],
+        'cta'     => ['label' => 'Iniciar mi apertura', 'whatsappText' => ''],
         'toolLinks' => [
             ['path' => '/herramientas/comparador-eas-srl-unipersonal/', 'label' => 'Comparador EAS / SRL / Unipersonal', 'text' => 'Compare las tres estructuras y responda tres preguntas para saber cuál le conviene.'],
         ],
@@ -859,7 +864,7 @@ return [
             ['q' => '¿Asesoran a inversores extranjeros?', 'a' => 'Sí, asesoramos sobre el tratamiento tributario de remesas de utilidades, regímenes de maquila y otros incentivos legales disponibles para capital del exterior que decide invertir en el mercado paraguayo, desde la estructura inicial hasta la operación en marcha.'],
             ['q' => '¿Con qué frecuencia debería revisar mi estructura fiscal?', 'a' => 'Al menos una vez al año, junto con el cierre de su ejercicio, o antes de cualquier decisión importante: una inversión relevante, un cambio de régimen o la apertura de una nueva sucursal en otra ciudad.'],
         ],
-        'cta'     => ['label' => 'Agendar una revisión fiscal', 'whatsappText' => 'Hola, quiero agendar una revisión de mi situación fiscal.'],
+        'cta'     => ['label' => 'Agendar una revisión fiscal', 'whatsappText' => ''],
         'related' => ['contabilidad', 'ire-simple', 'auditoria'],
     ],
 
@@ -937,7 +942,7 @@ return [
             ['q' => '¿Qué diferencia hay entre auditoría externa e interna?', 'a' => 'La externa certifica sus estados financieros ante terceros —la DNIT, bancos, inversores— y puede ser obligatoria según su facturación. La interna evalúa sus procesos y controles para que la empresa opere mejor, sin que ningún organismo se la exija.'],
             ['q' => '¿La auditoría es solo un trámite obligatorio?', 'a' => 'No siempre, y conviene no verla solo así. Muchas empresas la contratan sin estar obligadas, porque un dictamen limpio facilita el acceso a créditos bancarios y da respaldo frente a socios, proveedores e inversores potenciales que piden números certificados antes de negociar.'],
         ],
-        'cta'     => ['label' => 'Solicitar diagnóstico de auditoría', 'whatsappText' => 'Hola, quiero un diagnóstico de auditoría para mi empresa.'],
+        'cta'     => ['label' => 'Solicitar diagnóstico de auditoría', 'whatsappText' => ''],
         'related' => [
             'auditoria-auditoria-impositiva',
             'auditoria-auditoria-interna',
@@ -1017,7 +1022,7 @@ return [
             ['q' => '¿Cuál es la fecha límite para presentar el informe a la DNIT?', 'a' => 'El plazo depende del cierre de su ejercicio fiscal y del calendario de vencimientos vigente de la DNIT, así que varía de una empresa a otra según cuándo cierra su ejercicio. Se lo confirmamos con precisión según su caso particular apenas iniciamos el trabajo de auditoría.'],
             ['q' => '¿Qué pasa si estoy obligado y no presento el dictamen?', 'a' => 'La DNIT puede aplicar sanciones administrativas y bloquear su Certificado de Cumplimiento Tributario, lo que le complica operar con bancos, proveedores y licitaciones hasta que regularice la situación. Por eso conviene planificar el dictamen con anticipación, no dejarlo para el último mes del plazo.'],
         ],
-        'cta'     => ['label' => 'Solicitar el dictamen de auditoría', 'whatsappText' => 'Hola, necesito el dictamen de Auditoría Impositiva de mi empresa.'],
+        'cta'     => ['label' => 'Solicitar el dictamen de auditoría', 'whatsappText' => ''],
         'related' => ['auditoria', 'auditoria-auditoria-interna', 'asesoria'],
     ],
 
@@ -1091,7 +1096,7 @@ return [
             ['q' => '¿Con qué frecuencia se debe realizar?', 'a' => 'Depende de la complejidad de su operación: puede ser una revisión anual profunda o seguimientos trimestrales de los puntos más críticos, como caja, cobranzas e inventario. Se lo recomendamos con precisión según lo que encontremos en la primera revisión.'],
             ['q' => '¿Cuánto dura una auditoría interna?', 'a' => 'Depende del alcance que definamos juntos: una revisión puntual de un proceso específico toma menos tiempo que una evaluación integral de toda la operación de la empresa. Se lo precisamos por escrito en la propuesta inicial, antes de empezar.'],
         ],
-        'cta'     => ['label' => 'Fortalecer mis controles internos', 'whatsappText' => 'Hola, quiero una auditoría interna para mi empresa.'],
+        'cta'     => ['label' => 'Fortalecer mis controles internos', 'whatsappText' => ''],
         'related' => ['auditoria', 'auditoria-auditoria-forense', 'contabilidad'],
     ],
 
@@ -1166,7 +1171,7 @@ return [
             ['q' => '¿Pueden ayudar a prevenir fraudes antes de que ocurran?', 'a' => 'Sí. Antes de que haya una sospecha concreta, una revisión de controles internos (ver Auditoría Interna) detecta las brechas que suelen derivar en fraude: falta de segregación de funciones, accesos compartidos o conciliaciones que nadie revisa. Prevenir sale más barato que investigar después.'],
             ['q' => '¿Qué necesito tener listo para la primera reunión?', 'a' => 'Una descripción de la sospecha o el conflicto y, si es posible, acceso a los registros contables y bancarios involucrados en el caso. El acuerdo de confidencialidad se firma antes de compartir con nuestro equipo cualquier documento sensible, para que pueda hablar con libertad desde la primera reunión.'],
         ],
-        'cta'     => ['label' => 'Solicitar una consultoría confidencial', 'whatsappText' => 'Hola, necesito una consultoría confidencial de auditoría forense.'],
+        'cta'     => ['label' => 'Solicitar una consultoría confidencial', 'whatsappText' => ''],
         'related' => ['auditoria', 'auditoria-auditoria-impositiva', 'auditoria-auditoria-interna'],
     ],
 ];

@@ -15,7 +15,11 @@
 #   4. no page renders a PHP warning
 #   5. every page has a title and a description, both unique site-wide, with the
 #      title under 60 characters
-#   6. enviar.php answers {"ok":true,"degraded":true} with no CRM key
+#   6. enviar.php answers ok + degraded with no CRM key
+#   7. the lead value routing of plan §5.3: every service page's form names its
+#      own service, a posted service reaches logs/leads.log as servicio + valor,
+#      the per-service thank-you renders on /contacto/?enviado=1&s=<slug>, and
+#      no wa.me link on the site carries a generic "consulta gratis" message
 #
 set -uo pipefail
 
@@ -149,26 +153,128 @@ rm -f "$META"
 
 # ------------------------------------------------------------ 7. lead form ----
 step "enviar.php"
+
+# The JSON response carries the resolved lead value (plan §5.3.3), so these
+# assert on the fields rather than on the whole body.
+json_says() {   # json_says <json> <key=value> ...
+  php -r '
+    $data = json_decode($argv[1], true);
+    if (!is_array($data)) { echo "not JSON"; exit(1); }
+    for ($i = 2; $i < $argc; $i++) {
+      [$key, $want] = explode("=", $argv[$i], 2);
+      $got = $data[$key] ?? null;
+      $got = is_bool($got) ? ($got ? "true" : "false") : (string) $got;
+      if ($got !== $want) { echo "$key was \"$got\", expected \"$want\""; exit(1); }
+    }
+    exit(0);
+  ' "$@"
+}
+
 response=$(curl -s -X POST "$BASE/enviar.php" \
   -H 'Accept: application/json' -H "Origin: $BASE" \
   -d 'name=Verify&phone=0981000999&need=contabilidad&source_page=/contacto/&idempotency_key=verify-sh-fixture')
 
-if [ "$response" = '{"ok":true,"degraded":true}' ]; then
-  ok 'degraded mode returns {"ok":true,"degraded":true} with no CRM key'
+if why=$(json_says "$response" ok=true degraded=true); then
+  ok 'degraded mode returns ok + degraded with no CRM key'
 else
-  fail "degraded mode returned: $response"
+  fail "degraded mode: $why — $response"
 fi
 
 nojs=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' -X POST "$BASE/enviar.php" \
-  -H "Origin: $BASE" -d 'name=Verify&phone=0981000998')
+  -H "Origin: $BASE" -d 'name=Verify&phone=0981000998&service=ekuatia')
 case "$nojs" in
-  "303 ${BASE}/contacto/?enviado=1") ok "no-JS POST redirects to /contacto/?enviado=1" ;;
+  "303 ${BASE}/contacto/?enviado=1&s=ekuatia") ok "no-JS POST redirects to /contacto/?enviado=1&s=<slug>" ;;
   *) fail "no-JS POST returned: $nojs" ;;
 esac
 
 spam=$(curl -s -X POST "$BASE/enviar.php" -H 'Accept: application/json' -H "Origin: $BASE" \
   -d 'phone=0981000997&website=bot')
-[ "$spam" = '{"ok":true,"degraded":true}' ] && ok "honeypot accepted silently" || fail "honeypot returned: $spam"
+if why=$(json_says "$spam" ok=true degraded=true); then
+  ok "honeypot accepted silently"
+else
+  fail "honeypot: $why — $spam"
+fi
+
+# ------------------------------------------------- 8. lead value routing -----
+# Plan §5.3.9. Every check here is about a lead arriving with the service it
+# came from and that service's tier — the whole point of phase C1.
+step "lead value routing"
+
+rm -f "$SITE_ROOT/logs/leads.log"
+tiera=$(curl -s -X POST "$BASE/enviar.php" \
+  -H 'Accept: application/json' -H "Origin: $BASE" \
+  -d 'name=Verify&phone=0981000996&service=ekuatia&source_page=/ekuatia/&idempotency_key=verify-sh-ekuatia&tool_result=fixture')
+
+if why=$(json_says "$tiera" ok=true service=ekuatia value_tier=B value=400000 currency=PYG); then
+  ok "a POST with service=ekuatia answers with its tier and Ads value"
+else
+  fail "service=ekuatia: $why"
+fi
+
+logline=$(tail -1 "$SITE_ROOT/logs/leads.log" 2>/dev/null)
+if [ -z "$logline" ]; then
+  fail "nothing was written to logs/leads.log"
+else
+  for want in servicio valor resultado_herramienta etiqueta; do
+    php -r '
+      $line = json_decode($argv[1], true);
+      exit(isset($line["fields"][$argv[2]]) && $line["fields"][$argv[2]] !== "" ? 0 : 1);
+    ' "$logline" "$want" \
+      && ok "leads.log line carries fields.$want" \
+      || fail "leads.log line has no fields.$want: $logline"
+  done
+fi
+rm -f "$SITE_ROOT/logs/leads.log"
+
+# Every service page's own form must name that service, or the lead arrives
+# untagged and nothing downstream can route it.
+missing_service_field=0
+while IFS=$'\t' read -r slug path; do
+  [ -z "$path" ] && continue
+  # Buffer the body first: under `set -o pipefail`, `curl | grep -q` reports a
+  # failed pipeline because grep closes the pipe on its first match and curl
+  # dies of SIGPIPE — which would fail every page that actually passes.
+  html=$(curl -s "${BASE}${path}")
+  if ! printf '%s' "$html" | grep -q "name=\"service\" value=\"${slug}\""; then
+    fail "$path — form has no name=\"service\" value=\"$slug\""
+    missing_service_field=1
+  fi
+done < <(php -r '
+  require "'"$SITE_ROOT"'/lib/bootstrap.php";
+  foreach (services() as $slug => $service) { echo $slug, "\t", $service["path"], "\n"; }
+')
+[ "$missing_service_field" -eq 0 ] && ok "all 14 service pages post their own slug"
+
+# The per-service thank-you the no-JS redirect lands on (plan §5.3.4).
+thanks=$(curl -s "${BASE}/contacto/?enviado=1&s=ekuatia")
+expected_step=$(php -r '
+  require "'"$SITE_ROOT"'/lib/bootstrap.php";
+  echo htmlspecialchars(lead_value("ekuatia")["nextStep"][0], ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+')
+if printf '%s' "$thanks" | grep -qF "$expected_step"; then
+  ok "/contacto/?enviado=1&s=ekuatia renders the Ekuatia next step"
+else
+  fail "/contacto/?enviado=1&s=ekuatia did not render the Ekuatia next step"
+fi
+
+# No wa.me link anywhere may carry a generic message: every prefill names the
+# service the visitor was reading about (plan §5.3.8, docs/lead-value.md rule 5).
+generic=0
+while IFS=$'\t' read -r path expected; do
+  [ "$expected" = "200" ] || continue
+  case "$path" in /robots.txt|/sitemap.xml) continue ;; esac
+
+  html=$(curl -s "${BASE}${path}")
+  bad=$(printf '%s' "$html" \
+    | grep -o 'https://wa\.me/[^"]*' \
+    | grep -iE 'consulta%20gratis|text=$|^https://wa\.me/[0-9]+$' \
+    | sort -u)
+  if [ -n "$bad" ]; then
+    fail "$path — wa.me link with a generic or empty message: $(printf '%s' "$bad" | tr '\n' ' ')"
+    generic=1
+  fi
+done <<< "$ROUTE_LIST"
+[ "$generic" -eq 0 ] && ok "no wa.me link on the site carries a generic message"
 
 rm -rf "$SITE_ROOT/logs/rate" "$SITE_ROOT/logs/leads.log"
 

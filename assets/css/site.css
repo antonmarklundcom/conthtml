@@ -2164,3 +2164,204 @@ section[id] {
   background: var(--amber);
   color: var(--ink);
 }
+
+/* == c1 lead routing =======================================================
+   The WhatsApp menu, the per-service thank-you state and the vencimientos
+   reminder capture (plan §5.3). All below the tokens block; no existing rule
+   changed. */
+
+/* -- WhatsApp menu (plan §5.3.8b) ---------------------------------------- */
+/* A popover anchored above the floating button on desktop; a bottom sheet on
+   phones, where the trigger is the full-width sticky bar. One panel, two
+   shapes — the same discipline .wa-fab itself follows. */
+
+.wa-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+}
+
+.wa-menu[hidden] {
+  display: none;
+}
+
+.wa-menu__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 27, 45, 0.45);
+}
+
+.wa-menu__panel {
+  position: absolute;
+  right: var(--s-4);
+  bottom: calc(var(--s-4) + 64px);
+  width: min(380px, calc(100vw - 2 * var(--s-4)));
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-fab);
+  padding: var(--s-3);
+}
+
+.wa-menu__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+.wa-menu__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: var(--t-small);
+}
+
+.wa-menu__close {
+  flex: none;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.wa-menu__list {
+  list-style: none;
+  margin: var(--s-2) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-1);
+}
+
+.wa-menu__option {
+  display: block;
+  padding: 10px var(--s-2);
+  border-radius: var(--r-input);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.wa-menu__option:hover {
+  border-color: var(--outline);
+  background: var(--surface);
+}
+
+/* The page the visitor is actually on leads the list and is pre-highlighted,
+   because it is the message they are most likely to want (plan §5.3.8b). */
+.wa-menu__option--current {
+  border-color: var(--ok-text);
+  background: var(--ok-bg);
+}
+
+.wa-menu__label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-weight: 600;
+  font-size: var(--t-small);
+}
+
+.wa-menu__badge {
+  font-weight: 500;
+  font-size: var(--t-label);
+  color: var(--ok-text);
+  border: 1px solid currentColor;
+  border-radius: var(--r-chip);
+  padding: 1px 6px;
+}
+
+/* The prefill itself, so a visitor sees the message before it is sent. */
+.wa-menu__text {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: var(--t-note);
+}
+
+.wa-menu__note {
+  margin: var(--s-2) 0 0;
+  color: var(--muted);
+  font-size: var(--t-label);
+}
+
+@media (max-width: 768px) {
+  .wa-menu__panel {
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    max-height: 80vh;
+    border-radius: var(--r-card) var(--r-card) 0 0;
+    border-bottom: 0;
+    padding: var(--s-3) var(--s-3) var(--s-4);
+  }
+}
+
+/* -- Per-service thank-you (plan §5.3.4) --------------------------------- */
+/* The second touch. It replaces "gracias" with what to have ready, so the
+   visitor has a reason to read it. */
+
+.thanks {
+  border: 1px solid var(--ok-text);
+  border-radius: var(--r-card);
+  background: var(--ok-bg);
+  padding: var(--s-3);
+}
+
+.thanks__title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ok-text);
+}
+
+.thanks__next {
+  margin: var(--s-2) 0 0;
+  font-size: var(--t-note);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.thanks__steps {
+  margin: var(--s-1) 0 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: 6px;
+}
+
+.thanks__steps li {
+  font-size: var(--t-small);
+}
+
+.thanks__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+
+/* -- Vencimientos reminder capture (plan §5.3.6) -------------------------- */
+
+.remind {
+  margin-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  padding-top: var(--s-3);
+}
+
+.remind__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-2);
+}
+
+.remind__row .field {
+  flex: 1 1 220px;
+  margin: 0;
+}

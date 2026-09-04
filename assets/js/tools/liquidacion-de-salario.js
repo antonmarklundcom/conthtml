@@ -159,7 +159,8 @@
         need: "nomina",
         message:
           "Calculé un finiquito estimado de " + window.PY.fmtGs(lastResult.total) +
-          " con la calculadora del sitio y quisiera confirmarlo."
+          " con la calculadora del sitio y quisiera confirmarlo.",
+        result: "Finiquito " + window.PY.fmtGs(lastResult.total) + " (" + lastResult.motivo + ")"
       });
       window.ToolsShared.focusLeadForm(leadForm);
     });

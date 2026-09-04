@@ -3,16 +3,28 @@
  * The lead form. Posts to /enviar.php, which forwards to VenderCRM.
  *
  * Progressive enhancement (plan §5.1.8): this is an ordinary form. Without JS
- * it does a normal POST and enviar.php redirects to /contacto/?enviado=1.
- * assets/js/lead-form.js upgrades it to an inline success message.
+ * it does a normal POST and enviar.php redirects to
+ * /contacto/?enviado=1&s=<slug>, which renders the same per-service thank-you
+ * this form shows inline when JS is available.
  *
  * The "¿Qué necesita?" chips from 1B are real radio inputs behind styled
  * labels, so the selection survives with JS disabled.
  *
  * Optional variables a caller may set before requiring this partial:
- *   $formId       string  distinguishes this form in the CRM 'source' field
- *   $formNeed     string  pre-selected need key (B3's quiz uses this)
- *   $formHeading  string  visible heading, omitted when empty
+ *   $formId          string  distinguishes this form in the CRM 'source' field
+ *   $formNeed        string  pre-selected need key (B3's quiz uses this)
+ *   $formHeading     string  visible heading, omitted when empty
+ *   $formService     string  service or tool slug this form belongs to (C1).
+ *                            Defaults to the page's own slug, so a service page
+ *                            needs to set nothing
+ *   $formToolResult  string  what the visitor computed, <= 500 chars (C1)
+ *   $formSourcePage  string  path to report as source_page. Only tools need it:
+ *                            they render the form into a buffer BEFORE
+ *                            templates/tool.php sets $page
+ *
+ * Named $form* rather than $service/$toolResult on purpose: an include shares
+ * the caller's scope, and a bare $service here would shadow the service record
+ * in templates/service.php — the exact bug A1 hit in partials/header.php.
  *
  * Locked for B-phases (plan §4.7).
  */
@@ -22,8 +34,20 @@ declare(strict_types=1);
 $formId      = $formId ?? 'contacto';
 $formNeed    = $formNeed ?? '';
 $formHeading = $formHeading ?? ui('form.legend');
-$sourcePage  = $page['path'] ?? '/';
-$whatsapp    = whatsapp_link(ui('cta.consult'));
+
+/* The lead value model decides this form's service, tier and thank-you copy
+   (plan §5.3.2). A form on a service or tool page inherits the page's slug; a
+   form on /contacto/ or the homepage has none, and takes the tier of whichever
+   chip the visitor picks — enviar.php resolves that server-side, and
+   assets/js/lead-form.js reads it from the chip's data-tier for the event. */
+$formService = $formService ?? (current_lead_slug() ?? '');
+$formLead    = $formService !== '' ? lead_value($formService) : lead_value_for_need($formNeed ?: 'otro');
+$formTier    = (string) $formLead['tier'];
+
+$formToolResult = mb_substr((string) ($formToolResult ?? ''), 0, 500);
+$sourcePage     = $formSourcePage ?? ($page['path'] ?? '/');
+
+$whatsapp = whatsapp_link($formLead['whatsappText']);
 
 /* One key per rendered form: a double-click or a retry replays it and VenderCRM
    returns the original lead instead of creating a duplicate. */
@@ -67,6 +91,7 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
       <?php foreach (content('ui')['needs'] as $key => $label): ?>
         <input class="chip-radio" type="radio" name="need"
                id="need-<?= e($formId . '-' . $key) ?>" value="<?= e($key) ?>"
+               data-tier="<?= e(lead_value_for_need($key)['tier']) ?>"
                <?= $formNeed === $key ? 'checked' : '' ?>>
         <label class="chip" for="need-<?= e($formId . '-' . $key) ?>"><?= e($label) ?></label>
       <?php endforeach; ?>
@@ -86,6 +111,16 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
   <input type="hidden" name="form_id" value="<?= e($formId) ?>">
   <input type="hidden" name="source_page" value="<?= e($sourcePage) ?>">
   <input type="hidden" name="idempotency_key" value="<?= e($idempotencyKey) ?>">
+  <!-- The lead value routing fields (plan §5.3.2). enviar.php re-derives the
+       tier from `service`/`need` rather than trusting value_tier: tier is set
+       by the page, never by whoever posts the form (docs/lead-value.md rule 2). -->
+  <input type="hidden" name="service" value="<?= e($formService) ?>">
+  <input type="hidden" name="value_tier" value="<?= e($formTier) ?>">
+  <?php if ($formToolResult !== ''): ?>
+    <input type="hidden" name="tool_result" value="<?= e($formToolResult) ?>" data-tool-result>
+  <?php else: ?>
+    <input type="hidden" name="tool_result" value="" data-tool-result>
+  <?php endif; ?>
   <?php foreach ($utmKeys as $key): ?>
     <?php if (!empty($_GET[$key]) && is_string($_GET[$key])): ?>
       <input type="hidden" name="<?= e($key) ?>" value="<?= e(substr($_GET[$key], 0, 200)) ?>">
@@ -100,16 +135,26 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
     <a href="/privacidad/"><?= e(ui('nav.privacy')) ?></a>.
   </p>
 
-  <p class="form-status form-status--ok" data-form-ok hidden role="status">
-    <strong><?= e(ui('form.success_title')) ?></strong>
-    <?= e(ui('form.success_text')) ?>
-    <?php if ($whatsapp !== null): ?>
-      <a href="<?= e($whatsapp) ?>" rel="noopener"><?= e(ui('cta.whatsapp_long')) ?></a>.
-    <?php endif; ?>
-  </p>
+  <?php
+    /* The inline success state is the same per-service thank-you the no-JS
+       redirect renders on /contacto/, from the same record — one copy of the
+       text, two ways in. */
+    $thanksLead   = $formLead;
+    $thanksHidden = true;
+    $thanksAttrs  = 'data-form-ok tabindex="-1"';
+    require ROOT_DIR . '/partials/lead-thanks.php';
+  ?>
 
   <p class="form-status form-status--error" data-form-error hidden role="alert">
     <strong><?= e(ui('form.error_title')) ?></strong>
     <?= e(ui('form.error_text')) ?>
   </p>
 </form>
+<?php
+/* An include shares the caller's scope: a second form on the same page must
+   not inherit the first one's service, need or heading (A2's convention). */
+unset(
+    $formId, $formNeed, $formHeading, $formService, $formLead, $formTier,
+    $formToolResult, $formSourcePage, $sourcePage, $whatsapp, $idempotencyKey,
+    $utmKeys, $key, $label
+);

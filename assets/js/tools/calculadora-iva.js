@@ -66,7 +66,10 @@
         need: "contabilidad",
         message:
           "Calculé un IVA de " + window.PY.fmtGs(lastResult.iva) + " sobre un total de " +
-          window.PY.fmtGs(lastResult.total) + " con la calculadora del sitio."
+          window.PY.fmtGs(lastResult.total) + " con la calculadora del sitio.",
+        result:
+          "IVA " + lastResult.tasa + "%: " + window.PY.fmtGs(lastResult.iva) +
+          " sobre " + window.PY.fmtGs(lastResult.total)
       });
       window.ToolsShared.focusLeadForm(leadForm);
     });

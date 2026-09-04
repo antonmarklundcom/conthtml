@@ -5,6 +5,12 @@
  *   cd tests && npm ci
  *   node screenshots.mjs --phase a1 --base http://127.0.0.1:8080 / /servicios/
  *
+ * --open <selector> clicks something before capturing and shoots the viewport
+ * instead of the whole page, for states that only exist after an interaction
+ * (C1's WhatsApp menu). --suffix names those files apart from the plain ones:
+ *
+ *   node screenshots.mjs --phase c1 --open '[data-wa-trigger]' --suffix wa-menu /eas/
+ *
  * The site is plain PHP; Node lives here and only here.
  */
 import { chromium } from "playwright";
@@ -22,7 +28,15 @@ const opt = (name, fallback) => {
 
 const phase = opt("phase", "a1");
 const base = opt("base", "http://127.0.0.1:8080");
-const paths = args.filter((a) => a.startsWith("/"));
+const open = opt("open", null);
+const suffix = opt("suffix", null);
+/* --open takes a CSS selector, which can start with "/" in no sane world but
+   --base takes a URL that does; filter the option VALUES out of the path list
+   rather than trusting the leading slash alone. */
+const optionValues = new Set(
+  args.filter((a, i) => i > 0 && args[i - 1].startsWith("--"))
+);
+const paths = args.filter((a) => a.startsWith("/") && !optionValues.has(a));
 
 if (paths.length === 0) {
   console.error("no paths given");
@@ -125,8 +139,18 @@ for (const path of paths) {
       await new Promise(requestAnimationFrame);
     });
 
-    const file = `${outDir}/${name}-${label}.png`;
-    await page.screenshot({ path: file, fullPage: true });
+    /* An interaction state (the WhatsApp menu) exists only after a click, and
+       its panel is position:fixed — a full-page capture would strand it at the
+       document's top rather than over what the visitor is looking at. So
+       --open implies a viewport shot. */
+    if (open) {
+      await page.locator(open).first().click();
+      await page.waitForSelector("[data-wa-menu]:not([hidden])", { timeout: 5000 });
+      await page.waitForTimeout(250);
+    }
+
+    const file = `${outDir}/${name}${suffix ? "-" + suffix : ""}-${label}.png`;
+    await page.screenshot({ path: file, fullPage: !open });
     console.log(`  ${file.replace(resolve(here, ".."), "")}`);
 
     if (errors.length) {

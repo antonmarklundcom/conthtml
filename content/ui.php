@@ -59,6 +59,18 @@ return [
         'talk'         => 'Hablar con un contador',
     ],
 
+    // The WhatsApp menu (plan §5.3.8b). These are BUTTON LABELS only — the
+    // message that actually reaches WhatsApp always comes from
+    // content/lead-values.php and names a service, never "consulta gratis".
+    'whatsapp' => [
+        'menu_title'   => '¿Sobre qué quiere escribirnos?',
+        'menu_note'    => 'Abrimos WhatsApp con el mensaje ya escrito. Puede cambiarlo antes de enviarlo.',
+        'other'        => 'Otra consulta',
+        'this_page'    => 'Lo que está viendo',
+        'open_menu'    => 'Abrir opciones de WhatsApp',
+        'close_menu'   => 'Cerrar',
+    ],
+
     'home' => [
         // Month-neutral by design: the 1B mock said "cierre de septiembre",
         // which would be wrong eleven months a year.
@@ -275,6 +287,17 @@ return [
         'error_text'    => 'Vuelva a intentarlo en un momento o escríbanos directamente.',
         'error_phone'   => 'Necesitamos un teléfono o WhatsApp válido para responderle.',
         'required'      => 'obligatorio',
+        // The per-service thank-you state (plan §5.3.4). The lines under it come
+        // from content/lead-values.php's nextStep, so the second touch says
+        // something specific instead of "gracias".
+        'thanks_next'     => 'Qué sigue',
+        'thanks_whatsapp' => 'Si prefiere no esperar, escríbanos ahora por WhatsApp.',
+        // The vencimientos reminder capture (plan §5.3.6).
+        'remind_title'  => 'Que le avisemos antes de cada vencimiento',
+        'remind_text'   => 'Le anotamos su terminación de RUC y le escribimos por WhatsApp unos días antes.',
+        'remind_phone'  => 'Su WhatsApp',
+        'remind_submit' => 'Quiero que me recuerden',
+        'remind_ok'     => 'Anotado. Le escribimos antes del próximo vencimiento.',
     ],
 
     // The chip selector from 1B. Values travel to VenderCRM in fields.necesita.
@@ -313,6 +336,11 @@ return [
         'benefits'  => 'Beneficios',
         'faq'       => 'Preguntas frecuentes',
         'related'   => 'Servicios relacionados',
+        // The service-page lead form (plan §5.3.2): every service page carries
+        // a form of its own so the lead arrives tagged with that service.
+        'form_eyebrow' => 'Cotización',
+        'form_lead'    => 'Déjenos sus datos y le respondemos con una propuesta concreta, '
+                        . 'sin costo y sin compromiso.',
         'breadcrumb' => 'Ruta de navegación',
     ],
 

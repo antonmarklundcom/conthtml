@@ -8,15 +8,25 @@
  *
  *   POST fields: name, company?, phone (required), email?, need, message?,
  *                source_page, form_id, idempotency_key, website (honeypot),
+ *                service?, value_tier?, tool_result?,
  *                utm_source|utm_medium|utm_campaign|utm_term|utm_content,
  *                gclid?, fbclid?
+ *
+ *   LEAD VALUE ROUTING (plan §5.3.3): every lead carries the service it came
+ *   from and that service's value tier, resolved SERVER-SIDE from
+ *   content/lead-values.php. The posted `value_tier` is never trusted — tier is
+ *   set by the page, not by whoever posts the form (docs/lead-value.md rule 2),
+ *   and a form field is the one thing on this request an attacker controls.
  *
  *   Optional: with RESEND_API_KEY + LEAD_NOTIFY_TO in config.php every accepted
  *   lead is also emailed to the firm (see notify_by_email).
  *
- *   Response: JSON {ok: bool, degraded: bool, error?: string} when the request
- *   asks for JSON (Accept: application/json), otherwise a 303 redirect to
- *   /contacto/?enviado=1 — so the form works with JavaScript disabled.
+ *   Response: JSON {ok, degraded, error?} plus, on success, the lead's
+ *   resolved {service, value_tier, value, currency} and the per-service
+ *   thank-you copy, when the request asks for JSON (Accept: application/json).
+ *   Otherwise a 303 redirect to /contacto/?enviado=1&s=<slug>, which renders
+ *   the same thank-you server-side — so the form works with JavaScript
+ *   disabled.
  *
  * DEGRADED MODE: with no VENDERCRM_URL / VENDERCRM_API_KEY in config.php, or
  * when the CRM is unreachable, the lead is appended to logs/leads.log and the
@@ -40,7 +50,7 @@ $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 /**
  * Answer and stop: JSON for the fetch() path, a redirect for the plain form.
  */
-function respond(bool $ok, bool $degraded, ?string $error = null): never
+function respond(bool $ok, bool $degraded, ?string $error = null, array $extra = []): never
 {
     global $wantsJson;
 
@@ -51,14 +61,22 @@ function respond(bool $ok, bool $degraded, ?string $error = null): never
             array_filter(
                 ['ok' => $ok, 'degraded' => $degraded, 'error' => $error],
                 static fn ($v) => $v !== null
-            ),
+            ) + $extra,
             JSON_UNESCAPED_UNICODE
         );
         exit;
     }
 
     http_response_code(303);
-    header('Location: ' . ($ok ? LEAD_SUCCESS_PATH : '/contacto/?error=1'));
+    /* The thank-you is per service (plan §5.3.4), so the no-JS path has to
+       carry the slug across the redirect — /contacto/ renders it from the same
+       content/lead-values.php record the inline success state uses. */
+    $success = LEAD_SUCCESS_PATH;
+    if (!empty($extra['service'])) {
+        $success .= '&s=' . rawurlencode((string) $extra['service']);
+    }
+
+    header('Location: ' . ($ok ? $success : '/contacto/?error=1'));
     exit;
 }
 
@@ -178,8 +196,16 @@ function notify_by_email(array $payload, string $outcome): void
     $lines[] = 'Estado CRM: ' . $outcome;
     $lines[] = 'Recibido: ' . gmdate('Y-m-d H:i') . ' UTC';
 
-    $who     = $payload['name'] ?? $payload['phone'] ?? 'sin nombre';
-    $subject = 'Nuevo contacto web: ' . $who;
+    /* "[Tier A] Nuevo contacto: Abrir una EAS — María" (plan §5.3.3): the two
+       things that decide whether this one gets answered first are the tier and
+       the service, so both go in the subject line. */
+    $who      = $payload['name'] ?? $payload['phone'] ?? 'sin nombre';
+    $tier     = $payload['fields']['valor'] ?? '';
+    $servicio = $payload['fields']['servicio'] ?? '';
+    $subject  = ($tier !== '' ? '[Tier ' . $tier . '] ' : '')
+              . 'Nuevo contacto: '
+              . ($servicio !== '' ? $servicio . ' — ' : '')
+              . $who;
     $body    = json_encode(array_filter([
         'from'     => $from,
         'to'       => [$to],
@@ -291,11 +317,56 @@ if (strlen($idempotencyKey) < 8) {
     $idempotencyKey = hash('sha256', $digits . '|' . gmdate('Y-m-d-H'));
 }
 
+/* --- The lead value model (plan §5.3.3, docs/lead-value.md) ---------------
+   The page names its service; the tier, the CRM tag and the thank-you copy all
+   come from content/lead-values.php. A `service` we do not recognise is
+   dropped rather than trusted, and a lead with no service takes the tier of its
+   chip — so a posted value_tier can never inflate a lead's worth. */
+$service    = field('service', 80);
+$toolResult = field('tool_result', 500);
+
+$lead = $service !== '' ? lead_value($service) : lead_value_for_need($need ?: 'otro');
+if ($lead['slug'] === null) {
+    $service = '';   // unknown slug: keep the lead, drop the claim
+}
+
+/* On a /contacto/ lead the chip is what the visitor told us, so the label names
+   the need; on a service or tool page it names the page they were reading. */
+$serviceLabel = $service !== ''
+    ? lead_label($service)
+    : ($need !== '' ? lead_need_label($need) : '');
+
 $fields = array_filter([
-    'necesita'    => $need !== '' ? (ui('needs.' . $need) ?: $need) : '',
-    'empresa'     => $company,
-    'formulario'  => $formId,
+    'necesita'              => $need !== '' ? lead_need_label($need) : '',
+    'empresa'               => $company,
+    'formulario'            => $formId,
+    'servicio'              => $serviceLabel,
+    'valor'                 => (string) $lead['tier'],
+    'resultado_herramienta' => $toolResult,
+    /* The crmTag travels as a FIELD, not as a top-level `tags` array. The
+       VenderCRM endpoint takes no tag/pipeline/stage/owner input by design
+       (vendercrm-lead-capture, "Never send pipeline, stage, owner or tag"):
+       routing lives on the site record in the CRM so it can change without a
+       deploy, and a leaked key cannot redirect leads. Carrying the tag on the
+       timeline gives plan §5.3.3 what it is actually for — knowing what this
+       lead is — without handing the browser control of where it lands. */
+    'etiqueta'              => (string) $lead['crmTag'],
 ]);
+
+/* What the JSON path needs to fire the conversion event and show the right
+   thank-you (plan §5.3.4, §5.3.5). The value is the tier's Ads proxy in
+   guaraníes, read from the same file the tier came from. */
+$leadResult = [
+    'service'    => (string) ($lead['slug'] ?? ''),
+    'value_tier' => (string) $lead['tier'],
+    'value'      => lead_tier_value((string) $lead['tier']),
+    'currency'   => 'PYG',
+    'thanks'     => [
+        'steps'    => array_values((array) ($lead['nextStep'] ?? [])),
+        'whatsapp' => whatsapp_link($lead['whatsappText']),
+        'link'     => $lead['nextLink'] ?? null,
+    ],
+];
 
 $payload = array_filter([
     'phone'           => $phone,
@@ -320,7 +391,7 @@ $apiKey = cfg('VENDERCRM_API_KEY');
 if ($crmUrl === null || $apiKey === null || !function_exists('curl_init')) {
     log_lead($payload, 'degraded:not-configured');
     notify_by_email($payload, 'degraded:not-configured');
-    respond(true, true);
+    respond(true, true, null, $leadResult);
 }
 
 $ch = curl_init(rtrim($crmUrl, '/') . '/api/v1/leads');
@@ -345,7 +416,7 @@ curl_close($ch);
 if ($status === 201 || $status === 200) {
     log_lead($payload, 'crm:' . $status);
     notify_by_email($payload, 'crm:' . $status);
-    respond(true, false);
+    respond(true, false, null, $leadResult);
 }
 
 /* Anything else is our problem, not the visitor's. The body names the failing
@@ -354,4 +425,4 @@ error_log(sprintf('VenderCRM lead failed [%d] %s %s', $status, (string) $respons
 log_lead($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
 notify_by_email($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
 
-respond(true, true);
+respond(true, true, null, $leadResult);

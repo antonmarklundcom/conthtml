@@ -14,7 +14,12 @@ declare(strict_types=1);
    partial is prefixed to avoid shadowing a caller's variable — $service in
    templates/service.php was a real casualty of getting this wrong. */
 $navCurrentPath = $page['path'] ?? '/';
-$navWhatsapp    = whatsapp_link(ui('cta.consult'));
+
+/* The pill's href is this page's own prefill, so a visitor without JS still
+   reaches WhatsApp with a message that names the service they were reading
+   about; assets/js/whatsapp-menu.js upgrades it to the menu (plan §5.3.8). */
+$navWhatsapp    = whatsapp_link(whatsapp_text_for_page());
+$navLeadSlug    = current_lead_slug() ?? '';
 ?>
 <header class="site-header" data-header>
   <div class="container site-header__bar">
@@ -71,7 +76,9 @@ $navWhatsapp    = whatsapp_link(ui('cta.consult'));
       </ul>
 
       <div class="nav-drawer-cta">
-        <a class="btn btn--whatsapp" href="<?= e($navWhatsapp ?? '/contacto/') ?>"<?= $navWhatsapp ? ' rel="noopener"' : '' ?>>
+        <a class="btn btn--whatsapp" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
+           <?= $navWhatsapp ? 'rel="noopener" data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '' ?>
+           data-service="<?= e($navLeadSlug) ?>">
           <?= e($navWhatsapp ? ui('cta.whatsapp_long') : ui('cta.contact')) ?>
         </a>
         <a class="btn btn--primary" href="/contacto/"><?= e(ui('cta.quote')) ?></a>
@@ -79,7 +86,9 @@ $navWhatsapp    = whatsapp_link(ui('cta.consult'));
     </div>
 
     <div class="site-header__actions">
-      <a class="btn btn--secondary" href="<?= e($navWhatsapp ?? '/contacto/') ?>"<?= $navWhatsapp ? ' rel="noopener"' : '' ?>>
+      <a class="btn btn--secondary" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
+         <?= $navWhatsapp ? 'rel="noopener" data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '' ?>
+         data-service="<?= e($navLeadSlug) ?>">
         <?= e($navWhatsapp ? ui('cta.whatsapp') : ui('cta.contact')) ?>
       </a>
       <a class="btn btn--primary" href="/contacto/"><?= e(ui('cta.quote')) ?></a>

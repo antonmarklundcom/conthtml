@@ -36,12 +36,13 @@ $page = [
     'path'        => $service['path'],
     'breadcrumbs' => $breadcrumbs,
     'faq'         => $service['faq'],
+    /* Names this page in the lead value model (plan §5.3): the WhatsApp menu,
+       the CTA band, the lead form and the thank-you all resolve from it. */
+    'leadSlug'    => $slug,
 ];
 
 $hero        = $service['hero'];
-$ctaWhatsapp = $service['cta']['whatsappText'] !== ''
-    ? $service['cta']['whatsappText']
-    : ui('cta.consult');
+$ctaWhatsapp = whatsapp_text_for_page($page);
 
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
@@ -194,6 +195,35 @@ require ROOT_DIR . '/partials/header.php';
       </div>
     </section>
   <?php endif; ?>
+
+  <!-- Solicitar: the service's own lead form (plan §5.3.2). Every service page
+       needs one, because a lead is only worth routing if it arrives carrying
+       the service it came from — the CTA band above sends people to WhatsApp,
+       this sends the ones who would rather write. -->
+  <section class="section section--surface" id="solicitar">
+    <div class="container split split--top">
+      <div class="stack">
+        <p class="eyebrow"><?= e(ui('service.form_eyebrow')) ?></p>
+        <h2><?= e($service['cta']['label'] !== '' ? $service['cta']['label'] : ui('form.legend')) ?></h2>
+        <p class="lead"><?= e(ui('service.form_lead')) ?></p>
+        <ul class="checklist">
+          <?php foreach (content('ui')['contact']['steps'] as $svcStep): ?>
+            <li><span><?= e($svcStep) ?></span></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+
+      <div>
+        <?php
+        $formId      = $slug;
+        $formService = $slug;
+        $formNeed    = lead_value($slug)['need'];
+        $formHeading = '';
+        require ROOT_DIR . '/partials/lead-form.php';
+        ?>
+      </div>
+    </div>
+  </section>
 
   <?php require ROOT_DIR . '/partials/cta-band.php'; ?>
 </main>

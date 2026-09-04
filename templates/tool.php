@@ -36,7 +36,8 @@ $page = [
         ['label' => ui('nav.tools'), 'path' => '/herramientas/'],
         ['label' => $tool['title'], 'path' => $tool['path']],
     ],
-    'faq' => $tool['faq'],
+    'faq'      => $tool['faq'],
+    'leadSlug' => $slug,
 ];
 
 require ROOT_DIR . '/partials/head.php';
@@ -97,10 +98,7 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endif; ?>
 
-  <?php
-    $ctaWhatsapp = $tool['ctaWhatsapp'];
-    require ROOT_DIR . '/partials/cta-band.php';
-  ?>
+  <?php require ROOT_DIR . '/partials/cta-band.php'; ?>
 
   <script src="<?= e(asset('/assets/js/py.js')) ?>" defer></script>
   <script src="<?= e(asset('/assets/js/tools/tools-shared.js')) ?>" defer></script>

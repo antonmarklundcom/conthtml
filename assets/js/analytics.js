@@ -8,6 +8,12 @@
  * The id arrives from PHP as <body data-ga4="G-XXXX"> (empty until config.php
  * sets GA4_ID). Wires whatsapp_click on every wa.me link and phone_click on
  * every tel: link. B3 adds tool_used; B4 adds lead_submit and the GA4 tag.
+ *
+ * C1 (plan §5.3.5): whatsapp_click carries the `service` the link is for,
+ * read from the link's own data-service. Every wa.me link on the site renders
+ * one — the header pill, the floating button, each WhatsApp-menu option, the
+ * CTA band — so a click is attributable to the service the visitor was
+ * reading about, not just to a page path.
  */
 (function (window, document) {
   "use strict";
@@ -27,9 +33,14 @@
 
   /** Where the click happened, so events are attributable per page. */
   function context(el) {
+    var owner = el.closest("[data-service]");
+
     return {
       page_path: window.location.pathname,
-      link_text: (el.textContent || "").trim().slice(0, 80)
+      link_text: (el.textContent || "").trim().slice(0, 80),
+      /* "" is a real answer: the neutral default, a page with no service of
+         its own. It is not the same as the attribute being missing. */
+      service: owner ? owner.getAttribute("data-service") : ""
     };
   }
 
