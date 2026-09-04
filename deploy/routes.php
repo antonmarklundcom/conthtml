@@ -32,9 +32,12 @@ foreach (services() as $service) {
     $routes[$service['path']] = 200;
 }
 
-/* Tools (B3) and blog articles (B2) as they are added. */
+/* Tools (B3), guides (C2) and blog articles (B2) as they are added. */
 foreach (nav('tools') as $tool) {
     $routes[$tool['path']] = 200;
+}
+foreach (nav('guias') as $guide) {
+    $routes[$guide['path']] = 200;
 }
 foreach (content('blog') as $article) {
     $routes['/blog/' . $article['slug'] . '/'] = 200;

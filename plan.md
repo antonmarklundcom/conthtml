@@ -314,6 +314,40 @@ Every phase's PR carries screenshots, and every merge can be zipped with `deploy
 - 2026-09-04 — C1 verification: `./verify.sh` green on the repo and on the unzipped `deploy/make-zip.sh` artifact, with four new checks (a POST with `service=ekuatia` answers with tier B and ₲400 000 and writes `servicio`/`valor`/`resultado_herramienta`/`etiqueta` to `logs/leads.log`; all 14 service pages post their own slug; `/contacto/?enviado=1&s=ekuatia` renders the Ekuatia next step; **no `wa.me` link anywhere on the site carries a generic or empty message**). A Playwright pass exercised the menu (aria-expanded, focus on the current option, Esc, outside click, Tab containment, focus return), the inline thank-you and its `lead_submit` (tier A, ₲1 000 000, `service=eas`), the quiz upgrading a tier-C page to a tier-A `eas` lead, the vencimientos reminder capture, and the whole flow again with **JavaScript disabled** — where the pills stay `wa.me` links carrying the page's own prefill and the POST redirects to `/contacto/?enviado=1&s=irp` and renders the same IRP next step. `deploy/leads-to-csv.php` was run against real `leads.log` lines produced by `verify.sh`, and the Resend subject was checked against the same payload (`[Tier A] Nuevo contacto: Abrir una EAS — …`). Screenshots (1440/390) of the open WhatsApp menu, the tier-A and tier-C thank-you states, `/`, `/eas/`, `/irp/`, `/contacto/` and `/herramientas/vencimientos/` in `docs/screenshots/c1/`.
 - 2026-09-04 — C1 open input, unchanged since §7: VenderCRM and analytics credentials are still pending, so the whole routing layer was exercised in degraded mode (`logs/leads.log`) and `GA4_ID`/`ADS_ID` are unset — `docs/analytics-setup.md` is the numbered list of what to click once they exist, and the `fields.etiqueta` decision above should be confirmed against a real CRM timeline the first time a lead lands. `docs/lead-value.md` rule 6 asks for the tiers to be revisited after four weeks of GA4 data; that is one edit to `tierValues` in `content/lead-values.php` and needs no page change.
 
+- 2026-09-04 — **C2 Guías merged.** `content/guias.php` (ten how-to guides,
+  same shape discipline as `content/tools.php`) + `templates/guide.php` (new,
+  additive, chrome discipline like `templates/tool.php`) + `/guias/` hub +
+  ten `/guias/<slug>/` routes: como-ingresar-a-marangatu, consulta-de-ruc,
+  ekuatiai-paso-a-paso, que-es-sifen, inscripcion-de-ruc-paso-a-paso,
+  formulario-120-paso-a-paso, certificado-de-cumplimiento-tributario,
+  multas-dnit-como-regularizar, inscripcion-patronal-ips,
+  irp-quien-debe-pagar. Each has numbered steps (HowTo JSON-LD built from the
+  same array that renders the visible list), FAQPage JSON-LD, `lastReviewed`,
+  and a "Cuándo conviene delegarlo" box whose form is set to the matching
+  service via `content/lead-values.php` (never a bare link, per
+  `prompts/sonnet-5-guias.md`). Every stated fact is logged in
+  `docs/facts-to-verify.md`; nothing was scraped from DNIT/IPS.
+- 2026-09-04 — "Guías" was measured against the live 7-item header nav at
+  1024px (Playwright, not committed as a test file) and does not wrap, so it
+  joined `nav.primary` after Herramientas as well as the footer's "Firma"
+  column (plan §6.5.2's conditional). `content/services.php` gained an
+  optional `guides[]` key on marangatu, ekuatia, ruc, iva, irp and ips;
+  `templates/service.php` renders it as a new, additive "Guía relacionada"
+  block next to the existing related-services section — no locked file's
+  existing structure changed, consistent with B1's and B4's precedent for
+  additive sections. `deploy/routes.php` and `sitemap.php` pick up
+  `nav('guias')` the same way they already pick up `nav('tools')`.
+  `multas-dnit-como-regularizar` and `certificado-de-cumplimiento-tributario`
+  borrow the `asesoria` and `marangatu` lead-values records respectively
+  (both tier B) rather than getting dedicated records, since neither topic is
+  a service or a tool in the locked lead-value model — logged in
+  `KNOWN-ISSUES.md` as a clean follow-up if conversion data wants otherwise.
+  `./verify.sh` and `deploy/make-zip.sh` both green on the merged branch;
+  screenshots in `docs/screenshots/c2/`. Merged onto `main` after **C3**
+  (below) had already landed on top of C1 — C3's own log entry explains why
+  it ran without waiting for C2 — so this branch was rebased onto the
+  post-C3 `main` before its PR opened; `KNOWN-ISSUES.md` carries the merge
+  note.
 - 2026-09-04 — **C3 Segment landing pages + Ads structure merged.** `content/segmentos.php` + `templates/segment.php` render the eight `/contador-para/<slug>/` rubro pages (importadores, comercios, unipersonales, profesionales-independientes, construcción, gastronomía, emprendedores, empresas-extranjeras) plus `/cambiar-de-contador/` as a ninth, ran independently of C2 per this phase's orchestrator instructions (C2 had no branch content on `main` at the time this phase started — the "wait for C2" line in `prompts/sonnet-6-segmentos-ads.md` did not apply). Every page: three named tax traps (no invented stats), a service bundle grid, a "Qué necesitamos de usted" checklist, FAQ with `FAQPage` JSON-LD, and a lead form preset to the bundle's tier-A service. `partials/industries.php` gained optional per-item links (a string still works with no link) and the homepage's "Rubros que atendemos" band plus a new rubros strip on `/servicios/` and `/precios/` now point at the real pages instead of naming rubros with nothing behind them. `docs/ads-campaigns.md` is the Google Ads runbook (six campaigns, budget split 55/35/10 by tier, negatives, the two conversion actions) — nothing was created in Google Ads. `deploy/routes.php` and `sitemap.php` pick up the nine URLs from `content/segmentos.php` automatically, the same pattern B2/B3 established for blog and tools.
 - 2026-09-04 — C3 decisions worth carrying forward: segment pages do **not** get their own entries in `content/lead-values.php`. `docs/lead-value.md`'s per-source table lists segment pages with an independent A/B tier, but the phase prompt is explicit that the lead form presets to "the bundle's tier-A service" — so `templates/segment.php` sets `$page['leadSlug']` and `$formService` to an existing service slug (`contabilidad` for most rubros, `eas` for emprendedores and empresas-extranjeras) and the whole C1 lead value model resolves tier, WhatsApp text and CRM tag with zero `lib/*` changes (hard limit, plan §4.7). Every rubro's bundle includes `contabilidad` for the same reason — a uniform, defensible tier-A anchor rather than nine bespoke judgment calls. Band alternation (white/surface) across a segment page's optional sections (traps, sections, bundle, weNeed, FAQ) uses a running parity counter, the same pattern `servicios/index.php`'s `$hubBand` already established, since not every segment page renders the same set of sections (`/cambiar-de-contador/` has no traps; the others have no `sections`).
 - 2026-09-04 — C3 bug found and fixed: `deploy/make-zip.sh`'s page-directory scan only matched an `index.php` exactly two levels below the repo root, so `contador-para/<slug>/index.php` (three levels deep, with no hub page at `/contador-para/` to trigger a wholesale copy the way `blog/` and `herramientas/` do) was invisible to it — the deploy zip 404'd on all eight rubro pages until the scan was changed to match `index.php` at any depth and copy the top-level directory each one belongs to. Caught by this phase's own pre-merge audit (`./verify.sh --root` against the rebuilt zip, plan §4.9's exit gate), not by CI — worth remembering that the zip needs its own smoke test on every phase that adds a new top-level route directory, not just ones that add files under an existing one.

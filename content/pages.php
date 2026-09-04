@@ -15,7 +15,8 @@
  *   priority     string  sitemap hint
  *
  * B2 writes /nosotros/, /precios/, /blog/, /privacidad/ and /terminos/;
- * B3 writes /herramientas/. Each flips its own 'stub' to false.
+ * B3 writes /herramientas/; C2 writes /guias/. Each flips its own 'stub' to
+ * false.
  */
 
 declare(strict_types=1);
@@ -85,6 +86,17 @@ return [
         'h1'          => 'Herramientas',
         'lead'        => 'Calculadoras gratuitas para resolver las cuentas más frecuentes: aguinaldo, '
                        . 'finiquito, vencimientos, IVA y el tipo de empresa que le conviene.',
+        'stub'        => false,
+        'changefreq'  => 'monthly',
+        'priority'    => '0.7',
+    ],
+
+    '/guias/' => [
+        'title'       => 'Guías de trámites DNIT e IPS',
+        'description' => 'Guías paso a paso para Marangatu, Ekuatia\'i, SIFEN, inscripción de RUC, el '
+                       . 'Formulario 120, el Certificado de Cumplimiento Tributario y más.',
+        'h1'          => 'Guías',
+        'lead'        => 'Cómo hacer, paso a paso, los trámites más buscados ante la DNIT y el IPS.',
         'stub'        => false,
         'changefreq'  => 'monthly',
         'priority'    => '0.7',

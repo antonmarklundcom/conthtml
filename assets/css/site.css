@@ -2389,3 +2389,59 @@ a.industries__item:focus-visible {
   flex: 1 1 220px;
   margin: 0;
 }
+
+/* == c2 guides ==============================================================
+   The numbered steps list on templates/guide.php (plan §6.5.1). Below the
+   tokens block; no existing rule changed. */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  counter-reset: steps;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.steps__item {
+  counter-increment: steps;
+  position: relative;
+  padding-left: 48px;
+}
+
+.steps__item::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.steps__item h2 {
+  font-size: var(--t-card);
+  margin-bottom: var(--s-1);
+}
+
+.steps__item p {
+  color: var(--muted);
+}
+
+.steps__item p + p {
+  margin-top: var(--s-1);
+}
+
+.guide-reviewed {
+  margin: 0;
+}
