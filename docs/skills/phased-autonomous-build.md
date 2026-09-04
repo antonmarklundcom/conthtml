@@ -47,6 +47,8 @@ One file, repo root. Required sections (keep the numbering stable — prompts re
 9. **Build log index** — one line per phase: id, PR, `docs/log/<phase>.md`. The detail lives in the per-phase log files, never here.
 10. **Backlog** — where scope creep goes to wait.
 
+**Model per phase is decided here, at planning time, and written into the phase table — never left to the session.** Opus for any phase that creates something the others build on: a new template or shared partial, the content-shape contract, the lead handler, routing, money/tax/legal math, a new layout from a design canvas. Sonnet for phases that fill an existing shape with content, copy, pages or tools built on an existing template. When in doubt, Opus: an Opus phase costs about twice a Sonnet phase, a phase that has to be redone costs more than that. On conthtml, Opus did A1/A2/C1 and Sonnet did B1–B4 cleanly; that split is the default for a brochure site.
+
 Phase table in the header: phase id, lane, model, prompt file, plan sections, **Owns** (paths/globs the phase may create or modify), **Depends on** (phases whose logs it must read). Right-size phases to what one Sonnet session finishes in ≤ 90 minutes — a phase that needs two sessions was two phases. Lane 2 for a brochure site is typically 3–5 phases (services, pages+blog, tools, guides, segments) plus the link pass.
 
 ### The autonomy protocol (plan §4) — include these rules
