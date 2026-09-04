@@ -16,8 +16,13 @@ Reference inputs (committed, read them — do not re-scan the live site):
 | B2 | Sonnet | `prompts/sonnet-2-pages.md` | §6.2 | Nosotros, Contacto, Precios, legal, 404, blog + 6 launch articles |
 | B3 | Sonnet | `prompts/sonnet-3-tools.md` | §6.3 | Tools: aguinaldo calc, liquidación de salario calc, vencimientos calendar, IVA calc, EAS-vs-SRL comparador, "¿Qué necesita?" quiz |
 | B4 | Sonnet | `prompts/sonnet-4-polish-launch.md` | §6.4 | Imagery, performance, a11y, analytics, Hostinger upload, redirect verification, GBP |
+| C1 | Opus | `prompts/opus-3-lead-routing.md` | §5.3 | Lead value model: every form and tool tags its lead with service + value tier, per-service thank-you, dynamic Ads conversion values, reminder capture, leads export |
+| C2 | Sonnet | `prompts/sonnet-5-guias.md` | §6.5 | `/guias/`: 10 how-to guides for the navigational giants (Marangatu, Ekuatia'i, SIFEN, RUC, F120, CCT, multas), each with a delegate-it CTA |
+| C3 | Sonnet | `prompts/sonnet-6-segmentos-ads.md` | §6.6 | Segment landing pages (`/contador-para/<rubro>/`), `/cambiar-de-contador/`, Google Ads campaign structure doc |
+| C4 | Sonnet | `prompts/sonnet-7-blog-2.md` | §6.7 | Blog round 2: 8 articles on the round-2 keyword signals, internal-link pass |
+| C5 | Sonnet | `prompts/sonnet-8-english-founders.md` | §6.8 | `/en/` section for foreign founders opening a company in Paraguay |
 
-One PR per phase. One fresh session per PR. Phases run in table order; a phase never starts on top of an unmerged previous phase.
+One PR per phase. One fresh session per PR. Phases run in table order; a phase never starts on top of an unmerged previous phase. B4 is the **launch** gate (the site goes live after it); C1–C5 are the **growth** phases and run on the live site, each merge redeployed with the zip.
 
 ---
 
@@ -117,6 +122,23 @@ Skills: `nextjs-national-lead-gen` (§4 pattern menu only), `paraguay-business-a
 
 Exit: `/` and `/servicios/` visually match 1B at 1440 and 390 widths (screenshots in `docs/screenshots/a2/` and PR); Lighthouse mobile perf ≥ 90 on `/` (against `php -S`); `./verify.sh` green; PR merged.
 
+### 5.3 C1 — Lead value routing (runs after B4, on the live site)
+
+Why: the site must produce leads that can be **sold or routed by service**, and Google Ads must optimise toward the leads that are worth the most. Today every lead arrives as "formulario-contacto" with an optional `need` chip. After C1 every lead carries the service it came from, a value tier, and (for tools) the result the visitor computed. `docs/lead-value.md` is the binding value model — read it first.
+
+Skills: `vendercrm-lead-capture`, `paraguay-business-apps`.
+
+1. `content/lead-values.php`: one record per service slug and per tool slug: `need` key, `tier` (A/B/C per `docs/lead-value.md`), `adsValueGs` (A 1 000 000 / B 400 000 / C 100 000 — optimisation proxies, not revenue; one edit changes them), `whatsappText` (service-specific prefill, e.g. "Hola, quiero habilitarme en SIFEN…"), `nextStep` (2–3 lines shown after submit: what to have ready), `crmTag`.
+2. `partials/lead-form.php` gains optional `$service` and `$toolResult` inputs → hidden fields `service`, `value_tier`, `tool_result` (≤ 500 chars). `templates/service.php`, `templates/tool.php` and the quiz pass them automatically from the page's slug; `/contacto/` keeps the `need` chips and maps chip → tier from the same file. Never rename an existing field (the VenderCRM contract is locked).
+3. `enviar.php`: forward `fields.servicio`, `fields.valor` (tier), `fields.resultado_herramienta`, and `tags: [crmTag]` in the CRM payload; the Resend subject becomes `[Tier A] Nuevo contacto: <servicio> — <nombre>`; `logs/leads.log` lines carry the same fields. The no-JS redirect becomes `/contacto/?enviado=1&s=<slug>`.
+4. Per-service thank-you state on `/contacto/` (and inline for the JS path): `nextStep` text, a WhatsApp deep link with the service prefill, and the matching tool or guide link. This is where the second touch happens; make it worth reading.
+5. Analytics: `lead_submit` carries `service`, `value_tier`, `value` (adsValueGs, currency PYG); `whatsapp_click` carries `service`. Google Ads conversion value is read from the event so bidding can use tROAS-style value later. Document the GA4 → Ads conversion setup in `docs/analytics-setup.md`.
+6. Vencimientos reminder capture: the "Recordarme por WhatsApp" CTA on `/herramientas/vencimientos/` posts RUC terminación + WhatsApp number as a `need=recordatorio` tier-C lead (the nurturing list). No backend reminders yet (plan §10); the list is the asset.
+7. `deploy/leads-to-csv.php`: CLI-only (`php deploy/leads-to-csv.php logs/leads.log > leads.csv`, refuses to run over HTTP) that turns the log into a CSV with one column per field — the offline lead ledger for selling or handing to an accountant.
+8. `verify.sh` gains: a POST with `service=ekuatia` returns ok and the log line carries `servicio` + `valor`; every service page's form contains `name="service"` with its own slug; `/contacto/?enviado=1&s=ekuatia` renders the Ekuatia next step.
+
+Exit: verify green with the new checks; screenshots of the thank-you state for one tier-A and one tier-C service; PR merged.
+
 ## 6. Model-B phases (Sonnet)
 
 Hard limits (§4.7). Data access only through `content/*.php` and the partials A1/A2 built.
@@ -173,6 +195,39 @@ Skills: `higgsfield-web-imagery`, `nextjs-deploy-hostinger` (shared-hosting mech
 
 Exit: staging URL passes `verify-live.sh`; Lighthouse targets met; `docs/launch-checklist.md` and `docs/gbp.md` written; PR merged. STOP and report (no further phase).
 
+### 6.5 C2 — Guías (how-to pages for the navigational giants)
+
+Why: "marangatu" (165 000/mo), "ekuatia i" (22 200, +309 %), "sifen" (2 900), "inscripción ruc" (2 400, +50 %), "certificado cumplimiento tributario" (+136 %), "multas dnit" (+22 %) are how-to intent that the service pages only partly catch. A guide page answers the question fully, then offers to take the task over. Hard limits §4.7 apply.
+
+1. `content/guias.php` + `templates/guide.php` (new, additive; same chrome discipline as `templates/tool.php`) + `/guias/` hub + ten guides: `como-ingresar-a-marangatu` (login, recuperar clave, Marangatu 2.0, ESET), `consulta-de-ruc`, `ekuatiai-paso-a-paso` (habilitación, primera factura, Ekuatia vs Ekuatia'i), `que-es-sifen`, `inscripcion-de-ruc-paso-a-paso` (persona física / jurídica, documentos), `formulario-120-paso-a-paso`, `certificado-de-cumplimiento-tributario`, `multas-dnit-como-regularizar`, `inscripcion-patronal-ips`, `irp-quien-debe-pagar`. Each: 900–1 400 words in "usted", numbered steps, `HowTo` + `FAQPage` JSON-LD, a "Cuándo conviene delegarlo" box → matching service with its `lead-values` prefill, one tool link where one exists, `lastReviewed` shown. Every figure into `docs/facts-to-verify.md`; no scraping of DNIT.
+2. `content/nav.php`: `guias[]` derived from `content/guias.php`; add "Guías" to `nav.primary` after Herramientas **only if** the header does not wrap at 1024 px (screenshot it); otherwise footer column 3 and the Herramientas hub. Sitemap and route contract pick it up through `nav()`.
+3. Internal links: each of `/marangatu/`, `/ekuatia/`, `/ruc/`, `/iva/`, `/irp/`, `/ips/` gets one "Guía relacionada" link (add a `guides[]` key to `services.php`; `templates/service.php` renders it in the existing related block, additive).
+
+Exit: `/guias/` + 10 URLs in the sitemap with titles ≤ 60 / descriptions 120–155, HowTo JSON-LD validates, verify green, PR merged.
+
+### 6.6 C3 — Segment landing pages + Ads structure
+
+Why: a lead is worth more when the page already qualified it. The homepage "Rubros" band names six rubros with no page behind them. Hard limits §4.7 apply.
+
+1. `content/segmentos.php` + `templates/segment.php` + `/contador-para/<slug>/` for: `importadores`, `comercios`, `unipersonales`, `profesionales-independientes`, `construccion`, `gastronomia`, `emprendedores`, `empresas-extranjeras` (Spanish; the English version is C5). Each: the rubro's three specific tax traps (named mechanics, no stats), the service bundle with links, a "Qué necesitamos de usted" list, FAQ, and the lead form with `service` preset to the bundle's tier-A service. `/cambiar-de-contador/` as a ninth page: how the handover works (what we ask the previous accountant for), tier A. Homepage "Rubros" band cards and `/servicios/` link to them (`content/ui.php` / `partials/industries.php` read the links from `segmentos.php`; if that partial needs a new key, add the key, never change its structure).
+2. `docs/ads-campaigns.md`: campaign → ad group → keywords (exact/phrase from `docs/keyword-research.md` shortlist) → landing URL → conversion value tier; negatives (marangatu login/consulta, jubilado, iso 9001, competitor brands, empleo); budget split by tier; the two conversion actions (lead_submit with value, whatsapp_click). No campaign is created by the phase — this is the runbook Anton executes.
+3. `/precios/` gains a "¿Qué incluye el cambio de contador?" cross-link and the segments strip.
+
+Exit: 9 URLs in the sitemap, verify green, homepage rubros cards link to real pages, `docs/ads-campaigns.md` written, PR merged.
+
+### 6.7 C4 — Blog round 2
+
+Eight articles from the round-2 signals, `templates/article.php` unchanged: `liquidacion-por-despido-vs-renuncia` (→ salary calculator), `aguinaldo-cuando-se-cobra-y-proporcional` (→ aguinaldo calculator), `multas-dnit-cuanto-son-y-como-evitarlas`, `marangatu-2-0-que-cambio`, `eas-vs-srl-vs-unipersonal-cual-conviene` (→ comparador), `iva-10-y-5-que-lleva-cada-uno` (→ IVA calculator), `irp-2026-quien-paga-y-como-se-liquida` (brackets only if `docs/facts-to-verify.md` is resolved; else explainer), `inscripcion-patronal-ips-paso-a-paso`. 900–1 300 words each, `usted`, FAQ JSON-LD, one tool or guide link and one service link each. Then an internal-link pass: every service page links to ≥ 1 article and ≥ 1 guide; every article to ≥ 2 services. Exit: 14 articles in the sitemap, verify green, PR merged.
+
+### 6.8 C5 — English section for foreign founders
+
+Why: foreigners opening a company in Paraguay are the highest-ticket lead the site can attract and the old site had nothing for them. Backlog item promoted.
+
+1. `content/ui.en.php` (English strings, same keys as `ui.php`) and a `lang` switch in `lib/bootstrap.php`'s `ui()` **only** through a new optional constant set by the `/en/` pages (additive; the Spanish site must not change). `/en/` hub + `open-a-company-in-paraguay`, `eas-vs-srl-paraguay`, `taxes-in-paraguay-for-foreigners` (IRP, IRE, IVA, tax residency — figures from `facts-to-verify`, no invented rates), `accounting-services-paraguay`, `contact` (form posts to the same `enviar.php` with `service=empresas-extranjeras`, tier A, and `lang=en` in fields). `hreflang` pairs between `/en/` pages and their Spanish counterparts; `lang="en"` on the html element; English WhatsApp prefill.
+2. Header/footer on `/en/` pages render the English strings and a reduced nav (Services, Open a company, Taxes, Contact) from a `nav.en` tree in `content/nav.php`.
+
+Exit: 5 `/en/` URLs in the sitemap with hreflang, verify green (route contract extended), a test lead from `/en/contact/` logged with `lang=en`, PR merged. STOP: no further phase; closing report to Anton.
+
 ## 7. Human-inputs checklist (Anton)
 
 | Item | First needed | Status |
@@ -200,6 +255,11 @@ Exit: staging URL passes `verify-live.sh`; Lighthouse targets met; `docs/launch-
 | B2 | **Publishable minimum**: every legacy URL has real content, legal pages, contact form. Could go live here if needed |
 | B3 | Calculators and tools (SEO growth) |
 | B4 | **Launch-ready**: images, Lighthouse, analytics, live verification, launch checklist |
+| C1 | Every lead tagged with service + value tier; Ads can optimise on value; leads exportable as CSV |
+| C2 | 10 guides catching the Marangatu / Ekuatia'i / RUC / SIFEN how-to traffic |
+| C3 | Segment landing pages for Ads and the campaign runbook |
+| C4 | 14 articles, full internal-link mesh |
+| C5 | English section for foreign founders |
 
 Every phase's PR carries screenshots, and every merge can be zipped with `deploy/make-zip.sh` and uploaded to the staging subdomain, so a live preview is available from A1 on.
 

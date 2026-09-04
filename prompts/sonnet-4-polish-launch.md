@@ -19,6 +19,8 @@ Phase rules:
 
 Exit: staging URL passes `verify-live.sh`; Lighthouse targets met; `docs/launch-checklist.md` and `docs/gbp.md` written; PR merged.
 
-## After this phase — STOP
-No further phase. End with the closing report: staging URL, Lighthouse numbers, the launch checklist, and the
-exact numbered manual steps Anton must do (config.php, DNS, GBP). Do not spawn a session.
+## After this phase — hand off to C1 (fresh session)
+B4 is the launch gate, not the end. Follow `prompts/_handoff.md` (four gates, then `create_session`).
+Next: `prompts/opus-3-lead-routing.md`, model **Opus** (model switch — pass the Opus model id explicitly, never Fable).
+End with the closing report: staging URL, Lighthouse numbers, the launch checklist, and the exact numbered
+manual steps Anton must do (config.php, DNS, GBP).
