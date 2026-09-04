@@ -43,6 +43,11 @@ foreach (content('blog') as $article) {
     $routes['/blog/' . $article['slug'] . '/'] = 200;
 }
 
+/* Segment landing pages (C3): the eight rubros plus /cambiar-de-contador/. */
+foreach (content('segmentos') as $segmento) {
+    $routes[$segmento['path']] = 200;
+}
+
 /* Non-page endpoints. */
 $routes['/robots.txt'] = 200;
 $routes['/sitemap.xml'] = 200;

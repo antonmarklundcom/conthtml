@@ -1897,6 +1897,7 @@ section[id] {
 }
 
 .industries__item {
+  display: block;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--r-card);
@@ -1906,9 +1907,23 @@ section[id] {
   font-size: var(--t-card);
   letter-spacing: -0.02em;
   line-height: 1.15;
+  color: var(--ink);
+  text-decoration: none;
   /* "Profesionales independientes" is wider than a half-column on a 390px
      screen and Bricolage 600 gives it nowhere to break. */
   overflow-wrap: break-word;
+}
+
+/* Since C3 (plan §6.6.1), every item is a link to its /contador-para/<slug>/
+   page — a small affordance so the band reads as navigation, not decoration. */
+a.industries__item {
+  transition: border-color .15s ease, color .15s ease;
+}
+
+a.industries__item:hover,
+a.industries__item:focus-visible {
+  border-color: var(--amber);
+  color: var(--amber-text);
 }
 
 /* --- responsive ---------------------------------------------------------- */
