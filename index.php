@@ -39,7 +39,10 @@ $homeTestimonials = array_filter(
     static fn ($t) => is_array($t) && !empty($t['quote'])
 );
 
-$homeWhatsapp = whatsapp_link(ui('cta.consult'));
+/* The homepage names no single service, so this is the model's neutral
+   default — still a message about the visitor's company, never the button's
+   own label (plan §5.3.8a). */
+$homeWhatsapp = whatsapp_link(whatsapp_text_for_page());
 $homePhotos   = (array) site('photos');
 
 require ROOT_DIR . '/partials/head.php';

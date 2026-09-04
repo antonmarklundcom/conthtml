@@ -90,6 +90,10 @@ $page = [
         ['label' => $article['title'], 'path' => '/blog/' . $article['slug'] . '/'],
     ],
     'faq'         => $faq,
+    /* An article has no service of its own, so it borrows the one it is about
+       (plan §5.3.8a: "article → its related service"). Articles with no
+       `service` fall through to the model's neutral default. */
+    'leadSlug'    => $article['service'] ?? null,
     'article'     => [
         'headline'      => $article['title'],
         'datePublished' => $article['date'],
@@ -194,9 +198,6 @@ require ROOT_DIR . '/partials/header.php';
     </section>
   <?php endif; ?>
 
-  <?php
-    $ctaWhatsapp = 'Hola, leí "' . $article['title'] . '" y quiero una consulta.';
-    require ROOT_DIR . '/partials/cta-band.php';
-  ?>
+  <?php require ROOT_DIR . '/partials/cta-band.php'; ?>
 </main>
 <?php require ROOT_DIR . '/partials/footer.php'; ?>

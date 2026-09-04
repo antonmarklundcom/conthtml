@@ -17,10 +17,24 @@
     }
   }
 
+  /** Writes a hidden field's value when the field exists. */
+  function setHidden(form, name, value) {
+    var input = form.querySelector('input[type="hidden"][name="' + name + '"]');
+    if (input) {
+      input.value = value;
+    }
+  }
+
   /**
    * Checks the matching "¿Qué necesita?" chip and writes the result summary
    * into the message field of the page's lead form, so the CTA opens the form
    * with the calculation already attached instead of a blank page.
+   *
+   * C1 (plan §5.3.2): also attaches what the visitor computed as `tool_result`,
+   * and lets a tool point the lead at the service its own answer implies — the
+   * quiz's "abrir empresa" branch is a tier-A apertura lead, not a tier-C quiz
+   * lead. enviar.php re-resolves the tier from whichever slug arrives, so
+   * nothing here decides a lead's value.
    */
   function prefillLeadForm(form, options) {
     if (!form) {
@@ -28,6 +42,8 @@
     }
     var need = (options && options.need) || "";
     var message = (options && options.message) || "";
+    var result = (options && options.result) || "";
+    var service = options && options.service;
 
     if (need) {
       var radio = form.querySelector('input[name="need"][value="' + need + '"]');
@@ -40,6 +56,12 @@
       if (textarea) {
         textarea.value = message;
       }
+    }
+    if (result) {
+      setHidden(form, "tool_result", String(result).slice(0, 500));
+    }
+    if (service) {
+      setHidden(form, "service", service);
     }
   }
 
@@ -58,6 +80,7 @@
   }
 
   window.ToolsShared = {
+    setHidden: setHidden,
     trackToolUsed: trackToolUsed,
     prefillLeadForm: prefillLeadForm,
     focusLeadForm: focusLeadForm

@@ -82,7 +82,10 @@
         need: "nomina",
         message:
           "Calculé un aguinaldo estimado de " + window.PY.fmtGs(lastResult.aguinaldo) +
-          " con la calculadora del sitio y quisiera confirmarlo."
+          " con la calculadora del sitio y quisiera confirmarlo.",
+        result:
+          "Aguinaldo " + window.PY.fmtGs(lastResult.aguinaldo) +
+          " (" + lastResult.meses + " meses)"
       });
       window.ToolsShared.focusLeadForm(leadForm);
     });

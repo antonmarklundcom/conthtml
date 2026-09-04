@@ -67,7 +67,8 @@
       var leadForm = document.querySelector("[data-lead-form]");
       window.ToolsShared.prefillLeadForm(leadForm, {
         need: "apertura",
-        message: "Usé el comparador del sitio y la recomendación fue: " + lastResult.title + ". Quiero avanzar con la apertura."
+        message: "Usé el comparador del sitio y la recomendación fue: " + lastResult.title + ". Quiero avanzar con la apertura.",
+        result: "Recomendación del comparador: " + lastResult.title
       });
       window.ToolsShared.focusLeadForm(leadForm);
     });

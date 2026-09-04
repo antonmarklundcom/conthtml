@@ -80,8 +80,12 @@ ob_start();
 
 <?php
 $formId      = $slug;
+$formService = $slug;
 $formNeed    = $tool['formNeed'];
 $formHeading = ui('form.legend');
+/* The form is buffered into $toolCalcHtml BEFORE templates/tool.php sets
+   $page, so it cannot read the path from there (plan §5.3.2). */
+$formSourcePage = $tool['path'];
 require ROOT_DIR . '/partials/lead-form.php';
 ?>
 <?php

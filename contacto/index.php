@@ -19,8 +19,14 @@ $page = [
     'breadcrumbs' => [['label' => ui('nav.contact'), 'path' => '/contacto/']],
 ];
 
+/* The no-JS success path lands here: enviar.php redirects to
+   /contacto/?enviado=1&s=<slug> so the thank-you can name the service the lead
+   came from (plan §5.3.3, §5.3.4). An unknown or absent slug falls back to the
+   model's neutral default — never to a blank "gracias". */
 $sent     = isset($_GET['enviado']);
-$whatsapp = whatsapp_link(ui('cta.consult'));
+$sentSlug = is_string($_GET['s'] ?? null) ? mb_substr($_GET['s'], 0, 80) : '';
+$sentLead = lead_value($sentSlug !== '' ? $sentSlug : null);
+$whatsapp = whatsapp_link(whatsapp_text_for_page());
 
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
@@ -43,10 +49,11 @@ require ROOT_DIR . '/partials/header.php';
 
       <div class="stack">
         <?php if ($sent): ?>
-          <p class="form-status form-status--ok" role="status">
-            <strong><?= e(ui('form.success_title')) ?></strong>
-            <?= e(ui('form.success_text')) ?>
-          </p>
+          <?php
+          $thanksLead  = $sentLead;
+          $thanksAttrs = 'id="gracias" tabindex="-1"';
+          require ROOT_DIR . '/partials/lead-thanks.php';
+          ?>
         <?php endif; ?>
 
         <div class="btn-row">

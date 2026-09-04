@@ -138,6 +138,9 @@ per request by `content('<name>')` and reached through the helpers in
 | `content/ui.php` | every UI string (the single-locale i18n layer) and the cluster labels |
 | `content/precios.php` | pricing plans |
 | `content/blog.php` | the article index (bodies live in `/blog/<slug>/index.php`) |
+| `content/tools.php` | the six calculators under `/herramientas/`, keyed by slug |
+| `content/laboral.php`, `content/vencimientos.php` | the labour-law and DNIT rule tables the calculators read |
+| `content/lead-values.php` | the lead value model: tier, WhatsApp prefill, thank-you copy and CRM tag per service and tool |
 
 ### `content/blog.php` and `/blog/<slug>/index.php`
 
@@ -173,7 +176,9 @@ change a `path` — the legacy URLs are frozen for SEO (plan §1.2).
     'sections' => [],                          // [['h2', 'body' => [...], 'items' => [...]]]
     'benefits' => [],                          // [['title', 'text']]
     'faq'      => [],                          // [['q', 'a']] → FAQPage JSON-LD
-    'cta'      => ['label' => '', 'whatsappText' => ''],
+    'cta'      => ['label' => '', 'whatsappText' => ''],   // whatsappText is empty
+                                               // and unused since C1 — see below
+
     'related'  => ['iva', 'ire-simple', 'ekuatia'],
 ],
 ```
@@ -181,6 +186,38 @@ change a `path` — the legacy URLs are frozen for SEO (plan §1.2).
 Each `/<slug>/index.php` is three lines — set `$slug`, require
 `templates/service.php` — and every block of that template renders only when its
 data exists, so a half-filled record still produces a coherent page.
+
+### `content/lead-values.php`
+
+The single source for everything about what a lead is worth and what the site
+says to the visitor who becomes one (plan §5.3, reasoning in
+`docs/lead-value.md`). One record per service slug, per tool slug and per
+"¿Qué necesita?" chip:
+
+```php
+'eas' => [
+    'menuLabel'    => 'Abrir una EAS',            // WhatsApp menu + CRM `servicio`
+    'need'         => 'apertura',                 // ui('needs') key
+    'tier'         => 'A',                        // A / B / C
+    'whatsappText' => 'Hola, quiero abrir una EAS.',   // every wa.me prefill
+    'nextStep'     => ['…', '…'],                 // the post-submit thank-you
+    'crmTag'       => 'apertura-eas',             // CRM fields.etiqueta
+    'nextLink'     => ['path' => '…', 'label' => '…'],  // optional
+],
+```
+
+Consequences worth knowing before editing anything nearby:
+
+- **No page hardcodes a tier or a WhatsApp message.** `whatsapp_text_for_page()`
+  resolves the current page — service, tool, article (via its related service),
+  anything else → the neutral default — and every `wa.me` link on the site uses
+  it. `services.php`'s `cta.whatsappText` and `tools.php`'s `ctaWhatsapp` are
+  empty and unused; the keys stayed so the record shapes did not change.
+- **Tier is derived server-side.** `enviar.php` re-resolves the tier from the
+  posted `service` (or, with none, from the `need` chip) instead of trusting the
+  form's `value_tier` field. A page sets a lead's tier; a browser cannot.
+- **Retuning the model is one edit here** — `tierValues` at the top of the file
+  are the Google Ads conversion proxies (A 1 000 000 / B 400 000 / C 100 000 ₲).
 
 ### `content/pages.php`
 

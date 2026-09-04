@@ -88,7 +88,7 @@
     });
     resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
-    lastResult = { text: recomendacion.text, need: need };
+    lastResult = { text: recomendacion.text, need: need, service: recomendacion.servicios[0] || "" };
     window.ToolsShared.trackToolUsed("que-necesita", { quien: quien, preocupacion: preocupacion, contador: contador });
   });
 
@@ -100,7 +100,12 @@
       var leadForm = document.querySelector("[data-lead-form]");
       window.ToolsShared.prefillLeadForm(leadForm, {
         need: lastResult.need,
-        message: "Completé el cuestionario ¿Qué necesita? y la recomendación fue: " + lastResult.text
+        message: "Completé el cuestionario ¿Qué necesita? y la recomendación fue: " + lastResult.text,
+        result: "Recomendación del cuestionario: " + lastResult.text,
+        /* The quiz's branch decides the lead's service, and with it its tier —
+           an "abrir empresa" answer is a tier-A apertura lead, not a tier-C
+           quiz lead (docs/lead-value.md, Anton's priority services). */
+        service: lastResult.service
       });
       window.ToolsShared.focusLeadForm(leadForm);
     });

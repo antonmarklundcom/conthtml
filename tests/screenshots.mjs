@@ -5,6 +5,12 @@
  *   cd tests && npm ci
  *   node screenshots.mjs --phase a1 --base http://127.0.0.1:8080 / /servicios/
  *
+ * --open <selector> clicks something before capturing and shoots the viewport
+ * instead of the whole page, for states that only exist after an interaction
+ * (C1's WhatsApp menu). --suffix names those files apart from the plain ones:
+ *
+ *   node screenshots.mjs --phase c1 --open '[data-wa-trigger]' --suffix wa-menu /eas/
+ *
  * The site is plain PHP; Node lives here and only here.
  */
 import { chromium } from "playwright";
@@ -22,7 +28,19 @@ const opt = (name, fallback) => {
 
 const phase = opt("phase", "a1");
 const base = opt("base", "http://127.0.0.1:8080");
-const paths = args.filter((a) => a.startsWith("/"));
+const open = opt("open", null);
+const suffix = opt("suffix", null);
+/* Query strings make an unusable filename, and the states worth screenshotting
+   in C1 live behind one (/contacto/?enviado=1&s=eas). --name overrides the
+   path-derived name; it only makes sense for a single path per run. */
+const nameOverride = opt("name", null);
+/* --open takes a CSS selector, which can start with "/" in no sane world but
+   --base takes a URL that does; filter the option VALUES out of the path list
+   rather than trusting the leading slash alone. */
+const optionValues = new Set(
+  args.filter((a, i) => i > 0 && args[i - 1].startsWith("--"))
+);
+const paths = args.filter((a) => a.startsWith("/") && !optionValues.has(a));
 
 if (paths.length === 0) {
   console.error("no paths given");
@@ -41,7 +59,9 @@ const browser = await chromium.launch();
 let failures = 0;
 
 for (const path of paths) {
-  const name = path === "/" ? "home" : path.replace(/^\/|\/$/g, "").replace(/\//g, "-");
+  const name = nameOverride
+    ? nameOverride
+    : path === "/" ? "home" : path.replace(/^\/|\/$/g, "").replace(/\//g, "-");
 
   for (const { label, width, height } of widths) {
     const context = await browser.newContext({
@@ -56,7 +76,10 @@ for (const path of paths) {
        layout bug in the PR even though the live page is fine. Neutralising the
        positioning before anything is painted is the only reliable fix; the
        elements still appear, at their document position. */
-    await context.addInitScript(() => {
+    /* Not for --open shots: those capture the viewport, where sticky and fixed
+       elements belong exactly where they are — and un-fixing the floating
+       button would send Playwright scrolling to the page's foot to click it. */
+    if (!open) await context.addInitScript(() => {
       const css = `.site-header { position: static !important; }
                    body { position: relative !important; }
                    .wa-fab { position: absolute !important; top: auto !important; }`;
@@ -114,7 +137,7 @@ for (const path of paths) {
        page-length screenshot of a never-scrolled document leaves bottom-of-page
        content ghosted into the top of the image. Scrolling forces every tile to
        paint for real, then we return to the top for the shot. */
-    await page.evaluate(async () => {
+    if (!open) await page.evaluate(async () => {
       const step = window.innerHeight;
       for (let y = 0; y < document.body.scrollHeight; y += step) {
         window.scrollTo(0, y);
@@ -125,8 +148,18 @@ for (const path of paths) {
       await new Promise(requestAnimationFrame);
     });
 
-    const file = `${outDir}/${name}-${label}.png`;
-    await page.screenshot({ path: file, fullPage: true });
+    /* An interaction state (the WhatsApp menu) exists only after a click, and
+       its panel is position:fixed — a full-page capture would strand it at the
+       document's top rather than over what the visitor is looking at. So
+       --open implies a viewport shot. */
+    if (open) {
+      await page.locator(open).first().click();
+      await page.waitForSelector("[data-wa-menu]:not([hidden])", { timeout: 5000 });
+      await page.waitForTimeout(250);
+    }
+
+    const file = `${outDir}/${name}${suffix ? "-" + suffix : ""}-${label}.png`;
+    await page.screenshot({ path: file, fullPage: !open });
     console.log(`  ${file.replace(resolve(here, ".."), "")}`);
 
     if (errors.length) {

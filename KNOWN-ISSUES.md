@@ -302,3 +302,82 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   This is also why `docs/launch-checklist.md`'s own exit step
   (`deploy/verify-live.sh` against a real URL) could only be exercised
   against `php -S` in this session, not a real Hostinger deployment.
+
+## C1 — Lead value routing (2026-09-04)
+
+- **`fields.etiqueta` instead of `tags: [crmTag]`.** Plan §5.3.3 asks the CRM
+  payload to carry `tags: [crmTag]`. The `vendercrm-lead-capture` skill's
+  endpoint contract has no `tags` field and says explicitly "never send
+  pipeline, stage, owner or tag" — routing lives on the site record inside
+  VenderCRM so the customer can re-route without a code change, and a leaked
+  key cannot redirect leads into another pipeline. Sending `tags` would at
+  best be ignored and at worst 422 the whole lead. The tag therefore travels
+  as `fields.etiqueta`, which lands on the contact's timeline as data. This
+  gives the plan what the tag is *for* (knowing what a lead is) without
+  taking control of where it lands away from the CRM. **Confirm against a real
+  timeline the first time a lead reaches a configured CRM** — no credentials
+  exist yet, so this was verified against `logs/leads.log` only.
+
+- **Service pages gained a lead form they did not have before.** Plan §5.3.9
+  requires every service page's form to carry `name="service"` with its own
+  slug, and until C1 service pages had no form at all — only the CTA band's
+  two buttons. `templates/service.php` now renders a `#solicitar` section
+  (copy + "Qué pasa después" + the form) immediately before the CTA band. The
+  two asks are deliberately different: the band is the WhatsApp path, the
+  form is for the visitor who would rather write. It does make every service
+  page longer, and whether the form should instead *replace* the CTA band on
+  these pages is a real design question that only conversion data can settle.
+
+- **The lead-form partial's new inputs are `$formService` / `$formToolResult`
+  / `$formSourcePage`, not the plan's `$service` / `$toolResult`.** An include
+  shares the caller's scope, and a bare `$service` inside a partial required
+  from `templates/service.php` would silently overwrite that page's service
+  record — the exact bug A1 hit in `partials/header.php` and documented in
+  plan §9. The `$form*` prefix matches the partial's existing `$formId` /
+  `$formNeed` convention.
+
+- **`content/services.php`'s `cta.whatsappText` and `content/tools.php`'s
+  `ctaWhatsapp` are now empty strings.** Both keys are kept so the record
+  shapes are unchanged (plan §4.7: never rename or remove a key), but every
+  wa.me prefill comes from `content/lead-values.php` through
+  `whatsapp_text_for_page()`. Leaving the old values populated would have
+  meant two copies of every message with nothing keeping them in sync — the
+  drift the "single source" requirement exists to prevent. Both files' doc
+  blocks say so at the top; a later phase adding a service fills in
+  `lead-values.php`, not `cta.whatsappText`.
+
+- **The WhatsApp menu is one panel with several triggers, not one panel per
+  trigger.** `partials/whatsapp-menu.php` is rendered once, next to the
+  floating button in `partials/footer.php`; the header pill, the drawer pill
+  and the floating button (which is the sticky bottom bar at ≤ 768 px) all
+  point `aria-controls` at it. That keeps one copy of the option list in the
+  DOM and means the mobile sheet and the desktop popover cannot show
+  different services — but it also means the popover is anchored to the
+  floating button's corner even when it was the header pill that opened it.
+  On a phone that is right (it is a bottom sheet either way); on a wide
+  desktop the panel appears bottom-right rather than under the pill. Visible
+  in `docs/screenshots/c1/eas-wa-menu-1440.png`. Anchoring per trigger would
+  need either duplicated markup or positioning JS, and neither is worth it
+  before there is any evidence people miss it.
+
+- **`tool_result` is capped at 500 characters and never reaches the page as
+  HTML.** It is written by the calculators into a hidden field and forwarded
+  to the CRM and the log; `partials/lead-thanks.php` does not echo it back.
+  If a later phase wants to show it in the thank-you, it has to go through
+  `e()` like everything else — it is the one field on the form whose content
+  a visitor can set freely without it being validated as a phone or an email.
+
+- **The five-per-ten-minutes rate limit bites shared IPs.** Not new, but C1
+  made it visible: the browser test suite exhausted the allowance in one run,
+  and an office or a co-working space behind one NAT address would too — the
+  sixth genuine enquiry in ten minutes gets `{"ok":false,"error":"rate"}`.
+  `LEAD_RATE_MAX` in `enviar.php` is one constant. Worth revisiting once the
+  site has real traffic and there is something to measure; raising it blindly
+  now just widens the spam window.
+
+- **No cookie consent banner.** The site sets no cookies of its own, and
+  Paraguay has no EU-style consent requirement, so `gtag.js` (still inert —
+  `GA4_ID` is unset) loads without one. If the firm ever advertises to EU
+  visitors — plausible, given C5's `/en/` section for foreign founders — this
+  needs revisiting before that traffic arrives. Noted in
+  `docs/analytics-setup.md` §4.

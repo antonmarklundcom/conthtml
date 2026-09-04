@@ -22,6 +22,10 @@
   var ipsLine    = document.getElementById("vencimientos-ips");
   var ireLine    = document.getElementById("vencimientos-ire");
   var waLink     = document.getElementById("vencimientos-recordar");
+  var remindForm = document.getElementById("vencimientos-recordatorio");
+  var remindResult = document.getElementById("vencimientos-recordatorio-result");
+  var remindOk   = document.getElementById("vencimientos-recordatorio-ok");
+  var remindErr  = document.getElementById("vencimientos-recordatorio-error");
 
   var MESES = [
     "enero", "febrero", "marzo", "abril", "mayo", "junio",
@@ -67,7 +71,55 @@
       waLink.href = "https://wa.me/" + waLink.dataset.waNumber + "?text=" + encodeURIComponent(mensaje);
     }
 
+    /* The reminder lead carries what the visitor actually asked to be
+       reminded about (plan §5.3.6): their RUC terminación and the next date. */
+    if (remindResult) {
+      remindResult.value = "RUC termina en " + digito +
+        "; próximo vencimiento de IVA: " + formatFecha(proximoMes);
+    }
+
     window.ToolsShared.trackToolUsed("vencimientos", { ruc_terminacion: digito });
+  }
+
+  /* Posts the reminder without leaving the page. Without JS it is an ordinary
+     form: enviar.php answers a plain POST with a redirect to /contacto/, where
+     the same tier-C thank-you renders. */
+  if (remindForm) {
+    remindForm.addEventListener("submit", function (e) {
+      if (!remindForm.reportValidity()) {
+        return;
+      }
+      e.preventDefault();
+      remindOk.hidden = true;
+      remindErr.hidden = true;
+
+      fetch(remindForm.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(remindForm)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !data.ok) {
+            throw new Error("failed");
+          }
+          remindForm.querySelector('input[name="phone"]').value = "";
+          remindOk.hidden = false;
+          if (window.siteAnalytics) {
+            window.siteAnalytics.track("lead_submit", {
+              form_id: "recordatorio-vencimientos",
+              service: data.service || "vencimientos",
+              value_tier: data.value_tier || "C",
+              value: data.value || 0,
+              currency: data.currency || "PYG",
+              degraded: !!data.degraded
+            });
+          }
+        })
+        .catch(function () {
+          remindErr.hidden = false;
+        });
+    });
   }
 
   form.addEventListener("submit", calcular);

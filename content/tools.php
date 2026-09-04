@@ -14,7 +14,10 @@
  *                             (rendered above the calculator, per plan §6.3.1)
  *   faq              array    [['q' => ..., 'a' => ...], ...] → FAQPage JSON-LD
  *   related          string[] related service slugs (content/services.php)
- *   ctaWhatsapp      string   wa.me prefill text for this tool's CTA band
+ *   ctaWhatsapp      string   EMPTY and unused since C1 — the wa.me prefill for
+ *                             every tool now comes from content/lead-values.php
+ *                             through whatsapp_text_for_page() (plan §5.3.8a).
+ *                             The key is kept so the record shape is stable.
  *   formNeed         string   pre-selected chip key in content/ui.php 'needs'
  *   analyticsTool    string   tool_used event name (assets/js/analytics.js)
  *
@@ -64,7 +67,7 @@ return [
             ['q' => '¿Qué conceptos entran en el cálculo?', 'a' => 'El salario ordinario, las horas extraordinarias y las comisiones u otros conceptos remunerativos habituales. Viáticos y beneficios no remunerativos no forman parte de la base.'],
         ],
         'related'       => ['ips', 'contabilidad', 'asesoria'],
-        'ctaWhatsapp'   => 'Hola, calculé mi aguinaldo en la página y quiero confirmar el monto con un contador.',
+        'ctaWhatsapp'   => '',
         'formNeed'      => 'nomina',
         'analyticsTool' => 'calculadora-aguinaldo',
     ],
@@ -106,7 +109,7 @@ return [
             ['q' => '¿Se descuenta el 9 % del IPS del finiquito?', 'a' => 'Sí, sobre los conceptos remunerativos (salario y vacaciones); el aguinaldo, la indemnización y el preaviso no forman parte de esa base según la práctica general.'],
         ],
         'related'       => ['ips', 'asesoria', 'contabilidad'],
-        'ctaWhatsapp'   => 'Hola, calculé un finiquito en la página y quiero confirmar el monto con un contador.',
+        'ctaWhatsapp'   => '',
         'formNeed'      => 'nomina',
         'analyticsTool' => 'liquidacion-de-salario',
     ],
@@ -147,7 +150,7 @@ return [
             ['q' => '¿Cuándo vence el IRE anual?', 'a' => 'Dentro de los primeros meses del año siguiente al cierre de su ejercicio: IRE Simple e IRP suelen vencer en marzo e IRE General en abril, con el día exacto según su terminación de RUC. La DNIT confirma el mes preciso cada año.'],
         ],
         'related'       => ['iva', 'ire-simple', 'ips', 'marangatu'],
-        'ctaWhatsapp'   => 'Hola, quiero que me recuerden mis vencimientos de la DNIT y el IPS por WhatsApp.',
+        'ctaWhatsapp'   => '',
         'formNeed'      => 'contabilidad',
         'analyticsTool' => 'vencimientos',
     ],
@@ -187,7 +190,7 @@ return [
             ['q' => '¿Este resultado sirve para mi factura?', 'a' => 'Sirve como referencia de cálculo, no como declaración jurada. Su Formulario 120 mensual se arma con el detalle de todas sus operaciones del período, créditos y débitos incluidos.'],
         ],
         'related'       => ['iva', 'ire-simple', 'asesoria'],
-        'ctaWhatsapp'   => 'Hola, usé la calculadora de IVA y quiero ayuda con mi declaración jurada.',
+        'ctaWhatsapp'   => '',
         'formNeed'      => 'contabilidad',
         'analyticsTool' => 'calculadora-iva',
     ],
@@ -227,7 +230,7 @@ return [
             ['q' => '¿Cuál de las tres paga menos impuestos?', 'a' => 'La forma societaria en sí no define una tasa distinta: las tres tributan IRE (o IRP, la Unipersonal) según su régimen y su facturación anual, no según si son EAS, SRL o Unipersonal.'],
         ],
         'related'       => ['eas', 'ruc', 'asesoria'],
-        'ctaWhatsapp'   => 'Hola, usé el comparador de EAS/SRL/Unipersonal y quiero asesoría para abrir mi empresa.',
+        'ctaWhatsapp'   => '',
         'formNeed'      => 'apertura',
         'analyticsTool' => 'comparador-eas-srl-unipersonal',
         // Static comparison table (plan §6.3.4), rendered by templates/tool.php
@@ -276,7 +279,7 @@ return [
             ['q' => '¿Mis respuestas quedan guardadas en algún lado?', 'a' => 'No. Las respuestas solo se usan en su navegador para armar la recomendación y, si usted lo decide, prellenar el formulario de consulta.'],
         ],
         'related'       => [],
-        'ctaWhatsapp'   => 'Hola, completé el cuestionario "¿Qué necesita?" y quiero una consulta.',
+        'ctaWhatsapp'   => '',
         'formNeed'      => 'otro',
         'analyticsTool' => 'que-necesita',
     ],
