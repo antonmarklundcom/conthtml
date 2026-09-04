@@ -116,11 +116,9 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
        by the page, never by whoever posts the form (docs/lead-value.md rule 2). -->
   <input type="hidden" name="service" value="<?= e($formService) ?>">
   <input type="hidden" name="value_tier" value="<?= e($formTier) ?>">
-  <?php if ($formToolResult !== ''): ?>
-    <input type="hidden" name="tool_result" value="<?= e($formToolResult) ?>" data-tool-result>
-  <?php else: ?>
-    <input type="hidden" name="tool_result" value="" data-tool-result>
-  <?php endif; ?>
+  <!-- Always rendered, usually empty: a calculator fills it in through
+       assets/js/tools/tools-shared.js when the visitor uses its result. -->
+  <input type="hidden" name="tool_result" value="<?= e($formToolResult) ?>" data-tool-result>
   <?php foreach ($utmKeys as $key): ?>
     <?php if (!empty($_GET[$key]) && is_string($_GET[$key])): ?>
       <input type="hidden" name="<?= e($key) ?>" value="<?= e(substr($_GET[$key], 0, 200)) ?>">

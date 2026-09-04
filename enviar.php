@@ -189,8 +189,19 @@ function notify_by_email(array $payload, string $outcome): void
             $lines[] = $label . ': ' . $payload[$key];
         }
     }
+    /* fields keys are lower-case identifiers; ucfirst() alone would put
+       "Resultado_herramienta" in an email a person reads. */
+    $fieldLabels = [
+        'valor'                 => 'Tier',
+        'servicio'              => 'Servicio',
+        'necesita'              => 'Necesita',
+        'empresa'               => 'Empresa',
+        'resultado_herramienta' => 'Resultado de la herramienta',
+        'etiqueta'              => 'Etiqueta',
+        'formulario'            => 'Formulario',
+    ];
     foreach (($payload['fields'] ?? []) as $key => $value) {
-        $lines[] = ucfirst((string) $key) . ': ' . $value;
+        $lines[] = ($fieldLabels[$key] ?? ucfirst((string) $key)) . ': ' . $value;
     }
     $lines[] = '';
     $lines[] = 'Estado CRM: ' . $outcome;

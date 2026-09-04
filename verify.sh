@@ -200,6 +200,60 @@ fi
 # came from and that service's tier — the whole point of phase C1.
 step "lead value routing"
 
+# The model itself, before anything renders: a later phase adding a service, a
+# tool, a guide or a segment page adds a slug here too, and the failure mode
+# without this check is silent — the page just quietly becomes a tier-C
+# "neutral default" lead.
+model_out=$(php -r '
+require "'"$SITE_ROOT"'/lib/bootstrap.php";
+$model = content("lead-values");
+$fail  = 0;
+$say   = function (string $m) use (&$fail) { echo $m, "\n"; $fail = 1; };
+
+foreach (array_keys(services()) as $slug) {
+    isset($model["services"][$slug]) || $say("no lead-values record for service {$slug}");
+}
+foreach (array_keys(content("tools")) as $slug) {
+    isset($model["tools"][$slug]) || $say("no lead-values record for tool {$slug}");
+}
+$collisions = array_intersect(array_keys($model["services"]), array_keys($model["tools"]));
+$collisions === [] || $say("slug used as both a service and a tool: " . implode(", ", $collisions));
+
+foreach (["services", "tools"] as $group) {
+    foreach ($model[$group] as $slug => $record) {
+        foreach (["menuLabel", "need", "tier", "whatsappText", "nextStep", "crmTag"] as $key) {
+            empty($record[$key]) && $say("{$group}/{$slug}: {$key} is empty");
+        }
+        isset($model["tierValues"][$record["tier"]])
+            || $say("{$group}/{$slug}: unknown tier {$record["tier"]}");
+        (isset(content("ui")["needs"][$record["need"]]) || isset($model["needLabels"][$record["need"]]))
+            || $say("{$group}/{$slug}: unknown need {$record["need"]}");
+        if (isset($record["nextLink"]["path"])) {
+            is_file(ROOT_DIR . rtrim($record["nextLink"]["path"], "/") . "/index.php")
+                || $say("{$group}/{$slug}: nextLink points at nothing ({$record["nextLink"]["path"]})");
+        }
+    }
+}
+foreach ($model["needs"] as $need => $chip) {
+    ($chip["service"] === null || lead_value($chip["service"])["slug"] !== null)
+        || $say("chip {$need}: borrows an unknown service");
+    isset($model["tierValues"][$chip["tier"]]) || $say("chip {$need}: unknown tier");
+}
+foreach ($model["whatsappMenu"] as $slug) {
+    lead_value($slug)["slug"] !== null || $say("whatsappMenu: unknown slug {$slug}");
+}
+foreach (array_keys(content("ui")["needs"]) as $need) {
+    isset($model["needs"][$need]) || $say("form chip {$need} has no tier in lead-values");
+}
+exit($fail);
+' 2>&1)
+if [ -z "$model_out" ]; then
+  ok "content/lead-values.php covers every service, tool and chip"
+else
+  fail "content/lead-values.php is incomplete"
+  echo "$model_out" | sed 's/^/        /'
+fi
+
 rm -f "$SITE_ROOT/logs/leads.log"
 tiera=$(curl -s -X POST "$BASE/enviar.php" \
   -H 'Accept: application/json' -H "Origin: $BASE" \
