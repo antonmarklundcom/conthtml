@@ -12,3 +12,4 @@ tests/output/
 deploy/imagery-src/*
 !deploy/imagery-src/.gitkeep
 deploy/node_modules/
+.claude/worktrees/
