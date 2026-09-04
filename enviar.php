@@ -11,6 +11,9 @@
  *                utm_source|utm_medium|utm_campaign|utm_term|utm_content,
  *                gclid?, fbclid?
  *
+ *   Optional: with RESEND_API_KEY + LEAD_NOTIFY_TO in config.php every accepted
+ *   lead is also emailed to the firm (see notify_by_email).
+ *
  *   Response: JSON {ok: bool, degraded: bool, error?: string} when the request
  *   asks for JSON (Accept: application/json), otherwise a 303 redirect to
  *   /contacto/?enviado=1 — so the form works with JavaScript disabled.
@@ -146,6 +149,67 @@ function log_lead(array $payload, string $outcome): void
     @file_put_contents($dir . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX);
 }
 
+/**
+ * Email the lead to the firm through Resend, when configured. Runs after the
+ * CRM decision and never changes the visitor's outcome: a failure is logged
+ * and the visitor still sees success — the lead is already in leads.log.
+ */
+function notify_by_email(array $payload, string $outcome): void
+{
+    $apiKey = cfg('RESEND_API_KEY');
+    $to     = cfg('LEAD_NOTIFY_TO');
+    $from   = cfg('LEAD_FROM');
+
+    if ($apiKey === null || $to === null || $from === null || !function_exists('curl_init')) {
+        return;
+    }
+
+    $lines = [];
+    foreach (['name' => 'Nombre', 'phone' => 'Teléfono', 'email' => 'Email', 'message' => 'Mensaje',
+              'source' => 'Formulario', 'page_url' => 'Página'] as $key => $label) {
+        if (!empty($payload[$key])) {
+            $lines[] = $label . ': ' . $payload[$key];
+        }
+    }
+    foreach (($payload['fields'] ?? []) as $key => $value) {
+        $lines[] = ucfirst((string) $key) . ': ' . $value;
+    }
+    $lines[] = '';
+    $lines[] = 'Estado CRM: ' . $outcome;
+    $lines[] = 'Recibido: ' . gmdate('Y-m-d H:i') . ' UTC';
+
+    $who     = $payload['name'] ?? $payload['phone'] ?? 'sin nombre';
+    $subject = 'Nuevo contacto web: ' . $who;
+    $body    = json_encode(array_filter([
+        'from'     => $from,
+        'to'       => [$to],
+        'reply_to' => $payload['email'] ?? null,
+        'subject'  => mb_substr($subject, 0, 150),
+        'text'     => implode("\n", $lines),
+    ]), JSON_UNESCAPED_UNICODE);
+
+    $ch = curl_init('https://api.resend.com/emails');
+    curl_setopt_array($ch, [
+        CURLOPT_POST           => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 8,
+        CURLOPT_CONNECTTIMEOUT => 5,
+        CURLOPT_HTTPHEADER     => [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $apiKey,
+        ],
+        CURLOPT_POSTFIELDS => $body,
+    ]);
+    $response = curl_exec($ch);
+    $status   = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlErr  = curl_error($ch);
+    curl_close($ch);
+
+    if ($status !== 200) {
+        error_log(sprintf('Resend notification failed [%d] %s %s', $status, (string) $response, $curlErr));
+    }
+}
+
 // --- 1. POST only ------------------------------------------------------------
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
     http_response_code(405);
@@ -255,6 +319,7 @@ $apiKey = cfg('VENDERCRM_API_KEY');
 
 if ($crmUrl === null || $apiKey === null || !function_exists('curl_init')) {
     log_lead($payload, 'degraded:not-configured');
+    notify_by_email($payload, 'degraded:not-configured');
     respond(true, true);
 }
 
@@ -279,6 +344,7 @@ curl_close($ch);
 /* 201 created, 200 idempotency replay — both are the system working. */
 if ($status === 201 || $status === 200) {
     log_lead($payload, 'crm:' . $status);
+    notify_by_email($payload, 'crm:' . $status);
     respond(true, false);
 }
 
@@ -286,5 +352,6 @@ if ($status === 201 || $status === 200) {
    field on a 422 and the misconfiguration on a 401/403, so log all of it. */
 error_log(sprintf('VenderCRM lead failed [%d] %s %s', $status, (string) $response, $curlErr));
 log_lead($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
+notify_by_email($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
 
 respond(true, true);

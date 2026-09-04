@@ -20,13 +20,13 @@ return [
     'description' => 'Estudio contable en Asunción: contabilidad, impuestos, '
                    . 'nómina, apertura de empresas y facturación electrónica.',
 
-    // --- contact (§7: pending) ---------------------------------------------
+    // --- contact (§7: WhatsApp/phone confirmed 2026-09-04; email pending) ---------------------------------------------
     // 'phone' and 'whatsapp' in international form, e.g. '+595 981 123 456'.
     // While both are null the header pill, the floating button and every
     // service CTA point at /contacto/ instead of wa.me. See partials/whatsapp-fab.php.
-    'phone'    => null,
-    'whatsapp' => null,
-    'email'    => null,
+    'phone'    => '+595 995 628 862',
+    'whatsapp' => '+595 995 628 862',
+    'email'    => 'contacto@contador.com.py',
 
     // --- address (§7: "Edificio Skytower, Asunción" unconfirmed, scan §6.3) --
     'street'  => null,

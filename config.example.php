@@ -22,6 +22,14 @@ return [
     'VENDERCRM_URL'     => '',
     'VENDERCRM_API_KEY' => '',
 
+    // Lead notification email through Resend (https://resend.com). Optional and
+    // independent of VenderCRM: when both values are set, every accepted lead is
+    // also emailed to LEAD_NOTIFY_TO. LEAD_FROM must be an address on a domain
+    // verified in the Resend dashboard (SPF + DKIM records in Hostinger DNS).
+    'RESEND_API_KEY' => '',
+    'LEAD_NOTIFY_TO' => '',                                 // e.g. 'contacto@contador.com.py'
+    'LEAD_FROM'      => 'Contador.com.py <no-reply@contador.com.py>',
+
     // Analytics. assets/js/analytics.js is a no-op until GA4_ID is set.
     'GA4_ID' => '',
     'ADS_ID' => '',
