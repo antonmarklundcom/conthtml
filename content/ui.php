@@ -84,6 +84,20 @@ return [
         'lead'    => 'Contadores matriculados que llevan sus libros, presentan IVA y renta, '
                    . 'liquidan la nómina y lo dejan habilitado en SIFEN. Un solo contacto.',
 
+        // Persona switcher (redesign pass, 2026-09): a one-click jump from the
+        // hero to the segment page that already exists for that audience
+        // (content/segmentos.php, phase C3) or to the English section (C5).
+        // Kept to four — the ones with a real page behind them and the
+        // clearest "younger/digital" read; adding a fifth (e.g. real estate)
+        // means writing that segmentos.php entry first, not just a link.
+        'persona_eyebrow' => '¿Cuál es su negocio?',
+        'personas' => [
+            ['label' => 'Ecommerce y comercio',      'href' => '/contador-para/comercios/'],
+            ['label' => 'Startup y emprendimiento',  'href' => '/contador-para/emprendedores/'],
+            ['label' => 'Profesional independiente', 'href' => '/contador-para/profesionales-independientes/'],
+            ['label' => 'Extranjero en Paraguay',    'href' => '/en/'],
+        ],
+
         // The homepage services band. Its own copy, so the /servicios/ hub can
         // say something different without either page losing its voice.
         'services_eyebrow' => 'Servicios',

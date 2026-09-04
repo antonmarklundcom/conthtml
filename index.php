@@ -79,6 +79,18 @@ require ROOT_DIR . '/partials/header.php';
             <?php endforeach; ?>
           </div>
         <?php endif; ?>
+
+        <?php $homePersonas = content('ui')['home']['personas'] ?? []; ?>
+        <?php if ($homePersonas !== []): ?>
+          <div class="persona-strip">
+            <span class="persona-strip__label"><?= e(ui('home.persona_eyebrow')) ?></span>
+            <div class="persona-strip__chips">
+              <?php foreach ($homePersonas as $homePersona): ?>
+                <a class="persona-chip" href="<?= e($homePersona['href']) ?>"><?= e($homePersona['label']) ?></a>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        <?php endif; ?>
       </div>
 
       <div class="hero__panel">
