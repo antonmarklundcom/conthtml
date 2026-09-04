@@ -32,6 +32,15 @@
   --ok-bg: #e9f7ee;
   --ok-text: #1e7a45;
 
+  /* Redesign pass (2026-09): a second accent reserved for the persona/segment
+     system (persona-strip chips, segment-page hero accents) so those pages
+     read as distinct from the compliance pages instead of the same
+     navy/amber/green shape with different words. #0B7285 on white is ~5.6:1
+     (passes AA); #5EEAD4 is the light tint for ink backgrounds. */
+  --accent2: #0b7285;
+  --accent2-tint: #5eead4;
+  --accent2-bg: #e6f9f7;
+
   /* on-ink variants: the 1B mock builds these from white at low alpha */
   --on-ink: #ffffff;
   --on-ink-muted: rgba(255, 255, 255, 0.72);
@@ -1327,9 +1336,13 @@ h3 {
 }
 
 .wa-fab svg {
+  /* Was var(--whatsapp) (#25A35A): a bright green icon on the .wa-fab's
+     --ok-text (#1E7A45) background reads as green-on-green. White matches
+     the button's text color and keeps the icon legible against either
+     green shade. */
   width: 20px;
   height: 20px;
-  fill: var(--whatsapp);
+  fill: #fff;
   flex: none;
 }
 
@@ -2444,4 +2457,47 @@ a.industries__item:focus-visible {
 
 .guide-reviewed {
   margin: 0;
+}
+
+/* == redesign: persona strip (2026-09) == */
+
+.persona-strip {
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--on-ink-border);
+}
+
+.persona-strip__label {
+  display: block;
+  font-size: var(--t-note);
+  font-weight: 600;
+  color: var(--on-ink-faint);
+  margin-bottom: var(--s-2);
+}
+
+.persona-strip__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.persona-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--on-ink-border);
+  background: var(--on-ink-panel);
+  color: var(--on-ink);
+  font-size: var(--t-small);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.persona-chip:hover,
+.persona-chip:focus-visible {
+  background: var(--accent2-tint);
+  border-color: var(--accent2-tint);
+  color: var(--ink);
 }
