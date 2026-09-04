@@ -128,6 +128,8 @@ Why: the site must produce leads that can be **sold or routed by service**, and 
 
 Skills: `vendercrm-lead-capture`, `paraguay-business-apps`.
 
+Anton's priority services are **EAS opening (`/eas/`) and RUC registration (`/ruc/`)** — both tier A, richest thank-you flow, first Ads campaign (see `docs/lead-value.md`).
+
 1. `content/lead-values.php`: one record per service slug and per tool slug: `need` key, `tier` (A/B/C per `docs/lead-value.md`), `adsValueGs` (A 1 000 000 / B 400 000 / C 100 000 — optimisation proxies, not revenue; one edit changes them), `whatsappText` (service-specific prefill, e.g. "Hola, quiero habilitarme en SIFEN…"), `nextStep` (2–3 lines shown after submit: what to have ready), `crmTag`.
 2. `partials/lead-form.php` gains optional `$service` and `$toolResult` inputs → hidden fields `service`, `value_tier`, `tool_result` (≤ 500 chars). `templates/service.php`, `templates/tool.php` and the quiz pass them automatically from the page's slug; `/contacto/` keeps the `need` chips and maps chip → tier from the same file. Never rename an existing field (the VenderCRM contract is locked).
 3. `enviar.php`: forward `fields.servicio`, `fields.valor` (tier), `fields.resultado_herramienta`, and `tags: [crmTag]` in the CRM payload; the Resend subject becomes `[Tier A] Nuevo contacto: <servicio> — <nombre>`; `logs/leads.log` lines carry the same fields. The no-JS redirect becomes `/contacto/?enviado=1&s=<slug>`.
