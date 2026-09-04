@@ -263,10 +263,21 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   smaller); the working tree keeps the readable source, which real browsers
   never see in production. Measuring the raw repo would report a lower,
   less representative number, so `/`, `/marangatu/` and the aguinaldo article
-  were all measured against an unzipped `dist/` build:
-  **95 / 100 / 100** (perf/a11y/SEO) on `/`, **98 / 100 / 100** on
+  were all measured against an unzipped `dist/` build, re-measured after the
+  mid-flight `main` merge below so the numbers reflect real content, not an
+  empty WhatsApp/contact state:
+  **97 / 100 / 100** (perf/a11y/SEO) on `/`, **98 / 100 / 100** on
   `/marangatu/`, **98 / 100 / 100** on the article — all against
   `php -S`, mobile throttling, matching A2's own measurement methodology.
+
+- **`main` moved mid-flight** (PRs #12–#14: confirmed WhatsApp/phone/email in
+  `content/site.php`, an optional Resend lead-notification email in
+  `enviar.php`/`config.example.php`, and the C1–C5 growth-phase roadmap added
+  to this plan). Merged into this phase's branch before its own PR merged (0
+  conflicts); screenshots, Lighthouse and `docs/launch-checklist.md` were all
+  updated against the merged state. `prompts/sonnet-4-polish-launch.md`'s
+  footer changed in the same main update — this phase now hands off to C1
+  (plan §4.7 rule 9 / `prompts/_handoff.md`) instead of stopping.
 
 - **Fonts were subset to the characters this site actually renders**
   (`deploy/subset-fonts.sh`, `pyftsubset`): ASCII + the Latin-1 letters and
