@@ -9,6 +9,7 @@ Phase rules:
 - Branch `phase/b4-launch` off latest `main`. B3 unmerged ⇒ finish it first.
 - Stack is HTML + PHP on Hostinger shared hosting (plan §1.5). Deploy is a zip upload or hPanel Git deploy, not a Node app.
 - Load skills: `higgsfield-web-imagery` (cost preflight first; ≤ 12 generations; illustrative only, no captioned identity claims), `nextjs-deploy-hostinger` (shared-hosting mechanics only), `gbp-optimizer`.
+- Decided at the A2–B2 review (do these, no re-litigation): (1) WhatsApp buttons use `--ok-text` `#1E7A45` as background with white text (5.3:1); `#25A35A` stays for the icon/FAB accent only. (2) `--amber-text` → `#996F17` on light backgrounds. (3) Link the blog articles and service pages to their B3 calculators: aguinaldo article + `/ips/` → calculadora de aguinaldo and liquidación de salario; `/iva/` → IVA calculator; `/marangatu/`, `/iva/`, `/ire-simple/` → vencimientos; EAS article + `/eas/` → comparador EAS/SRL; `/servicios/` "¿No sabe qué necesita?" strip → the quiz. (4) `/precios/` Pyme (inverse) card: same filled-circle check icons as the light cards. (5) The flat Auditoría grid on `/servicios/` is accepted as is.
 - Images pre-optimised to AVIF/WebP with `<picture>` fallbacks, explicit dimensions, lazy below the fold.
 - Lighthouse mobile targets: ≥ 95 performance, 100 a11y, 100 SEO on `/`, one service page, one article. Record numbers in the PR.
 - Analytics via `config.php` ids only; events per plan §6.4.3.
