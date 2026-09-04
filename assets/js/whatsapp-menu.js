@@ -121,15 +121,20 @@
       close(true);
       return;
     }
-    if (e.key !== "Tab" || options.length === 0) {
+    if (e.key !== "Tab") {
       return;
     }
 
     /* Keep Tab inside the panel while it is open: it is a small dialog and
-       tabbing out of it silently would leave a visitor lost behind it. */
-    var focusable = options.concat(
-      Array.prototype.slice.call(menu.querySelectorAll("[data-wa-close]:not([aria-hidden])"))
+       tabbing out of it silently would leave a visitor lost behind it. In DOM
+       order, not option order — the close button precedes the list, so a
+       hand-built [options..., close] array would wrap in the wrong place. */
+    var focusable = Array.prototype.slice.call(
+      menu.querySelectorAll('.wa-menu__option, [data-wa-close]:not([aria-hidden="true"])')
     );
+    if (focusable.length === 0) {
+      return;
+    }
     var firstEl = focusable[0];
     var lastEl = focusable[focusable.length - 1];
 

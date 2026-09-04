@@ -2348,6 +2348,15 @@ section[id] {
 
 /* -- Vencimientos reminder capture (plan §5.3.6) -------------------------- */
 
+/* Pre-existing since B3, surfaced by putting a form inside the result panel:
+   `.tool-result { display: flex }` is an author rule and beats the user-agent's
+   `[hidden] { display: none }`, so all six calculators rendered an empty
+   "Resultado" box — and now a reminder form — before anything was calculated.
+   Visible in docs/screenshots/b3/. One rule fixes every tool. */
+.tool-result[hidden] {
+  display: none;
+}
+
 .remind {
   margin-top: var(--s-3);
   border-top: 1px solid var(--border);
