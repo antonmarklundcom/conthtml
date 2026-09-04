@@ -35,6 +35,7 @@ return [
         'services'    => 'Servicios',
         'pricing'     => 'Precios',
         'tools'       => 'Herramientas',
+        'guides'      => 'Guías',
         'about'       => 'Nosotros',
         'blog'        => 'Blog',
         'contact'     => 'Contacto',
@@ -336,6 +337,7 @@ return [
         'benefits'  => 'Beneficios',
         'faq'       => 'Preguntas frecuentes',
         'related'   => 'Servicios relacionados',
+        'guides'    => 'Guía relacionada',
         // The service-page lead form (plan §5.3.2): every service page carries
         // a form of its own so the lead arrives tagged with that service.
         'form_eyebrow' => 'Cotización',
@@ -355,6 +357,18 @@ return [
         'use_result'      => 'Usar este resultado en el formulario',
         'need_js'         => 'Esta calculadora necesita JavaScript activado en su navegador.',
         'restart'         => 'Volver a empezar',
+    ],
+
+    // Shared microcopy across the ten /guias/ pages (plan §6.5).
+    'guide' => [
+        'reviewed_prefix'       => 'Revisado el',
+        'orientativo'           => 'Es una guía general: para su caso puntual, confírmelo con nosotros.',
+        'delegate_eyebrow'      => 'Delegarlo',
+        'delegate_title'        => '¿Prefiere que lo hagamos nosotros?',
+        'delegate_lead'         => 'Le respondemos dentro del siguiente día hábil con los pasos exactos '
+                                  . 'para su caso.',
+        'delegate_form_heading' => 'Pedir que nos encarguemos',
+        'related'               => 'Otras guías',
     ],
 
     'placeholder' => [

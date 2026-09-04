@@ -381,3 +381,33 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   visitors — plausible, given C5's `/en/` section for foreign founders — this
   needs revisiting before that traffic arrives. Noted in
   `docs/analytics-setup.md` §4.
+
+## C2 — Guías (2026-09-04)
+
+- **"Guías" was added to the primary header nav, not only the footer.** Plan
+  §6.5.2 makes this conditional on the header not wrapping at 1024px — measured
+  with a throwaway Playwright check against the live 7-item nav (Servicios,
+  Precios, Herramientas, Guías, Nosotros, Blog, Contacto) plus both action
+  pills: it does not wrap (screenshotted at 1024px during this phase, not
+  committed — the committed evidence is `docs/screenshots/c2/home-1440.png`
+  and `-390.png`, which show the same nav rendering cleanly at both ends of
+  the range that matters). The footer's "Firma" column keeps its own "Guías"
+  link too (same pattern every other primary item already follows — Servicios,
+  Precios, etc. all appear in both places).
+- **`multas-dnit-como-regularizar` and `certificado-de-cumplimiento-tributario`
+  route their "Cuándo conviene delegarlo" box to `asesoria` and `marangatu`
+  respectively, not to a dedicated "multas" or "CCT" lead-value record.**
+  `content/lead-values.php` is locked to the model C1 defined (plan §5.3.1:
+  "one record per service slug and per tool slug"), and neither multas nor CCT
+  is a service or a tool — they are guide-only topics per `docs/lead-value.md`'s
+  own per-source table, which names them as "delegate-it intent → B when the
+  form is used" without creating new sources. `asesoria` (tax-situation review,
+  tier B) and `marangatu` (DNIT account help, tier B) are the closest existing
+  services and already carry that tier; adding two new lead-values records for
+  these guides is a clean follow-up if conversion data shows the borrowed
+  copy under-converts.
+- **Two guides (`que-es-sifen`, `irp-quien-debe-pagar`) have no `toolLink`.**
+  No calculator matches either topic (no SIFEN or IRP tool exists yet, plan
+  §6.3), so the key is `null` and the section simply does not render — the
+  same degrade-gracefully pattern every optional collection on the site
+  already follows.

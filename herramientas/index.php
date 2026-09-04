@@ -48,6 +48,8 @@ require ROOT_DIR . '/partials/header.php';
       <p class="note mt-4">
         Herramientas gratuitas, sin registro. Los resultados son orientativos: para una liquidación o
         una declaración oficial, siempre confirmamos las cifras con usted antes de presentarlas.
+        ¿Busca el paso a paso de un trámite en vez de una calculadora?
+        <a href="/guias/">Vea nuestras guías</a>.
       </p>
     </div>
   </section>

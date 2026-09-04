@@ -39,6 +39,10 @@ foreach (nav('tools') as $tool) {
     $urls[] = ['loc' => url($tool['path']), 'changefreq' => 'monthly', 'priority' => '0.7'];
 }
 
+foreach (nav('guias') as $guide) {
+    $urls[] = ['loc' => url($guide['path']), 'changefreq' => 'monthly', 'priority' => '0.6'];
+}
+
 foreach (content('blog') as $article) {
     $urls[] = [
         'loc'        => url('/blog/' . $article['slug'] . '/'),

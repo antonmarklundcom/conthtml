@@ -314,6 +314,37 @@ Every phase's PR carries screenshots, and every merge can be zipped with `deploy
 - 2026-09-04 — C1 verification: `./verify.sh` green on the repo and on the unzipped `deploy/make-zip.sh` artifact, with four new checks (a POST with `service=ekuatia` answers with tier B and ₲400 000 and writes `servicio`/`valor`/`resultado_herramienta`/`etiqueta` to `logs/leads.log`; all 14 service pages post their own slug; `/contacto/?enviado=1&s=ekuatia` renders the Ekuatia next step; **no `wa.me` link anywhere on the site carries a generic or empty message**). A Playwright pass exercised the menu (aria-expanded, focus on the current option, Esc, outside click, Tab containment, focus return), the inline thank-you and its `lead_submit` (tier A, ₲1 000 000, `service=eas`), the quiz upgrading a tier-C page to a tier-A `eas` lead, the vencimientos reminder capture, and the whole flow again with **JavaScript disabled** — where the pills stay `wa.me` links carrying the page's own prefill and the POST redirects to `/contacto/?enviado=1&s=irp` and renders the same IRP next step. `deploy/leads-to-csv.php` was run against real `leads.log` lines produced by `verify.sh`, and the Resend subject was checked against the same payload (`[Tier A] Nuevo contacto: Abrir una EAS — …`). Screenshots (1440/390) of the open WhatsApp menu, the tier-A and tier-C thank-you states, `/`, `/eas/`, `/irp/`, `/contacto/` and `/herramientas/vencimientos/` in `docs/screenshots/c1/`.
 - 2026-09-04 — C1 open input, unchanged since §7: VenderCRM and analytics credentials are still pending, so the whole routing layer was exercised in degraded mode (`logs/leads.log`) and `GA4_ID`/`ADS_ID` are unset — `docs/analytics-setup.md` is the numbered list of what to click once they exist, and the `fields.etiqueta` decision above should be confirmed against a real CRM timeline the first time a lead lands. `docs/lead-value.md` rule 6 asks for the tiers to be revisited after four weeks of GA4 data; that is one edit to `tierValues` in `content/lead-values.php` and needs no page change.
 
+- 2026-09-04 — **C2 Guías merged.** `content/guias.php` (ten how-to guides,
+  same shape discipline as `content/tools.php`) + `templates/guide.php` (new,
+  additive, chrome discipline like `templates/tool.php`) + `/guias/` hub +
+  ten `/guias/<slug>/` routes: como-ingresar-a-marangatu, consulta-de-ruc,
+  ekuatiai-paso-a-paso, que-es-sifen, inscripcion-de-ruc-paso-a-paso,
+  formulario-120-paso-a-paso, certificado-de-cumplimiento-tributario,
+  multas-dnit-como-regularizar, inscripcion-patronal-ips,
+  irp-quien-debe-pagar. Each has numbered steps (HowTo JSON-LD built from the
+  same array that renders the visible list), FAQPage JSON-LD, `lastReviewed`,
+  and a "Cuándo conviene delegarlo" box whose form is set to the matching
+  service via `content/lead-values.php` (never a bare link, per
+  `prompts/sonnet-5-guias.md`). Every stated fact is logged in
+  `docs/facts-to-verify.md`; nothing was scraped from DNIT/IPS.
+- 2026-09-04 — "Guías" was measured against the live 7-item header nav at
+  1024px (Playwright, not committed as a test file) and does not wrap, so it
+  joined `nav.primary` after Herramientas as well as the footer's "Firma"
+  column (plan §6.5.2's conditional). `content/services.php` gained an
+  optional `guides[]` key on marangatu, ekuatia, ruc, iva, irp and ips;
+  `templates/service.php` renders it as a new, additive "Guía relacionada"
+  block next to the existing related-services section — no locked file's
+  existing structure changed, consistent with B1's and B4's precedent for
+  additive sections. `deploy/routes.php` and `sitemap.php` pick up
+  `nav('guias')` the same way they already pick up `nav('tools')`.
+  `multas-dnit-como-regularizar` and `certificado-de-cumplimiento-tributario`
+  borrow the `asesoria` and `marangatu` lead-values records respectively
+  (both tier B) rather than getting dedicated records, since neither topic is
+  a service or a tool in the locked lead-value model — logged in
+  `KNOWN-ISSUES.md` as a clean follow-up if conversion data wants otherwise.
+  `./verify.sh` and `deploy/make-zip.sh` both green on the merged branch;
+  screenshots in `docs/screenshots/c2/`.
+
 ## 10. Backlog
 
 - Client portal / login.
