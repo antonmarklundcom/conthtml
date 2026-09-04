@@ -15,10 +15,10 @@ Nothing below blocks a technical launch — the site degrades honestly without
 these — but filling them in switches on real functionality with no code
 change (see each field's comment in `content/site.php` / `content/precios.php`):
 
-- [ ] **WhatsApp number** (`content/site.php` → `whatsapp`, international
-      format e.g. `+595 981 123 456`). This is the single highest-value item:
-      every WhatsApp button on the site currently falls back to `/contacto/`.
-- [ ] Phone, email, street address, hours
+- [x] ~~WhatsApp number~~ — confirmed 2026-09-04 (`+595 995 628 862`), merged
+      into `content/site.php` alongside phone and `contacto@contador.com.py`.
+      Every WhatsApp button, the header pill and the footer NAP are live.
+- [ ] Street address, hours
 - [ ] Firm legal name, matrícula number(s), founding year, team size
 - [ ] Real stats/testimonials/credentials/team, or explicit confirmation
       there are none to publish
@@ -43,12 +43,18 @@ downloaded from this session (network policy — see
 - [ ] Re-run `./verify.sh` and re-check Lighthouse after (image weight
       affects the performance budget — plan §6.4.2's ≤ 120 KB hero rule)
 
-## 3. VenderCRM (plan §1.6, §7)
+## 3. VenderCRM and lead email (plan §1.6, §7)
 
 - [ ] `config.php` → `VENDERCRM_URL` and `VENDERCRM_API_KEY`. Until both are
       set, `/enviar.php` logs leads to `logs/leads.log` and still shows the
       visitor a success state pointing at WhatsApp (`degraded: true` in the
       JSON response) — functional, but leads aren't reaching the CRM.
+- [ ] `config.php` → `RESEND_API_KEY`, `LEAD_NOTIFY_TO` (e.g.
+      `contacto@contador.com.py`), `LEAD_FROM` — optional, independent of
+      VenderCRM: when both `RESEND_API_KEY` and `LEAD_NOTIFY_TO` are set,
+      every accepted lead is also emailed. `LEAD_FROM`'s domain needs SPF +
+      DKIM records in Hostinger DNS (Resend's dashboard shows the exact
+      records once the sending domain is added there).
 
 ## 4. Analytics (plan §6.4.3)
 
