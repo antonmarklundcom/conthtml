@@ -112,6 +112,10 @@ return [
             'lead'    => 'Entre el punto de venta, el stock y el IVA a fin de mes hay más lugares para '
                        . 'perder margen que para ganarlo. Los cerramos todos juntos, cada mes.',
         ],
+        'heroImage' => [
+            'src' => '/assets/img/emprendedora-ecommerce-paraguay-1280.avif',
+            'alt' => 'Emprendedora paraguaya empacando pedidos de su tienda online en un espacio de trabajo luminoso',
+        ],
         'leadSlug' => 'contabilidad',
         'bundle'   => ['contabilidad', 'ekuatia', 'iva'],
         'traps' => [
@@ -233,6 +237,10 @@ return [
             'lead'    => 'Cada recibo de honorarios que emite tiene una retención, un timbrado y una '
                        . 'declaración detrás. Se los ordenamos durante el año para que marzo no lo '
                        . 'sorprenda.',
+        ],
+        'heroImage' => [
+            'src' => '/assets/img/profesional-independiente-freelance-exitoso-1280.avif',
+            'alt' => 'Profesional independiente paraguaya trabajando en su laptop en un espacio luminoso',
         ],
         'leadSlug' => 'contabilidad',
         'bundle'   => ['irp', 'iva', 'contabilidad'],
@@ -413,6 +421,10 @@ return [
             'lead'    => 'La decisión que más le cuesta corregir después es la primera: qué forma '
                        . 'jurídica elegir y en qué régimen inscribirse. Se la resolvemos antes de que '
                        . 'firme nada.',
+        ],
+        'heroImage' => [
+            'src' => '/assets/img/fundadores-startup-oficina-digital-1280.avif',
+            'alt' => 'Dos jóvenes fundadores de una startup paraguaya colaborando en una oficina digital moderna',
         ],
         'leadSlug' => 'eas',
         'bundle'   => ['eas', 'ruc', 'contabilidad'],

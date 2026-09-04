@@ -44,6 +44,10 @@ return [
                        . 'outside the country: company formation, tax registration, monthly bookkeeping '
                        . 'and ongoing compliance, explained in plain language and handled end to end.',
         ],
+        'heroImage' => [
+            'src' => '/assets/img/extranjero-expatriado-trabajo-remoto-paraguay-1280.avif',
+            'alt' => 'Foreigner working remotely in a bright café in Asunción, Paraguay',
+        ],
         'hreflangEs' => '/contador-para/empresas-extranjeras/',
         'kind'       => 'hub',
         'sections'   => [],

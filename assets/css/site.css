@@ -1565,6 +1565,43 @@ h3 {
   color: var(--on-ink-line);
 }
 
+/* == redesign: photo-hero variant (2026-09) ==
+   Optional two-column treatment for .page-hero, reusing the homepage's own
+   floating-panel pattern (audit rec #4: extend that distinct visual anchor
+   past the homepage). Falls back to the plain text-only .page-hero__inner
+   layout on every page that doesn't set a heroImage. */
+
+.page-hero--photo .page-hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--s-4);
+  align-items: center;
+}
+
+.page-hero--photo .page-hero__inner {
+  max-width: none;
+}
+
+.page-hero__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-card);
+  display: block;
+  box-shadow: var(--shadow-panel);
+}
+
+@media (max-width: 768px) {
+  .page-hero--photo .page-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero__photo {
+    order: -1;
+  }
+}
+
 /* == utilities =========================================================== */
 
 .mt-0 { margin-top: 0; }

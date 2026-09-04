@@ -72,22 +72,29 @@ require ROOT_DIR . '/partials/header-en.php';
 ?>
 <main id="main">
 
-  <section class="page-hero">
+  <?php $enHeroImage = $enRecord['heroImage'] ?? null; ?>
+  <section class="page-hero<?= $enHeroImage ? ' page-hero--photo' : '' ?>">
     <div class="container">
       <?php if ($enRecord['kind'] !== 'hub'): ?>
         <?php require ROOT_DIR . '/partials/breadcrumbs.php'; ?>
       <?php endif; ?>
-      <div class="page-hero__inner">
-        <p class="eyebrow"><?= e($enRecord['hero']['eyebrow']) ?></p>
-        <h1><?= e($enRecord['hero']['h1']) ?></h1>
-        <p class="lead"><?= e($enRecord['hero']['lead']) ?></p>
-        <?php if ($enRecord['path'] !== '/en/contact/'): ?>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="/en/contact/"><?= e(ui('cta.consult')) ?></a>
-            <?php if (($enWa = whatsapp_link(whatsapp_text_for_page($page))) !== null): ?>
-              <a class="btn btn--secondary" href="<?= e($enWa) ?>" rel="noopener"><?= e(ui('cta.whatsapp')) ?></a>
-            <?php endif; ?>
-          </div>
+      <div class="page-hero__grid">
+        <div class="page-hero__inner">
+          <p class="eyebrow"><?= e($enRecord['hero']['eyebrow']) ?></p>
+          <h1><?= e($enRecord['hero']['h1']) ?></h1>
+          <p class="lead"><?= e($enRecord['hero']['lead']) ?></p>
+          <?php if ($enRecord['path'] !== '/en/contact/'): ?>
+            <div class="btn-row">
+              <a class="btn btn--primary" href="/en/contact/"><?= e(ui('cta.consult')) ?></a>
+              <?php if (($enWa = whatsapp_link(whatsapp_text_for_page($page))) !== null): ?>
+                <a class="btn btn--secondary" href="<?= e($enWa) ?>" rel="noopener"><?= e(ui('cta.whatsapp')) ?></a>
+              <?php endif; ?>
+            </div>
+          <?php endif; ?>
+        </div>
+        <?php if ($enHeroImage): ?>
+          <img class="page-hero__photo" src="<?= e(asset($enHeroImage['src'])) ?>"
+               alt="<?= e($enHeroImage['alt']) ?>" loading="lazy" width="800" height="600">
         <?php endif; ?>
       </div>
     </div>

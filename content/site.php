@@ -46,8 +46,14 @@ return [
     // While these are null the homepage "Quiénes somos" slots render as neutral
     // decorative panels — never a broken image, never a captioned identity claim.
     'photos' => [
-        'portrait' => null,                      // ['src' => '/assets/img/...', 'alt' => '...']
-        'team'     => null,
+        'portrait' => [
+            'src' => '/assets/img/contador-fundador-oficina-asuncion-1280.avif',
+            'alt' => 'Contador paraguayo joven de pie en una oficina moderna y luminosa en Asunción',
+        ],
+        'team' => [
+            'src' => '/assets/img/equipo-negocios-diverso-reunion-exitosa-1280.avif',
+            'alt' => 'Equipo diverso de profesionales paraguayos colaborando en una reunión en una oficina moderna',
+        ],
     ],
 
     // --- collections: every one of these renders only when non-empty ---------
