@@ -1327,9 +1327,13 @@ h3 {
 }
 
 .wa-fab svg {
+  /* Was var(--whatsapp) (#25A35A): a bright green icon on the .wa-fab's
+     --ok-text (#1E7A45) background reads as green-on-green. White matches
+     the button's text color and keeps the icon legible against either
+     green shade. */
   width: 20px;
   height: 20px;
-  fill: var(--whatsapp);
+  fill: #fff;
   flex: none;
 }
 
