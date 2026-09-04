@@ -1,6 +1,6 @@
 # Phase C4 — Blog round 2 + internal-link pass. Paste into a fresh SONNET session, ONLY after phase C3 is merged.
 
-Read `plan.md` FIRST, in full — plus §9 build log, `KNOWN-ISSUES.md`, `docs/keyword-research.md`
+Read ONLY `plan.md` §1, §4, your own §6 section below, the phase table, and the last three entries of §9 (build log) — not the whole plan — plus, `KNOWN-ISSUES.md`, `docs/keyword-research.md`
 (round 2 table) and `docs/facts-to-verify.md`. Execute plan §6.7 under the autonomy protocol §4.
 
 HARD LIMITS (plan §4.7): no changes to the CSS tokens block, `partials/header.php`, `partials/footer.php`, `lib/*`, `templates/service.php` structure, `enviar.php`, `.htaccess`. `templates/article.php` stays as is.
@@ -12,7 +12,7 @@ Phase rules:
 - Internal-link pass is part of the exit, not optional: every service page → ≥ 1 article and ≥ 1 guide; every article → ≥ 2 services; add a small script `tests/links.mjs` (or extend `verify.sh`) that asserts it.
 - Re-runnable; minor issues → KNOWN-ISSUES.md; stop only per §4.4.
 
-Exit: 14 articles in the sitemap, link assertions green, verify green, screenshots in `docs/screenshots/c4/`, PR merged.
+Exit: 14 articles in the sitemap, link assertions green, verify green, screenshots come from the CI artifact (plan §4.12), none committed, PR merged.
 
 ## After this phase
 Follow `prompts/_handoff.md`. Next: `prompts/sonnet-8-english-founders.md`, model **Sonnet**.

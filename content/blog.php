@@ -86,4 +86,95 @@ return [
         'tags'        => ['Estados financieros', 'Contabilidad'],
         'service'     => 'contabilidad',
     ],
+
+    // === Round 2 (phase C4) ===================================================
+
+    [
+        'slug'        => 'liquidacion-por-despido-vs-renuncia',
+        'title'       => 'Liquidación por despido vs. renuncia: qué cambia en el finiquito',
+        'seoTitle'    => 'Liquidación: despido vs. renuncia',
+        'description' => 'Qué conceptos cobra un trabajador según renuncie o sea despedido en Paraguay: '
+                       . 'preaviso, indemnización y qué queda igual en los dos casos.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['Liquidación', 'Despido', 'IPS'],
+        'service'     => 'ips',
+    ],
+    [
+        'slug'        => 'aguinaldo-cuando-se-cobra-y-proporcional',
+        'title'       => '¿Cuándo se cobra el aguinaldo y cómo se calcula el proporcional?',
+        'seoTitle'    => 'Aguinaldo: cuándo se cobra y proporcional',
+        'description' => 'La fecha límite del aguinaldo en Paraguay y cómo se calcula el aguinaldo '
+                       . 'proporcional cuando no se trabajó el año completo.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['Aguinaldo', 'Nómina'],
+        'service'     => 'ips',
+    ],
+    [
+        'slug'        => 'multas-dnit-cuanto-son-y-como-evitarlas',
+        'title'       => 'Multas de la DNIT: cómo se generan y cómo evitarlas',
+        'seoTitle'    => 'Multas DNIT: cómo evitarlas',
+        'description' => 'Por qué la DNIT aplica multas aunque su declaración esté en cero, cómo saber '
+                       . 'si tiene una pendiente y los pasos para evitarlas.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['DNIT', 'Multas', 'Cumplimiento'],
+        'service'     => 'asesoria',
+    ],
+    [
+        'slug'        => 'marangatu-2-0-que-cambio',
+        'title'       => 'Marangatu 2.0: qué cambió y cómo encontrar lo de siempre',
+        'seoTitle'    => 'Marangatu 2.0: qué cambió',
+        'description' => 'Qué es Marangatu 2.0, qué se reorganizó en el menú y dónde quedaron la consulta '
+                       . 'de RUC, el Formulario 120 y el Certificado de Cumplimiento Tributario.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['Marangatu', 'DNIT'],
+        'service'     => 'marangatu',
+    ],
+    [
+        'slug'        => 'eas-vs-srl-vs-unipersonal-cual-conviene',
+        'title'       => 'EAS vs. SRL vs. Unipersonal: cuál le conviene',
+        'seoTitle'    => 'EAS, SRL o Unipersonal: cuál elegir',
+        'description' => 'Diferencias entre EAS, SRL y Unipersonal en socios, responsabilidad y trámite '
+                       . 'de constitución, para elegir la estructura que le corresponde.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['EAS', 'SRL', 'Unipersonal', 'Apertura de empresa'],
+        'service'     => 'eas',
+    ],
+    [
+        'slug'        => 'iva-10-y-5-que-lleva-cada-uno',
+        'title'       => 'IVA 10% y 5%: qué lleva cada tasa',
+        'seoTitle'    => 'IVA 10% y 5%: qué lleva cada uno',
+        'description' => 'Qué bienes y servicios pagan el IVA general del 10% y cuáles la tasa reducida '
+                       . 'del 5% en Paraguay, y cómo evitar el error más común al clasificarlos.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['IVA', 'Formulario 120'],
+        'service'     => 'iva',
+    ],
+    [
+        'slug'        => 'irp-2026-quien-paga-y-como-se-liquida',
+        'title'       => 'IRP en 2026: quién paga y cómo se liquida',
+        'seoTitle'    => 'IRP 2026: quién paga y cómo se liquida',
+        'description' => 'Quién debe inscribirse al IRP en Paraguay, qué ingresos se suman y cómo es el '
+                       . 'proceso de liquidación anual ante la DNIT.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['IRP', 'Impuestos'],
+        'service'     => 'irp',
+    ],
+    [
+        'slug'        => 'inscripcion-patronal-ips-paso-a-paso',
+        'title'       => 'Inscripción patronal en el IPS, paso a paso',
+        'seoTitle'    => 'Inscripción patronal IPS, paso a paso',
+        'description' => 'Cómo inscribirse como empleador en el IPS al contratar a su primer trabajador '
+                       . 'en Paraguay: documentos, plazos y los aportes que empiezan a correr.',
+        'date'        => '2026-09-04',
+        'updated'     => null,
+        'tags'        => ['IPS', 'Nómina', 'Empleador'],
+        'service'     => 'ips',
+    ],
 ];

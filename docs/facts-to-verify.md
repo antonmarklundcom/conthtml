@@ -63,6 +63,21 @@ page hedges with "consulte el monto vigente" instead of a hard figure.
 
 No figure not already whitelisted by B1/B2/B3 was introduced this phase. Every guide that would otherwise need a specific peso amount, percentage or day count not already confirmed states "consulte el monto/plazo vigente" or an equivalent hedge instead, per the copy brief.
 
+## C4 — Blog round 2 (2026-09-04)
+
+| Page(s) | Statement | Source | Confidence / action |
+|---|---|---|---|
+| `/blog/liquidacion-por-despido-vs-renuncia/` | Renuncia vs. despido sin causa justificada vs. despido con causa justificada: which of preaviso/indemnización apply in each case; worked example on a 6-year, Gs. 4.000.000 salary (preaviso 60 días, indemnización 15 días/año) | Reuses the B3 `content/laboral.php` tiers (Art. 87 preaviso, Art. 91 indemnización) already logged above — no new rate introduced, only a new worked example | Same confidence as the B3 rows for `content/laboral.php`. The 6-year example was computed from those same tiers, not independently sourced. |
+| `/blog/aguinaldo-cuando-se-cobra-y-proporcional/` | Aguinaldo deadline (31 de diciembre), proporcional formula, IPS exemption, two worked numeric examples | Reuses the B1/B3 aguinaldo material (`content/laboral.php`, already logged) — no new figure | No new claim; examples computed from the existing formula. |
+| `/blog/multas-dnit-cuanto-son-y-como-evitarlas/` | No specific multa amount, percentage or interest rate is stated (deliberately hedged, "consulte el monto exacto... antes de arriesgar una cifra desactualizada"); mentions that a payment-facilities plan "en muchos casos" exists for large amounts | General knowledge of how DNIT's compliance/penalty process works, consistent with the C2 guide `multas-dnit-como-regularizar` (no new numeric claim) | The payment-facilities-plan line is phrased as "en muchos casos... no aplica automáticamente" rather than a guaranteed option — not independently verified against a DNIT resolution this phase; same category of hedge as the rest of this row. |
+| `/blog/marangatu-2-0-que-cambio/` | Marangatu 2.0 reorganised the menu without removing functionality or changing deadlines/rates; ESET remains the login module; password recovery depends on up-to-date contact data | Reuses the B1/C2 Marangatu findings already logged (WebSearch, not fetched directly from `dnit.gov.py`/`marangatu.set.gov.py`) | Same open item as the B1 Marangatu row: a human should confirm the current menu/recovery flow before launch. |
+| `/blog/eas-vs-srl-vs-unipersonal-cual-conviene/` | SRL requires 2+ socios, escritura pública, Registro Público de Comercio; EAS/SRL have no legal capital mínimo; comparison table restated in prose | Reuses the B3 comparador tool's own table (`content/tools.php`, already logged) — no new figure | No new claim beyond the B3 row above. |
+| `/blog/iva-10-y-5-que-lleva-cada-uno/` | 10% general / 5% reducido split, Formulario 120 columns, exento vs. 5% distinction | Reuses the B1/B3 IVA material (`/iva/`, `/herramientas/calculadora-iva/`, already logged) — no new figure | No new claim. |
+| `/blog/irp-2026-quien-paga-y-como-se-liquida/` | IRP brackets, rates and deduction limits are **not stated** — deliberately hedged, same as `/irp/` and `/guias/irp-quien-debe-pagar/` | Same finding as the B1 `/irp/` row — this phase again found no confidently current source for the tramos/tasas | Still open: Anton or a later phase should supply the current IRP tramos/tasas/deducciones. Title says "2026" as the current year context, not as a claim about that year's specific brackets. |
+| `/blog/inscripcion-patronal-ips-paso-a-paso/` | Employer IPS registration required from the first employee; monthly planilla updates for new hires/exits/salary changes; IPS payment calendar is fixed monthly, independent of RUC termination digit | Reuses the B1 `/ips/` and B3 `content/vencimientos.php` material (both already logged) — no new figure | No new numeric claim. |
+
+No figure beyond what B1–C3 already logged was introduced in this phase's eight articles; every article that would otherwise need an unconfirmed number uses the same "consulte el monto/plazo vigente" hedge established by prior phases.
+
 ## C5 — English section for foreign founders (2026-09-04)
 
 | Page(s) | Statement | Source | Confidence / action |

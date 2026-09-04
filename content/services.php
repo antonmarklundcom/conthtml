@@ -36,6 +36,13 @@
  *                             plan §6.5.3) — rendered as a small "Guía
  *                             relacionada" block by templates/service.php,
  *                             additive next to the existing related section
+ *   articles         string[] blog article slugs from content/blog.php (C4,
+ *                             optional; plan §6.7's internal-link pass) —
+ *                             rendered as an "Artículo relacionado" block,
+ *                             same additive pattern as `guides`. Curated by
+ *                             topic, independent of a blog entry's own
+ *                             `service` field (an article can be the natural
+ *                             read for more than one service page).
  *
  * B1 (plan §6.1) wrote hero/includes/excludes/weNeed/sections/benefits/faq/cta
  * for all 14 pages, rewriting the legacy scan copy in "usted" per the copy
@@ -135,6 +142,7 @@ return [
         'cta'     => ['label' => 'Habilitar mi facturación electrónica', 'whatsappText' => ''],
         'related' => ['marangatu', 'ruc', 'iva'],
         'guides'  => ['ekuatiai-paso-a-paso', 'que-es-sifen'],
+        'articles' => ['como-habilitarse-en-sifen-factura-electronica-ekuatia'],
     ],
 
     'marangatu' => [
@@ -222,6 +230,7 @@ return [
         ],
         'related' => ['iva', 'ire-simple', 'ekuatia'],
         'guides'  => ['como-ingresar-a-marangatu', 'certificado-de-cumplimiento-tributario'],
+        'articles' => ['marangatu-2-0-que-cambio', 'certificado-de-cumplimiento-tributario-marangatu'],
     ],
 
     'ruc' => [
@@ -301,6 +310,7 @@ return [
         'cta'     => ['label' => 'Inscribir mi RUC', 'whatsappText' => ''],
         'related' => ['eas', 'marangatu', 'ekuatia'],
         'guides'  => ['inscripcion-de-ruc-paso-a-paso', 'consulta-de-ruc'],
+        'articles' => ['marangatu-2-0-que-cambio'],
     ],
 
     // === Gestión empresarial ================================================
@@ -381,6 +391,8 @@ return [
         ],
         'cta'     => ['label' => 'Ordenar mi contabilidad mensual', 'whatsappText' => ''],
         'related' => ['iva', 'ire-simple', 'asesoria'],
+        'guides'   => ['formulario-120-paso-a-paso'],
+        'articles' => ['balance-general-estado-de-resultados-flujo-de-efectivo'],
     ],
 
     'iva' => [
@@ -464,6 +476,7 @@ return [
         ],
         'related' => ['ire-simple', 'contabilidad', 'marangatu'],
         'guides'  => ['formulario-120-paso-a-paso'],
+        'articles' => ['iva-10-y-5-que-lleva-cada-uno'],
     ],
 
     'ire-simple' => [
@@ -553,6 +566,8 @@ return [
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su IRE anual.'],
         ],
         'related' => ['iva', 'contabilidad', 'irp'],
+        'guides'   => ['formulario-120-paso-a-paso'],
+        'articles' => ['ire-simple-resimple-ire-general-formulario-120'],
     ],
 
     'irp' => [
@@ -637,6 +652,7 @@ return [
         'cta'     => ['label' => 'Consultar si debo presentar IRP', 'whatsappText' => ''],
         'related' => ['ire-simple', 'asesoria', 'ruc'],
         'guides'  => ['irp-quien-debe-pagar'],
+        'articles' => ['irp-2026-quien-paga-y-como-se-liquida'],
     ],
 
     'ips' => [
@@ -719,6 +735,7 @@ return [
         ],
         'related' => ['contabilidad', 'asesoria', 'eas'],
         'guides'  => ['inscripcion-patronal-ips'],
+        'articles' => ['como-se-calcula-el-aguinaldo-en-paraguay', 'aguinaldo-cuando-se-cobra-y-proporcional', 'liquidacion-por-despido-vs-renuncia', 'inscripcion-patronal-ips-paso-a-paso'],
     ],
 
     'eas' => [
@@ -799,6 +816,8 @@ return [
             ['path' => '/herramientas/comparador-eas-srl-unipersonal/', 'label' => 'Comparador EAS / SRL / Unipersonal', 'text' => 'Compare las tres estructuras y responda tres preguntas para saber cuál le conviene.'],
         ],
         'related' => ['ruc', 'ekuatia', 'contabilidad'],
+        'guides'   => ['inscripcion-de-ruc-paso-a-paso'],
+        'articles' => ['abrir-una-eas-en-paraguay', 'eas-vs-srl-vs-unipersonal-cual-conviene'],
     ],
 
     'asesoria' => [
@@ -876,6 +895,8 @@ return [
         ],
         'cta'     => ['label' => 'Agendar una revisión fiscal', 'whatsappText' => ''],
         'related' => ['contabilidad', 'ire-simple', 'auditoria'],
+        'guides'   => ['multas-dnit-como-regularizar'],
+        'articles' => ['multas-dnit-cuanto-son-y-como-evitarlas'],
     ],
 
     // === Auditoría ==========================================================
@@ -958,6 +979,8 @@ return [
             'auditoria-auditoria-interna',
             'auditoria-auditoria-forense',
         ],
+        'guides'   => ['certificado-de-cumplimiento-tributario'],
+        'articles' => ['multas-dnit-cuanto-son-y-como-evitarlas'],
     ],
 
     'auditoria-auditoria-impositiva' => [
@@ -1034,6 +1057,8 @@ return [
         ],
         'cta'     => ['label' => 'Solicitar el dictamen de auditoría', 'whatsappText' => ''],
         'related' => ['auditoria', 'auditoria-auditoria-interna', 'asesoria'],
+        'guides'   => ['multas-dnit-como-regularizar'],
+        'articles' => ['multas-dnit-cuanto-son-y-como-evitarlas'],
     ],
 
     'auditoria-auditoria-interna' => [
@@ -1108,6 +1133,8 @@ return [
         ],
         'cta'     => ['label' => 'Fortalecer mis controles internos', 'whatsappText' => ''],
         'related' => ['auditoria', 'auditoria-auditoria-forense', 'contabilidad'],
+        'guides'   => ['certificado-de-cumplimiento-tributario'],
+        'articles' => ['balance-general-estado-de-resultados-flujo-de-efectivo'],
     ],
 
     'auditoria-auditoria-forense' => [
@@ -1183,5 +1210,7 @@ return [
         ],
         'cta'     => ['label' => 'Solicitar una consultoría confidencial', 'whatsappText' => ''],
         'related' => ['auditoria', 'auditoria-auditoria-impositiva', 'auditoria-auditoria-interna'],
+        'guides'   => ['multas-dnit-como-regularizar'],
+        'articles' => ['multas-dnit-cuanto-son-y-como-evitarlas'],
     ],
 ];

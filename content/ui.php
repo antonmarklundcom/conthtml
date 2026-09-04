@@ -345,6 +345,7 @@ return [
         'faq'       => 'Preguntas frecuentes',
         'related'   => 'Servicios relacionados',
         'guides'    => 'Guía relacionada',
+        'articles'  => 'Artículo relacionado',
         // The service-page lead form (plan §5.3.2): every service page carries
         // a form of its own so the lead arrives tagged with that service.
         'form_eyebrow' => 'Cotización',
