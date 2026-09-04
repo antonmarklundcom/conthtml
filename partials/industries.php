@@ -8,11 +8,15 @@
  *
  * Reusable and parameterised (plan §5.2.3), locked for B-phases (plan §4.7):
  *
- *   $industriesEyebrow  string    defaults to ui('industries.eyebrow')
- *   $industriesTitle    string    defaults to ui('industries.title')
- *   $industriesLead     string    defaults to ui('industries.lead'), '' hides it
- *   $industriesItems    string[]  defaults to ui industries.items
- *   $industriesSurface  bool      surface band (default) or white
+ *   $industriesEyebrow  string  defaults to ui('industries.eyebrow')
+ *   $industriesTitle    string  defaults to ui('industries.title')
+ *   $industriesLead     string  defaults to ui('industries.lead'), '' hides it
+ *   $industriesItems    array   defaults to ui industries.items. Each entry is
+ *                               either a plain string (no link) or
+ *                               ['label' => ..., 'path' => ...] — since C3
+ *                               (plan §6.6.1) every default item links to its
+ *                               real /contador-para/<slug>/ page
+ *   $industriesSurface  bool    surface band (default) or white
  */
 
 declare(strict_types=1);
@@ -41,11 +45,24 @@ if ($industriesItems !== []) :
 
     <ul class="industries">
       <?php foreach ($industriesItems as $industry): ?>
-        <li class="industries__item"><?= e($industry) ?></li>
+        <?php
+          $industryLabel = is_array($industry) ? ($industry['label'] ?? '') : $industry;
+          $industryPath  = is_array($industry) ? ($industry['path']  ?? '') : '';
+        ?>
+        <li>
+          <?php if ($industryPath !== ''): ?>
+            <a class="industries__item" href="<?= e($industryPath) ?>"><?= e($industryLabel) ?></a>
+          <?php else: ?>
+            <span class="industries__item"><?= e($industryLabel) ?></span>
+          <?php endif; ?>
+        </li>
       <?php endforeach; ?>
     </ul>
   </div>
 </section>
 <?php endif; ?>
 <?php
-unset($industriesEyebrow, $industriesTitle, $industriesLead, $industriesItems, $industriesSurface, $industry);
+unset(
+    $industriesEyebrow, $industriesTitle, $industriesLead, $industriesItems, $industriesSurface,
+    $industry, $industryLabel, $industryPath
+);

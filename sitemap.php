@@ -48,6 +48,10 @@ foreach (content('blog') as $article) {
     ];
 }
 
+foreach (content('segmentos') as $segmento) {
+    $urls[] = ['loc' => url($segmento['path']), 'changefreq' => 'monthly', 'priority' => '0.7'];
+}
+
 header('Content-Type: application/xml; charset=utf-8');
 echo '<?xml version="1.0" encoding="UTF-8"?>', "\n";
 ?>
