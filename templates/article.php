@@ -117,6 +117,10 @@ require ROOT_DIR . '/partials/header.php';
         <p class="eyebrow"><?= e(ui('nav.blog')) ?></p>
         <h1><?= e($article['title']) ?></h1>
         <p class="lead"><?= e($article['description']) ?></p>
+        <?php if (!empty($article['thumbnail']['src'])): ?>
+          <img class="article-thumbnail" src="<?= e(asset($article['thumbnail']['src'])) ?>"
+               alt="<?= e($article['thumbnail']['alt'] ?? '') ?>" width="1280" height="960" loading="lazy">
+        <?php endif; ?>
         <p class="article-meta">
           <span><?= e(article_fecha_larga($article['date'])) ?></span>
           <span aria-hidden="true">·</span>

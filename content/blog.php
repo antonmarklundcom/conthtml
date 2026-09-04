@@ -14,6 +14,9 @@
  *   updated      ?string  YYYY-MM-DD, when meaningfully revised
  *   tags         string[] free-form
  *   service      ?string  slug of the service this article links to
+ *   thumbnail    ?array   optional ['src' => ..., 'alt' => ...] rendered as a
+ *                         card thumbnail by templates/article.php when
+ *                         present; articles without one render no image
  */
 
 declare(strict_types=1);
@@ -40,6 +43,10 @@ return [
         'updated'     => null,
         'tags'        => ['IRE', 'Formulario 120', 'Impuestos'],
         'service'     => 'ire-simple',
+        'thumbnail'   => [
+            'src' => '/assets/img/declaracion-ire-iva-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de documentos con una marca de verificación que representan la declaración de IRE e IVA en Paraguay.',
+        ],
     ],
     [
         'slug'        => 'como-habilitarse-en-sifen-factura-electronica-ekuatia',
@@ -51,6 +58,10 @@ return [
         'updated'     => null,
         'tags'        => ['SIFEN', "Ekuatia'i", 'Factura electrónica'],
         'service'     => 'ekuatia',
+        'thumbnail'   => [
+            'src' => '/assets/img/factura-electronica-sifen-marangatu-1280.avif',
+            'alt' => 'Ilustración editorial de un documento digital conectado a una institución que representa la facturación electrónica SIFEN y Marangatu.',
+        ],
     ],
     [
         'slug'        => 'certificado-de-cumplimiento-tributario-marangatu',
@@ -73,6 +84,10 @@ return [
         'updated'     => null,
         'tags'        => ['EAS', 'Apertura de empresa'],
         'service'     => 'eas',
+        'thumbnail'   => [
+            'src' => '/assets/img/apertura-eas-documentos-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de una puerta de local comercial entreabierta que representa la apertura de una empresa en Paraguay.',
+        ],
     ],
     [
         'slug'        => 'balance-general-estado-de-resultados-flujo-de-efectivo',
@@ -143,6 +158,10 @@ return [
         'updated'     => null,
         'tags'        => ['EAS', 'SRL', 'Unipersonal', 'Apertura de empresa'],
         'service'     => 'eas',
+        'thumbnail'   => [
+            'src' => '/assets/img/apertura-eas-documentos-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de una puerta de local comercial entreabierta que representa la apertura de una empresa en Paraguay.',
+        ],
     ],
     [
         'slug'        => 'iva-10-y-5-que-lleva-cada-uno',
@@ -154,6 +173,10 @@ return [
         'updated'     => null,
         'tags'        => ['IVA', 'Formulario 120'],
         'service'     => 'iva',
+        'thumbnail'   => [
+            'src' => '/assets/img/declaracion-ire-iva-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de documentos con una marca de verificación que representan la declaración de IRE e IVA en Paraguay.',
+        ],
     ],
     [
         'slug'        => 'irp-2026-quien-paga-y-como-se-liquida',
