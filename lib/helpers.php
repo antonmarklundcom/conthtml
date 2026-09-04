@@ -64,12 +64,21 @@ function site(?string $key = null)
 }
 
 /**
- * A UI string from content/ui.php. Dot notation reaches into nested groups:
- * ui('form.submit').
+ * A UI string from content/ui.php — or, on an /en/ page, from
+ * content/ui.en.php. Dot notation reaches into nested groups: ui('form.submit').
+ *
+ * The one sanctioned additive touch to lib/* for phase C5 (plan §6.8.1,
+ * prompts/sonnet-8-english-founders.md): a page opts into the English lookup
+ * by defining the UI_LANG constant as 'en' before this is first called (the
+ * /en/ route files do, right after bootstrap.php — see templates/en-page.php).
+ * No Spanish page defines it, so every existing page's ui() call resolves
+ * exactly as before this constant existed; nothing else in this function
+ * changed. content/ui.en.php mirrors content/ui.php's keys, so a caller never
+ * has to know which language is active.
  */
 function ui(string $key, string $default = ''): string
 {
-    $value = content('ui');
+    $value = content(defined('UI_LANG') && UI_LANG === 'en' ? 'ui.en' : 'ui');
     foreach (explode('.', $key) as $segment) {
         if (!is_array($value) || !array_key_exists($segment, $value)) {
             return $default;

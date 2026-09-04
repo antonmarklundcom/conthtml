@@ -451,6 +451,90 @@ Minor, non-blocking findings. Phases append here rather than stopping (plan §4.
   tells Anton to start those ad groups at minimum bid and drop any with
   under ~50 impressions/month after two weeks, rather than presenting an
   invented volume figure.
+## C5 — English section for foreign founders (2026-09-04)
+
+- **Six `/en/` URLs shipped, not five.** Plan §6.8.1 names a hub plus five
+  pages by slug (`open-a-company-in-paraguay`, `eas-vs-srl-paraguay`,
+  `taxes-in-paraguay-for-foreigners`, `accounting-services-paraguay`,
+  `contact`) — six routes total once the hub is counted — but
+  `prompts/sonnet-8-english-founders.md`'s own phrasing ("Five `/en/` pages")
+  and its exit line ("5 `/en/` URLs in the sitemap") both undercount by one,
+  almost certainly by not counting the hub itself. This phase built to the
+  explicit named list rather than dropping a page to hit the literal number:
+  all six routes exist, are in the sitemap, and all pass the route contract.
+  Same category of prompt/plan miscount C3 logged for its own URL count.
+
+- **`ui()`'s language switch lives in `lib/helpers.php`, not
+  `lib/bootstrap.php`.** Plan §6.8.1 and the phase prompt both name
+  `lib/bootstrap.php`'s `ui()` as the one sanctioned additive touch to `lib/*`
+  — but in this codebase `ui()` has always been defined in `lib/helpers.php`
+  (`bootstrap.php` only `require_once`s it). The sanctioned exception is
+  about the *function*, not a specific file path that turned out not to match
+  the repo; the switch was made where `ui()` actually lives, and nothing else
+  in `lib/*` changed. Verified byte-for-byte: `/`, `/marangatu/` and
+  `/contacto/` render identically before and after this phase's diff (`git
+  stash` / re-render / diff, zero bytes different except the per-request
+  random `idempotency_key`).
+
+- **`lang=en` is a form field enviar.php silently drops, not one it logs.**
+  The phase prompt allows "an additional field it already accepts or degrades
+  gracefully on" — `/en/contact/`'s form does send `lang=en`, and `enviar.php`
+  (unchanged, per the hard limit) ignores any POST field it does not name in
+  its contract, so the lead still submits successfully. What actually makes an
+  English lead identifiable in `logs/leads.log` is `form_id=contacto-en` —
+  already part of `enviar.php`'s contract (`fields.formulario`) — which is
+  what the new `verify.sh` C5 checks assert on. If a later phase wants
+  `lang` to persist in the log or reach VenderCRM as its own field, that is a
+  one-line addition to `enviar.php`'s `$fields` array (a locked file — needs
+  its own sign-off, not a C5-scope change).
+
+- **`partials/lead-form.php` (locked) cannot be reused for the English
+  contact form.** Its "¿Qué necesita?" chip fieldset reads `content('ui')`
+  directly rather than through `ui()`, so it always renders Spanish chip
+  labels regardless of `UI_LANG` — a partial-language leak with no fix that
+  does not touch the locked file. `partials/lead-form-en.php` (new, additive)
+  is a single-purpose form instead: no chip selector, since every `/en/` lead
+  is preset to `service=empresas-extranjeras` — appropriate for a
+  single-persona section, not just a workaround.
+
+- **The floating WhatsApp button and header pill on `/en/` pages are plain
+  `wa.me` links, not the popover menu C1 built.** `partials/whatsapp-menu.php`
+  resolves its four extra options from `content/lead-values.php`'s Spanish
+  `whatsappMenu` slugs (`eas`, `ruc`, `contabilidad`, `ekuatia`) with Spanish
+  `menuLabel`/`whatsappText` — reusing it on an English page would leak
+  Spanish options into an otherwise-English popover. Teaching that shared,
+  unlocked-but-not-owned-by-this-phase component a language branch felt like
+  scope creep past the one sanctioned `lib/*` touch (`ui()`'s switch), so
+  `/en/` pages get `partials/whatsapp-fab-en.php` (new, additive): this page's
+  own English prefill, no menu — the right call anyway for a section with one
+  persona and one priority service.
+
+- **`content/lead-values.php` gained one new service record,
+  `empresas-extranjeras`** (tier A, English `whatsappText`/`nextStep`,
+  `crmTag: en-empresas-extranjeras`) — additive, not a hard-limited file. It
+  is the only lead-values record whose visitor-facing text is English; every
+  `/en/` page's `leadSlug` resolves to it, and no Spanish page references it
+  (the existing `/contador-para/empresas-extranjeras/` segment page keeps
+  presetting to `eas`, unchanged by this phase).
+
+- **`partials/head.php` and `partials/cta-band.php` gained small additive
+  changes**, both outside the hard-limit list (only `header.php`/`footer.php`
+  are locked, not `head.php`; `cta-band.php` was never locked either):
+  `head.php` now reads an optional `$page['lang']` (default `'es-PY'`,
+  unchanged) and emits `<link rel="alternate" hreflang="...">` from an
+  optional `$page['hreflang']` array; `cta-band.php` now reads an optional
+  `$ctaContactPath` (default `/contacto/`, unchanged) so the `/en/` pages'
+  closing band can point at `/en/contact/`. No page written before this phase
+  sets either key, so both changes are no-ops for the whole rest of the site
+  — verified in the same before/after diff noted above.
+
+- **IRP brackets/rates, the flat IRE corporate rate, and the exact tax-residency
+  day-count are not stated anywhere on `/en/taxes-in-paraguay-for-foreigners/`.**
+  Same open item B1 logged for `/irp/` (`docs/facts-to-verify.md`), carried
+  forward rather than re-researched — this phase did not find a new source
+  either, and the page hedges every one of these exactly the way `/irp/`
+  already does ("set by regulation... confirm on request").
+
 - **C3 was merged directly on top of C1, without C2 in between**, even though
   plan §4.2 says "a phase never starts on top of an unmerged previous phase."
   C2's own branch (`phase/c2-guias`) was already in flight against the

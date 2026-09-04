@@ -48,6 +48,11 @@ foreach (content('segmentos') as $segmento) {
     $routes[$segmento['path']] = 200;
 }
 
+/* The /en/ section (C5): hub plus five pages for foreign founders. */
+foreach (content('en') as $enPage) {
+    $routes[$enPage['path']] = 200;
+}
+
 /* Non-page endpoints. */
 $routes['/robots.txt'] = 200;
 $routes['/sitemap.xml'] = 200;
