@@ -12,11 +12,19 @@ A lead's value is what the *engagement it starts* is worth, not what the search 
 - **Individual, low ticket, seasonal** (IRP, aguinaldo questions, liquidación de salario): high volume, low willingness to pay, often an employee rather than an employer. Valuable only as a list and as a source of the occasional employer.
 - **Navigational** (Marangatu login, consulta de RUC): near-zero direct value. The guides exist to be found, to build authority, and to catch the fraction who would rather delegate.
 
+## Anton's priority services (2026-09-04)
+
+**Abrir una EAS (`/eas/`) and Inscripción de RUC (`/ruc/`) are the two services Anton wants the site to win first.** They are tier A regardless of persona física or jurídica: someone registering a RUC is starting a business and needs an accountant within the month. Consequences for the phases:
+
+- C1: both get the richest thank-you flow on the site (documents to prepare, timeline, "¿ya tiene contador?" question, WhatsApp prefill), and the quiz's "Abrir empresa" branch lands on them.
+- C3: the segment pages and `docs/ads-campaigns.md` treat "abrir eas", "inscripción ruc", "inscribirse al ruc", "constituir srl paraguay", "apertura de empresa paraguay" as the first campaign, highest budget share.
+- C2: the RUC guide (`inscripcion-de-ruc-paso-a-paso`) and the EAS comparator link to each other and to `/eas/` and `/ruc/` prominently.
+
 ## Tiers
 
 | Tier | Ads conversion value (proxy, ₲) | Services / sources | Reasoning |
 |---|---|---|---|
-| **A** | 1 000 000 | contabilidad, cambiar-de-contador, eas, ruc (jurídica), auditoria-*, segment pages (importadores, comercios, construcción, gastronomía, empresas-extranjeras), `/en/` leads | Retainer or retainer-adjacent. "estudio contable" is the core commercial term (1 000/mo, +14 %, low competition, bid 3.5–12 kr) and every one of these converts into it. Foreign founders are the highest ticket of all: they pay for the whole stack and rarely price-shop. |
+| **A** | 1 000 000 | contabilidad, cambiar-de-contador, **eas, ruc (all cases)**, auditoria-*, segment pages (importadores, comercios, construcción, gastronomía, empresas-extranjeras), `/en/` leads | Retainer or retainer-adjacent. "estudio contable" is the core commercial term (1 000/mo, +14 %, low competition, bid 3.5–12 kr) and every one of these converts into it. Foreign founders are the highest ticket of all: they pay for the whole stack and rarely price-shop. |
 | **B** | 400 000 | ekuatia / SIFEN habilitación, iva, ire-simple, ips (nómina), asesoria, unipersonales, profesionales-independientes, emprendedores | Real businesses with a concrete compliance need. "factura electrónica paraguay" (1 300/mo, medium competition), "inscripción ruc" (2 400, +50 %), "sifen" (2 900). Some become retainers, many are one-off. |
 | **C** | 100 000 | irp, calculators (aguinaldo, liquidación de salario, IVA), vencimientos reminders, quiz "otro", guides | Mostly individuals or employees; "liquidacion de salario" 5 400/mo and aguinaldo phrasings ~5 000/mo are traffic and list-building, not revenue. Keep them because they are the cheapest leads on the site and the reminder list is a nurture asset. |
 
@@ -28,7 +36,7 @@ The values are optimisation proxies for Google Ads (so bidding favours A over C 
 |---|---|---|---|---|
 | `/contabilidad/`, homepage form | A | estudio contable 1 000 (+14 %) | low, 3.5–12 kr | The retainer entry point. Every B/C thank-you page should upsell to it. |
 | `/cambiar-de-contador/` (C3) | A | ≤ 10 but pure intent | none | Someone unhappy with their accountant is the easiest retainer to win. |
-| `/eas/`, `/ruc/` (jurídica) | A | abrir eas 140 (+55 %), inscripción ruc 2 400 (+50 %) | low | New companies need an accountant in 30 days. Ask "¿ya tiene contador?" in the next-step text. |
+| `/eas/`, `/ruc/` (priority, see above) | A | abrir eas 140 (+55 %), inscripción ruc 2 400 (+50 %) | low | New companies need an accountant in 30 days. Ask "¿ya tiene contador?" in the next-step text. |
 | `/auditoria/`, `/auditoria-*` | A | 70–110 each | low | Few, but each one is a large invoice. |
 | Segment pages (C3) | A/B | rubros band; "contador para importadores" not yet measured | — | Pre-qualified by rubro. Importadores/construcción A; unipersonales/profesionales B. |
 | `/en/` (C5) | A | unmeasured; international | — | Highest ticket. Route to WhatsApp in English immediately. |
