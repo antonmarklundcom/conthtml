@@ -73,6 +73,7 @@ while IFS= read -r name; do
   cp -R "$ROOT/$name" "$STAGE/$name"
 done < <(find "$ROOT" -mindepth 2 -name index.php \
            -not -path "$ROOT/dist/*" -not -path "$ROOT/tests/*" \
+           -not -path "$ROOT/.claude/*" -not -path "$ROOT/.git/*" \
            -printf '%P\n' | cut -d/ -f1 | sort -u)
 
 # logs/ must exist and be writable for the lead handler's degraded mode, and it
@@ -84,7 +85,7 @@ HTACCESS
 touch "$STAGE/logs/.gitkeep"
 
 # Belt and braces: nothing that should have been excluded may be in the stage.
-for forbidden in docs prompts tests deploy .git config.php dist plan.md README.md KNOWN-ISSUES.md; do
+for forbidden in docs prompts tests deploy .git .claude config.php dist plan.md README.md KNOWN-ISSUES.md; do
   if [ -e "$STAGE/$forbidden" ]; then
     echo "refusing to ship: $forbidden" >&2
     exit 1
