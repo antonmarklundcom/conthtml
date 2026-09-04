@@ -69,6 +69,10 @@ require ROOT_DIR . '/partials/header.php';
       <p class="note mt-4">Los planes definen el alcance del servicio, no un monto cerrado: cada
         propuesta se ajusta a su volumen de comprobantes, su régimen tributario y si tiene nómina, y se
         entrega por escrito antes de empezar. Sin letra chica ni cargos ocultos.</p>
+
+      <p class="note mt-3">¿Ya tiene contador y quiere pasarse a nosotros? Vea
+        <a href="/cambiar-de-contador/">qué incluye el cambio de contador</a>: no pierde historial ni
+        presentaciones.</p>
     </div>
   </section>
 
@@ -78,6 +82,8 @@ require ROOT_DIR . '/partials/header.php';
       <?php require ROOT_DIR . '/partials/faq.php'; ?>
     </div>
   </section>
+
+  <?php $industriesSurface = false; require ROOT_DIR . '/partials/industries.php'; ?>
 
   <?php
     $ctaTitle = 'Cuéntenos su volumen y le proponemos un plan.';

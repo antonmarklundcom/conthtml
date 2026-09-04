@@ -34,6 +34,8 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -51,13 +53,19 @@ jobs:
           npm ci
           npx playwright install --with-deps chromium
 
-      - name: Capture
+      - name: Capture the pages this PR changed (plus /), 1440 and 390 px
+        # Plan §4.12: screenshots are PR artifacts, never committed. Pages are derived
+        # from the diff: every route directory whose index.php changed, capped at 10.
         run: |
           php -S 127.0.0.1:8080 router.php &
           for _ in $(seq 1 40); do curl -sf -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.25; done
+          pages=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" \
+            | grep -E '(^|/)index\.php$' \
+            | sed -E 's#(^|/)index\.php$#/#; s#^/$#/#; s#^([^/])#/\1#' \
+            | grep -v '^/$' | sort -u | head -10)
+          echo "Capturing: / $pages"
           cd tests
-          node screenshots.mjs --phase ci --base http://127.0.0.1:8080 \
-            / /servicios/ /marangatu/ /contacto/
+          node screenshots.mjs --phase ci --base http://127.0.0.1:8080 / $pages
 
       - uses: actions/upload-artifact@v4
         with:

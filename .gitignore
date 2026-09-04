@@ -13,3 +13,7 @@ deploy/imagery-src/*
 !deploy/imagery-src/.gitkeep
 deploy/node_modules/
 .claude/worktrees/
+
+# Screenshots are CI artifacts (plan §4.12), never committed: the tree was 97% PNGs by size.
+docs/screenshots/*
+!docs/screenshots/.gitkeep

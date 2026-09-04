@@ -35,6 +35,7 @@ return [
         'services'    => 'Servicios',
         'pricing'     => 'Precios',
         'tools'       => 'Herramientas',
+        'guides'      => 'Guías',
         'about'       => 'Nosotros',
         'blog'        => 'Blog',
         'contact'     => 'Contacto',
@@ -226,18 +227,25 @@ return [
 
     // Rendered in place of the "Casos" band while content/site.php has no
     // testimonials (plan §5.2.1). Rubros, not clients: nothing to verify.
+    //
+    // Since C3, each item links to its real /contador-para/<slug>/ page
+    // (plan §6.6.1) — content/segmentos.php is the source, this array only
+    // orders and labels them for the band. partials/industries.php still
+    // accepts a plain string with no path, for anyone reusing it elsewhere.
     'industries' => [
         'eyebrow' => 'Rubros',
         'title'   => 'Rubros que atendemos',
         'lead'    => 'Cada rubro tiene sus propias trampas tributarias. Estos son los que '
                    . 'trabajamos todos los meses.',
         'items'   => [
-            'Comercio',
-            'Servicios',
-            'Construcción',
-            'Importación',
-            'Profesionales independientes',
-            'Gastronomía',
+            ['label' => 'Comercios',                     'path' => '/contador-para/comercios/'],
+            ['label' => 'Importadores',                  'path' => '/contador-para/importadores/'],
+            ['label' => 'Construcción',                  'path' => '/contador-para/construccion/'],
+            ['label' => 'Gastronomía',                    'path' => '/contador-para/gastronomia/'],
+            ['label' => 'Profesionales independientes',  'path' => '/contador-para/profesionales-independientes/'],
+            ['label' => 'Unipersonales',                  'path' => '/contador-para/unipersonales/'],
+            ['label' => 'Emprendedores',                  'path' => '/contador-para/emprendedores/'],
+            ['label' => 'Empresas extranjeras',           'path' => '/contador-para/empresas-extranjeras/'],
         ],
     ],
 
@@ -336,12 +344,24 @@ return [
         'benefits'  => 'Beneficios',
         'faq'       => 'Preguntas frecuentes',
         'related'   => 'Servicios relacionados',
+        'guides'    => 'Guía relacionada',
         // The service-page lead form (plan §5.3.2): every service page carries
         // a form of its own so the lead arrives tagged with that service.
         'form_eyebrow' => 'Cotización',
         'form_lead'    => 'Déjenos sus datos y le respondemos con una propuesta concreta, '
                         . 'sin costo y sin compromiso.',
         'breadcrumb' => 'Ruta de navegación',
+    ],
+
+    // Segment landing pages, /contador-para/<slug>/ and /cambiar-de-contador/
+    // (plan §6.6). Reuses 'service.we_need', 'service.faq' and 'form.legend'
+    // rather than duplicating them.
+    'segment' => [
+        'traps_title'  => 'Los errores que más le cuestan en su rubro',
+        'bundle_title' => 'Lo que armamos para su rubro',
+        'form_eyebrow' => 'Cotización para su rubro',
+        'form_lead'    => 'Cuéntenos su rubro y su volumen; le respondemos con una propuesta concreta, '
+                        . 'sin costo y sin compromiso.',
     ],
 
     // Shared microcopy across the six /herramientas/ tools (plan §6.3).
@@ -355,6 +375,18 @@ return [
         'use_result'      => 'Usar este resultado en el formulario',
         'need_js'         => 'Esta calculadora necesita JavaScript activado en su navegador.',
         'restart'         => 'Volver a empezar',
+    ],
+
+    // Shared microcopy across the ten /guias/ pages (plan §6.5).
+    'guide' => [
+        'reviewed_prefix'       => 'Revisado el',
+        'orientativo'           => 'Es una guía general: para su caso puntual, confírmelo con nosotros.',
+        'delegate_eyebrow'      => 'Delegarlo',
+        'delegate_title'        => '¿Prefiere que lo hagamos nosotros?',
+        'delegate_lead'         => 'Le respondemos dentro del siguiente día hábil con los pasos exactos '
+                                  . 'para su caso.',
+        'delegate_form_heading' => 'Pedir que nos encarguemos',
+        'related'               => 'Otras guías',
     ],
 
     'placeholder' => [
