@@ -138,4 +138,4 @@ Expected cost: T0 $5–8, T1 $10–15, lane 2 $8–12 per phase in parallel, lin
 
 ## After the build
 
-When the project is live and stable, prompt the user to create a project-specific skill (like `propia-dev`) capturing final schema, routes, known issues, and do-not-touch guardrails — this skill covers the build method; project skills carry the specifics. If the build blew the budget above, add the reason to this skill's "Budget" section so the next plan avoids it.
+When the project is live and stable, prompt the user to create a project-specific skill (like `propia-dev`) capturing final schema, routes, known issues, and do-not-touch guardrails — this skill covers the build method; project skills carry the specifics. Any skill written or edited for Anton (this one included) must keep its frontmatter `description` under 1024 characters and pass `skill-creator/scripts/quick_validate.py` before it is handed over as a zip — claude.ai rejects the upload otherwise. If the build blew the budget above, add the reason to this skill's "Budget" section so the next plan avoids it.
