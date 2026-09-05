@@ -1649,7 +1649,7 @@ section[id] {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  align-items: end;
+  align-items: start;
 }
 
 .hero--home .hero__copy {
@@ -1658,7 +1658,7 @@ section[id] {
 }
 
 .hero__panel {
-  align-self: end;
+  margin-top: 156px;
 }
 
 .status-panel__note {
