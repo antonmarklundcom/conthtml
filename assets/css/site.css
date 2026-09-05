@@ -2555,3 +2555,22 @@ a.industries__item:focus-visible {
   border-color: var(--accent2-tint);
   color: var(--ink);
 }
+
+/* == imagery batch 2: article/guide thumbnails == */
+.article-thumbnail {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-card);
+  border: 1px solid var(--border);
+  margin-top: var(--s-4);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* == imagery batch 2: servicios icons == */
+#servicios .grid > .card:nth-child(1) { background: url("/assets/img/icono-contabilidad-libros-digitales-400.avif") no-repeat top 20px right 20px / 40px auto; }
+#servicios .grid > .card:nth-child(2) { background: url("/assets/img/icono-impuestos-declaracion-iva-400.avif") no-repeat top 20px right 20px / 40px auto; }
+#servicios .grid > .card:nth-child(3) { background: url("/assets/img/icono-nomina-planillas-personal-400.avif") no-repeat top 20px right 20px / 40px auto; }
+#servicios .grid > .card:nth-child(4) { background: url("/assets/img/icono-apertura-empresa-ruc-400.avif") no-repeat top 20px right 20px / 40px auto; }
+#servicios .grid > .card:nth-child(5) { background: url("/assets/img/icono-facturacion-electronica-sifen-400.avif") no-repeat top 20px right 20px / 40px auto; }
+#servicios .grid > .card:nth-child(6) { background: url("/assets/img/icono-auditoria-financiera-400.avif") no-repeat top 20px right 20px / 40px auto; }

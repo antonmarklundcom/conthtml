@@ -74,6 +74,10 @@ require ROOT_DIR . '/partials/header.php';
         <p class="eyebrow"><?= e($guide['hero']['eyebrow']) ?></p>
         <h1><?= e($guide['hero']['h1']) ?></h1>
         <p class="lead"><?= e($guide['hero']['lead']) ?></p>
+        <?php if (!empty($guide['thumbnail']['src'])): ?>
+          <img class="article-thumbnail" src="<?= e(asset($guide['thumbnail']['src'])) ?>"
+               alt="<?= e($guide['thumbnail']['alt'] ?? '') ?>" width="1280" height="960" loading="lazy">
+        <?php endif; ?>
       </div>
     </div>
   </section>

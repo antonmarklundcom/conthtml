@@ -38,6 +38,9 @@
  *                             matching calculator exists (plan §6.5.1), null
  *                             otherwise
  *   related          string[] 2–3 sibling guide slugs
+ *   thumbnail        ?array   optional ['src' => ..., 'alt' => ...] rendered
+ *                             as a card thumbnail by templates/guide.php when
+ *                             present; guides without one render no image
  *
  * Every legal number, deadline, system name or process detail stated below is
  * logged in docs/facts-to-verify.md with its source and confidence, per the
@@ -291,6 +294,10 @@ return [
         'relatedService' => 'ekuatia',
         'toolLink' => null,
         'related' => ['que-es-sifen', 'como-ingresar-a-marangatu'],
+        'thumbnail' => [
+            'src' => '/assets/img/factura-electronica-sifen-marangatu-1280.avif',
+            'alt' => 'Ilustración editorial de un documento digital conectado a una institución que representa la facturación electrónica SIFEN y Marangatu.',
+        ],
     ],
 
     'que-es-sifen' => [
@@ -361,6 +368,10 @@ return [
         'relatedService' => 'ekuatia',
         'toolLink' => null,
         'related' => ['ekuatiai-paso-a-paso', 'como-ingresar-a-marangatu'],
+        'thumbnail' => [
+            'src' => '/assets/img/factura-electronica-sifen-marangatu-1280.avif',
+            'alt' => 'Ilustración editorial de un documento digital conectado a una institución que representa la facturación electrónica SIFEN y Marangatu.',
+        ],
     ],
 
     'inscripcion-de-ruc-paso-a-paso' => [
@@ -446,6 +457,10 @@ return [
             'text'  => 'Vea cuál figura le conviene antes de inscribir el RUC de su empresa.',
         ],
         'related' => ['consulta-de-ruc', 'inscripcion-patronal-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/apertura-eas-documentos-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de una puerta de local comercial entreabierta que representa la apertura de una empresa en Paraguay.',
+        ],
     ],
 
     'formulario-120-paso-a-paso' => [
@@ -526,6 +541,10 @@ return [
             'text'  => 'Calcule el IVA incluido o excluido de un monto antes de declarar.',
         ],
         'related' => ['que-es-sifen', 'irp-quien-debe-pagar'],
+        'thumbnail' => [
+            'src' => '/assets/img/declaracion-ire-iva-paraguay-1280.avif',
+            'alt' => 'Ilustración editorial de documentos con una marca de verificación que representan la declaración de IRE e IVA en Paraguay.',
+        ],
     ],
 
     'certificado-de-cumplimiento-tributario' => [
