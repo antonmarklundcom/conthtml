@@ -606,10 +606,12 @@ return [
             [
                 'h2'   => '¿Quién debe inscribirse al IRP?',
                 'body' => [
-                    'El IRP alcanza a las personas físicas cuyos ingresos superan los tramos que fija la '
-                        . 'ley: sueldos, honorarios profesionales, alquileres y otras rentas personales. '
-                        . 'Si su actividad combina relación de dependencia con trabajo independiente, la '
-                        . 'evaluación se hace sobre el total de sus ingresos, no solo sobre uno de ellos.',
+                    'El IRP alcanza a las personas físicas cuyos ingresos brutos por servicios personales '
+                        . '—sueldos, honorarios profesionales, alquileres y otras rentas de este tipo— '
+                        . 'superan Gs. 80.000.000 al año (Ley N.º 6380/2019). Por debajo de ese umbral no '
+                        . 'está obligado a inscribirse ni a presentar declaración. Si su actividad combina '
+                        . 'relación de dependencia con trabajo independiente, la evaluación se hace sobre '
+                        . 'el total de sus ingresos, no solo sobre uno de ellos.',
                 ],
             ],
             [
@@ -621,12 +623,23 @@ return [
                 ],
             ],
             [
+                'h2'   => 'Tasas del IRP: cómo se calcula',
+                'body' => [
+                    'El IRP se calcula por tramos sobre su renta neta anual: 8 % hasta Gs. 50.000.000, 9 % '
+                        . 'entre Gs. 50.000.001 y Gs. 150.000.000, y 10 % sobre el excedente por encima de '
+                        . 'Gs. 150.000.000. Las rentas de capital (intereses, alquileres, ganancias de '
+                        . 'capital) tributan a una tasa fija del 8 %. Estos porcentajes están fijados por la '
+                        . 'Ley N.º 6380/2019 y no tuvieron reforma para el ejercicio en curso; igual '
+                        . 'confirmamos su caso antes de presentar, porque el resultado depende de sus '
+                        . 'deducciones válidas, no solo del tramo.',
+                ],
+            ],
+            [
                 'h2'   => 'Presentación anual: plazo y Formulario',
                 'body' => [
                     'La declaración del IRP se presenta una vez al año en Marangatu, con el detalle de sus '
-                        . 'ingresos y deducciones del ejercicio. Consulte el monto vigente de los tramos y '
-                        . 'tasas antes de estimar su impuesto: cambian con la reglamentación y preferimos '
-                        . 'confirmarlo caso por caso a arriesgar una cifra desactualizada.',
+                        . 'ingresos y deducciones del ejercicio. Le confirmamos la fecha exacta según el '
+                        . 'calendario que publica la DNIT cada año, para que no dependa de recordarla usted.',
                 ],
             ],
             [
@@ -644,7 +657,8 @@ return [
             ['title' => 'Presentación dentro del plazo', 'text' => 'Su declaración anual sale a tiempo, sin depender de que usted recuerde la fecha.'],
         ],
         'faq' => [
-            ['q' => '¿Quiénes deben inscribirse al IRP?', 'a' => 'Las personas físicas cuyos ingresos —sueldos, honorarios profesionales, alquileres u otras rentas personales— superan los tramos que fija la ley. Si combina relación de dependencia con trabajo independiente, revisamos el total de sus ingresos del ejercicio y se lo confirmamos con precisión.'],
+            ['q' => '¿Quiénes deben inscribirse al IRP?', 'a' => 'Las personas físicas cuyos ingresos brutos por sueldos, honorarios profesionales, alquileres u otras rentas personales superan Gs. 80.000.000 al año (Ley N.º 6380/2019). Si combina relación de dependencia con trabajo independiente, revisamos el total de sus ingresos del ejercicio y se lo confirmamos con precisión.'],
+            ['q' => '¿Cuánto se paga de IRP?', 'a' => 'Se calcula por tramos sobre su renta neta anual: 8 % hasta Gs. 50.000.000, 9 % entre Gs. 50.000.001 y Gs. 150.000.000, y 10 % sobre el excedente por encima de Gs. 150.000.000. Las rentas de capital tributan siempre al 8 %. Le mostramos el cálculo exacto según sus ingresos y deducciones reales.'],
             ['q' => '¿Qué puedo deducir en el IRP?', 'a' => 'Determinados gastos personales con factura legal a su nombre, dentro de los límites que fija la reglamentación vigente. Le indicamos con anticipación qué comprobantes juntar durante el año, para que la deducción sea válida cuando llegue el momento de presentar la declaración.'],
             ['q' => '¿Cuándo se presenta la declaración anual del IRP?', 'a' => 'Se presenta una vez al año en Marangatu, con el detalle de sus ingresos y deducciones del ejercicio completo. El plazo exacto se confirma según el calendario vigente que publica la DNIT cada año, y se lo recordamos con anticipación.'],
             ['q' => '¿Qué pasa si tengo IRP y también soy dueño de una empresa?', 'a' => 'Son dos obligaciones separadas: el IRP grava sus ingresos personales y el IRE grava la renta de su empresa como persona jurídica o unipersonal. Coordinamos ambas liquidaciones para que no haya inconsistencias entre lo que declara como persona y lo que declara su empresa.'],

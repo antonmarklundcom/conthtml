@@ -799,9 +799,8 @@ return [
                 . 'profesional independiente, por alquileres u otras rentas. No todo el que factura o '
                 . 'recibe un salario está obligado a inscribirse — depende del monto total de ingresos del '
                 . 'año y de la categoría en la que encaja.',
-            'Esta guía explica el criterio general para saber si le corresponde inscribirse y presentar el '
-                . 'IRP, sin entrar en montos exactos que cambian por reglamentación — para esos valores '
-                . 'vigentes, la sección final lo conecta con una consulta directa.',
+            'Esta guía explica el criterio y los montos vigentes según la Ley N.º 6380/2019, y cuándo '
+                . 'conviene confirmar su caso puntual con una consulta directa.',
         ],
         'steps' => [
             [
@@ -814,19 +813,22 @@ return [
                 ],
             ],
             [
-                'title' => 'Compare sus ingresos anuales contra el monto vigente',
+                'title' => 'Compare sus ingresos anuales contra el monto que obliga a declarar',
                 'body'  => [
-                    'La ley fija un monto anual de ingresos a partir del cual corresponde inscribirse y '
-                        . 'declarar. Ese monto y las deducciones admitidas pueden actualizarse por '
-                        . 'reglamentación — consulte el monto vigente antes de decidir si le corresponde.',
+                    'La Ley N.º 6380/2019 fija el umbral en Gs. 80.000.000 de ingresos brutos anuales por '
+                        . 'servicios personales: por debajo de esa cifra no corresponde inscribirse ni '
+                        . 'declarar. Por encima, el impuesto se calcula por tramos sobre la renta neta: 8 % '
+                        . 'hasta Gs. 50.000.000, 9 % entre Gs. 50.000.001 y Gs. 150.000.000, y 10 % sobre el '
+                        . 'excedente por encima de Gs. 150.000.000 (las rentas de capital tributan siempre '
+                        . 'al 8 %).',
                 ],
             ],
             [
                 'title' => 'Revise qué deducciones puede aplicar',
                 'body'  => [
                     'El IRP admite deducir determinados gastos personales y familiares del ingreso bruto '
-                        . 'antes de calcular el impuesto. Qué gastos califican y hasta qué monto también se '
-                        . 'fija por reglamentación vigente.',
+                        . 'antes de calcular el impuesto, siempre respaldados con factura legal a su nombre. '
+                        . 'Cuáles califican y hasta qué monto depende de su situación concreta.',
                 ],
             ],
             [
@@ -847,9 +849,10 @@ return [
             ],
         ],
         'faq' => [
-            ['q' => '¿A partir de qué monto corresponde inscribirse al IRP?', 'a' => 'La ley fija un monto anual de ingresos a partir del cual corresponde inscribirse; ese monto puede actualizarse por reglamentación, así que conviene confirmar el vigente antes de decidir su situación.'],
-            ['q' => '¿Los empleados en relación de dependencia pagan IRP?', 'a' => 'Puede corresponder según el total de sus ingresos anuales, no solo el salario: si supera el monto que obliga a declarar, el IRP aplica también a quienes trabajan en relación de dependencia.'],
-            ['q' => '¿Si tengo una empresa, pago IRP o IRE?', 'a' => 'Depende: la empresa como persona jurídica tributa IRE; si usted además tiene ingresos personales que superan el monto que obliga a declarar IRP, puede tener ambas obligaciones a la vez, cada una sobre su propia base.'],
+            ['q' => '¿A partir de qué monto corresponde inscribirse al IRP?', 'a' => 'A partir de Gs. 80.000.000 de ingresos brutos anuales por servicios personales (Ley N.º 6380/2019). Por debajo de ese monto no corresponde inscribirse ni declarar.'],
+            ['q' => '¿Cuánto se paga de IRP?', 'a' => 'Se calcula por tramos sobre la renta neta anual: 8 % hasta Gs. 50.000.000, 9 % entre Gs. 50.000.001 y Gs. 150.000.000, y 10 % sobre el excedente por encima de Gs. 150.000.000. Las rentas de capital (intereses, alquileres, ganancias de capital) tributan siempre al 8 %.'],
+            ['q' => '¿Los empleados en relación de dependencia pagan IRP?', 'a' => 'Puede corresponder según el total de sus ingresos anuales, no solo el salario: si supera Gs. 80.000.000 al año, el IRP aplica también a quienes trabajan en relación de dependencia.'],
+            ['q' => '¿Si tengo una empresa, pago IRP o IRE?', 'a' => 'Depende: la empresa como persona jurídica tributa IRE (10 % flat sobre la renta neta); si usted además tiene ingresos personales que superan Gs. 80.000.000 al año, puede tener ambas obligaciones a la vez, cada una sobre su propia base.'],
             ['q' => '¿Cuándo se presenta la declaración de IRP?', 'a' => 'Anualmente, dentro del plazo que la DNIT fija cada año, habitualmente en los primeros meses del año siguiente al que se declara. Confirme el mes exacto vigente antes de la fecha.'],
         ],
         'relatedService' => 'irp',

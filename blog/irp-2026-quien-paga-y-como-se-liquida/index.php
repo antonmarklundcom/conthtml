@@ -30,13 +30,16 @@ $sections = [
     [
         'h2'   => '¿Quién debe inscribirse y pagar?',
         'body' => [
-            'El IRP alcanza a las personas físicas cuyos ingresos superan los tramos que fija la ley. Si '
-                . 'su actividad combina relación de dependencia con trabajo independiente —por ejemplo, un '
-                . 'sueldo fijo más honorarios por consultorías— la evaluación se hace sobre el total de '
-                . 'sus ingresos del ejercicio, no sobre cada fuente por separado.',
-            'Los tramos y las tasas vigentes cambian con la reglamentación, así que preferimos confirmar '
-                . 'con precisión su caso concreto antes de estimar si le corresponde inscribirse, en lugar '
-                . 'de arriesgar una cifra que puede haber cambiado desde la última actualización.',
+            'El IRP alcanza a las personas físicas cuyos ingresos brutos anuales por servicios personales '
+                . 'superan Gs. 80.000.000 (Ley N.º 6380/2019). Si su actividad combina relación de '
+                . 'dependencia con trabajo independiente —por ejemplo, un sueldo fijo más honorarios por '
+                . 'consultorías— la evaluación se hace sobre el total de sus ingresos del ejercicio, no '
+                . 'sobre cada fuente por separado.',
+            'Por encima de ese umbral, el impuesto se calcula por tramos sobre la renta neta: 8 % hasta '
+                . 'Gs. 50.000.000, 9 % entre Gs. 50.000.001 y Gs. 150.000.000, y 10 % sobre el excedente por '
+                . 'encima de Gs. 150.000.000. Las rentas de capital (intereses, alquileres, ganancias de '
+                . 'capital) tributan siempre al 8 %. Igual conviene confirmar su caso concreto, porque el '
+                . 'resultado final depende de sus deducciones válidas, no solo del tramo.',
         ],
     ],
     [
@@ -116,21 +119,25 @@ $sections[] = [
 $faq = [
     [
         'q' => '¿Quién debe pagar el IRP en Paraguay?',
-        'a' => 'Las personas físicas cuyos ingresos —sueldos, honorarios profesionales, alquileres u '
-             . 'otras rentas personales— superan los tramos que fija la ley vigente. Confirmamos su caso '
-             . 'concreto con precisión, ya que los tramos cambian con la reglamentación.',
+        'a' => 'Las personas físicas cuyos ingresos brutos anuales —sueldos, honorarios profesionales, '
+             . 'alquileres u otras rentas personales— superan Gs. 80.000.000 (Ley N.º 6380/2019). Por '
+             . 'debajo de ese monto no corresponde inscribirse ni declarar.',
     ],
     [
         'q' => '¿El IRP es lo mismo que el IRE?',
-        'a' => 'No. El IRP grava los ingresos personales de una persona física; el IRE grava la renta de '
-             . 'una empresa como persona jurídica o unipersonal. Una persona puede estar alcanzada por '
-             . 'ambos a la vez, por fuentes de ingreso distintas.',
+        'a' => 'No. El IRP grava los ingresos personales de una persona física, por tramos (8 %, 9 % y '
+             . '10 % según el monto); el IRE grava la renta de una empresa como persona jurídica o '
+             . 'unipersonal, con una tasa fija del 10 %. Una persona puede estar alcanzada por ambos a la '
+             . 'vez, por fuentes de ingreso distintas.',
     ],
     [
         'q' => '¿Cómo se calcula el IRP en 2026?',
-        'a' => 'Se suman todos los ingresos personales del ejercicio y se aplican las deducciones que la '
-             . 'ley permite, según los tramos y tasas vigentes ese año. No indicamos un monto genérico '
-             . 'aquí porque cambia con la reglamentación; confirmamos el cálculo exacto caso por caso.',
+        'a' => 'Se suman todos los ingresos personales del ejercicio, se restan las deducciones que la ley '
+             . 'permite y se aplica la tasa del tramo correspondiente sobre la renta neta: 8 % hasta '
+             . 'Gs. 50.000.000, 9 % entre Gs. 50.000.001 y Gs. 150.000.000, y 10 % sobre el excedente por '
+             . 'encima de Gs. 150.000.000 (rentas de capital, siempre 8 %). No hubo reforma de estas tasas '
+             . 'para el ejercicio en curso; confirmamos el cálculo exacto caso por caso según sus '
+             . 'deducciones reales.',
     ],
     [
         'q' => '¿Cuándo se presenta la declaración anual del IRP?',

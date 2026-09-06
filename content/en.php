@@ -232,12 +232,12 @@ return [
                         . 'turnover: Resimple (a fixed monthly instalment, for turnover up to Gs. 80,000,000 '
                         . 'a year), IRE Simple (tax on real profit, up to Gs. 2,000,000,000 a year) or IRE '
                         . 'General (full accounting, above that threshold or where required by structure). '
-                        . 'These thresholds are set by regulation and can change, so we confirm the current '
-                        . 'figures with you before registering your company into a regime.',
-                    'The annual return is filed on Formulario 120 through Marangatu, the DNIT\'s online '
-                        . 'system, in the first months of the year following the close of the fiscal year. We '
-                        . 'do not state the current tax rate here — ask us for the figure that applies to your '
-                        . 'regime, since it is set by regulation.',
+                        . 'These thresholds are set by Law 6380/2019 and can change by regulation, so we '
+                        . 'confirm the current figures with you before registering your company into a regime.',
+                    'Under IRE General and IRE Simple, the tax rate on net taxable income is a flat 10% '
+                        . '(Law 6380/2019, Art. 21) — there is no bracket system for companies. The annual '
+                        . 'return is filed on Formulario 120 through Marangatu, the DNIT\'s online system, in '
+                        . 'the first months of the year following the close of the fiscal year.',
                 ],
             ],
             [
@@ -255,9 +255,13 @@ return [
                 'h2'   => 'IRP — personal income tax and residency',
                 'body' => [
                     'IRP applies to an individual\'s income, added up across sources — salary, professional '
-                        . 'fees, rental income. The current threshold and deduction limits are set by '
-                        . 'regulation and can change, so we confirm the current amount on request rather than '
-                        . 'state a figure here that may already be out of date.',
+                        . 'fees, rental income. It only applies above Gs. 80,000,000 in gross annual income '
+                        . '(Law 6380/2019); below that threshold there is no obligation to register or file. '
+                        . 'Above it, the tax is charged in brackets on net taxable income: 8% up to Gs. '
+                        . '50,000,000, 9% from Gs. 50,000,001 to Gs. 150,000,000, and 10% on the excess above '
+                        . 'Gs. 150,000,000 — capital income (interest, rent, capital gains) is taxed at a flat '
+                        . '8% regardless of the bracket. Deduction limits are set by regulation and we confirm '
+                        . 'the exact figures for your case.',
                     'Paraguay determines individual tax residency mainly by how much time you spend physically '
                         . 'in the country and by where your main economic activity is based, rather than by '
                         . 'citizenship or company ownership alone. The exact criteria are set by regulation — '
