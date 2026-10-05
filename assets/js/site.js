@@ -26,6 +26,7 @@
   if (drawer && toggle && !desktop.matches) {
     drawer.hidden = true;
   }
+  header.setAttribute("data-enhanced", "");
 
   function setMega(open) {
     if (!mega || !megaButton) {
