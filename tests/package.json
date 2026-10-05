@@ -1,7 +1,7 @@
 {
   "name": "conthtml-tests",
   "private": true,
-  "description": "Playwright screenshots for PR previews. The site itself never depends on Node.",
+  "description": "Browser regression checks and PR screenshots. The site itself never depends on Node.",
   "scripts": {
     "shots": "node screenshots.mjs"
   },

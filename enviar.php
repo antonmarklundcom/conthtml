@@ -295,7 +295,8 @@ if (rate_limited(client_ip())) {
 }
 
 // --- 5. First-touch attribution ---------------------------------------------
-// Written by the CRM's vc-attribution.js when B4 adds it; POST fields win.
+// Written by the configured CRM's vc-attribution.js. Keep the first campaign
+// when a returning visitor arrives through a later campaign URL.
 $attr = [];
 if (!empty($_COOKIE['vc_attr'])) {
     $decoded = json_decode((string) $_COOKIE['vc_attr'], true);
@@ -306,7 +307,8 @@ if (!empty($_COOKIE['vc_attr'])) {
 
 $attribution = [];
 foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'] as $key) {
-    $value = field($key, 200) ?: (string) ($attr[$key] ?? '');
+    $firstTouch = $attr[$key] ?? '';
+    $value = is_string($firstTouch) && $firstTouch !== '' ? $firstTouch : field($key, 200);
     if ($value !== '') {
         $attribution[$key] = mb_substr($value, 0, 200);
     }

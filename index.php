@@ -1,14 +1,7 @@
 <?php
 /**
- * Homepage — the 1B artboard, ported section by section (plan §5.2.1):
- * hero with the status panel, six numbered service cards, credibilidad,
- * proceso, casos (or rubros while there are no testimonials), contacto.
- *
- * Everything the page says about the firm comes from content/site.php, and
- * every one of those values is still null (plan §7). So the stat row, the "N
- * años" badge, the credential list and the testimonials band all hide or fall
- * back to neutral phrasing instead of shipping the 1B mock's invented figures
- * (plan §1.4). Filling content/site.php switches them on with no code change.
+ * Homepage: concise service discovery and contact, with an illustrative
+ * report/workflow instead of unverified portraits or invented firm metrics.
  */
 
 require __DIR__ . '/lib/bootstrap.php';
@@ -29,7 +22,7 @@ $homeStats = array_values(array_filter(
 
 $homeCredentials = array_values(array_filter((array) site('credentials')));
 if ($homeCredentials === []) {
-    $homeCredentials = content('ui')['about']['credentials'];
+    $homeCredentials = content('ui')['about']['home_credentials'];
 }
 
 /* The same predicate partials/testimonials.php uses, so the page never ends up
@@ -43,12 +36,11 @@ $homeTestimonials = array_filter(
    default — still a message about the visitor's company, never the button's
    own label (plan §5.3.8a). */
 $homeWhatsapp = whatsapp_link(whatsapp_text_for_page());
-$homePhotos   = (array) site('photos');
 
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
 ?>
-<main id="main">
+<main id="main" class="home-page">
 
   <!-- Hero ------------------------------------------------------------- -->
   <section class="hero hero--home">
@@ -65,9 +57,15 @@ require ROOT_DIR . '/partials/header.php';
         <p class="lead hero__lead"><?= e(ui('home.lead')) ?></p>
 
         <div class="btn-row">
-          <a class="btn btn--primary" href="/contacto/"><?= e(ui('cta.consult')) ?></a>
+          <a class="btn <?= $homeWhatsapp ? 'btn--whatsapp' : 'btn--primary' ?>" href="<?= e($homeWhatsapp ?? '/contacto/') ?>"<?= $homeWhatsapp ? ' rel="noopener" data-service=""' : '' ?>>
+            <?= e($homeWhatsapp ? ui('cta.whatsapp_long') : ui('cta.consult')) ?>
+          </a>
           <a class="btn btn--secondary" href="#servicios"><?= e(ui('cta.see_included')) ?></a>
         </div>
+
+        <?php if (site('phone')): ?>
+          <p class="hero__phone"><a href="tel:+<?= e(phone_digits(site('phone'))) ?>"><?= e(site('phone')) ?></a> · <?= e(site('city')) ?></p>
+        <?php endif; ?>
 
         <?php if ($homeStats !== []): ?>
           <div class="stat-row">
@@ -95,6 +93,7 @@ require ROOT_DIR . '/partials/header.php';
 
       <div class="hero__panel">
         <?php require ROOT_DIR . '/partials/status-panel.php'; ?>
+        <p class="hero__panel-note"><?= e(ui('home.report_note')) ?></p>
       </div>
 
     </div>
@@ -111,11 +110,7 @@ require ROOT_DIR . '/partials/header.php';
         <p class="section-head__aside"><?= e(ui('home.services_lead')) ?></p>
       </div>
 
-      <?php
-      $gridCards    = content('ui')['home']['cards'];
-      $gridNumbered = true;
-      require ROOT_DIR . '/partials/service-card-grid.php';
-      ?>
+      <?php require ROOT_DIR . '/partials/home-services.php'; ?>
 
       <div class="unsure">
         <div class="unsure__copy">
@@ -132,41 +127,18 @@ require ROOT_DIR . '/partials/header.php';
   </section>
 
   <!-- Credibilidad ------------------------------------------------------ -->
-  <section class="section">
+  <section class="section home-overview">
     <div class="container split">
 
-      <?php
-      /* No photography yet (B4 supplies it, plan §6.4.1). The two slots are
-         decorative texture on desktop, where they hold the 1B composition
-         together; on a phone they would be a screenful of nothing, so
-         .figures--empty drops them there and keeps only the badge. */
-      $homeHasPhotos = !empty($homePhotos['portrait']['src']) || !empty($homePhotos['team']['src']);
-      ?>
-      <div class="figures<?= $homeHasPhotos ? '' : ' figures--empty' ?>">
-        <?php if (!empty($homePhotos['portrait']['src'])): ?>
-          <img class="figures__tall" src="<?= e(asset($homePhotos['portrait']['src'])) ?>"
-               alt="<?= e($homePhotos['portrait']['alt'] ?? '') ?>" width="420" height="560" loading="lazy">
-        <?php else: ?>
-          <div class="figures__tall figures__slot" aria-hidden="true"></div>
-        <?php endif; ?>
-
-        <div class="figures__col">
-          <?php if (!empty($homePhotos['team']['src'])): ?>
-            <img class="figures__square" src="<?= e(asset($homePhotos['team']['src'])) ?>"
-                 alt="<?= e($homePhotos['team']['alt'] ?? '') ?>" width="420" height="420" loading="lazy">
-          <?php else: ?>
-            <div class="figures__square figures__slot" aria-hidden="true"></div>
-          <?php endif; ?>
-
-          <div class="figures__badge">
-            <?php if (site('foundedYear')): ?>
-              <span class="figures__badge-value"><?= e((string) (((int) date('Y')) - (int) site('foundedYear'))) ?> años</span>
-              <span class="figures__badge-note"><?= e(ui('about.badge_note')) ?></span>
-            <?php else: ?>
-              <span class="figures__badge-note figures__badge-note--solo"><?= e(ui('about.badge_fallback')) ?></span>
-            <?php endif; ?>
-          </div>
-        </div>
+      <div class="work-preview">
+        <span class="work-preview__mark" aria-hidden="true">C.</span>
+        <p class="eyebrow"><?= e(ui('about.workflow_note')) ?></p>
+        <h3><?= e(ui('about.workflow_title')) ?></h3>
+        <ol class="work-preview__steps">
+          <?php foreach (content('ui')['about']['workflow_steps'] as $workIndex => $workStep): ?>
+            <li><span class="work-preview__number" aria-hidden="true"><?= $workIndex + 1 ?></span><?= e($workStep) ?></li>
+          <?php endforeach; ?>
+        </ol>
       </div>
 
       <div class="stack">
@@ -185,7 +157,12 @@ require ROOT_DIR . '/partials/header.php';
   </section>
 
   <!-- Proceso ----------------------------------------------------------- -->
-  <?php require ROOT_DIR . '/partials/process.php'; ?>
+  <?php
+  $processCompact = true;
+  $processTitle = ui('home.process_title');
+  $processSteps = content('ui')['home']['process_steps'];
+  require ROOT_DIR . '/partials/process.php';
+  ?>
 
   <!-- Casos, or the rubros band while there are no testimonials ---------- -->
   <?php if ($homeTestimonials !== []): ?>
@@ -200,8 +177,8 @@ require ROOT_DIR . '/partials/header.php';
 
       <div class="stack">
         <p class="eyebrow"><?= e(ui('cta_band.eyebrow')) ?></p>
-        <h2 class="d2"><?= e(ui('cta_band.title')) ?></h2>
-        <div class="prose"><p><?= e(ui('cta_band.lead')) ?></p></div>
+        <h2 class="d2"><?= e(ui('home.contact_title')) ?></h2>
+        <div class="prose"><p><?= e(ui('home.contact_lead')) ?></p></div>
 
         <div class="btn-row">
           <?php if ($homeWhatsapp !== null): ?>
@@ -225,7 +202,7 @@ require ROOT_DIR . '/partials/header.php';
         <?php endif; ?>
 
         <ul class="checklist">
-          <?php foreach (content('ui')['contact']['steps'] as $homeStep): ?>
+          <?php foreach (content('ui')['home']['contact_steps'] as $homeStep): ?>
             <li><span><?= e($homeStep) ?></span></li>
           <?php endforeach; ?>
         </ul>

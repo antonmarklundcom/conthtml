@@ -34,6 +34,8 @@ declare(strict_types=1);
 $formId      = $formId ?? 'contacto';
 $formNeed    = $formNeed ?? '';
 $formHeading = $formHeading ?? ui('form.legend');
+$formShowNeeds = $formShowNeeds ?? true;
+$formLang = $formLang ?? '';
 
 /* The lead value model decides this form's service, tier and thank-you copy
    (plan §5.3.2). A form on a service or tool page inherits the page's slug; a
@@ -56,35 +58,31 @@ $idempotencyKey = bin2hex(random_bytes(16));
 $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
 ?>
 <form class="lead-form" action="/enviar.php" method="post" data-lead-form
-      data-whatsapp="<?= e($whatsapp ?? '') ?>">
+      data-whatsapp="<?= e($whatsapp ?? '') ?>" aria-describedby="<?= e($formId) ?>-required"
+      data-error-phone="<?= e(ui('form.error_phone')) ?>"
+      data-error-email="<?= e(ui('form.error_email')) ?>"
+      data-error-rate="<?= e(ui('form.error_rate')) ?>"
+      data-error-origin="<?= e(ui('form.error_origin')) ?>">
 
   <?php if ($formHeading !== ''): ?>
     <h2 class="card-title"><?= e($formHeading) ?></h2>
   <?php endif; ?>
 
+  <p class="note lead-form__hint" id="<?= e($formId) ?>-required"><?= e(ui('form.required_note')) ?></p>
+
   <div class="lead-form__row">
     <label class="field">
       <span><?= e(ui('form.name')) ?></span>
-      <input type="text" name="name" autocomplete="name" required>
+      <input type="text" name="name" autocomplete="name" maxlength="200" required>
     </label>
-    <label class="field">
-      <span><?= e(ui('form.company')) ?></span>
-      <input type="text" name="company" autocomplete="organization">
-    </label>
-  </div>
-
-  <div class="lead-form__row">
     <label class="field">
       <span><?= e(ui('form.phone')) ?></span>
       <input type="tel" name="phone" inputmode="tel" autocomplete="tel"
-             placeholder="<?= e(ui('form.phone_hint')) ?>" required>
-    </label>
-    <label class="field">
-      <span><?= e(ui('form.email')) ?></span>
-      <input type="email" name="email" autocomplete="email">
+             placeholder="<?= e(ui('form.phone_hint')) ?>" maxlength="30" required>
     </label>
   </div>
 
+  <?php if ($formShowNeeds): ?>
   <fieldset class="field">
     <legend><?= e(ui('form.need')) ?></legend>
     <div class="chip-row">
@@ -97,11 +95,29 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
       <?php endforeach; ?>
     </div>
   </fieldset>
+  <?php else: ?>
+    <input type="hidden" name="need" value="<?= e($formNeed) ?>">
+  <?php endif; ?>
 
-  <label class="field">
-    <span><?= e(ui('form.message')) ?></span>
-    <textarea name="message" rows="3" placeholder="<?= e(ui('form.message_hint')) ?>"></textarea>
-  </label>
+  <details class="lead-form__optional">
+    <summary><?= e(ui('form.optional')) ?></summary>
+    <div class="lead-form__optional-fields">
+      <div class="lead-form__row">
+        <label class="field">
+          <span><?= e(ui('form.company')) ?></span>
+          <input type="text" name="company" autocomplete="organization" maxlength="200">
+        </label>
+        <label class="field">
+          <span><?= e(ui('form.email')) ?></span>
+          <input type="email" name="email" autocomplete="email" maxlength="320">
+        </label>
+      </div>
+      <label class="field">
+        <span><?= e(ui('form.message')) ?></span>
+        <textarea name="message" rows="3" maxlength="5000" placeholder="<?= e(ui('form.message_hint')) ?>"></textarea>
+      </label>
+    </div>
+  </details>
 
   <!-- Honeypot: bots fill it, humans never see it. -->
   <div class="honeypot" aria-hidden="true">
@@ -116,6 +132,9 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
        by the page, never by whoever posts the form (docs/lead-value.md rule 2). -->
   <input type="hidden" name="service" value="<?= e($formService) ?>">
   <input type="hidden" name="value_tier" value="<?= e($formTier) ?>">
+  <?php if ($formLang !== ''): ?>
+    <input type="hidden" name="lang" value="<?= e($formLang) ?>">
+  <?php endif; ?>
   <!-- Always rendered, usually empty: a calculator fills it in through
        assets/js/tools/tools-shared.js when the visitor uses its result. -->
   <input type="hidden" name="tool_result" value="<?= e($formToolResult) ?>" data-tool-result>
@@ -143,9 +162,12 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
     require ROOT_DIR . '/partials/lead-thanks.php';
   ?>
 
-  <p class="form-status form-status--error" data-form-error hidden role="alert">
+  <p class="form-status form-status--error" data-form-error hidden role="alert" tabindex="-1">
     <strong><?= e(ui('form.error_title')) ?></strong>
-    <?= e(ui('form.error_text')) ?>
+    <span data-form-error-message><?= e(ui('form.error_text')) ?></span>
+    <?php if ($whatsapp !== null): ?>
+      <a href="<?= e($whatsapp) ?>" rel="noopener" data-service="<?= e($formService) ?>"><?= e(ui('form.error_whatsapp')) ?></a>
+    <?php endif; ?>
   </p>
 </form>
 <?php
@@ -154,5 +176,5 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
 unset(
     $formId, $formNeed, $formHeading, $formService, $formLead, $formTier,
     $formToolResult, $formSourcePage, $sourcePage, $whatsapp, $idempotencyKey,
-    $utmKeys, $key, $label
+    $utmKeys, $key, $label, $formShowNeeds, $formLang
 );

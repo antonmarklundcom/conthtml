@@ -1,0 +1,3860 @@
+{
+  "routes": {
+    "/": {
+      "status": 200,
+      "location": null
+    },
+    "/servicios/": {
+      "status": 200,
+      "location": null
+    },
+    "/contacto/": {
+      "status": 200,
+      "location": null
+    },
+    "/nosotros/": {
+      "status": 200,
+      "location": null
+    },
+    "/precios/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/": {
+      "status": 200,
+      "location": null
+    },
+    "/privacidad/": {
+      "status": 200,
+      "location": null
+    },
+    "/terminos/": {
+      "status": 200,
+      "location": null
+    },
+    "/ekuatia/": {
+      "status": 200,
+      "location": null
+    },
+    "/marangatu/": {
+      "status": 200,
+      "location": null
+    },
+    "/ruc/": {
+      "status": 200,
+      "location": null
+    },
+    "/contabilidad/": {
+      "status": 200,
+      "location": null
+    },
+    "/iva/": {
+      "status": 200,
+      "location": null
+    },
+    "/ire-simple/": {
+      "status": 200,
+      "location": null
+    },
+    "/irp/": {
+      "status": 200,
+      "location": null
+    },
+    "/ips/": {
+      "status": 200,
+      "location": null
+    },
+    "/eas/": {
+      "status": 200,
+      "location": null
+    },
+    "/asesoria/": {
+      "status": 200,
+      "location": null
+    },
+    "/auditoria/": {
+      "status": 200,
+      "location": null
+    },
+    "/auditoria-auditoria-impositiva/": {
+      "status": 200,
+      "location": null
+    },
+    "/auditoria-auditoria-interna/": {
+      "status": 200,
+      "location": null
+    },
+    "/auditoria-auditoria-forense/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/calculadora-aguinaldo/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/liquidacion-de-salario/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/vencimientos/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/calculadora-iva/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/comparador-eas-srl-unipersonal/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/que-necesita/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/como-ingresar-a-marangatu/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/consulta-de-ruc/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/ekuatiai-paso-a-paso/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/que-es-sifen/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/inscripcion-de-ruc-paso-a-paso/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/formulario-120-paso-a-paso/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/certificado-de-cumplimiento-tributario/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/multas-dnit-como-regularizar/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/inscripcion-patronal-ips/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/irp-quien-debe-pagar/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/como-se-calcula-el-aguinaldo-en-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/ire-simple-resimple-ire-general-formulario-120/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/certificado-de-cumplimiento-tributario-marangatu/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/abrir-una-eas-en-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/liquidacion-por-despido-vs-renuncia/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/aguinaldo-cuando-se-cobra-y-proporcional/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/multas-dnit-cuanto-son-y-como-evitarlas/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/marangatu-2-0-que-cambio/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/iva-10-y-5-que-lleva-cada-uno/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/irp-2026-quien-paga-y-como-se-liquida/": {
+      "status": 200,
+      "location": null
+    },
+    "/blog/inscripcion-patronal-ips-paso-a-paso/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/importadores/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/comercios/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/unipersonales/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/profesionales-independientes/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/construccion/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/gastronomia/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/emprendedores/": {
+      "status": 200,
+      "location": null
+    },
+    "/contador-para/empresas-extranjeras/": {
+      "status": 200,
+      "location": null
+    },
+    "/cambiar-de-contador/": {
+      "status": 200,
+      "location": null
+    },
+    "/en/": {
+      "status": 200,
+      "location": null
+    },
+    "/en/open-a-company-in-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/en/eas-vs-srl-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/en/taxes-in-paraguay-for-foreigners/": {
+      "status": 200,
+      "location": null
+    },
+    "/en/accounting-services-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/en/contact/": {
+      "status": 200,
+      "location": null
+    },
+    "/robots.txt": {
+      "status": 200,
+      "location": null
+    },
+    "/sitemap.xml": {
+      "status": 200,
+      "location": null
+    },
+    "/single-service/": {
+      "status": 410,
+      "location": null
+    },
+    "/hello-world/": {
+      "status": 410,
+      "location": null
+    },
+    "/category/uncategorized/": {
+      "status": 410,
+      "location": null
+    },
+    "/wp-sitemap.xml": {
+      "status": 301,
+      "location": "/sitemap.xml"
+    },
+    "/?page_id=3": {
+      "status": 301,
+      "location": "/privacidad/"
+    },
+    "/esta-pagina-no-existe/": {
+      "status": 404,
+      "location": null
+    },
+    "/lib/helpers.php": {
+      "status": 404,
+      "location": null
+    },
+    "/content/site.php": {
+      "status": 404,
+      "location": null
+    },
+    "/partials/header.php": {
+      "status": 404,
+      "location": null
+    },
+    "/templates/service.php": {
+      "status": 404,
+      "location": null
+    },
+    "/config.example.php": {
+      "status": 404,
+      "location": null
+    },
+    "/logs/leads.log": {
+      "status": 404,
+      "location": null
+    }
+  },
+  "pages": {
+    "/": {
+      "title": "Estudio contable en Asunción, Paraguay | Contador.com.py",
+      "description": "Estudio contable en Asunción: contabilidad mensual, IVA e IRE, nómina e IPS, apertura de empresas y facturación electrónica en SIFEN para pymes.",
+      "canonical": "/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Estudio contable en Asunción: impuestos, contabilidad y nómina sin llegar tarde."
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contador-para/comercios/",
+        "/contador-para/construccion/",
+        "/contador-para/emprendedores/",
+        "/contador-para/empresas-extranjeras/",
+        "/contador-para/gastronomia/",
+        "/contador-para/importadores/",
+        "/contador-para/profesionales-independientes/",
+        "/contador-para/unipersonales/",
+        "/eas/",
+        "/ekuatia/",
+        "/en/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/servicios/": {
+      "title": "Servicios contables en Paraguay | Contador.com.py",
+      "description": "Todos nuestros servicios: contabilidad mensual, impuestos, nómina e IPS, apertura de empresas, facturación electrónica y auditoría.",
+      "canonical": "/servicios/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Servicios contables en Paraguay, de la apertura al cierre anual."
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contador-para/comercios/",
+        "/contador-para/construccion/",
+        "/contador-para/emprendedores/",
+        "/contador-para/empresas-extranjeras/",
+        "/contador-para/gastronomia/",
+        "/contador-para/importadores/",
+        "/contador-para/profesionales-independientes/",
+        "/contador-para/unipersonales/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contacto/": {
+      "title": "Contacto | Contador.com.py",
+      "description": "Escríbanos por WhatsApp o déjenos sus datos: le respondemos dentro del siguiente día hábil con una propuesta concreta para su empresa.",
+      "canonical": "/contacto/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Hablemos de su empresa."
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/nosotros/": {
+      "title": "Nosotros | Contador.com.py",
+      "description": "Quiénes somos: contadores públicos matriculados que trabajan con procesos digitales y explican los impuestos en lenguaje claro.",
+      "canonical": "/nosotros/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Nosotros"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/precios/": {
+      "title": "Precios y planes | Contador.com.py",
+      "description": "Planes de honorarios mensuales para unipersonales, pymes y empresas, con el alcance de cada uno y cotización a medida en 48 horas.",
+      "canonical": "/precios/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Precios"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/cambiar-de-contador/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contador-para/comercios/",
+        "/contador-para/construccion/",
+        "/contador-para/emprendedores/",
+        "/contador-para/empresas-extranjeras/",
+        "/contador-para/gastronomia/",
+        "/contador-para/importadores/",
+        "/contador-para/profesionales-independientes/",
+        "/contador-para/unipersonales/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/": {
+      "title": "Herramientas y calculadoras | Contador.com.py",
+      "description": "Calculadoras y guías gratuitas: aguinaldo, liquidación de salario, IVA y el calendario de vencimientos de la DNIT según su terminación de RUC.",
+      "canonical": "/herramientas/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Herramientas"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/": {
+      "title": "Guías de trámites DNIT e IPS | Contador.com.py",
+      "description": "Guías paso a paso para Marangatu, Ekuatia'i, SIFEN, inscripción de RUC, el Formulario 120, el Certificado de Cumplimiento Tributario y más.",
+      "canonical": "/guias/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Guías"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/certificado-de-cumplimiento-tributario/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/guias/consulta-de-ruc/",
+        "/guias/ekuatiai-paso-a-paso/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/guias/inscripcion-patronal-ips/",
+        "/guias/irp-quien-debe-pagar/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/guias/que-es-sifen/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/": {
+      "title": "Blog | Contador.com.py",
+      "description": "Guías prácticas sobre impuestos, nómina y facturación electrónica en Paraguay, escritas por contadores y actualizadas con la normativa vigente.",
+      "canonical": "/blog/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Blog"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/abrir-una-eas-en-paraguay/",
+        "/blog/aguinaldo-cuando-se-cobra-y-proporcional/",
+        "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/",
+        "/blog/certificado-de-cumplimiento-tributario-marangatu/",
+        "/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/",
+        "/blog/como-se-calcula-el-aguinaldo-en-paraguay/",
+        "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/",
+        "/blog/inscripcion-patronal-ips-paso-a-paso/",
+        "/blog/ire-simple-resimple-ire-general-formulario-120/",
+        "/blog/irp-2026-quien-paga-y-como-se-liquida/",
+        "/blog/iva-10-y-5-que-lleva-cada-uno/",
+        "/blog/liquidacion-por-despido-vs-renuncia/",
+        "/blog/marangatu-2-0-que-cambio/",
+        "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/privacidad/": {
+      "title": "Política de privacidad | Contador.com.py",
+      "description": "Cómo tratamos sus datos personales y las credenciales tributarias que nos confía, y cómo puede solicitar su acceso, corrección o eliminación.",
+      "canonical": "/privacidad/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Política de privacidad"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/terminos/": {
+      "title": "Términos de servicio | Contador.com.py",
+      "description": "Condiciones bajo las que prestamos nuestros servicios contables: alcance, plazos, responsabilidades de cada parte y secreto profesional.",
+      "canonical": "/terminos/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Términos de servicio"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/ekuatia/": {
+      "title": "Ekuatia'i y factura electrónica | Contador.com.py",
+      "description": "Habilitación en SIFEN y puesta en marcha de la factura electrónica con Ekuatia'i, para que emita comprobantes válidos desde el primer día.",
+      "canonical": "/ekuatia/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Ekuatia'i: facturación electrónica en Paraguay (SIFEN)"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/ekuatiai-paso-a-paso/",
+        "/guias/que-es-sifen/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/marangatu/": {
+      "title": "Marangatu: gestión ante la DNIT | Contador.com.py",
+      "description": "Gestionamos su cuenta en el Sistema Marangatu ante la DNIT: declaraciones, saneamiento de cuenta corriente y certificados al día.",
+      "canonical": "/marangatu/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Marangatu: gestión de su cuenta ante la DNIT"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/certificado-de-cumplimiento-tributario-marangatu/",
+        "/blog/marangatu-2-0-que-cambio/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/certificado-de-cumplimiento-tributario/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/ruc/": {
+      "title": "Inscripción de RUC en Paraguay | Contador.com.py",
+      "description": "Inscripción de RUC en Paraguay para empresas y profesionales independientes: documentación, alta ante la DNIT y actualización de datos.",
+      "canonical": "/ruc/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Inscripción de RUC en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/marangatu-2-0-que-cambio/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/consulta-de-ruc/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contabilidad/": {
+      "title": "Contabilidad mensual para empresas | Contador.com.py",
+      "description": "Contabilidad mensual para empresas en Paraguay: libros, conciliaciones y estados financieros, con cierre antes del día 5 de cada mes.",
+      "canonical": "/contabilidad/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contabilidad mensual para empresas en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/iva/": {
+      "title": "Liquidación y declaración de IVA | Contador.com.py",
+      "description": "Liquidación mensual de IVA y presentación de la declaración jurada ante la DNIT, con el libro de compras y ventas siempre conciliado.",
+      "canonical": "/iva/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IVA: liquidación y declaración jurada mensual"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/iva-10-y-5-que-lleva-cada-uno/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/ire-simple/": {
+      "title": "IRE Simple, Resimple y F. 120 | Contador.com.py",
+      "description": "Liquidación de IRE Simple, Resimple e IRE General con la presentación del Formulario 120 en Marangatu, dentro de los plazos de la DNIT.",
+      "canonical": "/ire-simple/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IRE Simple, Resimple e IRE General: liquidación y Formulario 120"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/ire-simple-resimple-ire-general-formulario-120/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/irp/": {
+      "title": "IRP: Impuesto a la Renta Personal | Contador.com.py",
+      "description": "IRP en Paraguay: definimos si le corresponde inscribirse, qué puede deducir y presentamos su liquidación anual ante la DNIT.",
+      "canonical": "/irp/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IRP: Impuesto a la Renta Personal en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/irp-2026-quien-paga-y-como-se-liquida/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/irp-quien-debe-pagar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/ips/": {
+      "title": "IPS y planilla de sueldos | Contador.com.py",
+      "description": "Gestión de IPS y planilla de sueldos: altas y bajas, aportes mensuales, planillas del MTESS y recibos listos para firmar.",
+      "canonical": "/ips/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IPS: gestión de aportes y planilla de sueldos"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/aguinaldo-cuando-se-cobra-y-proporcional/",
+        "/blog/como-se-calcula-el-aguinaldo-en-paraguay/",
+        "/blog/inscripcion-patronal-ips-paso-a-paso/",
+        "/blog/liquidacion-por-despido-vs-renuncia/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-patronal-ips/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/eas/": {
+      "title": "Abrir una EAS en Paraguay | Contador.com.py",
+      "description": "Abrir una EAS en Paraguay con acompañamiento completo: constitución, RUC, patente y registro patronal, operativa en semanas y no en meses.",
+      "canonical": "/eas/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Abrir una EAS en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/abrir-una-eas-en-paraguay/",
+        "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/asesoria/": {
+      "title": "Asesoría tributaria y planificación | Contador.com.py",
+      "description": "Asesoría tributaria y planificación fiscal para empresas paraguayas: revisamos su carga impositiva y prevenimos contingencias con la DNIT.",
+      "canonical": "/asesoria/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Asesoría tributaria y planificación fiscal"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/auditoria/": {
+      "title": "Auditoría para empresas en Paraguay | Contador.com.py",
+      "description": "Servicios de auditoría en Paraguay: auditoría externa obligatoria, auditoría interna y auditoría forense, con informes claros y accionables.",
+      "canonical": "/auditoria/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Auditoría en Paraguay: externa, interna y forense"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/certificado-de-cumplimiento-tributario/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/auditoria-auditoria-impositiva/": {
+      "title": "Auditoría Impositiva (externa) | Contador.com.py",
+      "description": "Auditoría Impositiva y auditoría externa obligatoria: revisamos su situación tributaria y emitimos el informe que exige la DNIT.",
+      "canonical": "/auditoria-auditoria-impositiva/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Auditoría Impositiva: dictamen de auditoría externa obligatoria"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/auditoria-auditoria-interna/": {
+      "title": "Auditoría Interna y control | Contador.com.py",
+      "description": "Auditoría Interna y control de gestión: evaluamos sus procesos y controles para reducir riesgos operativos y pérdidas evitables.",
+      "canonical": "/auditoria-auditoria-interna/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Auditoría Interna y control de gestión"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/certificado-de-cumplimiento-tributario/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/auditoria-auditoria-forense/": {
+      "title": "Auditoría Forense y peritajes | Contador.com.py",
+      "description": "Auditoría Forense y peritajes contables: investigamos fraudes, desvíos y diferencias patrimoniales con informes de validez pericial.",
+      "canonical": "/auditoria-auditoria-forense/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Auditoría Forense y peritajes contables"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/calculadora-aguinaldo/": {
+      "title": "Calculadora de aguinaldo Paraguay | Contador.com.py",
+      "description": "Calcule su aguinaldo en guaraníes con sus propios salarios, con aguinaldo proporcional incluido. Herramienta gratuita, según el Código del Trabajo.",
+      "canonical": "/herramientas/calculadora-aguinaldo/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Calculadora de aguinaldo en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/liquidacion-de-salario/": {
+      "title": "Liquidación de salario y finiquito | Contador.com.py",
+      "description": "Calcule su finiquito en Paraguay: salario proporcional, aporte IPS, vacaciones, aguinaldo, preaviso e indemnización según el motivo de salida.",
+      "canonical": "/herramientas/liquidacion-de-salario/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Calculadora de liquidación de salario y finiquito"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/vencimientos/": {
+      "title": "Calendario de vencimientos DNIT e IPS | Contador.com.py",
+      "description": "Vea sus próximas fechas de IVA, IRE e IPS según la terminación de su RUC, con el Calendario Perpetuo de la DNIT. Consulte y reciba el recordatorio.",
+      "canonical": "/herramientas/vencimientos/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Calendario de vencimientos según su RUC"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/calculadora-iva/": {
+      "title": "Calculadora de IVA Paraguay (10 % y 5 %) | Contador.com.py",
+      "description": "Calcule el IVA incluido o excluido de un monto en guaraníes, con la tasa del 10 %, el 5 % o exento. Herramienta gratuita para facturas y cotizaciones.",
+      "canonical": "/herramientas/calculadora-iva/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Calculadora de IVA en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/comparador-eas-srl-unipersonal/": {
+      "title": "Comparador: EAS, SRL o Unipersonal | Contador.com.py",
+      "description": "Compare EAS, SRL y Unipersonal en Paraguay: responsabilidad, socios, trámite y tributación, y responda 3 preguntas para ver cuál le conviene.",
+      "canonical": "/herramientas/comparador-eas-srl-unipersonal/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "EAS, SRL o Unipersonal: ¿cuál le conviene?"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/que-necesita/": {
+      "title": "¿Qué necesita? Guía de servicios | Contador.com.py",
+      "description": "Responda 4 preguntas breves y le mostramos qué servicios contables le corresponden, con el formulario de consulta ya prellenado.",
+      "canonical": "/herramientas/que-necesita/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "¿Qué necesita?"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/como-ingresar-a-marangatu/": {
+      "title": "Cómo ingresar a Marangatu, paso a paso | Contador.com.py",
+      "description": "Cómo ingresar a Marangatu, recuperar su clave de acceso y entender qué cambió con Marangatu 2.0. Guía paso a paso, sin costo.",
+      "canonical": "/guias/como-ingresar-a-marangatu/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo ingresar a Marangatu"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/certificado-de-cumplimiento-tributario/",
+        "/guias/consulta-de-ruc/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/consulta-de-ruc/": {
+      "title": "Consulta de RUC en Paraguay: cómo hacerla | Contador.com.py",
+      "description": "Cómo consultar un RUC en Paraguay — el propio o el de otra persona o empresa — y qué datos puede ver en cada caso. Guía paso a paso.",
+      "canonical": "/guias/consulta-de-ruc/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo hacer una consulta de RUC"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/ekuatiai-paso-a-paso/": {
+      "title": "Ekuatia'i paso a paso: habilitación | Contador.com.py",
+      "description": "Cómo habilitarse en Ekuatia'i y emitir su primera factura electrónica en Paraguay: requisitos, pasos y la diferencia con Ekuatia. Guía completa.",
+      "canonical": "/guias/ekuatiai-paso-a-paso/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Ekuatia'i paso a paso: habilitación y primera factura"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/guias/que-es-sifen/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/que-es-sifen/": {
+      "title": "¿Qué es SIFEN? Explicación completa | Contador.com.py",
+      "description": "Qué es SIFEN, cómo funciona con Ekuatia y Ekuatia'i, y qué significa para su empresa la factura electrónica en Paraguay. Guía sin tecnicismos.",
+      "canonical": "/guias/que-es-sifen/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "¿Qué es SIFEN?"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/guias/ekuatiai-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/inscripcion-de-ruc-paso-a-paso/": {
+      "title": "Inscripción de RUC, paso a paso | Contador.com.py",
+      "description": "Cómo inscribirse al RUC en Paraguay como persona física o jurídica: documentos, pasos y plazos habituales. Guía completa y gratuita.",
+      "canonical": "/guias/inscripcion-de-ruc-paso-a-paso/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Inscripción de RUC paso a paso"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/consulta-de-ruc/",
+        "/guias/inscripcion-patronal-ips/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/formulario-120-paso-a-paso/": {
+      "title": "Formulario 120 (IVA): cómo presentarlo | Contador.com.py",
+      "description": "Cómo se completa y presenta el Formulario 120 de IVA en Marangatu: qué datos pide, cuándo vence y qué pasa si no facturó en el período.",
+      "canonical": "/guias/formulario-120-paso-a-paso/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Formulario 120 paso a paso"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/irp-quien-debe-pagar/",
+        "/guias/que-es-sifen/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/certificado-de-cumplimiento-tributario/": {
+      "title": "Cómo obtener el Certificado Tributario | Contador.com.py",
+      "description": "Cómo obtener el Certificado de Cumplimiento Tributario en Marangatu, para qué se usa y qué hacer si no se lo emiten por una inconsistencia.",
+      "canonical": "/guias/certificado-de-cumplimiento-tributario/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo obtener el Certificado de Cumplimiento Tributario"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/multas-dnit-como-regularizar/": {
+      "title": "Multas DNIT: cómo regularizar | Contador.com.py",
+      "description": "Cómo saber si tiene multas de la DNIT, por qué se generan y los pasos para regularizar su situación tributaria antes de que se agraven.",
+      "canonical": "/guias/multas-dnit-como-regularizar/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Multas de la DNIT: cómo saber si tiene y cómo regularizar"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/certificado-de-cumplimiento-tributario/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/inscripcion-patronal-ips/": {
+      "title": "Inscripción patronal en el IPS | Contador.com.py",
+      "description": "Cómo inscribirse como empleador en el IPS al contratar a su primer empleado en Paraguay: documentos, pasos y aportes obrero-patronales.",
+      "canonical": "/guias/inscripcion-patronal-ips/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Inscripción patronal en el IPS, paso a paso"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/irp-quien-debe-pagar/": {
+      "title": "IRP en Paraguay: quién debe pagarlo | Contador.com.py",
+      "description": "Quién debe inscribirse y presentar el IRP en Paraguay, cómo se calcula en general y qué hacer si no está seguro de si le corresponde declarar.",
+      "canonical": "/guias/irp-quien-debe-pagar/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IRP: quién debe pagar el Impuesto a la Renta Personal"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/como-se-calcula-el-aguinaldo-en-paraguay/": {
+      "title": "Cómo se calcula el aguinaldo en Paraguay | Contador.com.py",
+      "description": "Cómo se calcula el aguinaldo o décimo tercer salario en Paraguay, con ejemplos de sueldo fijo, sueldo variable y aguinaldo proporcional.",
+      "canonical": "/blog/como-se-calcula-el-aguinaldo-en-paraguay/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo se calcula el aguinaldo en Paraguay (con ejemplos)"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/ire-simple-resimple-ire-general-formulario-120/": {
+      "title": "IRE Simple, Resimple o IRE General | Contador.com.py",
+      "description": "Diferencias entre Resimple, IRE Simple e IRE General según su facturación anual, y cómo se presenta el Formulario 120 en Marangatu.",
+      "canonical": "/blog/ire-simple-resimple-ire-general-formulario-120/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IRE Simple vs Resimple vs IRE General: cuál le corresponde y el Formulario 120"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/": {
+      "title": "Habilitarse en SIFEN: guía paso a paso | Contador.com.py",
+      "description": "Los pasos para habilitarse en SIFEN y empezar a emitir factura electrónica con Ekuatia'i: firma digital, timbrado electrónico y primeros comprobantes.",
+      "canonical": "/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo habilitarse en SIFEN y emitir factura electrónica con Ekuatia'i"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/certificado-de-cumplimiento-tributario-marangatu/": {
+      "title": "Certificado de Cumplimiento Tributario | Contador.com.py",
+      "description": "Qué es el Certificado de Cumplimiento Tributario, quién lo exige y los pasos para obtenerlo y mantenerlo vigente en Marangatu.",
+      "canonical": "/blog/certificado-de-cumplimiento-tributario-marangatu/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo obtener el Certificado de Cumplimiento Tributario en Marangatu"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/abrir-una-eas-en-paraguay/": {
+      "title": "Abrir una EAS en Paraguay: pasos y plazos | Contador.com.py",
+      "description": "Cómo constituir una Empresa por Acciones Simplificada en Paraguay: requisitos, trámite por SUACE, plazos habituales y qué esperar del proceso.",
+      "canonical": "/blog/abrir-una-eas-en-paraguay/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Abrir una EAS en Paraguay: pasos, costos y plazos"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/": {
+      "title": "Cómo leer sus estados financieros | Contador.com.py",
+      "description": "Qué muestra cada estado financiero — balance general, estado de resultados y flujo de efectivo — y cómo usarlos para decidir sobre su empresa.",
+      "canonical": "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Balance general, estado de resultados y flujo de efectivo: cómo leer los estados financieros de su empresa"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/liquidacion-por-despido-vs-renuncia/": {
+      "title": "Liquidación: despido vs. renuncia | Contador.com.py",
+      "description": "Qué conceptos cobra un trabajador según renuncie o sea despedido en Paraguay: preaviso, indemnización y qué queda igual en los dos casos.",
+      "canonical": "/blog/liquidacion-por-despido-vs-renuncia/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Liquidación por despido vs. renuncia: qué cambia en el finiquito"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/aguinaldo-cuando-se-cobra-y-proporcional/": {
+      "title": "Aguinaldo: cuándo se cobra y proporcional | Contador.com.py",
+      "description": "La fecha límite del aguinaldo en Paraguay y cómo se calcula el aguinaldo proporcional cuando no se trabajó el año completo.",
+      "canonical": "/blog/aguinaldo-cuando-se-cobra-y-proporcional/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "¿Cuándo se cobra el aguinaldo y cómo se calcula el proporcional?"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/multas-dnit-cuanto-son-y-como-evitarlas/": {
+      "title": "Multas DNIT: cómo evitarlas | Contador.com.py",
+      "description": "Por qué la DNIT aplica multas aunque su declaración esté en cero, cómo saber si tiene una pendiente y los pasos para evitarlas.",
+      "canonical": "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Multas de la DNIT: cómo se generan y cómo evitarlas"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/multas-dnit-como-regularizar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/marangatu-2-0-que-cambio/": {
+      "title": "Marangatu 2.0: qué cambió | Contador.com.py",
+      "description": "Qué es Marangatu 2.0, qué se reorganizó en el menú y dónde quedaron la consulta de RUC, el Formulario 120 y el Certificado de Cumplimiento Tributario.",
+      "canonical": "/blog/marangatu-2-0-que-cambio/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Marangatu 2.0: qué cambió y cómo encontrar lo de siempre"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/": {
+      "title": "EAS, SRL o Unipersonal: cuál elegir | Contador.com.py",
+      "description": "Diferencias entre EAS, SRL y Unipersonal en socios, responsabilidad y trámite de constitución, para elegir la estructura que le corresponde.",
+      "canonical": "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "EAS vs. SRL vs. Unipersonal: cuál le conviene"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/iva-10-y-5-que-lleva-cada-uno/": {
+      "title": "IVA 10% y 5%: qué lleva cada uno | Contador.com.py",
+      "description": "Qué bienes y servicios pagan el IVA general del 10% y cuáles la tasa reducida del 5% en Paraguay, y cómo evitar el error más común al clasificarlos.",
+      "canonical": "/blog/iva-10-y-5-que-lleva-cada-uno/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IVA 10% y 5%: qué lleva cada tasa"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/irp-2026-quien-paga-y-como-se-liquida/": {
+      "title": "IRP 2026: quién paga y cómo se liquida | Contador.com.py",
+      "description": "Quién debe inscribirse al IRP en Paraguay, qué ingresos se suman y cómo es el proceso de liquidación anual ante la DNIT.",
+      "canonical": "/blog/irp-2026-quien-paga-y-como-se-liquida/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "IRP en 2026: quién paga y cómo se liquida"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/irp-quien-debe-pagar/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/blog/inscripcion-patronal-ips-paso-a-paso/": {
+      "title": "Inscripción patronal IPS, paso a paso | Contador.com.py",
+      "description": "Cómo inscribirse como empleador en el IPS al contratar a su primer trabajador en Paraguay: documentos, plazos y los aportes que empiezan a correr.",
+      "canonical": "/blog/inscripcion-patronal-ips-paso-a-paso/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Inscripción patronal en el IPS, paso a paso"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "Article",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-patronal-ips/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/importadores/": {
+      "title": "Contador para importadores en Paraguay | Contador.com.py",
+      "description": "Contador para importadores en Paraguay: crédito fiscal de aduana, diferencia de cambio y facturación electrónica, con contabilidad mensual al día.",
+      "canonical": "/contador-para/importadores/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para importadores en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/comercios/": {
+      "title": "Contador para comercios en Paraguay | Contador.com.py",
+      "description": "Contador para comercios en Paraguay: costo de mercadería, facturación electrónica y conciliación de IVA, con contabilidad mensual y cierre puntual.",
+      "canonical": "/contador-para/comercios/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para comercios en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/unipersonales/": {
+      "title": "Contador para unipersonales en Paraguay | Contador.com.py",
+      "description": "Contador para empresas unipersonales en Paraguay: Resimple, IRE Simple e IVA, sin mezclar gastos personales con los del negocio.",
+      "canonical": "/contador-para/unipersonales/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para unipersonales en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/profesionales-independientes/": {
+      "title": "Contador para profesionales independientes | Contador.com.py",
+      "description": "Contador para profesionales independientes en Paraguay: recibos de honorarios, retenciones de IVA e IRP anual, sin sorpresas en marzo.",
+      "canonical": "/contador-para/profesionales-independientes/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para profesionales independientes"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/construccion/": {
+      "title": "Contador para construcción en Paraguay | Contador.com.py",
+      "description": "Contador para empresas de construcción en Paraguay: personal de obra en IPS, facturación por avance y retenciones a subcontratistas, sin atrasos.",
+      "canonical": "/contador-para/construccion/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para empresas de construcción"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/gastronomia/": {
+      "title": "Contador para gastronomía en Paraguay | Contador.com.py",
+      "description": "Contador para restaurantes y bares en Paraguay: facturación electrónica en caja, IVA conciliado y aportes IPS de personal por turnos.",
+      "canonical": "/contador-para/gastronomia/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para gastronomía en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/emprendedores/": {
+      "title": "Contador para emprendedores en Paraguay | Contador.com.py",
+      "description": "Contador para emprendedores en Paraguay: elegir entre EAS, unipersonal o SRL, inscribir el RUC en el régimen correcto y arrancar sin errores.",
+      "canonical": "/contador-para/emprendedores/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para emprendedores en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/contador-para/empresas-extranjeras/": {
+      "title": "Contador para inversores extranjeros | Contador.com.py",
+      "description": "Contador para empresas e inversores extranjeros que abren en Paraguay: EAS o SRL con socio no residente, RUC y remesas al exterior, de punta a punta.",
+      "canonical": "/contador-para/empresas-extranjeras/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Contador para empresas extranjeras en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/cambiar-de-contador/": {
+      "title": "Cambiar de contador en Paraguay | Contador.com.py",
+      "description": "Cómo cambiar de contador en Paraguay sin perder historial ni presentaciones: qué le pedimos a su contador actual y el traspaso con fechas acordadas.",
+      "canonical": "/cambiar-de-contador/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cambiar de contador, sin perder historial ni presentaciones"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/en/": {
+      "title": "Open a Company in Paraguay | English | Contador.com.py",
+      "description": "English-language accounting guidance for foreign founders opening and running a company in Paraguay: entity choice, taxes, RUC and ongoing bookkeeping.",
+      "canonical": "/en/",
+      "robots": "",
+      "lang": "en",
+      "h1": [
+        "Open and run a company in Paraguay, in English"
+      ],
+      "alternates": [
+        [
+          "en",
+          "/en/"
+        ],
+        [
+          "es",
+          "/contador-para/empresas-extranjeras/"
+        ],
+        [
+          "x-default",
+          "/contador-para/empresas-extranjeras/"
+        ]
+      ],
+      "schemaTypes": [
+        "AccountingService",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/en/",
+        "/en/accounting-services-paraguay/",
+        "/en/contact/",
+        "/en/eas-vs-srl-paraguay/",
+        "/en/open-a-company-in-paraguay/",
+        "/en/taxes-in-paraguay-for-foreigners/",
+        "/privacidad/",
+        "/terminos/"
+      ]
+    },
+    "/en/open-a-company-in-paraguay/": {
+      "title": "Open a Company in Paraguay: How-To Guide | Contador.com.py",
+      "description": "How a foreign founder opens a company in Paraguay: entity types, the SUACE process, RUC registration, and what documents you need before you start.",
+      "canonical": "/en/open-a-company-in-paraguay/",
+      "robots": "",
+      "lang": "en",
+      "h1": [
+        "Opening a company in Paraguay as a foreign founder"
+      ],
+      "alternates": [
+        [
+          "en",
+          "/en/open-a-company-in-paraguay/"
+        ],
+        [
+          "es",
+          "/contador-para/empresas-extranjeras/"
+        ],
+        [
+          "x-default",
+          "/contador-para/empresas-extranjeras/"
+        ]
+      ],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/en/",
+        "/en/accounting-services-paraguay/",
+        "/en/contact/",
+        "/en/open-a-company-in-paraguay/",
+        "/en/taxes-in-paraguay-for-foreigners/",
+        "/privacidad/",
+        "/terminos/"
+      ]
+    },
+    "/en/eas-vs-srl-paraguay/": {
+      "title": "EAS vs SRL in Paraguay: Which to Choose | Contador.com.py",
+      "description": "EAS vs SRL in Paraguay compared for foreign founders: ownership, minimum partners, setup process and which structure fits a single founder or a team.",
+      "canonical": "/en/eas-vs-srl-paraguay/",
+      "robots": "",
+      "lang": "en",
+      "h1": [
+        "EAS vs SRL in Paraguay: which one fits your company"
+      ],
+      "alternates": [
+        [
+          "en",
+          "/en/eas-vs-srl-paraguay/"
+        ],
+        [
+          "es",
+          "/herramientas/comparador-eas-srl-unipersonal/"
+        ],
+        [
+          "x-default",
+          "/herramientas/comparador-eas-srl-unipersonal/"
+        ]
+      ],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/en/",
+        "/en/accounting-services-paraguay/",
+        "/en/contact/",
+        "/en/open-a-company-in-paraguay/",
+        "/en/taxes-in-paraguay-for-foreigners/",
+        "/privacidad/",
+        "/terminos/"
+      ]
+    },
+    "/en/taxes-in-paraguay-for-foreigners/": {
+      "title": "Taxes in Paraguay for Foreign Founders | Contador.com.py",
+      "description": "Taxes in Paraguay for foreign founders explained: corporate income tax (IRE), VAT (IVA), personal income tax (IRP) and how tax residency is determined.",
+      "canonical": "/en/taxes-in-paraguay-for-foreigners/",
+      "robots": "",
+      "lang": "en",
+      "h1": [
+        "Taxes in Paraguay for foreign founders"
+      ],
+      "alternates": [
+        [
+          "en",
+          "/en/taxes-in-paraguay-for-foreigners/"
+        ],
+        [
+          "es",
+          "/irp/"
+        ],
+        [
+          "x-default",
+          "/irp/"
+        ]
+      ],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/en/",
+        "/en/accounting-services-paraguay/",
+        "/en/contact/",
+        "/en/open-a-company-in-paraguay/",
+        "/en/taxes-in-paraguay-for-foreigners/",
+        "/privacidad/",
+        "/terminos/"
+      ]
+    },
+    "/en/accounting-services-paraguay/": {
+      "title": "Accounting Services in Paraguay | English | Contador.com.py",
+      "description": "English-language accounting services in Paraguay for foreign-owned companies: monthly bookkeeping, tax filings, payroll and electronic invoicing, one team.",
+      "canonical": "/en/accounting-services-paraguay/",
+      "robots": "",
+      "lang": "en",
+      "h1": [
+        "Accounting services in Paraguay for foreign-owned companies"
+      ],
+      "alternates": [
+        [
+          "en",
+          "/en/accounting-services-paraguay/"
+        ],
+        [
+          "es",
+          "/contabilidad/"
+        ],
+        [
+          "x-default",
+          "/contabilidad/"
+        ]
+      ],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/en/",
+        "/en/accounting-services-paraguay/",
+        "/en/contact/",
+        "/en/open-a-company-in-paraguay/",
+        "/en/taxes-in-paraguay-for-foreigners/",
+        "/privacidad/",
+        "/terminos/"
+      ]
+    },
+    "/en/contact/": {
+      "title": "Contact Us | English-Speaking Accountants | Contador.com.py",
+      "description": "Contact our English-speaking accounting team in Paraguay: company formation, taxes and bookkeeping for foreign founders. We reply within one business day.",
+      "canonical": "/en/contact/",
+      "robots": "",
+      "lang": "en",
+      "h1": [
+        "Let's talk about your company in Paraguay"
+      ],
+      "alternates": [
+        [
+          "en",
+          "/en/contact/"
+        ],
+        [
+          "es",
+          "/contacto/"
+        ],
+        [
+          "x-default",
+          "/contacto/"
+        ]
+      ],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/en/",
+        "/en/accounting-services-paraguay/",
+        "/en/contact/",
+        "/en/open-a-company-in-paraguay/",
+        "/en/taxes-in-paraguay-for-foreigners/",
+        "/privacidad/",
+        "/terminos/"
+      ]
+    }
+  },
+  "sitemap": [
+    "/",
+    "/asesoria/",
+    "/auditoria-auditoria-forense/",
+    "/auditoria-auditoria-impositiva/",
+    "/auditoria-auditoria-interna/",
+    "/auditoria/",
+    "/blog/",
+    "/blog/abrir-una-eas-en-paraguay/",
+    "/blog/aguinaldo-cuando-se-cobra-y-proporcional/",
+    "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/",
+    "/blog/certificado-de-cumplimiento-tributario-marangatu/",
+    "/blog/como-habilitarse-en-sifen-factura-electronica-ekuatia/",
+    "/blog/como-se-calcula-el-aguinaldo-en-paraguay/",
+    "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/",
+    "/blog/inscripcion-patronal-ips-paso-a-paso/",
+    "/blog/ire-simple-resimple-ire-general-formulario-120/",
+    "/blog/irp-2026-quien-paga-y-como-se-liquida/",
+    "/blog/iva-10-y-5-que-lleva-cada-uno/",
+    "/blog/liquidacion-por-despido-vs-renuncia/",
+    "/blog/marangatu-2-0-que-cambio/",
+    "/blog/multas-dnit-cuanto-son-y-como-evitarlas/",
+    "/cambiar-de-contador/",
+    "/contabilidad/",
+    "/contacto/",
+    "/contador-para/comercios/",
+    "/contador-para/construccion/",
+    "/contador-para/emprendedores/",
+    "/contador-para/empresas-extranjeras/",
+    "/contador-para/gastronomia/",
+    "/contador-para/importadores/",
+    "/contador-para/profesionales-independientes/",
+    "/contador-para/unipersonales/",
+    "/eas/",
+    "/ekuatia/",
+    "/en/",
+    "/en/accounting-services-paraguay/",
+    "/en/contact/",
+    "/en/eas-vs-srl-paraguay/",
+    "/en/open-a-company-in-paraguay/",
+    "/en/taxes-in-paraguay-for-foreigners/",
+    "/guias/",
+    "/guias/certificado-de-cumplimiento-tributario/",
+    "/guias/como-ingresar-a-marangatu/",
+    "/guias/consulta-de-ruc/",
+    "/guias/ekuatiai-paso-a-paso/",
+    "/guias/formulario-120-paso-a-paso/",
+    "/guias/inscripcion-de-ruc-paso-a-paso/",
+    "/guias/inscripcion-patronal-ips/",
+    "/guias/irp-quien-debe-pagar/",
+    "/guias/multas-dnit-como-regularizar/",
+    "/guias/que-es-sifen/",
+    "/herramientas/",
+    "/herramientas/calculadora-aguinaldo/",
+    "/herramientas/calculadora-iva/",
+    "/herramientas/comparador-eas-srl-unipersonal/",
+    "/herramientas/liquidacion-de-salario/",
+    "/herramientas/que-necesita/",
+    "/herramientas/vencimientos/",
+    "/ips/",
+    "/ire-simple/",
+    "/irp/",
+    "/iva/",
+    "/marangatu/",
+    "/nosotros/",
+    "/precios/",
+    "/privacidad/",
+    "/ruc/",
+    "/servicios/",
+    "/terminos/"
+  ],
+  "robots": "# contador.com.py\nUser-agent: *\nAllow: /\n\n# Application internals — never useful to a crawler.\nDisallow: /content/\nDisallow: /lib/\nDisallow: /partials/\nDisallow: /templates/\nDisallow: /logs/\nDisallow: /enviar.php\nDisallow: /*?enviado=\nDisallow: /*?error=\n\nSitemap: https://contador.com.py/sitemap.xml\n"
+}

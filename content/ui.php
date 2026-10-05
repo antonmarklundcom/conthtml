@@ -75,14 +75,29 @@ return [
     'home' => [
         // Month-neutral by design: the 1B mock said "cierre de septiembre",
         // which would be wrong eleven months a year.
-        'eyebrow' => 'Aceptamos nuevas empresas este mes',
+        'eyebrow' => 'Contabilidad para su empresa',
         // Plan §5.2.6: 1B's promise headline, rebuilt around "estudio contable" —
         // the highest-volume commercial term in docs/keyword-research.md, and the
         // keyword the H1 has to carry (plan §4.11).
-        'h1_lead'   => 'Estudio contable en Asunción: impuestos, contabilidad y nómina ',
-        'h1_accent' => 'sin llegar tarde.',
-        'lead'    => 'Contadores matriculados que llevan sus libros, presentan IVA y renta, '
-                   . 'liquidan la nómina y lo dejan habilitado en SIFEN. Un solo contacto.',
+        'h1_lead'   => 'Estudio contable en Asunción. ',
+        'h1_accent' => 'Su empresa, en orden.',
+        'lead'    => 'Contabilidad, impuestos y nómina, con un proceso claro. '
+                   . 'De Marangatu a SIFEN: coordine lo que necesita con un solo contacto.',
+        'report_note' => 'Un ejemplo de cómo puede ver sus libros, impuestos y nómina en un informe claro.',
+        'contact_title' => 'Cuéntenos qué necesita su empresa.',
+        'contact_lead' => 'Escríbanos por WhatsApp o déjenos su consulta. Le orientamos sobre el servicio y el alcance para su caso.',
+        'contact_steps' => [
+            'Nos cuenta su rubro y la situación que quiere resolver.',
+            'Revisamos qué información necesitamos para orientarlo.',
+            'Recibe una propuesta con el alcance y los honorarios por escrito.',
+        ],
+        'process_title' => 'Un proceso claro, desde la primera consulta.',
+        'process_steps' => [
+            ['title' => 'Conversación inicial', 'text' => 'Revisamos su rubro, su documentación y la situación que quiere resolver.'],
+            ['title' => 'Propuesta por escrito', 'text' => 'Acordamos el alcance, los honorarios y la información que necesitamos.'],
+            ['title' => 'Organización', 'text' => 'Recibimos sus comprobantes y coordinamos los trámites y obligaciones.'],
+            ['title' => 'Seguimiento', 'text' => 'Revisamos el trabajo y le explicamos los resultados y próximos pasos.'],
+        ],
 
         // Persona switcher (redesign pass, 2026-09): a one-click jump from the
         // hero to the segment page that already exists for that audience
@@ -101,9 +116,9 @@ return [
         // The homepage services band. Its own copy, so the /servicios/ hub can
         // say something different without either page losing its voice.
         'services_eyebrow' => 'Servicios',
-        'services_title'   => 'Seis servicios. Un solo equipo responsable.',
-        'services_lead'    => 'Contrate lo que necesita hoy y sume servicios cuando su empresa '
-                            . 'crezca. Todo bajo el mismo honorario mensual.',
+        'services_title'   => 'El servicio que necesita, sin vueltas.',
+        'services_lead'    => 'Contabilidad, impuestos y gestión empresarial. Empiece por lo que necesita hoy; '
+                            . 'acordamos el alcance antes de comenzar.',
 
         // The six cards of plan §1.8: the five from the 1B mock plus Auditoría.
         // 'path' is the card's own page; 'links' are the sibling legacy pages the
@@ -111,15 +126,13 @@ return [
         'cards' => [
             [
                 'title' => 'Contabilidad mensual',
-                'text'  => 'Libro de compras y ventas, conciliaciones y estados financieros. '
-                         . 'Cierre antes del día 5, con un informe en lenguaje claro.',
+                'text'  => 'Libros, conciliaciones y estados financieros, con un informe en lenguaje claro.',
                 'path'  => '/contabilidad/',
                 'links' => [],
             ],
             [
                 'title' => 'Impuestos: IVA e IRE',
-                'text'  => 'Liquidación mensual de IVA y presentación anual del IRE (F.120) en '
-                         . 'Marangatu, control de vencimientos y respuesta ante la DNIT.',
+                'text'  => 'Liquidación de IVA e IRE, control de vencimientos y gestión en Marangatu ante la DNIT.',
                 'path'  => '/iva/',
                 'links' => [
                     ['label' => 'IRE Simple', 'path' => '/ire-simple/'],
@@ -130,15 +143,13 @@ return [
             ],
             [
                 'title' => 'Nómina',
-                'text'  => 'Salarios, aguinaldo, vacaciones, planillas de IPS y MTESS, altas y '
-                         . 'bajas. Recibos listos para firmar todos los meses.',
+                'text'  => 'Salarios, aguinaldo, vacaciones y planillas de IPS y MTESS.',
                 'path'  => '/ips/',
                 'links' => [],
             ],
             [
                 'title' => 'Apertura de empresas y RUC',
-                'text'  => 'E.A.S., S.R.L. o S.A. constituida, inscripción de RUC, patente y '
-                         . 'registro patronal, con el seguimiento de cada trámite.',
+                'text'  => 'E.A.S., S.R.L. o S.A., inscripción de RUC y seguimiento de los trámites de apertura.',
                 'path'  => '/eas/',
                 'links' => [
                     ['label' => 'Inscripción de RUC', 'path' => '/ruc/'],
@@ -146,15 +157,13 @@ return [
             ],
             [
                 'title' => 'Facturación electrónica',
-                'text'  => "Habilitación en SIFEN, timbrado y puesta en marcha de Ekuatia'i. "
-                         . 'Emita factura electrónica válida desde el primer día.',
+                'text'  => "Habilitación en SIFEN, timbrado y puesta en marcha de Ekuatia'i.",
                 'path'  => '/ekuatia/',
                 'links' => [],
             ],
             [
                 'title' => 'Auditoría',
-                'text'  => 'Auditoría impositiva, interna y forense, con informes que resisten '
-                         . 'la lectura de un banco, un socio o un organismo de control.',
+                'text'  => 'Auditoría impositiva, interna y forense, con el alcance definido para cada caso.',
                 'path'  => '/auditoria/',
                 'links' => [
                     ['label' => 'Impositiva', 'path' => '/auditoria-auditoria-impositiva/'],
@@ -189,14 +198,11 @@ return [
     // we work, never a claim about size, seniority or results — those would need
     // Anton's confirmation (plan §7) and none has arrived.
     'about' => [
-        'eyebrow' => 'Quiénes somos',
-        'title'   => 'Contadores de verdad, con procesos digitales que un despacho tradicional '
-                   . 'no tiene.',
-        'text'    => 'Somos contadores públicos matriculados. Llevamos la contabilidad, los '
-                   . 'impuestos y la nómina de empresas de comercio, servicios, construcción e '
-                   . 'importación, con un proceso digital en el que cada comprobante se registra '
-                   . 'una sola vez: menos errores de carga, cierres en días y su información '
-                   . 'disponible cuando la pida.',
+        'eyebrow' => 'Una forma clara de trabajar',
+        'title'   => 'Su información organizada. Sus próximos pasos, claros.',
+        'text'    => 'Llevamos la contabilidad, los impuestos y la nómina de empresas de comercio, '
+                   . 'servicios, construcción e importación. El trabajo comienza con un alcance '
+                   . 'por escrito y sigue con documentación ordenada e informes que pueda entender.',
         // Shown when content/site.php has no credentials[] yet (plan §1.4).
         'credentials' => [
             'Contadores públicos matriculados',
@@ -204,9 +210,18 @@ return [
             'Cada comprobante se registra una sola vez, sin doble carga',
             'Honorario mensual fijo, con el alcance acordado por escrito',
         ],
+        'home_credentials' => [
+            'Un contacto para coordinar su consulta',
+            'Documentación y obligaciones organizadas',
+            'Informes en lenguaje claro',
+            'Alcance y honorarios acordados por escrito',
+        ],
         'badge_note'     => 'de ejercicio profesional',
         'badge_fallback' => 'Contadores públicos matriculados',
-        'link'           => 'Conocer al equipo',
+        'link'           => 'Conocer nuestro estudio',
+        'workflow_title' => 'De los comprobantes al informe',
+        'workflow_note'  => 'Así se organiza el trabajo contable',
+        'workflow_steps' => ['Documentación', 'Gestión contable', 'Informe y próximos pasos'],
     ],
 
     // The four-step "Cómo trabajamos" block, reused on service pages (plan §5.2.3).
@@ -293,21 +308,27 @@ return [
     'form' => [
         'legend'        => 'Solicitar una consulta',
         'name'          => 'Nombre',
-        'company'       => 'Empresa o rubro',
+        'company'       => 'Empresa o rubro (opcional)',
         'phone'         => 'WhatsApp o teléfono',
         'phone_hint'    => 'Ej.: 0981 123 456',
         'email'         => 'Correo (opcional)',
         'need'          => '¿Qué necesita?',
-        'message'       => 'Cuéntenos brevemente',
+        'message'       => 'Cuéntenos brevemente (opcional)',
+        'required_note' => 'Nombre y WhatsApp o teléfono son obligatorios. Los demás datos son opcionales.',
+        'optional'      => 'Agregar empresa, correo o mensaje',
         'message_hint'  => 'Rubro, cantidad de empleados, situación actual ante la DNIT…',
         'submit'        => 'Solicitar consulta gratis',
         'sending'       => 'Enviando…',
-        'privacy_note'  => 'Usamos sus datos solo para responderle. Ver la política de privacidad.',
+        'privacy_note'  => 'Usamos sus datos para responder a su consulta.',
         'success_title' => 'Recibimos su consulta.',
         'success_text'  => 'Le respondemos dentro del siguiente día hábil. Si prefiere, escríbanos ahora.',
-        'error_title'   => 'No pudimos enviar el formulario.',
-        'error_text'    => 'Vuelva a intentarlo en un momento o escríbanos directamente.',
+        'error_title'   => 'Revise su consulta.',
+        'error_text'    => 'No pudimos confirmar la recepción. Sus datos siguen aquí: puede volver a intentar o escribirnos por WhatsApp.',
         'error_phone'   => 'Necesitamos un teléfono o WhatsApp válido para responderle.',
+        'error_email'   => 'Revise el correo o déjelo vacío si prefiere que le respondamos por WhatsApp.',
+        'error_rate'    => 'Hubo varios intentos seguidos. Espere un momento antes de volver a intentar o escríbanos por WhatsApp.',
+        'error_origin'  => 'Recargue la página antes de volver a intentar. También puede escribirnos por WhatsApp.',
+        'error_whatsapp' => 'Escribir directamente por WhatsApp',
         'required'      => 'obligatorio',
         // The per-service thank-you state (plan §5.3.4). The lines under it come
         // from content/lead-values.php's nextStep, so the second touch says

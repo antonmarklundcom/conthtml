@@ -20,6 +20,7 @@ $panelTitle = $panelTitle ?? ui('panel.title');
 $panelTiles = $panelTiles ?? content('ui')['panel']['tiles'];
 ?>
 <div class="status-panel">
+  <p class="status-panel__example"><?= e(ui('panel.note')) ?></p>
   <div class="status-panel__head">
     <span><?= e($panelTitle) ?></span>
     <span class="badge-ok"><?= e(ui('panel.badge')) ?></span>

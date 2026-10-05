@@ -23,6 +23,7 @@ $currentPath = $page['path'] ?? '/';
 $ga4         = cfg('GA4_ID', '');
 $ads         = cfg('ADS_ID', '');
 $htmlLang    = $page['lang'] ?? 'es-PY';
+$headCrmUrl  = cfg('VENDERCRM_URL');
 ?>
 <!doctype html>
 <html lang="<?= e($htmlLang) ?>">
@@ -55,9 +56,13 @@ $htmlLang    = $page['lang'] ?? 'es-PY';
 <meta name="theme-color" content="#0F1B2D">
 <link rel="icon" href="<?= e(asset('/assets/img/favicon.svg')) ?>" type="image/svg+xml">
 
-<link rel="preload" href="<?= e(asset('/assets/fonts/onest-latin.woff2')) ?>" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="<?= e(asset('/assets/fonts/bricolage-grotesque-latin.woff2')) ?>" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('/assets/css/site.css')) ?>">
+
+<?php if ($headCrmUrl !== null && parse_url($headCrmUrl, PHP_URL_SCHEME) === 'https' && parse_url($headCrmUrl, PHP_URL_HOST)): ?>
+<script src="<?= e(rtrim($headCrmUrl, '/') . '/vc-attribution.js') ?>" defer></script>
+<?php endif; ?>
 
 <?php foreach (seo_jsonld($page) as $block): ?>
 <script type="application/ld+json"><?= json_ld($block) ?></script>

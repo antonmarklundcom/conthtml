@@ -5,7 +5,7 @@ hosted on Hostinger shared hosting.
 
 Plain PHP 8 used as a templating layer: no framework, no build step, no database,
 no Node at runtime. `npm` appears only inside `tests/` for the Playwright
-screenshots, and the site never depends on it.
+screenshots and browser checks, and the site never depends on it.
 
 Start here: `plan.md`. Phases run from `prompts/`. Reference inputs in `docs/`.
 
@@ -46,6 +46,20 @@ node screenshots.mjs --phase a1 --base http://127.0.0.1:8080 / /servicios/ /cont
 ```
 
 It also fails if any page scrolls horizontally.
+
+SEO and form regression checks:
+
+```sh
+cd tests && npm ci && npx playwright install chromium
+node seo-contract.mjs --base http://127.0.0.1:8080  # requires the local preview server
+node contact-behavior.mjs                       # starts an isolated PHP site and mock CRM
+```
+
+The SEO fixture records the pre-improvement routes, metadata, sitemap and
+internal links. Do not refresh it merely to accept a failing test. The contact
+checks use synthetic leads, temporary configuration and a local CRM stub;
+they never submit to the real CRM. Both checks run in GitHub Actions.
+Set `CHROMIUM_PATH` if using a system Chromium instead of Playwright's browser.
 
 ## Deploy to Hostinger
 
@@ -257,6 +271,6 @@ partials/                                                 header, footer, form, 
 templates/{service,page-stub,article}.php                 page shells
 deploy/{make-zip.sh,routes.php,verify-live.sh}            deploy artifact, route contract, live smoke test
 deploy/{minify-css.mjs,subset-fonts.sh,optimize-images.mjs}  build-time asset pipeline (B4, plan §6.4.2/§6.4.1)
-tests/                                                    Playwright screenshots only
+tests/                                                    screenshots, SEO and contact browser checks
 docs/                                                     scan, keyword research, canvas
 ```

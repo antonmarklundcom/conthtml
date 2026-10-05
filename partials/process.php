@@ -24,6 +24,7 @@ $processSteps   = $processSteps   ?? content('ui')['process']['steps'];
 $processTone    = $processTone    ?? 'ink';
 $processId      = $processId      ?? '';
 $processN       = 0;
+$processCompact = $processCompact ?? false;
 
 $processBand = match ($processTone) {
     'surface' => ' section--surface',
@@ -40,7 +41,7 @@ $processBand = match ($processTone) {
       <h2><?= e($processTitle) ?></h2>
     </div>
 
-    <ol class="process">
+    <ol class="process<?= $processCompact ? ' process--compact' : '' ?>">
       <?php foreach ($processSteps as $processStep): ?>
         <li class="process__step">
           <span class="process__num" aria-hidden="true"><?= ++$processN ?></span>
@@ -54,4 +55,4 @@ $processBand = match ($processTone) {
 <?php
 /* An include shares the caller's scope: clear the inputs so a second process
    block on the same page starts from the defaults again. */
-unset($processEyebrow, $processTitle, $processSteps, $processTone, $processBand, $processId, $processN, $processStep);
+unset($processEyebrow, $processTitle, $processSteps, $processTone, $processBand, $processId, $processN, $processStep, $processCompact);
