@@ -49,8 +49,8 @@ try {
   const port = reservation.address().port;
   await new Promise(resolve => reservation.close(resolve));
   const base = `http://127.0.0.1:${port}`;
-  const configure = async (url, key) => writeFile(join(site, 'config.php'),
-    `<?php return ['SITE_URL'=>${quote(base)}, 'VENDERCRM_URL'=>${quote(url)}, 'VENDERCRM_API_KEY'=>${quote(key)}];\n`);
+  const configure = async (url, key, ga4 = '', ads = '') => writeFile(join(site, 'config.php'),
+    `<?php return ['SITE_URL'=>${quote(base)}, 'VENDERCRM_URL'=>${quote(url)}, 'VENDERCRM_API_KEY'=>${quote(key)}, 'GA4_ID'=>${quote(ga4)}, 'ADS_ID'=>${quote(ads)}];\n`);
   await configure(`http://127.0.0.1:${crm.address().port}`, 'local-test-only');
   // This test rewrites its temporary config between scenarios; bypass opcode caching.
   php = spawn('php', ['-d', 'opcache.enable=0', '-S', `127.0.0.1:${port}`, '-t', site, join(site, 'router.php')]);
@@ -69,7 +69,7 @@ try {
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
-  const routes = ['/', '/contacto/', '/en/contact/', '/contabilidad/', '/eas/', '/nosotros/', '/herramientas/calculadora-aguinaldo/', '/guias/'];
+  const routes = ['/', '/contacto/', '/en/contact/', '/contabilidad/', '/eas/', '/nosotros/', '/herramientas/calculadora-aguinaldo/', '/guias/', '/precios/'];
   for (const width of [360, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const path of routes) {
@@ -79,7 +79,7 @@ try {
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${path}: no overflow at ${width}`);
     }
   }
-  pass('40 layouts across five viewport widths, including service/tool/English pages');
+  pass('45 layouts across five viewport widths, including pricing/service/tool/English pages');
 
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto(base);
@@ -189,22 +189,23 @@ try {
   const plain = await noJS.newPage();
   await plain.goto(base + '/eas/');
   assert.ok(await plain.locator('[data-mega] a[href="/eas/"]').isVisible());
-  await plain.locator('[data-lead-form] [name=name]').fill('Local No JS Test');
-  await plain.locator('[data-lead-form] [name=phone]').fill('0981123456');
+  const plainForm = plain.locator('[data-lead-form]').first();
+  await plainForm.locator('[name=name]').fill('Local No JS Test');
+  await plainForm.locator('[name=phone]').fill('0981123456');
   await Promise.all([
     plain.waitForURL(url => url.pathname === '/contacto/' && url.searchParams.get('enviado') === '1' && url.searchParams.get('s') === 'eas', { waitUntil: 'domcontentloaded' })
       .catch(error => { throw new Error(`No-JS redirect failed at ${plain.url()}: ${error.message}`); }),
-    plain.locator('[data-lead-form] [data-submit]').click()
+    plainForm.locator('[data-submit]').click()
   ]);
   assert.ok(await plain.locator('#gracias').isVisible());
   assert.equal(calls.at(-1).fields.valor, 'A');
   await plain.setViewportSize({ width: 1440, height: 900 });
   await plain.goto(base + '/eas/');
-  await plain.locator('[data-lead-form] [name=name]').fill('Local Desktop No JS Test');
-  await plain.locator('[data-lead-form] [name=phone]').fill('0981123456');
+  await plainForm.locator('[name=name]').fill('Local Desktop No JS Test');
+  await plainForm.locator('[name=phone]').fill('0981123456');
   await Promise.all([
     plain.waitForURL(url => url.pathname === '/contacto/' && url.searchParams.get('s') === 'eas', { waitUntil: 'domcontentloaded' }),
-    plain.locator('[data-lead-form] [data-submit]').click()
+    plainForm.locator('[data-submit]').click()
   ]);
   assert.ok(await plain.locator('#gracias').isVisible());
   await noJS.close();
@@ -230,6 +231,100 @@ try {
   await page.goto(base);
   assert.equal(await page.locator('script[src$="/vc-attribution.js"]').count(), 0);
   pass('HTTPS attribution script wiring preserves capture across pages; unset config sends no request');
+
+  await configure(`http://127.0.0.1:${crm.address().port}`, 'local-test-only');
+  await clearRate();
+  await page.goto(base + '/precios/');
+  await page.locator('a[href="/contacto/?servicio=contabilidad&plan=pyme"]').click();
+  assert.equal(await form.locator('[name=service]').inputValue(), 'contabilidad');
+  assert.equal(await form.locator('[name=plan]').inputValue(), 'pyme');
+  assert.match(await form.locator('.lead-form__context').textContent(), /Pyme/);
+  assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), base + '/contacto/');
+  await fill();
+  assert.equal((await submit()).value_tier, 'A');
+  await success.waitFor({ state: 'visible' });
+  assert.equal(calls.at(-1).message, 'Plan solicitado: Pyme');
+  await page.goto(base + '/contacto/?servicio=%3Cscript%3E&plan=unknown');
+  assert.equal(await form.locator('[name=service]').inputValue(), '');
+  assert.equal(await form.locator('[name=plan]').count(), 0);
+  pass('pricing → contact preserves a validated plan/service, canonical and CRM message');
+
+  await page.goto(base);
+  const schema = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const faq = schema.map(JSON.parse).find(item => item['@type'] === 'FAQPage');
+  assert.ok(faq, 'home has FAQ schema');
+  const visibleFAQ = await page.locator('.home-faq details').evaluateAll(nodes => nodes.map(node => ({
+    q: node.querySelector('summary').textContent.trim(), a: node.querySelector('p').textContent.trim()
+  })));
+  assert.deepEqual(faq.mainEntity.map(item => ({ q: item.name, a: item.acceptedAnswer.text })), visibleFAQ);
+  for (const slug of ['contabilidad', 'eas', 'iva', 'ips', 'ekuatia', 'auditoria']) {
+    await page.goto(base + '/' + slug + '/');
+    const quick = page.locator('#consulta-rapida');
+    assert.equal(await quick.locator('[name=service]').inputValue(), slug);
+    assert.equal(await quick.locator('[name=need][type=radio]').count(), 0);
+    assert.equal(await page.locator('[data-wa-trigger]').count(), 0, 'service actions go directly to WhatsApp');
+    const ids = await page.locator('[id]').evaluateAll(nodes => nodes.map(node => node.id));
+    assert.equal(new Set(ids).size, ids.length, `${slug}: forms have distinct IDs`);
+    const data = (await page.locator('script[type="application/ld+json"]').allTextContents()).map(JSON.parse);
+    const entity = data.find(item => item['@type'] === 'Service');
+    assert.equal(entity.url, base + '/' + slug + '/');
+    assert.equal(entity.provider['@id'], base + '/#organization');
+  }
+  pass('buyer FAQ matches visible answers; service forms/schema/direct WhatsApp retain page intent');
+
+  await configure(`http://127.0.0.1:${crm.address().port}`, 'local-test-only', 'G-LOCALTEST');
+  await page.route('https://www.googletagmanager.com/**', route => route.fulfill({ contentType: 'application/javascript', body: '' }));
+  await page.goto(base, { waitUntil: 'networkidle' });
+  await page.locator('.wa-fab').click();
+  let events = await page.evaluate(() => window.dataLayer.filter(item => item[0] === 'event').map(item => [item[1], item[2]]));
+  assert.equal(events.filter(item => item[0] === 'whatsapp_menu_open').length, 1);
+  assert.equal(events.filter(item => item[0] === 'whatsapp_click').length, 0, 'opening a chooser is not a chat click');
+  // Capture intent without navigating to WhatsApp or sending a message.
+  await page.evaluate(() => document.addEventListener('click', event => {
+    if (event.target.closest('a[href^="https://wa.me/"]')) event.preventDefault();
+  }));
+  await page.locator('.wa-menu__option[data-service=contabilidad]').click();
+  events = await page.evaluate(() => window.dataLayer.filter(item => item[0] === 'event').map(item => [item[1], item[2]]));
+  assert.equal(events.filter(item => item[0] === 'whatsapp_click').length, 1);
+  assert.equal(events.find(item => item[0] === 'whatsapp_click')[1].service, 'contabilidad');
+  await page.goto(base + '/eas/');
+  await clearRate();
+  await fill();
+  assert.ok((await submit()).ok);
+  await success.waitFor({ state: 'visible' });
+  events = await page.evaluate(() => window.dataLayer.filter(item => item[0] === 'event').map(item => [item[1], item[2]]));
+  const leadEvents = events.filter(item => item[0] === 'lead_submit');
+  assert.equal(leadEvents.length, 1);
+  assert.equal(leadEvents[0][1].service, 'eas');
+  assert.equal(leadEvents[0][1].value, 1000000);
+  assert.ok(!JSON.stringify(events).includes('Local Browser Test'), 'no lead name in analytics');
+  assert.ok(!JSON.stringify(events).includes('0981123456'), 'no phone in analytics');
+  await configure('', '', '', 'AW-LOCALTEST');
+  await page.goto(base);
+  assert.ok(await page.evaluate(() => window.siteAnalytics.enabled), 'Ads-only config enables event commands');
+  pass('gtag receives real event commands; menu opens and chat clicks are separate; accepted leads contain no PII');
+
+  await configure('', '');
+  await clearRate();
+  await rm(join(site, 'logs/leads.log'));
+  await mkdir(join(site, 'logs/leads.log')); // A deterministic local storage fault.
+  await page.goto(base + '/contacto/');
+  await fill();
+  const deliveryKey = await key();
+  const failedDelivery = await submit();
+  assert.equal(failedDelivery.ok, false);
+  assert.equal(failedDelivery.error, 'delivery');
+  await error.waitFor({ state: 'visible' });
+  assert.equal(await key(), deliveryKey);
+  assert.equal(await form.locator('[name=phone]').inputValue(), '0981123456');
+  assert.ok(await success.isHidden());
+  await configure(`http://127.0.0.1:${crm.address().port}`, 'local-test-only');
+  await clearRate();
+  const acceptedDespiteLog = await submit();
+  assert.equal(acceptedDespiteLog.ok, true, 'CRM acceptance survives an unavailable local log');
+  await success.waitFor({ state: 'visible' });
+  await rm(join(site, 'logs/leads.log'), { recursive: true });
+  pass('all-channel failure retains enquiry/key; confirmed CRM acceptance remains successful');
   assert.deepEqual(errors, [], 'no uncaught JavaScript errors');
   assert.doesNotMatch(phpOutput, /PHP (Warning|Fatal error|Parse error)/);
   console.log(`Contact/browser contract PASS: ${completed} checks; real PHP and local mock CRM only`);

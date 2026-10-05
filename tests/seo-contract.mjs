@@ -22,6 +22,9 @@ const routes = execFileSync('php', [root + 'deploy/routes.php'], { encoding: 'ut
     const [path, status] = line.split('\t');
     return { path, status: Number(status) };
   });
+const servicePaths = new Set(JSON.parse(execFileSync('php', ['-r',
+  `require ${JSON.stringify(root + 'lib/bootstrap.php')}; echo json_encode(array_column(services(), 'path'));`
+], { encoding: 'utf8' })));
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
 const parser = await browser.newPage();
 const result = { routes: {}, pages: {}, sitemap: [], robots: '' };
@@ -80,9 +83,13 @@ try {
     for (const [path, before] of Object.entries(expected.pages)) {
       const after = result.pages[path];
       assert.ok(after, `page retained: ${path}`);
-      for (const key of ['title', 'description', 'canonical', 'robots', 'lang', 'alternates', 'schemaTypes']) {
+      for (const key of ['title', 'description', 'canonical', 'robots', 'lang', 'alternates']) {
         assert.deepEqual(after[key], before[key], `${path}: ${key}`);
       }
+      // Keep the original fixture; allow only the documented additive schema.
+      const allowedAddition = path === '/' ? 'FAQPage' : servicePaths.has(path) ? 'Service' : null;
+      for (const type of before.schemaTypes) assert.ok(after.schemaTypes.includes(type), `${path}: preserved schema ${type}`);
+      for (const type of after.schemaTypes) assert.ok(before.schemaTypes.includes(type) || type === allowedAddition, `${path}: unexpected schema ${type}`);
       assert.equal(after.h1.length, 1, `${path}: exactly one H1`);
       if (path === '/') assert.match(after.h1[0], /estudio contable en asunción/i);
       else assert.deepEqual(after.h1, before.h1, `${path}: existing H1`);

@@ -36,6 +36,8 @@ $formNeed    = $formNeed ?? '';
 $formHeading = $formHeading ?? ui('form.legend');
 $formShowNeeds = $formShowNeeds ?? true;
 $formLang = $formLang ?? '';
+$formCompact = $formCompact ?? false;
+$formPlanRecord = quote_plan($formPlan ?? null);
 
 /* The lead value model decides this form's service, tier and thank-you copy
    (plan §5.3.2). A form on a service or tool page inherits the page's slug; a
@@ -57,7 +59,7 @@ $idempotencyKey = bin2hex(random_bytes(16));
 
 $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
 ?>
-<form class="lead-form" action="/enviar.php" method="post" data-lead-form
+<form class="lead-form<?= $formCompact ? ' lead-form--compact' : '' ?>" action="/enviar.php" method="post" data-lead-form
       data-whatsapp="<?= e($whatsapp ?? '') ?>" aria-describedby="<?= e($formId) ?>-required"
       data-error-phone="<?= e(ui('form.error_phone')) ?>"
       data-error-email="<?= e(ui('form.error_email')) ?>"
@@ -66,6 +68,11 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
 
   <?php if ($formHeading !== ''): ?>
     <h2 class="card-title"><?= e($formHeading) ?></h2>
+  <?php endif; ?>
+
+  <?php if ($formPlanRecord !== null): ?>
+    <p class="lead-form__context"><?= e(ui('form.plan_context')) ?> <strong><?= e($formPlanRecord['name']) ?></strong></p>
+    <input type="hidden" name="plan" value="<?= e($formPlanRecord['key']) ?>">
   <?php endif; ?>
 
   <p class="note lead-form__hint" id="<?= e($formId) ?>-required"><?= e(ui('form.required_note')) ?></p>
@@ -176,5 +183,5 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
 unset(
     $formId, $formNeed, $formHeading, $formService, $formLead, $formTier,
     $formToolResult, $formSourcePage, $sourcePage, $whatsapp, $idempotencyKey,
-    $utmKeys, $key, $label, $formShowNeeds, $formLang
+    $utmKeys, $key, $label, $formShowNeeds, $formLang, $formCompact, $formPlan, $formPlanRecord
 );

@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 return [
     [
+        'key'      => 'emprendedor',
         'name'     => 'Emprendedor',
         'audience' => 'Unipersonales y profesionales independientes.',
         'priceGs'  => null,
@@ -29,6 +30,7 @@ return [
         'featured' => false,
     ],
     [
+        'key'      => 'pyme',
         'name'     => 'Pyme',
         'audience' => 'Empresas con nómina y movimiento mensual constante.',
         'priceGs'  => null,
@@ -41,6 +43,7 @@ return [
         'featured' => true,
     ],
     [
+        'key'      => 'empresa',
         'name'     => 'Empresa',
         'audience' => 'Operaciones con varias sucursales, importación o auditoría.',
         'priceGs'  => null,

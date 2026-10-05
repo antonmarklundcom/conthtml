@@ -1,7 +1,7 @@
 /**
  * Analytics helper (plan §5.1.4b).
  *
- * track(event, params) pushes to dataLayer only when a GA4 id is configured;
+ * track(event, params) sends a gtag event only when an analytics id is configured;
  * with no id it is a silent no-op, so every phase can call it freely and
  * nothing breaks or leaks before B4 wires the tags.
  *
@@ -19,16 +19,20 @@
   "use strict";
 
   var gaId = (document.body && document.body.dataset.ga4) || "";
-  var enabled = gaId !== "";
+  var adsId = (document.body && document.body.dataset.ads) || "";
+  var enabled = gaId !== "" || adsId !== "";
 
   function track(event, params) {
     if (!enabled || !event) {
       return;
     }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(
-      Object.assign({ event: event }, params || {})
-    );
+    if (typeof window.gtag === "function") {
+      window.gtag("event", event, params || {});
+    } else {
+      window.dataLayer = window.dataLayer || [];
+      // gtag consumes commands as arguments, not GTM-style event objects.
+      (function () { window.dataLayer.push(arguments); })("event", event, params || {});
+    }
   }
 
   /** Where the click happened, so events are attributable per page. */
@@ -54,6 +58,7 @@
       var href = link.getAttribute("href") || "";
 
       if (href.indexOf("wa.me") !== -1 || href.indexOf("api.whatsapp.com") !== -1) {
+        if (link.hasAttribute("data-wa-enhanced")) return;
         track("whatsapp_click", context(link));
       } else if (href.indexOf("tel:") === 0) {
         track("phone_click", context(link));

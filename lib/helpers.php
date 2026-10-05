@@ -386,3 +386,30 @@ function lead_label(string $slug): string
 
     return (string) ($page['navLabel'] ?? $page['title'] ?? $slug);
 }
+
+/** Only published plan keys can become enquiry context. */
+function quote_plan(?string $key): ?array
+{
+    foreach (content('precios') as $plan) {
+        if ($key !== null && ($plan['key'] ?? '') === $key) {
+            return $plan;
+        }
+    }
+
+    return null;
+}
+
+/** Carry a known service/plan into contact without changing its canonical. */
+function quote_contact_path(?string $service = null, ?string $plan = null): string
+{
+    $query = [];
+    $lead = lead_value($service);
+    if ($lead['slug'] !== null) {
+        $query['servicio'] = $lead['slug'];
+    }
+    if (($record = quote_plan($plan)) !== null) {
+        $query['plan'] = $record['key'];
+    }
+
+    return '/contacto/' . ($query !== [] ? '?' . http_build_query($query) : '');
+}

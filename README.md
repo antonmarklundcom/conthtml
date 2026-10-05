@@ -65,6 +65,27 @@ Set `CHROMIUM_PATH` if using a system Chromium instead of Playwright's browser.
 
 Shared hosting, PHP 8.2, no Node, no database.
 
+### Git deployment for the current site
+
+In hPanel's **Deploy from GitHub**, use repository
+**antonmarklundcom/conthtml**, branch **main**, destination **public_html**.
+PR #33 is already merged into main. For each later improvement PR, review and
+merge it into main before deploying this same configuration. Keep work branches
+for review; main is the production deployment source.
+
+Preserve the existing private `public_html/config.php` and lead logs. Do not
+replace a populated config with `config.example.php`. `public_html/index.php`
+and `.htaccess` must sit directly in the destination, rather than inside a
+`conthtml/` subfolder. Confirm PHP 8.2 with curl and mbstring. Check home,
+`/contabilidad/`, `/contacto/` and `/sitemap.xml` after deployment. If a public
+page returns 403, check the exact failing URL, root files, hosting permissions
+and deployment log; private config/log URLs are intentionally inaccessible.
+
+The WordPress cutover below applies only when replacing a legacy WordPress
+installation, not when updating this existing PHP site.
+
+### ZIP alternative
+
 ```sh
 ./deploy/make-zip.sh       # → dist/contador-YYYY-MM-DD.zip
 ```
@@ -77,11 +98,12 @@ The zip holds exactly what belongs in `public_html/` — no `docs/`, `prompts/`,
    `.htaccess` and the page directories land directly in `public_html/`, with
    no wrapper folder. (Or use hPanel's **Git** deploy pointed at this repository; the
    excluded directories are harmless there, `.htaccess` already denies them.)
-2. Copy `config.example.php` to `config.php` **on the server** and fill it in.
+2. If private `config.php` does not exist, copy `config.example.php` to it
+   **on the server** and fill it in. Preserve an existing populated config.
    `config.php` is gitignored and must never be committed.
 3. Make sure `logs/` exists and is writable (the zip creates it, with its own
    `.htaccess` denying web access). The lead handler writes there.
-4. hPanel → **PHP Configuration** → PHP **8.2**, with `curl` enabled.
+4. hPanel → **PHP Configuration** → PHP **8.2**, with `curl` and `mbstring` enabled.
 5. Check `https://<domain>/` and `https://<domain>/sitemap.xml`, then submit a
    test lead and confirm it reaches VenderCRM → **Contactos**.
 
@@ -90,7 +112,7 @@ The zip holds exactly what belongs in `public_html/` — no `docs/`, `prompts/`,
 | Key | Effect when empty |
 |---|---|
 | `SITE_URL` | canonical/OG URLs fall back to the request host |
-| `VENDERCRM_URL`, `VENDERCRM_API_KEY` | the lead form runs in degraded mode: submissions are appended to `logs/leads.log`, the visitor still gets a success state |
+| `VENDERCRM_URL`, `VENDERCRM_API_KEY` | the form uses local storage or notification email; if every delivery channel fails, it shows a retry/WhatsApp recovery state |
 | `GA4_ID`, `ADS_ID` | `assets/js/analytics.js` is a silent no-op |
 
 ### Replacing the WordPress site

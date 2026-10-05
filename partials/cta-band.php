@@ -22,7 +22,7 @@ $ctaLead        = $ctaLead ?? ui('cta_band.lead');
 $ctaWhatsapp    = $ctaWhatsapp ?? whatsapp_text_for_page();
 $ctaSlug        = current_lead_slug();
 $ctaLink        = whatsapp_link($ctaWhatsapp);
-$ctaContactPath = $ctaContactPath ?? '/contacto/';
+$ctaContactPath = $ctaContactPath ?? quote_contact_path($ctaSlug);
 ?>
 <section class="section section--ink">
   <div class="container stack">

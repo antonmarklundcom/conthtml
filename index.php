@@ -11,6 +11,7 @@ $page = [
     'title'       => $meta['title'],
     'description' => $meta['description'],
     'path'        => '/',
+    'faq'         => content('conversion')['home_faq'],
 ];
 
 /* Only real, confirmed figures reach the hero. Anything without a value and a
@@ -62,6 +63,8 @@ require ROOT_DIR . '/partials/header.php';
           </a>
           <a class="btn btn--secondary" href="#servicios"><?= e(ui('cta.see_included')) ?></a>
         </div>
+
+        <p class="hero__offer"><?= e(content('conversion')['offer_note']) ?></p>
 
         <?php if (site('phone')): ?>
           <p class="hero__phone"><a href="tel:+<?= e(phone_digits(site('phone'))) ?>"><?= e(site('phone')) ?></a> · <?= e(site('city')) ?></p>
@@ -170,6 +173,18 @@ require ROOT_DIR . '/partials/header.php';
   <?php else: ?>
     <?php require ROOT_DIR . '/partials/industries.php'; ?>
   <?php endif; ?>
+
+  <section class="section section--surface home-faq">
+    <div class="container">
+      <?php
+      $faqItems = content('conversion')['home_faq'];
+      $faqTitle = content('conversion')['home_faq_title'];
+      require ROOT_DIR . '/partials/faq.php';
+      unset($faqTitle);
+      ?>
+      <p class="note mt-4">Vea <a href="/precios/">el alcance de nuestros planes</a> o <a href="/cambiar-de-contador/">cómo consultar por un cambio de contador</a>.</p>
+    </div>
+  </section>
 
   <!-- Contacto ---------------------------------------------------------- -->
   <section class="section" id="contacto">
