@@ -377,7 +377,7 @@ $leadResult = [
     'currency'   => 'PYG',
     'thanks'     => [
         'steps'    => array_values((array) ($lead['nextStep'] ?? [])),
-        'whatsapp' => whatsapp_link($lead['whatsappText']),
+        'whatsapp' => whatsapp_link($lead['whatsappText'], $sourcePage),
         'link'     => $lead['nextLink'] ?? null,
     ],
 ];

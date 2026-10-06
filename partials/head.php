@@ -53,11 +53,9 @@ $headCrmUrl  = crm_base_url();
 <meta property="og:image" content="<?= e(seo_og_image($page)) ?>">
 <meta name="twitter:card" content="summary_large_image">
 
-<meta name="theme-color" content="#0F1B2D">
+<meta name="theme-color" content="#FAF9F6">
 <link rel="icon" href="<?= e(asset('/assets/img/favicon.svg')) ?>" type="image/svg+xml">
 
-<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="<?= e(asset('/assets/css/site.css')) ?>">
 
 <?php if ($headCrmUrl !== null && parse_url($headCrmUrl, PHP_URL_SCHEME) === 'https' && parse_url($headCrmUrl, PHP_URL_HOST)): ?>

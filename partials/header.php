@@ -86,9 +86,10 @@ $navLeadSlug    = current_lead_slug() ?? '';
     </div>
 
     <div class="site-header__actions">
-      <a class="btn btn--secondary" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
+      <a class="btn <?= $navWhatsapp ? 'btn--whatsapp' : 'btn--secondary' ?>" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
          <?= $navWhatsapp ? 'rel="noopener"' . ($navLeadSlug === '' ? ' data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '') : '' ?>
          data-service="<?= e($navLeadSlug) ?>">
+        <?php if ($navWhatsapp): ?><?php require ROOT_DIR . '/partials/whatsapp-icon.php'; ?><?php endif; ?>
         <?= e($navWhatsapp ? ui('cta.whatsapp') : ui('cta.contact')) ?>
       </a>
       <a class="btn btn--primary" href="<?= e(quote_contact_path($navLeadSlug)) ?>"><?= e(ui('cta.quote')) ?></a>

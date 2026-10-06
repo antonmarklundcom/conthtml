@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 return [
     'offer_note' => 'Consulta inicial sin costo · Propuesta por escrito',
-    'quick_title' => 'Solicite una propuesta',
+    'quick_title' => 'Pedí tu propuesta',
     'quick_service' => 'Consulta sobre',
-    'privacy_hint' => 'Para la consulta inicial no necesitamos sus claves de Marangatu.',
+    'privacy_hint' => 'Para la consulta inicial no necesitamos tus claves de Marangatu.',
     'home_faq_title' => 'Antes de elegir un contador',
     'home_faq' => [
         ['q' => '¿Cuánto cuesta un servicio contable?', 'a' => 'El honorario depende del régimen tributario, el volumen de comprobantes, la cantidad de empleados y los servicios que necesita. La conversación inicial y la propuesta por escrito no tienen costo ni compromiso; el alcance y los honorarios se acuerdan antes de empezar.'],

@@ -137,7 +137,7 @@ function phone_digits(?string $phone): string
  * wa.me deep link with a prefilled message, or null when no WhatsApp number is
  * configured yet. Callers fall back to /contacto/.
  */
-function whatsapp_link(?string $text = null): ?string
+function whatsapp_link(?string $text = null, ?string $sourcePage = null): ?string
 {
     $number = phone_digits(site('whatsapp'));
     if ($number === '') {
@@ -145,11 +145,25 @@ function whatsapp_link(?string $text = null): ?string
     }
 
     $link = 'https://wa.me/' . $number;
-    if ($text !== null && $text !== '') {
-        $link .= '?text=' . rawurlencode($text);
-    }
+    $link .= '?text=' . rawurlencode(whatsapp_message($text, $sourcePage));
 
     return $link;
+}
+
+/** Keep the website and originating page on every chat, without campaign/PII query strings. */
+function whatsapp_message(?string $text = null, ?string $sourcePage = null): string
+{
+    $source = $sourcePage ?? ($GLOBALS['page']['path'] ?? ($_SERVER['REQUEST_URI'] ?? '/'));
+    $path = parse_url($source, PHP_URL_PATH);
+    $path = is_string($path) && str_starts_with($path, '/') ? mb_substr($path, 0, 500) : '/';
+    $path = preg_replace('/[\x00-\x1F\x7F]/', '', $path) ?? '/';
+    $english = str_starts_with($path, '/en/') || (($GLOBALS['page']['lang'] ?? '') === 'en');
+    $message = trim((string) $text);
+    if ($message === '') {
+        $message = $english ? 'Hello, I would like accounting advice for my business.' : 'Hola, quiero hablar con un contador sobre mi empresa.';
+    }
+    return $message . "\n\n" . ($english ? 'Website' : 'Web') . ': contador.com.py'
+        . "\n" . ($english ? 'Page' : 'Página') . ': ' . $path;
 }
 
 /**

@@ -204,6 +204,9 @@ try {
   const serviceResult = await submit();
   await success.waitFor({ state: 'visible' });
   assert.equal(serviceResult.service, 'eas');
+  const acceptedChat = new URL(serviceResult.thanks.whatsapp).searchParams.get('text');
+  assert.match(acceptedChat, /contador\.com\.py/);
+  assert.match(acceptedChat, /Página: \/eas\//);
   assert.equal(serviceResult.value_tier, 'A', 'tier is resolved server-side');
   assert.equal(calls.at(-1).utm_source, 'first-source');
   assert.equal(calls.at(-1).utm_campaign, 'first-campaign');
@@ -225,29 +228,36 @@ try {
   pass('English shared form retains language, service and lead routing');
 
   await clearRate();
-  const noJS = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 } });
+  const noJS = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce', viewport: { width: 390, height: 900 } });
   const plain = await noJS.newPage();
   await plain.goto(base + '/eas/');
   assert.ok(await plain.locator('[data-mega] a[href="/eas/"]').isVisible());
   const plainForm = plain.locator('[data-lead-form]').first();
+  // Synchronize on the destination document response, then its visible
+  // thank-you. A lifecycle wait can miss DOMContentLoaded after a native POST.
+  const noJsDestination = () => plain.waitForResponse(response => {
+    const url = new URL(response.url());
+    return response.request().resourceType() === 'document' && response.status() === 200
+      && url.pathname === '/contacto/' && url.searchParams.get('enviado') === '1'
+      && url.searchParams.get('s') === 'eas';
+  });
   await plainForm.locator('[name=name]').fill('Local No JS Test');
   await plainForm.locator('[name=phone]').fill('0981123456');
   await Promise.all([
-    plain.waitForURL(url => url.pathname === '/contacto/' && url.searchParams.get('enviado') === '1' && url.searchParams.get('s') === 'eas', { waitUntil: 'domcontentloaded' })
-      .catch(async error => { throw new Error(`No-JS redirect failed at ${plain.url()} (readyState=${await plain.evaluate(() => document.readyState)}): ${error.message}`); }),
-    plainForm.locator('[data-submit]').click()
+    noJsDestination(),
+    plainForm.locator('[data-submit]').click({ noWaitAfter: true })
   ]);
-  assert.ok(await plain.locator('#gracias').isVisible());
+  await plain.locator('#gracias').waitFor({ state: 'visible' });
   assert.equal(calls.at(-1).fields.valor, 'A');
   await plain.setViewportSize({ width: 1440, height: 900 });
   await plain.goto(base + '/eas/');
   await plainForm.locator('[name=name]').fill('Local Desktop No JS Test');
   await plainForm.locator('[name=phone]').fill('0981123456');
   await Promise.all([
-    plain.waitForURL(url => url.pathname === '/contacto/' && url.searchParams.get('s') === 'eas', { waitUntil: 'domcontentloaded' }),
-    plainForm.locator('[data-submit]').click()
+    noJsDestination(),
+    plainForm.locator('[data-submit]').click({ noWaitAfter: true })
   ]);
-  assert.ok(await plain.locator('#gracias').isVisible());
+  await plain.locator('#gracias').waitFor({ state: 'visible' });
   await noJS.close();
   pass('mobile/desktop no-JS navigation and ordinary POST retain per-service thank-you');
 
@@ -556,6 +566,8 @@ try {
   assert.equal(await form.locator('[name=message]').inputValue(), 'Necesito ayuda con mi empresa');
   assert.equal(await button.isDisabled(), false);
   assert.match(new URL(await error.locator('a').getAttribute('href')).searchParams.get('text'), /Necesito ayuda con mi empresa/);
+  assert.match(new URL(await error.locator('a').getAttribute('href')).searchParams.get('text'), /contador\.com\.py/);
+  assert.match(new URL(await error.locator('a').getAttribute('href')).searchParams.get('text'), /Página: \/contacto\//);
   await page.unrouteAll({ behavior: 'ignoreErrors' });
   pass('stalled request recovers after deadline; enquiry/key retained and WhatsApp carries entered message');
   assert.deepEqual(errors, [], 'no uncaught JavaScript errors');
