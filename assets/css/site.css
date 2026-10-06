@@ -973,6 +973,7 @@ h3 {
 }
 
 .site-header__bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1184,12 +1185,29 @@ h3 {
   cursor: pointer;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .site-header__bar {
+    gap: 8px;
+  }
   .site-header__actions .btn--secondary {
     display: none;
   }
   .site-nav {
-    gap: var(--s-3);
+    gap: 12px;
+  }
+}
+
+@media (min-width: 901px) {
+  /* Center the dropdown on the bounded header, rather than its narrow trigger. */
+  .site-header[data-enhanced] .site-nav > li:has([data-mega]) {
+    position: static;
+  }
+  .site-header[data-enhanced] .mega {
+    width: min(900px, calc(100% - 2 * var(--gutter)));
+    max-width: calc(100% - 2 * var(--gutter));
+    max-height: calc(100vh - 100px);
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
   }
 }
 
