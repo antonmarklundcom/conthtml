@@ -93,7 +93,7 @@ jobs:
           pages=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" \
             | grep -E '(^|/)index\.php$' \
             | sed -E 's#(^|/)index\.php$#/#; s#^/$#/#; s#^([^/])#/\1#' \
-            | grep -v '^/$' | sort -u | head -10)
+            | awk '$0 != "/"' | sort -u | head -10)
           echo "Capturing: / $pages"
           cd tests
           node screenshots.mjs --phase ci --base http://127.0.0.1:8080 / /servicios/ /contabilidad/ /eas/ /precios/ /guias/ /herramientas/calculadora-aguinaldo/ /contacto/ /en/contact/ $pages
