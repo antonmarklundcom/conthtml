@@ -64,12 +64,19 @@ return [
     ],
 
     'whatsapp' => [
-        'menu_title'   => 'What would you like to write to us about?',
-        'menu_note'    => 'We open WhatsApp with the message already written. You can change it before sending.',
+        'menu_title'   => 'What do you need help with?',
+        'menu_note'    => 'Choose a service to continue on WhatsApp. You can edit the message before sending.',
         'other'        => 'Something else',
-        'this_page'    => 'What you are looking at',
+        'this_page'    => 'Your enquiry',
         'open_menu'    => 'Open WhatsApp options',
         'close_menu'   => 'Close',
+        'groups' => [
+            'contabilidad' => ['label' => 'Accounting and taxes', 'description' => 'Monthly bookkeeping, VAT, IRE and Marangatu.'],
+            'eas' => ['label' => 'Company opening or RUC', 'description' => 'EAS, SRL, SA and RUC registration.'],
+            'ips' => ['label' => 'Salaries, payroll and IPS', 'description' => 'Salaries, annual bonus and employee filings.'],
+            'ekuatia' => ['label' => 'Electronic invoicing', 'description' => 'SIFEN, authorisation and setup.'],
+            'other' => ['label' => 'Something else', 'description' => 'Audits, advice or help choosing a service.'],
+        ],
     ],
 
     'home' => [

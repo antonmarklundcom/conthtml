@@ -72,6 +72,9 @@ try {
   const focused = await mobileLink.evaluate(el => ({ fg: getComputedStyle(el).color, bg: getComputedStyle(el).backgroundColor }));
   assert.ok(contrast(focused.fg, focused.bg) >= 4.5, 'mobile dropdown focus text contrast');
   await page.keyboard.press('Escape');
+  assert.equal(await page.locator('.wa-fab').getAttribute('data-wa-visible'), 'false');
+  await page.locator('#servicios').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => document.querySelector('.wa-fab').dataset.waVisible === 'true');
   await page.locator('.wa-fab').click();
   await page.locator('[data-wa-menu]:not([hidden])').waitFor();
   await page.keyboard.press('Escape');

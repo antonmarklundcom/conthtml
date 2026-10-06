@@ -77,7 +77,7 @@ $navLeadSlug    = current_lead_slug() ?? '';
 
       <div class="nav-drawer-cta">
         <a class="btn btn--whatsapp" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
-           <?= $navWhatsapp ? 'rel="noopener"' . ($navLeadSlug === '' ? ' data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '') : '' ?>
+           <?= $navWhatsapp ? 'rel="noopener" data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '' ?>
            data-service="<?= e($navLeadSlug) ?>">
           <?= e($navWhatsapp ? ui('cta.whatsapp_long') : ui('cta.contact')) ?>
         </a>
@@ -87,7 +87,7 @@ $navLeadSlug    = current_lead_slug() ?? '';
 
     <div class="site-header__actions">
       <a class="btn <?= $navWhatsapp ? 'btn--whatsapp' : 'btn--secondary' ?>" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
-         <?= $navWhatsapp ? 'rel="noopener"' . ($navLeadSlug === '' ? ' data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '') : '' ?>
+         <?= $navWhatsapp ? 'rel="noopener" data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '' ?>
          data-service="<?= e($navLeadSlug) ?>">
         <?php if ($navWhatsapp): ?><?php require ROOT_DIR . '/partials/whatsapp-icon.php'; ?><?php endif; ?>
         <?= e($navWhatsapp ? ui('cta.whatsapp') : ui('cta.contact')) ?>

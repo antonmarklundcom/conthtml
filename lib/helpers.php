@@ -341,44 +341,42 @@ function whatsapp_text_for_page(?array $page = null): string
 }
 
 /**
- * The WhatsApp menu options (plan §5.3.8b): the current page's service first
- * and pre-highlighted, then the four priority services, then "otra consulta".
- * Duplicates are dropped, so a visitor on /eas/ sees EAS once.
- *
- * Each entry: slug, label, text (the prefill), link (wa.me or null), current.
+ * Five service groups. The current service keeps its precise prefill within
+ * its group; all alternatives carry the page context through whatsapp_link().
  */
 function whatsapp_menu(?array $page = null): array
 {
     $model   = content('lead-values');
     $current = current_lead_slug($page);
-    $slugs   = array_values(array_unique(array_filter(
-        array_merge([$current], $model['whatsappMenu'])
-    )));
+    $language = defined('UI_LANG') && UI_LANG === 'en' ? 'en' : 'es';
+    $slugs = array_merge($model['whatsappMenu'], ['other']);
+    $needs = array_map(static fn (string $slug) => lead_value($slug)['need'], $model['whatsappMenu']);
+    $currentRecord = lead_value($current);
+    $currentNeed = $currentRecord['whatsappGroup'] ?? $currentRecord['need'];
+    $records = array_merge($model['services'], $model['tools']);
 
     $options = [];
     foreach ($slugs as $slug) {
-        $record = lead_value($slug);
-        if ($record['slug'] === null) {
-            continue;   // a page that named a slug the model does not know
+        $need = $slug === 'other' ? null : lead_value($slug)['need'];
+        $isCurrent = $current !== null && ($need === $currentNeed || ($need === null && !in_array($currentNeed, $needs, true)));
+        $text = $isCurrent ? whatsapp_text_for_page($page) : $model['whatsappMenuTexts'][$language][$slug];
+        $members = [];
+        foreach ($records as $memberSlug => $record) {
+            $memberNeed = $record['whatsappGroup'] ?? $record['need'];
+            if ($memberNeed === $need || ($need === null && !in_array($memberNeed, $needs, true))) {
+                $members[] = $memberSlug;
+            }
         }
         $options[] = [
-            'slug'    => $slug,
-            'label'   => lead_label($slug),
-            'text'    => $record['whatsappText'],
-            'link'    => whatsapp_link($record['whatsappText']),
-            'current' => $slug === $current,
+            'slug'    => $isCurrent ? $current : ($slug === 'other' ? '' : $slug),
+            'group'   => $slug,
+            'members' => $members,
+            'label'   => ui('whatsapp.groups.' . $slug . '.label'),
+            'description' => ui('whatsapp.groups.' . $slug . '.description'),
+            'link'    => whatsapp_link($text),
+            'current' => $isCurrent,
         ];
     }
-
-    /* "Otra consulta" always closes the menu: the visitor who wants none of the
-       above still gets a message that says something. */
-    $options[] = [
-        'slug'    => '',
-        'label'   => ui('whatsapp.other'),
-        'text'    => $model['default']['whatsappText'],
-        'link'    => whatsapp_link($model['default']['whatsappText']),
-        'current' => false,
-    ];
 
     return $options;
 }

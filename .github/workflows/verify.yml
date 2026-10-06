@@ -53,11 +53,17 @@ jobs:
           for _ in $(seq 1 40); do curl -sf -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.25; done
           node tests/seo-contract.mjs --base http://127.0.0.1:8080
           node tests/whatsapp-context.mjs --base http://127.0.0.1:8080
+          node tests/whatsapp-menu.mjs --base http://127.0.0.1:8080
           node tests/editorial-design.mjs --base http://127.0.0.1:8080
       - name: Form delivery, attribution and responsive layouts
         run: |
           node tests/crm-config.mjs
           node tests/contact-behavior.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: whatsapp-picker-previews
+          path: docs/screenshots/whatsapp-picker/
 
   screenshots:
     runs-on: ubuntu-latest
