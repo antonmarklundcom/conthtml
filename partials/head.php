@@ -82,5 +82,5 @@ $headCrmUrl  = cfg('VENDERCRM_URL');
 </script>
 <?php endif; ?>
 </head>
-<body data-ga4="<?= e($ga4 ?? '') ?>">
+<body data-ga4="<?= e($ga4 ?? '') ?>" data-ads="<?= e($ads ?? '') ?>">
 <a class="skip-link" href="#main"><?= e(ui('nav.skip')) ?></a>

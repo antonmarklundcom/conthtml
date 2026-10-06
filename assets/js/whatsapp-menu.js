@@ -31,6 +31,7 @@
   triggers.forEach(function (trigger) {
     trigger.setAttribute("role", "button");
     trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("data-wa-enhanced", "");
   });
 
   function isOpen() {
@@ -40,6 +41,9 @@
   function open(trigger) {
     lastTrigger = trigger || null;
     menu.hidden = false;
+    if (window.siteAnalytics) {
+      window.siteAnalytics.track("whatsapp_menu_open", { page_path: window.location.pathname });
+    }
     triggers.forEach(function (t) {
       t.setAttribute("aria-expanded", t === trigger ? "true" : "false");
     });

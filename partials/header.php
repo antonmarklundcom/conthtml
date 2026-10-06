@@ -77,22 +77,25 @@ $navLeadSlug    = current_lead_slug() ?? '';
 
       <div class="nav-drawer-cta">
         <a class="btn btn--whatsapp" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
-           <?= $navWhatsapp ? 'rel="noopener" data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '' ?>
+           <?= $navWhatsapp ? 'rel="noopener"' . ($navLeadSlug === '' ? ' data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '') : '' ?>
            data-service="<?= e($navLeadSlug) ?>">
           <?= e($navWhatsapp ? ui('cta.whatsapp_long') : ui('cta.contact')) ?>
         </a>
-        <a class="btn btn--primary" href="/contacto/"><?= e(ui('cta.quote')) ?></a>
+        <a class="btn btn--primary" href="<?= e(quote_contact_path($navLeadSlug)) ?>"><?= e(ui('cta.quote')) ?></a>
       </div>
     </div>
 
     <div class="site-header__actions">
       <a class="btn btn--secondary" href="<?= e($navWhatsapp ?? '/contacto/') ?>"
-         <?= $navWhatsapp ? 'rel="noopener" data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '' ?>
+         <?= $navWhatsapp ? 'rel="noopener"' . ($navLeadSlug === '' ? ' data-wa-trigger aria-controls="wa-menu" aria-expanded="false"' : '') : '' ?>
          data-service="<?= e($navLeadSlug) ?>">
         <?= e($navWhatsapp ? ui('cta.whatsapp') : ui('cta.contact')) ?>
       </a>
-      <a class="btn btn--primary" href="/contacto/"><?= e(ui('cta.quote')) ?></a>
+      <a class="btn btn--primary" href="<?= e(quote_contact_path($navLeadSlug)) ?>"><?= e(ui('cta.quote')) ?></a>
     </div>
 
   </div>
 </header>
+<!-- Initialize the navigation before the main content paints. Without JS,
+     the same header stays in document flow with all service links available. -->
+<script><?php readfile(ROOT_DIR . '/assets/js/site.js'); ?></script>

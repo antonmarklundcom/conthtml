@@ -39,6 +39,7 @@ $page = [
     /* Names this page in the lead value model (plan §5.3): the WhatsApp menu,
        the CTA band, the lead form and the thank-you all resolve from it. */
     'leadSlug'    => $slug,
+    'jsonld'      => [jsonld_service($service)],
 ];
 
 $hero        = $service['hero'];
@@ -52,6 +53,7 @@ require ROOT_DIR . '/partials/header.php';
   <section class="page-hero">
     <div class="container">
       <?php require ROOT_DIR . '/partials/breadcrumbs.php'; ?>
+      <div class="service-hero__layout">
       <div class="page-hero__inner">
         <p class="eyebrow"><?= e($hero['eyebrow'] !== '' ? $hero['eyebrow'] : $clusterLabel) ?></p>
         <h1><?= e($hero['h1'] !== '' ? $hero['h1'] : $service['title']) ?></h1>
@@ -64,13 +66,26 @@ require ROOT_DIR . '/partials/header.php';
           <p class="lead"><?= e($service['metaDescription']) ?></p>
         <?php endif; ?>
         <div class="btn-row">
-          <a class="btn btn--primary" href="/contacto/">
-            <?= e($service['cta']['label'] !== '' ? $service['cta']['label'] : ui('cta.consult')) ?>
-          </a>
           <?php if (($wa = whatsapp_link($ctaWhatsapp)) !== null): ?>
-            <a class="btn btn--secondary" href="<?= e($wa) ?>" rel="noopener"><?= e(ui('cta.whatsapp')) ?></a>
+            <a class="btn btn--whatsapp" href="<?= e($wa) ?>" rel="noopener" data-service="<?= e($slug) ?>"><?= e(ui('cta.whatsapp_long')) ?></a>
           <?php endif; ?>
+          <a class="btn btn--secondary" href="#consulta-rapida"><?= e(content('conversion')['quick_title']) ?></a>
         </div>
+        <p class="service-hero__offer"><?= e(content('conversion')['offer_note']) ?></p>
+      </div>
+      <div class="service-hero__quote" id="consulta-rapida">
+        <p class="service-hero__context"><?= e(content('conversion')['quick_service']) ?>: <strong><?= e(lead_label($slug)) ?></strong></p>
+        <?php
+        $formId = 'rapida-' . $slug;
+        $formService = $slug;
+        $formNeed = lead_value($slug)['need'];
+        $formShowNeeds = false;
+        $formCompact = true;
+        $formHeading = content('conversion')['quick_title'];
+        require ROOT_DIR . '/partials/lead-form.php';
+        ?>
+        <p class="service-hero__privacy"><?= e(content('conversion')['privacy_hint']) ?></p>
+      </div>
       </div>
     </div>
   </section>
@@ -278,6 +293,6 @@ require ROOT_DIR . '/partials/header.php';
     </div>
   </section>
 
-  <?php require ROOT_DIR . '/partials/cta-band.php'; ?>
+  <?php $ctaContactPath = '#solicitar'; require ROOT_DIR . '/partials/cta-band.php'; ?>
 </main>
 <?php require ROOT_DIR . '/partials/footer.php'; ?>

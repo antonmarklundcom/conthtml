@@ -12,11 +12,20 @@
 require __DIR__ . '/../lib/bootstrap.php';
 
 $meta = page_meta('/contacto/');
+$contactRequested = is_string($_GET['servicio'] ?? null) ? mb_substr($_GET['servicio'], 0, 80) : '';
+$contactLead = lead_value($contactRequested);
+$contactService = $contactLead['slug'] !== null ? $contactRequested : '';
+$contactPlan = quote_plan(is_string($_GET['plan'] ?? null) ? $_GET['plan'] : null);
+if ($contactService === '' && $contactPlan !== null) {
+    $contactService = 'contabilidad';
+    $contactLead = lead_value($contactService);
+}
 $page = [
     'title'       => $meta['title'],
     'description' => $meta['description'],
     'path'        => '/contacto/',
     'breadcrumbs' => [['label' => ui('nav.contact'), 'path' => '/contacto/']],
+    'leadSlug' => $contactService,
 ];
 
 /* The no-JS success path lands here: enviar.php redirects to
@@ -27,6 +36,9 @@ $sent     = isset($_GET['enviado']);
 $sentSlug = is_string($_GET['s'] ?? null) ? mb_substr($_GET['s'], 0, 80) : '';
 $sentLead = lead_value($sentSlug !== '' ? $sentSlug : null);
 $whatsapp = whatsapp_link(whatsapp_text_for_page());
+if ($contactPlan !== null) {
+    $whatsapp = whatsapp_link('Hola, quiero consultar por el plan ' . $contactPlan['name'] . ' para mi empresa.');
+}
 
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
@@ -44,7 +56,7 @@ require ROOT_DIR . '/partials/header.php';
         </div>
         <img class="page-hero__photo" src="<?= e(asset('/assets/img/consulta-contable-conversacion-cliente-1280.avif')) ?>"
              alt="Contador conversando con un cliente en una consulta cálida en una oficina moderna"
-             loading="lazy" width="800" height="600">
+             loading="eager" fetchpriority="high" width="800" height="600">
       </div>
     </div>
   </section>
@@ -63,7 +75,7 @@ require ROOT_DIR . '/partials/header.php';
 
         <div class="btn-row">
           <?php if ($whatsapp !== null): ?>
-            <a class="btn btn--whatsapp" href="<?= e($whatsapp) ?>" rel="noopener">
+            <a class="btn btn--whatsapp" href="<?= e($whatsapp) ?>" rel="noopener" data-service="<?= e($contactService) ?>">
               <?= e(ui('cta.whatsapp_long')) ?>
             </a>
           <?php endif; ?>
@@ -108,6 +120,9 @@ require ROOT_DIR . '/partials/header.php';
       <?php
       $formId      = 'contacto';
       $formHeading = ui('form.legend');
+      $formService = $contactService;
+      $formNeed = $contactService !== '' ? $contactLead['need'] : '';
+      $formPlan = $contactPlan['key'] ?? null;
       require ROOT_DIR . '/partials/lead-form.php';
       ?>
 

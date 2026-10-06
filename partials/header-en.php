@@ -61,3 +61,4 @@ $navWhatsapp    = whatsapp_link(whatsapp_text_for_page());
 
   </div>
 </header>
+<script><?php readfile(ROOT_DIR . '/assets/js/site.js'); ?></script>

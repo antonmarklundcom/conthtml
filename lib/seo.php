@@ -117,6 +117,22 @@ function jsonld_organization(): array
     return $data;
 }
 
+/** A published service, linked to the existing firm without invented offers. */
+function jsonld_service(array $service): array
+{
+    return [
+        '@context' => 'https://schema.org',
+        '@type' => 'Service',
+        '@id' => url($service['path']) . '#service',
+        'name' => $service['navLabel'] ?: $service['title'],
+        'description' => $service['metaDescription'],
+        'url' => url($service['path']),
+        'serviceType' => $service['title'],
+        'provider' => ['@id' => url('/') . '#organization'],
+        'areaServed' => ['@type' => 'Country', 'name' => 'Paraguay'],
+    ];
+}
+
 /**
  * BreadcrumbList, always rooted at Inicio. Returns null on the homepage.
  */

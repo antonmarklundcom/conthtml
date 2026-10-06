@@ -1,143 +1,70 @@
-# Analytics setup — GA4 → Google Ads, with lead value
+# Analytics setup — measure enquiries and qualified clients
 
-What the site already sends, and the ten minutes of clicking in GA4 and Google
-Ads that turns it into conversion bidding. Written for phase C1 (plan §5.3.5).
+`assets/js/analytics.js` sends `gtag('event', name, parameters)` commands when
+`GA4_ID` or `ADS_ID` is configured in the server's private `config.php`.
+`partials/head.php` loads and configures the corresponding Google tag. With
+neither ID, no analytics requests or event commands are sent.
 
-Nothing here needs a code change. The site pushes the events either way; this
-document is about making Google listen to them.
+## Events and their limits
 
----
-
-## 1. What the site sends
-
-`assets/js/analytics.js` pushes to `dataLayer` and is a **silent no-op until
-`config.php` sets `GA4_ID`** — so none of this leaks or breaks before the tag
-exists. `partials/head.php` loads `gtag.js` under the same condition.
-
-| Event | When | Parameters |
+| Event | Trigger | Parameters |
 |---|---|---|
-| `lead_submit` | The lead form (or the vencimientos reminder) is accepted by `enviar.php` | `form_id`, `service`, `value_tier`, `value`, `currency`, `degraded` |
-| `whatsapp_click` | Any `wa.me` link is clicked — header pill, floating button, each WhatsApp-menu option, CTA band, thank-you | `service`, `page_path`, `link_text` |
-| `phone_click` | Any `tel:` link | `page_path`, `link_text` |
-| `tool_used` | A calculator produces a result | `tool`, plus that tool's own inputs |
+| `lead_submit` | `enviar.php` confirms that CRM, local storage or notification email accepted the enquiry | `form_id`, `service`, `value_tier`, `value`, `currency`, `degraded` |
+| `whatsapp_menu_open` | The enhanced service chooser opens | `page_path` |
+| `whatsapp_click` | A link actually opens WhatsApp, including a selected chooser option | `service`, `page_path`, `link_text` |
+| `phone_click` | A telephone link is clicked | `page_path`, `link_text` |
+| `tool_used` | A calculator produces a result | `tool` and calculator parameters |
 
-**`value` and `value_tier` come from the server, not the browser.** `enviar.php`
-resolves them from `content/lead-values.php` and returns them in its JSON
-response; `assets/js/lead-form.js` reports exactly what came back. So the value
-Google bids on is always the value the CRM recorded — there is no second copy of
-the tier logic to drift.
+Opening the chooser is not a chat click. A chat click does not prove a message
+was sent or a client was won. Lead events include no name, phone or email.
+The accepted form's tier/value comes from the PHP handler's published service
+model, not a browser-supplied amount. A degraded acceptance needs the firm's
+follow-up from its local record or notification rather than assuming a CRM deal.
 
-### The values
-
-| Tier | `value` (PYG) | Sources |
+| Tier | Proxy value (PYG) | Examples |
 |---|---|---|
-| A | 1 000 000 | contabilidad, EAS, RUC, auditoría, the comparador |
-| B | 400 000 | SIFEN/Ekuatia'i, IVA, IRE, nómina/IPS, asesoría, Marangatu |
-| C | 100 000 | IRP, the calculators, vencimientos reminders, quiz "otro" |
+| A | 1,000,000 | Monthly accounting, EAS, RUC, audit |
+| B | 400,000 | Ekuatia, IVA, IRE, payroll, advisory |
+| C | 100,000 | IRP, calculators, reminders |
 
-These are **optimisation proxies, not revenue estimates** — they exist so smart
-bidding prefers a retainer lead over a calculator lead by 10:1. The reasoning is
-in `docs/lead-value.md`; the numbers are one edit in `content/lead-values.php`
-and need no deploy of anything else.
+These are prioritisation proxies, not revenue or expected lifetime value.
+See `content/lead-values.php` and `docs/lead-value.md` for the complete mapping.
 
----
+## Configure and verify production
 
-## 2. Turn it on
+Set the real `GA4_ID` and/or `ADS_ID` in private server configuration. Use PYG
+as the reporting currency if these proxy values are used. The task's browser
+tests use mocked tags and a local CRM; they do not establish that production
+credentials, Google imports or production CRM delivery are working.
 
-### 2.1 `config.php` (on the server)
+1. Check a controlled enquiry with the firm's approval in GA4 Realtime/DebugView
+   and the actual CRM or fallback record. The form must produce one accepted
+   event; an error must produce none. Inspect `degraded` when troubleshooting.
+2. Check that opening the generic homepage WhatsApp chooser produces only
+   `whatsapp_menu_open`; selecting a service produces `whatsapp_click` with its
+   service. A service page's direct link should produce one chat click.
+3. Register `service`, `value_tier` and `degraded` as event-scoped custom
+   dimensions where useful. Verify value/currency in the received event.
+4. Mark `lead_submit` as a GA4 key event. Keep menu opens informational. Track
+   WhatsApp taps as a secondary intent measure until qualified conversations
+   can be measured reliably. Avoid counting a tap and its later enquiry as two
+   acquired clients.
+5. If importing into Google Ads, verify the conversion action, attribution,
+   value settings and count setting in the actual account before bidding on it.
+   Prefer qualified-lead/won-client outcomes as the primary bidding signal once
+   those imports exist. An `ADS_ID` alone does not configure a conversion label.
 
-```php
-'GA4_ID' => 'G-XXXXXXXXXX',
-'ADS_ID' => 'AW-XXXXXXXXX',
-```
+## Growth measurement
 
-Both are optional and independent. With neither set, nothing loads.
+Use Search Console landing pages/queries together with GA4 service and source
+reports. Compare qualified enquiries and won clients in VenderCRM by service
+and campaign. Keep the captured first-touch attribution with the enquiry;
+import approved offline outcomes using GCLID when that process is configured.
+Select ad budgets and bidding from measured volume and client economics.
 
-### 2.2 GA4: register the events as conversions
-
-GA4 does not need custom code for these — `gtag.js` picks up `dataLayer` pushes
-through the tag's own listener. What it needs is to be told they matter.
-
-1. **Admin → Data display → Events**, wait for one real `lead_submit` to appear
-   (submit the form yourself once; the site is live, so it will be within
-   minutes), then toggle **Mark as key event**.
-2. Do the same for `whatsapp_click`. It is the site's *other* primary
-   conversion — plan §1.6 makes WhatsApp the main path, and on a Paraguayan
-   site most people will use it instead of the form.
-3. **Admin → Custom definitions → Create custom dimension** for each of
-   `service` and `value_tier`, scope **Event**, event parameter with the same
-   name. Without this the parameters are collected but never appear in a report.
-4. **Admin → Custom definitions → Custom metrics** is *not* needed for `value`:
-   GA4 reads `value` + `currency` as the event's monetary value automatically,
-   which is the whole reason those two parameter names were chosen.
-
-Set the property's currency to **PYG** (Admin → Property details) so the
-reported totals are guaraníes, not dollars.
-
-### 2.3 Google Ads: import them as conversion actions
-
-1. **Tools → Data manager → Google Analytics 4** → import `lead_submit` and
-   `whatsapp_click`.
-2. For each imported action, open it and set:
-   - **Value: Use the value from the GA4 event** (not "the same value for every
-     conversion"). This is the point of the whole exercise — with a fixed value,
-     tier A and tier C bid the same and the campaign optimises toward the
-     cheapest lead, which is the least valuable one.
-   - **Count: One** for `lead_submit`; **One** for `whatsapp_click` too, so a
-     visitor who taps WhatsApp three times is one conversion.
-   - **Primary action** for `lead_submit`. Keep `whatsapp_click` primary as
-     well while WhatsApp is the main conversion path.
-3. Bidding: start on **Maximise conversions** while volume is low; move to
-   **Maximise conversion value** (or tROAS) once there are ~30 conversions in
-   30 days, which is when the tiers start doing real work.
-
-### 2.4 Verify before trusting it
-
-- GA4 **Realtime → Event count by Event name** while you submit the form once:
-  `lead_submit` should appear with `value` 1000000 on `/eas/` and 100000 on
-  `/irp/`.
-- Google Ads → the conversion action's **Status** must read "Recording
-  conversions". "No recent conversions" after 24 hours means the import, not the
-  site — check step 2.2.1 first.
-- `logs/leads.log` on the server is the independent record: every accepted lead
-  is there with its `fields.valor`, whether or not Google saw it.
-
----
-
-## 3. Reading the leads without Google
-
-`enviar.php` appends every accepted lead to `logs/leads.log` (JSON, one object
-per line) even when the CRM took it. To turn that into a spreadsheet:
-
-```bash
-# download logs/leads.log from hPanel File Manager into the repo, then:
-php deploy/leads-to-csv.php logs/leads.log > leads.csv
-php deploy/leads-to-csv.php logs/leads.log --tier=A > tier-a.csv
-```
-
-The script is CLI-only and refuses to run over HTTP — the log holds the name and
-phone number of everyone who ever filled in the form. `deploy/` is excluded from
-the deploy zip and denied in `.htaccess`, so it is not on the server at all;
-this runs against a downloaded copy.
-
-Columns: timestamp, CRM outcome, tier, service, tag, name, phone, email,
-company, need, message, tool result, page, source, plus any UTM parameters that
-came with the lead.
-
----
-
-## 4. What is deliberately not here
-
-- **No cookie banner.** The site sets no cookies of its own; `gtag.js` does, and
-  Paraguay has no consent-banner requirement equivalent to the EU's. If the firm
-  starts advertising to EU visitors, this needs revisiting — noted in
-  `KNOWN-ISSUES.md`.
-- **No offline conversion import.** The honest measure of a lead is whether it
-  became a client, which lives in VenderCRM, not on the site. Uploading
-  won/lost outcomes back to Google Ads (via GCLID, which `enviar.php` already
-  captures and forwards) is the natural next step once there is enough history
-  to be worth it.
-- **No per-conversion Ads labels in the code.** The GA4 import above covers both
-  goals. A direct `gtag('event', 'conversion', {send_to: 'AW-…/label'})` call
-  would need a label only whoever owns the Ads account can create; if that route
-  is preferred later, it is one line next to each existing `track()` call.
+The handler attempts to append accepted enquiries to private `logs/leads.log`.
+CRM acceptance remains valid if that log fails; if all delivery channels fail,
+the form retains the enquiry and shows recovery actions. A downloaded local log
+can be exported with `php deploy/leads-to-csv.php logs/leads.log`; keep its
+personal data private. No production enquiries or external account changes
+were sent by the automated tests.

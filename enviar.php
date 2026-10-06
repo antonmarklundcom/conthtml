@@ -8,7 +8,7 @@
  *
  *   POST fields: name, company?, phone (required), email?, need, message?,
  *                source_page, form_id, idempotency_key, website (honeypot),
- *                service?, value_tier?, tool_result?,
+ *                service?, plan?, value_tier?, tool_result?,
  *                utm_source|utm_medium|utm_campaign|utm_term|utm_content,
  *                gclid?, fbclid?
  *
@@ -29,9 +29,9 @@
  *   disabled.
  *
  * DEGRADED MODE: with no VENDERCRM_URL / VENDERCRM_API_KEY in config.php, or
- * when the CRM is unreachable, the lead is appended to logs/leads.log and the
- * visitor still gets success with degraded: true. A visitor who filled in a form
- * and got an error page is a lost customer; a logged lead is a five-minute fix.
+ * when the CRM is unreachable, acceptance by the local log or notification
+ * email returns success with degraded: true. If all channels fail, return an
+ * error so the visitor can retry or use WhatsApp; never claim an unsaved lead.
  *
  * Locked for B-phases (plan §4.7).
  */
@@ -152,11 +152,11 @@ function rate_limited(string $ip): bool
  * Append the lead to logs/leads.log. Always called, so there is a local record
  * even when the CRM accepted it.
  */
-function log_lead(array $payload, string $outcome): void
+function log_lead(array $payload, string $outcome): bool
 {
     $dir = ROOT_DIR . '/logs';
     if (!is_dir($dir) && !@mkdir($dir, 0775, true) && !is_dir($dir)) {
-        return;
+        return false;
     }
 
     $line = json_encode(
@@ -164,22 +164,21 @@ function log_lead(array $payload, string $outcome): void
         JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
     );
 
-    @file_put_contents($dir . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX);
+    return @file_put_contents($dir . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX) !== false;
 }
 
 /**
- * Email the lead to the firm through Resend, when configured. Runs after the
- * CRM decision and never changes the visitor's outcome: a failure is logged
- * and the visitor still sees success — the lead is already in leads.log.
+ * Email the lead to the firm through Resend, when configured. Return provider
+ * acceptance so email can act as a fallback when CRM and local storage fail.
  */
-function notify_by_email(array $payload, string $outcome): void
+function notify_by_email(array $payload, string $outcome): bool
 {
     $apiKey = cfg('RESEND_API_KEY');
     $to     = cfg('LEAD_NOTIFY_TO');
     $from   = cfg('LEAD_FROM');
 
     if ($apiKey === null || $to === null || $from === null || !function_exists('curl_init')) {
-        return;
+        return false;
     }
 
     $lines = [];
@@ -245,6 +244,7 @@ function notify_by_email(array $payload, string $outcome): void
     if ($status !== 200) {
         error_log(sprintf('Resend notification failed [%d] %s %s', $status, (string) $response, $curlErr));
     }
+    return $status === 200;
 }
 
 // --- 1. POST only ------------------------------------------------------------
@@ -392,6 +392,11 @@ $payload = array_filter([
     'idempotency_key' => $idempotencyKey,
 ], static fn ($v) => $v !== '' && $v !== null);
 
+if (($requestedPlan = quote_plan(field('plan', 40))) !== null) {
+    $payload['message'] = mb_substr('Plan solicitado: ' . $requestedPlan['name']
+        . (!empty($payload['message']) ? "\n" . $payload['message'] : ''), 0, 5000);
+}
+
 $payload += $attribution;
 if ($fields !== []) {
     $payload['fields'] = $fields;
@@ -402,8 +407,12 @@ $crmUrl = cfg('VENDERCRM_URL');
 $apiKey = cfg('VENDERCRM_API_KEY');
 
 if ($crmUrl === null || $apiKey === null || !function_exists('curl_init')) {
-    log_lead($payload, 'degraded:not-configured');
-    notify_by_email($payload, 'degraded:not-configured');
+    $stored = log_lead($payload, 'degraded:not-configured');
+    $emailed = notify_by_email($payload, 'degraded:not-configured');
+    if (!$stored && !$emailed) {
+        error_log('Lead delivery unavailable: no CRM, local record or notification accepted.');
+        respond(false, false, 'delivery');
+    }
     respond(true, true, null, $leadResult);
 }
 
@@ -435,7 +444,11 @@ if ($status === 201 || $status === 200) {
 /* Anything else is our problem, not the visitor's. The body names the failing
    field on a 422 and the misconfiguration on a 401/403, so log all of it. */
 error_log(sprintf('VenderCRM lead failed [%d] %s %s', $status, (string) $response, $curlErr));
-log_lead($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
-notify_by_email($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
+$stored = log_lead($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
+$emailed = notify_by_email($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
+if (!$stored && !$emailed) {
+    error_log('Lead delivery unavailable: CRM and fallback channels did not accept it.');
+    respond(false, false, 'delivery');
+}
 
 respond(true, true, null, $leadResult);

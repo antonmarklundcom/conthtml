@@ -57,7 +57,6 @@ declare(strict_types=1);
 <?php require ROOT_DIR . '/partials/whatsapp-fab-en.php'; ?>
 
 <script src="<?= e(asset('/assets/js/analytics.js')) ?>" defer></script>
-<script src="<?= e(asset('/assets/js/site.js')) ?>" defer></script>
 <script src="<?= e(asset('/assets/js/lead-form.js')) ?>" defer></script>
 </body>
 </html>

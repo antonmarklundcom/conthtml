@@ -316,6 +316,7 @@ return [
         'message'       => 'Cuéntenos brevemente (opcional)',
         'required_note' => 'Nombre y WhatsApp o teléfono son obligatorios. Los demás datos son opcionales.',
         'optional'      => 'Agregar empresa, correo o mensaje',
+        'plan_context'  => 'Plan consultado:',
         'message_hint'  => 'Rubro, cantidad de empleados, situación actual ante la DNIT…',
         'submit'        => 'Solicitar consulta gratis',
         'sending'       => 'Enviando…',

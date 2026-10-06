@@ -19,6 +19,7 @@ $page = [
     'path'        => '/precios/',
     'breadcrumbs' => [['label' => $meta['h1'], 'path' => '/precios/']],
     'faq'         => $preciosFaq,
+    'leadSlug'    => 'contabilidad',
 ];
 
 $plans = content('precios');
@@ -48,7 +49,7 @@ require ROOT_DIR . '/partials/header.php';
             <?php if (!empty($plan['priceGs'])): ?>
               <p class="stat__value"><?= e(fmt_gs((int) $plan['priceGs'])) ?> <span class="note">/mes</span></p>
             <?php else: ?>
-              <p class="card-title">Cotización en 48 h</p>
+              <p class="card-title">Cotización a medida</p>
             <?php endif; ?>
             <?php if (!empty($plan['includes'])): ?>
               <ul class="checklist mt-3">
@@ -58,8 +59,8 @@ require ROOT_DIR . '/partials/header.php';
               </ul>
             <?php endif; ?>
             <div class="btn-row mt-4">
-              <a class="btn <?= !empty($plan['featured']) ? 'btn--primary' : 'btn--secondary' ?>" href="/contacto/">
-                <?= e(ui('cta.consult')) ?>
+              <a class="btn <?= !empty($plan['featured']) ? 'btn--primary' : 'btn--secondary' ?>" href="<?= e(quote_contact_path('contabilidad', $plan['key'])) ?>">
+                Consultar por <?= e($plan['name']) ?>
               </a>
             </div>
           </div>
@@ -69,6 +70,12 @@ require ROOT_DIR . '/partials/header.php';
       <p class="note mt-4">Los planes definen el alcance del servicio, no un monto cerrado: cada
         propuesta se ajusta a su volumen de comprobantes, su régimen tributario y si tiene nómina, y se
         entrega por escrito antes de empezar. Sin letra chica ni cargos ocultos.</p>
+
+      <div class="quote-factors mt-4">
+        <h2>Qué necesitamos para cotizar su caso</h2>
+        <p>Cuéntenos su rubro, régimen tributario, volumen aproximado de comprobantes y si tiene empleados. La consulta inicial no tiene costo ni compromiso; la propuesta detalla los servicios y los honorarios antes de contratar.</p>
+        <a href="<?= e(quote_contact_path('contabilidad')) ?>">Pedir una propuesta para mi empresa &rarr;</a>
+      </div>
 
       <p class="note mt-3">¿Ya tiene contador y quiere pasarse a nosotros? Vea
         <a href="/cambiar-de-contador/">qué incluye el cambio de contador</a>: no pierde historial ni

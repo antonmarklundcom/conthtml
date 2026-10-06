@@ -2927,3 +2927,88 @@ a.industries__item:focus-visible {
   .home-service__links { column-gap: 14px; }
   .home-page .btn-row .btn { flex-grow: 1; }
 }
+
+/* Buyer offer and service enquiry: existing content stays below the hero. */
+.hero__offer,
+.service-hero__offer {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--on-ink);
+}
+
+.hero__offer { margin-top: -8px; }
+
+.service-hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.85fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.service-hero__quote {
+  color: var(--ink);
+  scroll-margin-top: 100px;
+}
+
+.service-hero__context {
+  color: var(--on-ink-muted);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.service-hero__context strong { color: var(--on-ink); }
+.service-hero__quote .lead-form { background: var(--bg); color: var(--ink); }
+.service-hero__quote .lead-form .note { color: var(--muted); }
+.service-hero__quote .lead-form h2 { color: var(--ink); }
+.service-hero__quote .lead-form .btn--secondary { color: var(--ink); border-color: var(--outline); }
+.service-hero__quote .lead-form .btn--secondary:hover { background: var(--surface); }
+.lead-form--compact { padding: 24px; gap: 16px; }
+.lead-form--compact .lead-form__row { grid-template-columns: 1fr; }
+.lead-form--compact .lead-form__hint { font-size: 13px; }
+.lead-form--compact .card-title { font-size: 24px; line-height: 1.2; }
+
+.service-hero__privacy {
+  color: var(--on-ink-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 14px;
+}
+
+.lead-form__context {
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.quote-factors {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 850px;
+}
+
+.quote-factors h2 { font-size: clamp(24px, 2.5vw, 32px); line-height: 1.2; }
+.quote-factors p { color: var(--muted); margin-block: 16px; }
+.quote-factors a { display: inline-flex; align-items: center; min-height: 48px; }
+.home-faq .container { max-width: 1000px; }
+.home-faq .note a { display: inline; }
+
+@media (max-width: 1024px) {
+  .service-hero__layout { grid-template-columns: 1fr; gap: 32px; }
+  .service-hero__quote { max-width: 640px; }
+  .lead-form--compact .lead-form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .home-page .persona-strip__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .home-page .persona-chip { min-height: 48px; border-radius: 16px; padding: 10px 12px; font-size: 13px; line-height: 1.4; }
+}
+
+@media (max-width: 560px) {
+  .lead-form--compact .lead-form__row { grid-template-columns: 1fr; }
+  .quote-factors { padding: 24px; }
+}

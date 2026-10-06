@@ -237,6 +237,7 @@ return [
         'message'       => 'Tell us briefly (optional)',
         'required_note' => 'Name and WhatsApp or phone are required. Everything else is optional.',
         'optional'      => 'Add company, email or message',
+        'plan_context'  => 'Plan requested:',
         'message_hint'  => 'Country of origin, planned activity, current status with the DNIT…',
         'submit'        => 'Request a free consultation',
         'sending'       => 'Sending…',
