@@ -51,13 +51,13 @@ return [
     ],
 
     'cta' => [
-        'quote'        => 'Pedir cotización',
+        'quote'        => 'Pedí tu propuesta',
         'whatsapp'     => 'WhatsApp',
-        'whatsapp_long' => 'Escribir por WhatsApp',
-        'consult'      => 'Solicitar consulta gratis',
+        'whatsapp_long' => 'Escribinos por WhatsApp',
+        'consult'      => 'Consultá sin costo',
         'contact'      => 'Contactar',
-        'see_included' => 'Ver qué incluye',
-        'talk'         => 'Hablar con un contador',
+        'see_included' => 'Ver servicios',
+        'talk'         => 'Hablemos de tu empresa',
     ],
 
     // The WhatsApp menu (plan §5.3.8b). These are BUTTON LABELS only — the
@@ -75,28 +75,29 @@ return [
     'home' => [
         // Month-neutral by design: the 1B mock said "cierre de septiembre",
         // which would be wrong eleven months a year.
-        'eyebrow' => 'Contabilidad para su empresa',
+        'eyebrow' => 'Contabilidad para empresas en Paraguay',
         // Plan §5.2.6: 1B's promise headline, rebuilt around "estudio contable" —
         // the highest-volume commercial term in docs/keyword-research.md, and the
         // keyword the H1 has to carry (plan §4.11).
         'h1_lead'   => 'Estudio contable en Asunción. ',
         'h1_accent' => 'Su empresa, en orden.',
-        'lead'    => 'Contabilidad, impuestos y nómina, con un proceso claro. '
-                   . 'De Marangatu a SIFEN: coordine lo que necesita con un solo contacto.',
+        'lead'    => 'Nos ocupamos de tu contabilidad, impuestos y nómina para que puedas enfocarte '
+                   . 'en tus clientes, tu operación y el crecimiento de tu negocio. '
+                   . 'Un contacto, obligaciones organizadas y una propuesta clara por escrito.',
         'report_note' => 'Un ejemplo de cómo puede ver sus libros, impuestos y nómina en un informe claro.',
-        'contact_title' => 'Cuéntenos qué necesita su empresa.',
-        'contact_lead' => 'Escríbanos por WhatsApp o déjenos su consulta. Le orientamos sobre el servicio y el alcance para su caso.',
+        'contact_title' => 'Hablemos de lo que necesita tu empresa',
+        'contact_lead' => 'Contanos qué querés resolver. Empezamos con una consulta inicial sin costo '
+                        . 'y definimos una propuesta por escrito para simplificar tu gestión contable.',
         'contact_steps' => [
-            'Nos cuenta su rubro y la situación que quiere resolver.',
-            'Revisamos qué información necesitamos para orientarlo.',
-            'Recibe una propuesta con el alcance y los honorarios por escrito.',
+            'Tu nombre, WhatsApp y el servicio que buscás alcanzan para iniciar.',
+            'Revisamos tu caso y qué información hace falta.',
+            'Recibís el alcance y los honorarios por escrito antes de empezar.',
         ],
-        'process_title' => 'Un proceso claro, desde la primera consulta.',
+        'process_title' => 'De la consulta a una propuesta concreta',
         'process_steps' => [
-            ['title' => 'Conversación inicial', 'text' => 'Revisamos su rubro, su documentación y la situación que quiere resolver.'],
-            ['title' => 'Propuesta por escrito', 'text' => 'Acordamos el alcance, los honorarios y la información que necesitamos.'],
-            ['title' => 'Organización', 'text' => 'Recibimos sus comprobantes y coordinamos los trámites y obligaciones.'],
-            ['title' => 'Seguimiento', 'text' => 'Revisamos el trabajo y le explicamos los resultados y próximos pasos.'],
+            ['title' => 'Contanos qué necesitás', 'text' => 'Tu nombre, WhatsApp y una descripción breve de tu actividad alcanzan para empezar.'],
+            ['title' => 'Revisamos el alcance', 'text' => 'Definimos qué hacemos nosotros, qué información necesitamos de vos y cuáles son los próximos pasos.'],
+            ['title' => 'Acordamos la propuesta', 'text' => 'Recibís el alcance y los honorarios por escrito. Empezamos cuando estés de acuerdo.'],
         ],
 
         // Persona switcher (redesign pass, 2026-09): a one-click jump from the
@@ -105,7 +106,7 @@ return [
         // Kept to four — the ones with a real page behind them and the
         // clearest "younger/digital" read; adding a fifth (e.g. real estate)
         // means writing that segmentos.php entry first, not just a link.
-        'persona_eyebrow' => '¿Cuál es su negocio?',
+        'persona_eyebrow' => 'Contabilidad según tu actividad',
         'personas' => [
             ['label' => 'Ecommerce y comercio',      'href' => '/contador-para/comercios/'],
             ['label' => 'Startup y emprendimiento',  'href' => '/contador-para/emprendedores/'],
@@ -116,8 +117,8 @@ return [
         // The homepage services band. Its own copy, so the /servicios/ hub can
         // say something different without either page losing its voice.
         'services_eyebrow' => 'Servicios',
-        'services_title'   => 'El servicio que necesita, sin vueltas.',
-        'services_lead'    => 'Contabilidad, impuestos y gestión empresarial. Empiece por lo que necesita hoy; '
+        'services_title'   => '¿Qué necesitás resolver?',
+        'services_lead'    => 'Contabilidad, impuestos y gestión empresarial. Empezá por lo que necesitás hoy; '
                             . 'acordamos el alcance antes de comenzar.',
 
         // The six cards of plan §1.8: the five from the 1B mock plus Auditoría.
@@ -126,7 +127,7 @@ return [
         'cards' => [
             [
                 'title' => 'Contabilidad mensual',
-                'text'  => 'Libros, conciliaciones y estados financieros, con un informe en lenguaje claro.',
+                'text'  => 'Comprobantes, libros y declaraciones organizados. Información clara para decidir y concentrarte en tu negocio.',
                 'path'  => '/contabilidad/',
                 'links' => [],
             ],
@@ -142,13 +143,13 @@ return [
                 ],
             ],
             [
-                'title' => 'Nómina',
+                'title' => 'Sueldos, nómina e IPS',
                 'text'  => 'Salarios, aguinaldo, vacaciones y planillas de IPS y MTESS.',
                 'path'  => '/ips/',
                 'links' => [],
             ],
             [
-                'title' => 'Apertura de empresas y RUC',
+                'title' => 'Abrir una EAS o inscribir mi RUC',
                 'text'  => 'E.A.S., S.R.L. o S.A., inscripción de RUC y seguimiento de los trámites de apertura.',
                 'path'  => '/eas/',
                 'links' => [
@@ -175,8 +176,8 @@ return [
 
         // The strip under the service grid. In the 1B mock this was a seventh
         // tile; with six real services it reads better as a full-width band.
-        'unsure_title' => '¿No sabe qué necesita?',
-        'unsure_text'  => 'Cuéntenos su situación y le decimos qué corresponde, sin costo.',
+        'unsure_title' => '¿No sabés por dónde empezar?',
+        'unsure_text'  => 'Contanos tu situación. Te orientamos sobre el servicio y el alcance para tu caso.',
     ],
 
     // The hero panel. It illustrates what the monthly report covers — it is not
@@ -300,27 +301,27 @@ return [
     ],
 
     'cta_band' => [
-        'eyebrow' => 'Solicitar consulta',
-        'title'   => 'Empecemos con una conversación de 30 minutos.',
-        'lead'    => 'Sin costo y sin compromiso. Le respondemos con una propuesta concreta.',
+        'eyebrow' => 'Más foco en tu negocio',
+        'title'   => 'La contabilidad en orden. Tu atención, en hacer crecer tu negocio.',
+        'lead'    => 'Contanos qué necesitás. Acordamos el alcance y los honorarios por escrito para que tengas claro el próximo paso.',
     ],
 
     'form' => [
-        'legend'        => 'Solicitar una consulta',
+        'legend'        => 'Pedí tu propuesta',
         'name'          => 'Nombre',
         'company'       => 'Empresa o rubro (opcional)',
         'phone'         => 'WhatsApp o teléfono',
         'phone_hint'    => 'Ej.: 0981 123 456',
         'email'         => 'Correo (opcional)',
-        'need'          => '¿Qué necesita?',
-        'message'       => 'Cuéntenos brevemente (opcional)',
+        'need'          => '¿Qué necesitás?',
+        'message'       => 'Contanos brevemente (opcional)',
         'required_note' => 'Nombre y WhatsApp o teléfono son obligatorios. Los demás datos son opcionales.',
         'optional'      => 'Agregar empresa, correo o mensaje',
         'plan_context'  => 'Plan consultado:',
         'message_hint'  => 'Rubro, cantidad de empleados, situación actual ante la DNIT…',
-        'submit'        => 'Solicitar consulta gratis',
+        'submit'        => 'Pedí tu propuesta',
         'sending'       => 'Enviando…',
-        'privacy_note'  => 'Usamos sus datos para responder a su consulta.',
+        'privacy_note'  => 'Usamos tus datos para responder a tu consulta.',
         'success_title' => 'Recibimos su consulta.',
         'success_text'  => 'Le respondemos dentro del siguiente día hábil. Si prefiere, escríbanos ahora.',
         'error_title'   => 'Revise su consulta.',
@@ -439,8 +440,8 @@ return [
     ],
 
     'footer' => [
-        'blurb'   => 'Estudio contable en Asunción. Contabilidad, impuestos, nómina, apertura de '
-                   . 'empresas y facturación electrónica para pymes de todo el país.',
+        'blurb'   => 'Estudio contable en Asunción. Contabilidad, impuestos y nómina para que puedas '
+                   . 'enfocarte en tu empresa y su crecimiento.',
         'rights'  => 'Todos los derechos reservados.',
         'contact' => 'Contacto',
     ],

@@ -22,6 +22,7 @@
   var ipsLine    = document.getElementById("vencimientos-ips");
   var ireLine    = document.getElementById("vencimientos-ire");
   var waLink     = document.getElementById("vencimientos-recordar");
+  var waBaseText = waLink ? new URL(waLink.href).searchParams.get("text") || "" : "";
   var remindResult = document.getElementById("vencimientos-recordatorio-result");
 
   var MESES = [
@@ -63,8 +64,8 @@
     window.ToolsShared.showResult(resultBox);
 
     if (waLink.dataset.waConfigured === "1") {
-      var mensaje = "Hola, mi RUC termina en " + digito + ". Quiero que me recuerden mis vencimientos " +
-        "de la DNIT y el IPS por WhatsApp (próximo vencimiento de IVA: " + formatFecha(proximoMes) + ").";
+      var mensaje = waBaseText + "\n\nMi RUC termina en " + digito +
+        ". Próximo vencimiento de IVA: " + formatFecha(proximoMes) + ".";
       waLink.href = "https://wa.me/" + waLink.dataset.waNumber + "?text=" + encodeURIComponent(mensaje);
     }
 

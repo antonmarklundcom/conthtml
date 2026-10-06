@@ -50,6 +50,9 @@ $processBand = match ($processTone) {
         </li>
       <?php endforeach; ?>
     </ol>
+    <?php if ($processCompact): ?>
+      <p class="process__privacy"><?= e(content('conversion')['privacy_hint']) ?></p>
+    <?php endif; ?>
   </div>
 </section>
 <?php

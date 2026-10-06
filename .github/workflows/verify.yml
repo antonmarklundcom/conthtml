@@ -52,6 +52,8 @@ jobs:
           trap 'kill "$server_pid"' EXIT
           for _ in $(seq 1 40); do curl -sf -o /dev/null http://127.0.0.1:8080/ && break; sleep 0.25; done
           node tests/seo-contract.mjs --base http://127.0.0.1:8080
+          node tests/whatsapp-context.mjs --base http://127.0.0.1:8080
+          node tests/editorial-design.mjs --base http://127.0.0.1:8080
       - name: Form delivery, attribution and responsive layouts
         run: |
           node tests/crm-config.mjs
@@ -94,7 +96,7 @@ jobs:
             | grep -v '^/$' | sort -u | head -10)
           echo "Capturing: / $pages"
           cd tests
-          node screenshots.mjs --phase ci --base http://127.0.0.1:8080 / /contacto/ /en/contact/ $pages
+          node screenshots.mjs --phase ci --base http://127.0.0.1:8080 / /servicios/ /contabilidad/ /eas/ /precios/ /guias/ /herramientas/calculadora-aguinaldo/ /contacto/ /en/contact/ $pages
 
       - uses: actions/upload-artifact@v4
         with:

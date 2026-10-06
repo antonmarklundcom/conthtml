@@ -368,6 +368,15 @@ Every phase's PR carries screenshots, and every merge can be zipped with `deploy
 
 **Plan closed.** This was the last phase in the table (§6.8's exit: "STOP: no further phase; closing report"). No phase is spawned from here.
 
+- 2026-10-06 — **Approved editorial redesign prepared for review.** The user's new design direction supersedes the earlier locked 1B palette: paper white, Georgia headings, fine dividers and green WhatsApp actions now style all public pages.
+  The homepage keeps its commercial H1 and metadata, reuses the consultation photo and explains how organized accounting gives owners more time for customers, operations and growth.
+  Service links, written scope and clear responsibilities incorporate useful ideas from the supplied Claude design; the existing PHP form and server-side delivery remain in use.
+  Every WhatsApp message now identifies contador.com.py and the source page, with service-specific wording and localized English messages. The three standalone Claude design prompts are saved under prompts/claude-design/.
+  The unchanged SEO fixture checks 83 route contracts and 69 indexed pages; all 69 pages pass 345 responsive layouts and CTA/menu/form-choice contrast checks.
+  The isolated contact browser suite passes 21 groups, including native no-JS forms, attribution, retry/idempotency and synthetic CRM delivery; this does not establish live CRM activation.
+  Desktop/mobile screenshots and a self-contained, non-submitting homepage preview are local review artifacts, excluded from deployment and Git.
+  Deployment remains Hostinger Git integration with antonmarklundcom/conthtml main to public_html after PR review and merge; no URL paths or hosting configuration were changed.
+
 ## 10. Backlog
 
 - Client portal / login.

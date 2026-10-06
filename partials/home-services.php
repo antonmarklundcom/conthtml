@@ -7,7 +7,7 @@ declare(strict_types=1);
     <li class="home-service">
       <span class="home-service__number" aria-hidden="true"><?= e(str_pad((string) ($homeServiceIndex + 1), 2, '0', STR_PAD_LEFT)) ?></span>
       <div class="home-service__copy">
-        <h3><a href="<?= e($homeServiceCard['path']) ?>"><?= e($homeServiceCard['title']) ?><span aria-hidden="true"> &rarr;</span></a></h3>
+        <h3><a href="<?= e($homeServiceCard['path']) ?>"><?= e($homeServiceCard['title']) ?></a></h3>
         <p><?= e($homeServiceCard['text']) ?></p>
         <?php if (!empty($homeServiceCard['links'])): ?>
           <ul class="home-service__links">
@@ -16,8 +16,15 @@ declare(strict_types=1);
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
+        <?php
+        $homeServiceSlug = trim($homeServiceCard['path'], '/');
+        $homeServiceWhatsapp = whatsapp_link(lead_value($homeServiceSlug)['whatsappText']);
+        ?>
+        <?php if ($homeServiceWhatsapp !== null): ?>
+          <a class="editorial-link home-service__enquiry" href="<?= e($homeServiceWhatsapp) ?>" rel="noopener" data-service="<?= e($homeServiceSlug) ?>">Consultar por este servicio <span aria-hidden="true">&rarr;</span></a>
+        <?php endif; ?>
       </div>
     </li>
   <?php endforeach; ?>
 </ul>
-<?php unset($homeServiceIndex, $homeServiceCard, $homeServiceLink); ?>
+<?php unset($homeServiceIndex, $homeServiceCard, $homeServiceLink, $homeServiceSlug, $homeServiceWhatsapp); ?>

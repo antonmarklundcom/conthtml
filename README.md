@@ -1,6 +1,6 @@
 # conthtml — contador.com.py rebuild (HTML + PHP)
 
-Static HTML + PHP site for contador.com.py, design direction **1B "Firma moderna"**,
+Static HTML + PHP site for contador.com.py, approved **editorial accounting** design,
 hosted on Hostinger shared hosting.
 
 Plain PHP 8 used as a templating layer: no framework, no build step, no database,
@@ -54,6 +54,8 @@ cd tests && npm ci && npx playwright install chromium
 node seo-contract.mjs --base http://127.0.0.1:8080  # requires the local preview server
 node contact-behavior.mjs                       # starts an isolated PHP site and mock CRM
 node crm-config.mjs                             # private config/endpoint/phone compatibility
+node whatsapp-context.mjs --base http://127.0.0.1:8080 # all public chat links and dynamic tool message
+node editorial-design.mjs --base http://127.0.0.1:8080 # every public page at five screen widths
 ```
 
 The SEO fixture records the pre-improvement routes, metadata, sitemap and

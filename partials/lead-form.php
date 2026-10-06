@@ -51,7 +51,7 @@ $formTier    = (string) $formLead['tier'];
 $formToolResult = mb_substr((string) ($formToolResult ?? ''), 0, 500);
 $sourcePage     = $formSourcePage ?? ($page['path'] ?? '/');
 
-$whatsapp = whatsapp_link($formLead['whatsappText']);
+$whatsapp = whatsapp_link($formLead['whatsappText'], $sourcePage);
 
 /* One key per rendered form: a double-click or a retry replays it and VenderCRM
    returns the original lead instead of creating a duplicate. */

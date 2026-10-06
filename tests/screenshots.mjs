@@ -55,7 +55,7 @@ const widths = [
 const outDir = resolve(here, "..", "docs", "screenshots", phase);
 await mkdir(outDir, { recursive: true });
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
 let failures = 0;
 
 for (const path of paths) {
