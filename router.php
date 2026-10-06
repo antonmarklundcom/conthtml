@@ -58,7 +58,7 @@ if ($path === '/sitemap.xml') {
 // --- denied directories and files ------------------------------------------
 if (preg_match('#^/(content|lib|partials|templates|docs|prompts|tests|deploy|logs)(/|$)#', $path)
     || preg_match('#^/\.#', $path)
-    || preg_match('#^/config(\.example)?\.php$#', $path)
+    || preg_match('#^/config(?:\.[A-Za-z0-9_-]+)?\.php$#', $path)
     || preg_match('#\.(md|sh|json|lock|ya?ml|log)$#', $path)
 ) {
     $halt(404, '<h1>404 Not Found</h1>');

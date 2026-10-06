@@ -22,7 +22,7 @@
    * The block already carries this page's copy, so a response with no `thanks`
    * (an older handler, a proxy that ate the body) simply leaves it as it is.
    */
-  function renderThanks(node, thanks) {
+  function renderThanks(node, thanks, service) {
     if (!node || !thanks) {
       return;
     }
@@ -40,6 +40,7 @@
     var wa = node.querySelector(".btn--whatsapp");
     if (wa && thanks.whatsapp) {
       wa.href = thanks.whatsapp;
+      wa.dataset.service = service || "";
     }
 
     var next = node.querySelector(".btn--secondary");
@@ -60,6 +61,41 @@
     var sending = false;
     var errorMessage = error && error.querySelector("[data-form-error-message]");
     var defaultError = errorMessage ? errorMessage.textContent : "";
+    var recovery = error && error.querySelector("a[href]");
+    var recoveryBase = recovery ? recovery.href : "";
+
+    function prepareRecovery() {
+      if (!recovery || !recoveryBase) return;
+      var url = new URL(recoveryBase);
+      var lines = [url.searchParams.get("text") || "", form.dataset.recoveryTitle || ""];
+      var plan = form.querySelector(".lead-form__context");
+      if (plan) lines.push(plan.textContent.trim());
+      var selected = form.querySelector('[name="need"]:checked');
+      if (selected && selected.nextElementSibling) lines.push(selected.nextElementSibling.textContent.trim());
+      ["name", "company", "message"].forEach(function (name) {
+        var input = form.querySelector('[name="' + name + '"]');
+        if (!input || !input.value.trim()) return;
+        var label = input.closest("label");
+        var text = label && label.querySelector("span");
+        lines.push((text ? text.textContent.replace(/\s*\(.*?\)/g, "").trim() + ": " : "") + input.value.trim().slice(0, 1500));
+      });
+      url.searchParams.set("text", lines.filter(Boolean).join("\n"));
+      recovery.href = url.href;
+      var service = form.querySelector('[name="service"]');
+      recovery.dataset.service = (service && service.value) || (selected && selected.dataset.service) || "";
+    }
+
+    function clearFieldError(input) {
+      if (!input || !input.hasAttribute("aria-invalid")) return;
+      input.removeAttribute("aria-invalid");
+      var ids = (input.getAttribute("aria-describedby") || "").split(/\s+/).filter(function (id) {
+        return id && (!errorMessage || id !== errorMessage.id);
+      });
+      if (ids.length) input.setAttribute("aria-describedby", ids.join(" "));
+      else input.removeAttribute("aria-describedby");
+    }
+    form.addEventListener("input", function (event) { clearFieldError(event.target); prepareRecovery(); });
+    form.addEventListener("change", prepareRecovery);
 
     /* Native validation must be able to focus an optional field even if the
        visitor closed its details panel after entering an invalid email. */
@@ -76,8 +112,19 @@
           : defaultError;
       }
       error.hidden = false;
-      error.focus();
-      error.scrollIntoView({ block: "center" });
+      prepareRecovery();
+      var field = ["phone", "email"].indexOf(code) !== -1 ? form.querySelector('[name="' + code + '"]') : null;
+      if (field) {
+        var details = field.closest("details");
+        if (details) details.open = true;
+        field.setAttribute("aria-invalid", "true");
+        if (errorMessage) field.setAttribute("aria-describedby", Array.from(new Set(((field.getAttribute("aria-describedby") || "") + " " + errorMessage.id).trim().split(/\s+/))).join(" "));
+        field.focus();
+        field.scrollIntoView({ block: "center" });
+      } else {
+        error.focus();
+        error.scrollIntoView({ block: "center" });
+      }
     }
 
     function renewSubmissionKey() {
@@ -106,14 +153,21 @@
         button.textContent = button.dataset.sending || label;
       }
 
-      fetch(form.action, {
+      var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+      var deadline;
+      var request = fetch(form.action, {
         method: "POST",
         headers: { Accept: "application/json" },
-        body: new FormData(form)
-      })
-        .then(function (response) {
-          return response.json();
-        })
+        body: new FormData(form),
+        signal: controller ? controller.signal : undefined
+      }).then(function (response) { return response.json(); });
+      var timeout = new Promise(function (_, reject) {
+        deadline = setTimeout(function () {
+          if (controller) controller.abort();
+          reject(new Error("timeout"));
+        }, 30000);
+      });
+      Promise.race([request, timeout])
         .then(function (data) {
           if (!data || !data.ok) {
             var failed = new Error("delivery");
@@ -129,7 +183,7 @@
           });
           renewSubmissionKey();
           if (ok) {
-            renderThanks(ok, data.thanks);
+            renderThanks(ok, data.thanks, data.service);
             ok.hidden = false;
             ok.focus && ok.focus();
             ok.scrollIntoView({ block: "center" });
@@ -151,6 +205,7 @@
           showError(failure.code || "");
         })
         .finally(function () {
+          clearTimeout(deadline);
           sending = false;
           form.setAttribute("aria-busy", "false");
           if (button) {

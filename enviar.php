@@ -164,6 +164,7 @@ function log_lead(array $payload, string $outcome): bool
         JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
     );
 
+    if ($line === false) return false;
     return @file_put_contents($dir . '/leads.log', $line . "\n", FILE_APPEND | LOCK_EX) !== false;
 }
 
@@ -382,13 +383,13 @@ $leadResult = [
 ];
 
 $payload = array_filter([
-    'phone'           => $phone,
+    'phone'           => lead_phone($phone),
     'name'            => field('name', 200),
     'email'           => $email,
     'message'         => field('message', 5000),
     'source'          => 'formulario-' . $formId,
-    'page_url'        => str_starts_with($sourcePage, 'http') ? $sourcePage : url($sourcePage),
-    'referrer'        => (string) ($attr['referrer'] ?? ''),
+    'page_url'        => mb_substr(str_starts_with($sourcePage, 'http') ? $sourcePage : url($sourcePage), 0, 2000),
+    'referrer'        => is_string($attr['referrer'] ?? null) ? mb_substr($attr['referrer'], 0, 2000) : '',
     'idempotency_key' => $idempotencyKey,
 ], static fn ($v) => $v !== '' && $v !== null);
 
@@ -403,7 +404,7 @@ if ($fields !== []) {
 }
 
 // --- 7. Forward, or degrade gracefully --------------------------------------
-$crmUrl = cfg('VENDERCRM_URL');
+$crmUrl = crm_endpoint();
 $apiKey = cfg('VENDERCRM_API_KEY');
 
 if ($crmUrl === null || $apiKey === null || !function_exists('curl_init')) {
@@ -416,7 +417,7 @@ if ($crmUrl === null || $apiKey === null || !function_exists('curl_init')) {
     respond(true, true, null, $leadResult);
 }
 
-$ch = curl_init(rtrim($crmUrl, '/') . '/api/v1/leads');
+$ch = curl_init($crmUrl);
 curl_setopt_array($ch, [
     CURLOPT_POST           => true,
     CURLOPT_RETURNTRANSFER => true,

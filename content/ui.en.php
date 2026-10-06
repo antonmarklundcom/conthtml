@@ -238,6 +238,7 @@ return [
         'required_note' => 'Name and WhatsApp or phone are required. Everything else is optional.',
         'optional'      => 'Add company, email or message',
         'plan_context'  => 'Plan requested:',
+        'recovery_title' => 'My enquiry from the website:',
         'message_hint'  => 'Country of origin, planned activity, current status with the DNIT…',
         'submit'        => 'Request a free consultation',
         'sending'       => 'Sending…',

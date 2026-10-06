@@ -54,9 +54,12 @@ require ROOT_DIR . '/partials/header.php';
           <h1><?= e(ui('contact.title')) ?></h1>
           <p class="lead"><?= e(ui('contact.lead')) ?></p>
         </div>
-        <img class="page-hero__photo" src="<?= e(asset('/assets/img/consulta-contable-conversacion-cliente-1280.avif')) ?>"
-             alt="Contador conversando con un cliente en una consulta cálida en una oficina moderna"
-             loading="eager" fetchpriority="high" width="800" height="600">
+        <figure class="contact-illustration">
+          <img class="page-hero__photo" src="<?= e(asset('/assets/img/consulta-contable-conversacion-cliente-1280.avif')) ?>"
+               alt="Ilustración de una conversación sobre contabilidad"
+               loading="eager" fetchpriority="high" width="800" height="600">
+          <figcaption>Imagen ilustrativa; no representa al equipo ni a clientes del estudio.</figcaption>
+        </figure>
       </div>
     </div>
   </section>

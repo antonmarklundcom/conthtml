@@ -289,7 +289,7 @@ while IFS=$'\t' read -r slug path; do
   # failed pipeline because grep closes the pipe on its first match and curl
   # dies of SIGPIPE — which would fail every page that actually passes.
   html=$(curl -s "${BASE}${path}")
-  if ! printf '%s' "$html" | grep -q "name=\"service\" value=\"${slug}\""; then
+  if ! grep -q "name=\"service\" value=\"${slug}\"" <<< "$html"; then
     fail "$path — form has no name=\"service\" value=\"$slug\""
     missing_service_field=1
   fi

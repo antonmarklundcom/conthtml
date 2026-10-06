@@ -51,7 +51,7 @@
     resultBox.hidden = false;
     resultTitle.textContent = recomendacion.title;
     resultText.textContent = recomendacion.text;
-    resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.ToolsShared.showResult(resultBox);
 
     lastResult = { key: key, title: recomendacion.title };
     window.ToolsShared.trackToolUsed("comparador-eas-srl-unipersonal", {

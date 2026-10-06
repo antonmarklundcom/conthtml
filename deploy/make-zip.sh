@@ -85,7 +85,7 @@ HTACCESS
 touch "$STAGE/logs/.gitkeep"
 
 # Belt and braces: nothing that should have been excluded may be in the stage.
-for forbidden in docs prompts tests deploy .git .claude config.php dist plan.md README.md KNOWN-ISSUES.md; do
+for forbidden in docs prompts tests deploy .git .claude config.php config.crm.php dist plan.md README.md KNOWN-ISSUES.md; do
   if [ -e "$STAGE/$forbidden" ]; then
     echo "refusing to ship: $forbidden" >&2
     exit 1

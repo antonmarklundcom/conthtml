@@ -1156,8 +1156,14 @@ h3 {
 }
 
 .mega a:hover,
+.mega a:focus-visible,
 .mega a[aria-current="page"] {
+  color: var(--ink);
   background: var(--surface);
+}
+
+.site-nav .mega li[data-child] a:is(:hover, :focus-visible, [aria-current="page"]) {
+  color: var(--ink);
 }
 
 .mega li[data-child] a {
@@ -1214,6 +1220,8 @@ h3 {
 @media (max-width: 900px) {
   .site-header[data-enhanced] .nav-toggle {
     display: inline-flex;
+    position: relative;
+    z-index: 106;
   }
 
   .site-header__nav {
@@ -1270,8 +1278,13 @@ h3 {
   }
 
   .mega a:hover,
+  .mega a:focus-visible,
   .mega a[aria-current="page"] {
     background: var(--on-ink-panel);
+    color: var(--on-ink);
+  }
+
+  .site-nav .mega li[data-child] a:is(:hover, :focus-visible, [aria-current="page"]) {
     color: var(--on-ink);
   }
 
@@ -3010,6 +3023,26 @@ a.industries__item:focus-visible {
 }
 
 .quote-factors h2 { font-size: clamp(24px, 2.5vw, 32px); line-height: 1.2; }
+.article-contents { padding: 24px; margin-block: 24px 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+.article-contents ol { margin: 12px 0 0; padding-left: 24px; }
+.article-contents a { display: inline-block; padding-block: 8px; }
+:is(.article-page, .guide-page, .tool-page) [id], .lead-form { scroll-margin-top: 110px; }
+.contact-illustration { margin: 0; }
+.contact-illustration figcaption { margin-top: 12px; color: var(--on-ink-muted); font-size: 13px; line-height: 1.5; }
+.print-action { margin-top: 20px; }
+.tool-fallback { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+
+@media print {
+  @page { margin: 16mm; }
+  body { padding: 0 !important; background: white; color: black; }
+  .site-header, .site-footer, .wa-fab, .wa-menu, .lead-form, .remind, .print-action, .cookie-banner, .article-contents, .tool-form, .tool-result button, .btn-row { display: none !important; }
+  .container { width: 100%; max-width: none; padding: 0; }
+  .section { padding-block: 16px; }
+  .section--ink, .hero, .page-hero, .hero__inner, .tool-result { background: white !important; color: black !important; box-shadow: none; }
+  .section--ink :is(h1,h2,h3,p,a), .hero :is(h1,h2,p,a), .page-hero :is(h1,h2,p,a) { color: black !important; }
+  .tool-result, figure, table { break-inside: avoid; }
+  a { color: black; text-decoration: underline; }
+}
 .quote-factors p { color: var(--muted); margin-block: 16px; }
 .quote-factors a { display: inline-flex; align-items: center; min-height: 48px; }
 .home-faq .container { max-width: 1000px; }

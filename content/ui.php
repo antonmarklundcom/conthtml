@@ -330,6 +330,7 @@ return [
         'error_rate'    => 'Hubo varios intentos seguidos. Espere un momento antes de volver a intentar o escríbanos por WhatsApp.',
         'error_origin'  => 'Recargue la página antes de volver a intentar. También puede escribirnos por WhatsApp.',
         'error_whatsapp' => 'Escribir directamente por WhatsApp',
+        'recovery_title' => 'Mi consulta desde el sitio:',
         'required'      => 'obligatorio',
         // The per-service thank-you state (plan §5.3.4). The lines under it come
         // from content/lead-values.php's nextStep, so the second touch says

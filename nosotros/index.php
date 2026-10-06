@@ -18,7 +18,7 @@ $page = [
 ];
 
 $team        = site('team');
-$credentials = site('credentials') !== [] ? site('credentials') : content('ui')['about']['credentials'];
+$credentials = site('credentials');
 
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
@@ -82,9 +82,9 @@ require ROOT_DIR . '/partials/header.php';
       </div>
       <div class="grid grid--3 mt-4">
         <div class="card">
-          <h3 class="card-title">Integridad matriculada</h3>
-          <p class="card__text">Nuestra firma no es un trámite: es un respaldo de responsabilidad legal y
-            ética ante la DNIT.</p>
+          <h3 class="card-title">Integridad y responsabilidad</h3>
+          <p class="card__text">Acordamos el alcance antes de empezar y trabajamos con documentación clara,
+            responsabilidades definidas y comunicación directa.</p>
         </div>
         <div class="card">
           <h3 class="card-title">Innovación constante</h3>

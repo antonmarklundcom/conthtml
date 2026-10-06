@@ -65,7 +65,8 @@
       t.setAttribute("aria-expanded", "false");
     });
     if (returnFocus && lastTrigger) {
-      lastTrigger.focus();
+      var target = lastTrigger.getClientRects().length ? lastTrigger : document.querySelector("[data-nav-toggle]");
+      if (target) target.focus();
     }
     lastTrigger = null;
   }

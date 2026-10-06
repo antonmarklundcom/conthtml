@@ -14,9 +14,10 @@ import { chromium } from 'playwright';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const temp = await mkdtemp(join(tmpdir(), 'contador-contact-test-'));
 const site = join(temp, 'site');
-const excluded = new Set(['.git', '.claude', 'dist', 'docs', 'prompts', 'tests', 'deploy', 'logs', 'config.php']);
+const excluded = new Set(['.git', '.claude', 'dist', 'docs', 'prompts', 'tests', 'deploy', 'logs', 'config.php', 'config.crm.php']);
 const calls = [];
 const leads = new Map();
+let crmFailure = 0;
 const crm = createServer(async (req, res) => {
   if (req.url !== '/api/v1/leads' || req.method !== 'POST' || req.headers['x-api-key'] !== 'local-test-only') {
     res.writeHead(404).end();
@@ -26,10 +27,15 @@ const crm = createServer(async (req, res) => {
   for await (const chunk of req) body += chunk;
   const payload = JSON.parse(body);
   calls.push(payload);
+  if (crmFailure) {
+    res.writeHead(crmFailure, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'synthetic-rejection' }));
+    return;
+  }
   const duplicate = leads.has(payload.idempotency_key);
   leads.set(payload.idempotency_key, payload);
   res.writeHead(duplicate ? 200 : 201, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ contact_id: 'local-contact', deal_id: 'local-deal', deduplicated: duplicate }));
+  res.end(JSON.stringify({ contactId: 'local-contact', dealId: 'local-deal', submissionId: 'local-submission', duplicate }));
 });
 const listen = server => new Promise((resolve, reject) => {
   server.once('error', reject);
@@ -157,7 +163,9 @@ try {
   assert.equal((await submit()).error, 'phone');
   await error.waitFor({ state: 'visible' });
   assert.equal(await error.locator('[data-form-error-message]').textContent(), await form.getAttribute('data-error-phone'));
-  assert.ok(await error.evaluate(el => el === document.activeElement));
+  assert.ok(await form.locator('[name=phone]').evaluate(el => el === document.activeElement));
+  assert.equal(await form.locator('[name=phone]').getAttribute('aria-invalid'), 'true');
+  assert.ok(await form.locator('[name=phone]').getAttribute('aria-describedby'));
   assert.equal(await form.locator('[name=name]').inputValue(), 'Local Browser Test');
   assert.ok(await error.locator('a').getAttribute('href').then(href => href.startsWith('https://wa.me/')));
   pass('required fields, optional email validation, localized server errors and accessible recovery');
@@ -201,6 +209,7 @@ try {
   assert.equal(calls.at(-1).utm_campaign, 'first-campaign');
   assert.equal(calls.at(-1).gclid, 'first-click');
   assert.equal(calls.at(-1).referrer, firstTouch.referrer);
+  assert.equal(await success.locator('.btn--whatsapp').getAttribute('data-service'), 'eas');
   pass('first-touch attribution survives later campaign queries and service tiers resist tampering');
 
   await clearRate();
@@ -225,7 +234,7 @@ try {
   await plainForm.locator('[name=phone]').fill('0981123456');
   await Promise.all([
     plain.waitForURL(url => url.pathname === '/contacto/' && url.searchParams.get('enviado') === '1' && url.searchParams.get('s') === 'eas', { waitUntil: 'domcontentloaded' })
-      .catch(error => { throw new Error(`No-JS redirect failed at ${plain.url()}: ${error.message}`); }),
+      .catch(async error => { throw new Error(`No-JS redirect failed at ${plain.url()} (readyState=${await plain.evaluate(() => document.readyState)}): ${error.message}`); }),
     plainForm.locator('[data-submit]').click()
   ]);
   assert.ok(await plain.locator('#gracias').isVisible());
@@ -356,6 +365,199 @@ try {
   await success.waitFor({ state: 'visible' });
   await rm(join(site, 'logs/leads.log'), { recursive: true });
   pass('all-channel failure retains enquiry/key; confirmed CRM acceptance remains successful');
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(base + '/eas/');
+  await page.locator('[data-mega-toggle]').click();
+  const contrast = async link => link.evaluate(el => {
+    const rgb = s => s.match(/[\d.]+/g).slice(0, 3).map(Number);
+    const lum = c => c.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4)
+      .reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
+    const css = getComputedStyle(el), layers = [];
+    for (let ancestor = el; ancestor; ancestor = ancestor.parentElement) layers.push(getComputedStyle(ancestor).backgroundColor);
+    const background = layers.reverse().reduce((canvas, layer) => {
+      const values = layer.match(/[\d.]+/g).map(Number), alpha = values.length > 3 ? values[3] : 1;
+      return canvas.map((v, i) => values[i] * alpha + v * (1 - alpha));
+    }, [255,255,255]);
+    const fg = lum(rgb(css.color)), bg = lum(background);
+    return (Math.max(fg, bg) + .05) / (Math.min(fg, bg) + .05);
+  });
+  for (const selector of ['a[href="/contabilidad/"]', 'li[data-child] a', 'a[aria-current]']) {
+    const link = page.locator('[data-mega]').locator(selector).first();
+    await link.hover();
+    assert.ok(await contrast(link) >= 4.5, `desktop hover contrast ${selector}`);
+    await page.mouse.move(0, 500);
+    await page.keyboard.press('Tab');
+    await link.focus();
+    assert.ok(await contrast(link) >= 4.5, `desktop focus contrast ${selector}`);
+  }
+  pass('desktop dropdown normal, child and current links meet 4.5:1 hover/focus contrast');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(base);
+  await menu.click();
+  assert.ok(await menu.evaluate(el => {
+    const r = el.getBoundingClientRect();
+    return el.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
+  }), 'Close is the actual touch target above the drawer');
+  const mobileLink = page.locator('[data-mega] li[data-child] a').first();
+  await mobileLink.hover();
+  assert.ok(await contrast(mobileLink) >= 4.5);
+  await menu.focus();
+  await page.keyboard.press('Shift+Tab');
+  assert.ok(await page.locator('[data-nav] a').last().evaluate(el => el === document.activeElement));
+  await page.keyboard.press('Tab');
+  assert.ok(await menu.evaluate(el => el === document.activeElement));
+  await menu.click();
+  assert.equal(await page.evaluate(() => document.body.style.overflow), '');
+  await menu.click();
+  await page.locator('[data-nav] a[data-wa-trigger]').click();
+  await page.keyboard.press('Escape');
+  assert.ok(await menu.evaluate(el => el === document.activeElement), 'closing WhatsApp returns focus to visible menu control');
+  assert.equal(await page.evaluate(() => document.body.style.overflow), '');
+  pass('mobile Close works by touch; focus loops; WhatsApp link closes drawer and restores focus/scroll');
+
+  await page.goto(base + '/blog/como-se-calcula-el-aguinaldo-en-paraguay/');
+  // Use a real article from the site's own directory if the selected slug changes.
+  if (!(await page.locator('.article-contents').count())) {
+    await page.goto(base + '/blog/');
+    const article = await page.locator('a[href^="/blog/"]').filter({ hasText: /aguinaldo/i }).first().getAttribute('href');
+    assert.ok(article, 'article directory has an aguinaldo guide');
+    await page.goto(base + article);
+  }
+  const contents = page.locator('.article-contents a');
+  assert.ok(await contents.count() > 1);
+  for (const href of await contents.evaluateAll(links => links.map(a => a.getAttribute('href')))) {
+    assert.equal(await page.locator(href).count(), 1);
+  }
+  await contents.nth(1).click();
+  const anchor = await contents.nth(1).getAttribute('href');
+  assert.ok((await page.locator(anchor).boundingBox()).y >= 90, 'article target clears sticky header');
+  await page.goto(base + '/nosotros/');
+  assert.equal(await page.getByText('Integridad matriculada', { exact: true }).count(), 0);
+  assert.equal(await page.getByRole('heading', { name: 'Credenciales', exact: true }).count(), 0);
+  await page.goto(base + '/contacto/');
+  assert.match(await page.locator('.contact-illustration figcaption').textContent(), /Imagen ilustrativa/);
+  pass('article contents targets clear header; About claims respect verified facts; contact illustration is labelled');
+
+  await page.goto(base + '/herramientas/calculadora-aguinaldo/');
+  const toolLead = page.locator('[data-lead-form]').first();
+  const notes = toolLead.locator('[name=message]');
+  await toolLead.locator('details').evaluate(el => { el.open = true; });
+  await notes.fill('Mis notas originales');
+  await page.locator('#aguinaldo-salario').fill('3000000');
+  await page.locator('#aguinaldo-form [type=submit]').click();
+  const result = page.locator('#aguinaldo-result');
+  assert.ok(await result.evaluate(el => el === document.activeElement));
+  assert.match(await result.textContent(), /3\.000\.000/);
+  await page.evaluate(() => { window.print = () => { window.printCalled = true; }; });
+  await result.locator('[data-print]').click();
+  assert.ok(await page.evaluate(() => window.printCalled));
+  await page.locator('#aguinaldo-use-result').click();
+  assert.match(await notes.inputValue(), /Mis notas originales/);
+  assert.ok(await toolLead.locator('[name=tool_result]').inputValue());
+  await notes.fill((await notes.inputValue()) + '\nNota añadida');
+  await page.locator('#aguinaldo-salario').fill('4000000');
+  assert.ok(await result.isHidden());
+  assert.equal(await toolLead.locator('[name=tool_result]').inputValue(), '');
+  assert.match(await notes.inputValue(), /Mis notas originales/);
+  assert.match(await notes.inputValue(), /Nota añadida/);
+  assert.doesNotMatch(await notes.inputValue(), /3\.000\.000/);
+  await page.locator('#aguinaldo-form [type=submit]').click();
+  await page.emulateMedia({ media: 'print' });
+  assert.ok(await result.isVisible());
+  assert.ok(await page.locator('[data-header]').isHidden());
+  assert.ok(await toolLead.isHidden());
+  await page.emulateMedia({ media: 'screen' });
+  const noJsTools = await browser.newContext({ javaScriptEnabled: false });
+  const fallback = await noJsTools.newPage();
+  await fallback.goto(base + '/herramientas/calculadora-aguinaldo/');
+  assert.ok(await fallback.locator('.tool-fallback a[href="/guias/"]').isVisible());
+  assert.ok(await fallback.locator('.tool-form').isHidden());
+  assert.ok(await fallback.locator('[data-lead-form]').isVisible());
+  await noJsTools.close();
+  pass('calculator answer/focus/print, stale attachment removal with preserved notes and no-JS alternatives');
+
+  await page.goto(base + '/herramientas/que-necesita/');
+  const quizLead = page.locator('[data-lead-form]').first();
+  const originalService = await quizLead.locator('[name=service]').inputValue();
+  await page.locator('label[for=qn-quien-abrir]').click();
+  await page.locator('#quenecesita-form [type=submit]').click();
+  await page.locator('#quenecesita-use-result').click();
+  assert.equal(await quizLead.locator('[name=service]').inputValue(), 'eas');
+  await page.locator('label[for=qn-quien-persona]').click();
+  assert.ok(await page.locator('#quenecesita-result').isHidden());
+  assert.equal(await quizLead.locator('[name=service]').inputValue(), originalService);
+  assert.equal(await quizLead.locator('[name=tool_result]').inputValue(), '');
+  pass('changed quiz answers discard stale service classification and attached recommendation');
+
+  await configure(`http://127.0.0.1:${crm.address().port}/api/v1/leads`, 'local-test-only');
+  await clearRate();
+  await page.goto(base + '/herramientas/vencimientos/');
+  await page.locator('#vencimientos-terminacion').selectOption('3');
+  const reminder = page.locator('#vencimientos-recordatorio');
+  const firstKey = await reminder.locator('[name=idempotency_key]').inputValue();
+  for (let i = 0; i < 2; i++) {
+    await reminder.locator('[name=phone]').fill('0981123456');
+    const response = page.waitForResponse(res => res.url() === base + '/enviar.php' && res.request().method() === 'POST');
+    await reminder.locator('[data-submit]').click();
+    assert.equal((await (await response).json()).degraded, false);
+    await reminder.locator('[data-form-ok]').waitFor({ state: 'visible' });
+    await reminder.locator('[data-submit]').waitFor({ state: 'visible' });
+  }
+  assert.equal(calls.at(-2).idempotency_key, firstKey);
+  assert.notEqual(calls.at(-1).idempotency_key, firstKey);
+  assert.equal(calls.at(-1).phone, '+595981123456');
+  assert.match(calls.at(-1).fields.resultado_herramienta, /RUC termina en 3/);
+  assert.equal(calls.at(-1).fields.servicio, 'Recordatorio de vencimientos');
+  pass('complete CRM endpoint accepted; reminder renews successful keys and sends normalized Paraguay phone/result');
+
+  await writeFile(join(site, 'config.crm.php'), `<?php return ['VENDERCRM_URL'=>${quote(`http://127.0.0.1:${crm.address().port}/api/v1/leads`)}, 'VENDERCRM_API_KEY'=>'local-test-only'];`);
+  assert.equal((await page.request.get(base + '/config.crm.php')).status(), 404);
+  assert.equal((await page.request.get(base + '/deploy/crm-status.php')).status(), 404);
+  await page.goto(base + '/contacto/');
+  await fill();
+  await form.locator('label[for=need-contacto-apertura]').click();
+  await clearRate();
+  assert.equal((await submit()).service, 'eas');
+  await success.waitFor({ state: 'visible' });
+  assert.equal(await success.locator('.btn--whatsapp').getAttribute('data-service'), 'eas', 'thank-you changes from initial contact context to accepted service');
+  for (const status of [401,403,422,429,500]) {
+    crmFailure = status;
+    await clearRate();
+    const response = await page.request.post(base + '/enviar.php', { headers: { Accept: 'application/json', Origin: base }, form: { phone: '0981123456', idempotency_key: 'rejected-local-' + status } });
+    const data = await response.json();
+    assert.equal(data.ok, true, 'fallback storage accepts enquiry');
+    assert.equal(data.degraded, true, `CRM HTTP ${status} is never reported as CRM success`);
+  }
+  crmFailure = 0;
+  await clearRate();
+  await context.addCookies([{ name: 'vc_attr', value: JSON.stringify({ referrer: ['invalid-array'] }), url: base }]);
+  const limited = await page.request.post(base + '/enviar.php', { headers: { Accept: 'application/json', Origin: base }, form: { phone: '+46 70 123 45 67', source_page: '/' + 'a'.repeat(1999), idempotency_key: 'payload-limits-local' } });
+  assert.equal((await limited.json()).degraded, false);
+  assert.equal(calls.at(-1).phone, '+46701234567');
+  assert.ok(calls.at(-1).page_url.length <= 2000);
+  assert.ok(!('referrer' in calls.at(-1)));
+  pass('private files denied, thank-you context updated, rejected CRM responses fall back, payload lengths/types bounded');
+
+  await page.goto(base + '/contacto/');
+  await fill();
+  await form.locator('details').evaluate(el => { el.open = true; });
+  await form.locator('[name=message]').fill('Necesito ayuda con mi empresa');
+  const timedKey = await key();
+  await page.clock.install();
+  await page.route('**/enviar.php', route => new Promise(resolve => {
+    page.once('close', resolve); // Never contact a CRM for this stalled-response scenario.
+  }));
+  await button.click();
+  await page.clock.fastForward(31000);
+  await error.waitFor({ state: 'visible' });
+  assert.equal(await key(), timedKey);
+  assert.equal(await form.locator('[name=message]').inputValue(), 'Necesito ayuda con mi empresa');
+  assert.equal(await button.isDisabled(), false);
+  assert.match(new URL(await error.locator('a').getAttribute('href')).searchParams.get('text'), /Necesito ayuda con mi empresa/);
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
+  pass('stalled request recovers after deadline; enquiry/key retained and WhatsApp carries entered message');
   assert.deepEqual(errors, [], 'no uncaught JavaScript errors');
   assert.doesNotMatch(phpOutput, /PHP (Warning|Fatal error|Parse error)/);
   console.log(`Contact/browser contract PASS: ${completed} checks; real PHP and local mock CRM only`);
