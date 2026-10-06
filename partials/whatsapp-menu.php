@@ -5,9 +5,8 @@
  * header pill, the drawer pill, the floating button and (same element) the
  * mobile sticky bar — opens this one.
  *
- * Options come from content/lead-values.php: the current page's service first
- * and pre-highlighted, then Anton's four priority services, then "otra
- * consulta". Each option is its own wa.me link with its own prefill and its
+ * Four service groups plus Other, translated through ui(). Each option is
+ * its own wa.me link with its own prefill and its
  * own `data-service`, so whatsapp_click is attributable per service
  * (assets/js/analytics.js).
  *
@@ -31,7 +30,7 @@ if ($waMenuOptions === []) {
 <div class="wa-menu" id="wa-menu" data-wa-menu hidden>
   <div class="wa-menu__backdrop" data-wa-close aria-hidden="true"></div>
 
-  <div class="wa-menu__panel" role="dialog" aria-labelledby="wa-menu-title">
+  <div class="wa-menu__panel" role="dialog" aria-modal="true" aria-labelledby="wa-menu-title" aria-describedby="wa-menu-note">
     <div class="wa-menu__head">
       <p class="wa-menu__title" id="wa-menu-title"><?= e(ui('whatsapp.menu_title')) ?></p>
       <button class="wa-menu__close" type="button" data-wa-close
@@ -45,20 +44,20 @@ if ($waMenuOptions === []) {
         <li>
           <a class="wa-menu__option<?= $waOption['current'] ? ' wa-menu__option--current' : '' ?>"
              href="<?= e($waOption['link']) ?>" rel="noopener"
-             data-service="<?= e($waOption['slug']) ?>">
+             data-service="<?= e($waOption['slug']) ?>"
+             data-wa-group="<?= e($waOption['group']) ?>"
+             data-wa-services="<?= e(implode(',', $waOption['members'])) ?>">
             <span class="wa-menu__label">
               <?= e($waOption['label']) ?>
-              <?php if ($waOption['current']): ?>
-                <span class="wa-menu__badge"><?= e(ui('whatsapp.this_page')) ?></span>
-              <?php endif; ?>
+              <span class="wa-menu__badge"<?= $waOption['current'] ? '' : ' hidden' ?>><?= e(ui('whatsapp.this_page')) ?></span>
             </span>
-            <span class="wa-menu__text"><?= e($waOption['text']) ?></span>
+            <span class="wa-menu__text"><?= e($waOption['description']) ?></span>
           </a>
         </li>
       <?php endforeach; ?>
     </ul>
 
-    <p class="wa-menu__note"><?= e(ui('whatsapp.menu_note')) ?></p>
+    <p class="wa-menu__note" id="wa-menu-note"><?= e(ui('whatsapp.menu_note')) ?></p>
   </div>
 </div>
 <?php

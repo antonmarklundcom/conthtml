@@ -64,12 +64,19 @@ return [
     // message that actually reaches WhatsApp always comes from
     // content/lead-values.php and names a service, never "consulta gratis".
     'whatsapp' => [
-        'menu_title'   => '¿Sobre qué quiere escribirnos?',
-        'menu_note'    => 'Abrimos WhatsApp con el mensaje ya escrito. Puede cambiarlo antes de enviarlo.',
+        'menu_title'   => '¿Qué necesitás resolver?',
+        'menu_note'    => 'Elegí un servicio para continuar por WhatsApp. Podés editar el mensaje antes de enviarlo.',
         'other'        => 'Otra consulta',
-        'this_page'    => 'Lo que está viendo',
+        'this_page'    => 'Tu consulta',
         'open_menu'    => 'Abrir opciones de WhatsApp',
         'close_menu'   => 'Cerrar',
+        'groups' => [
+            'contabilidad' => ['label' => 'Contabilidad e impuestos', 'description' => 'Contabilidad mensual, IVA, IRE y Marangatu.'],
+            'eas' => ['label' => 'Abrir empresa o RUC', 'description' => 'EAS, SRL, SA e inscripción de RUC.'],
+            'ips' => ['label' => 'Sueldos, nómina e IPS', 'description' => 'Salarios, aguinaldo y planillas de personal.'],
+            'ekuatia' => ['label' => 'Facturación electrónica', 'description' => "SIFEN, timbrado y Ekuatia'i."],
+            'other' => ['label' => 'Otra consulta', 'description' => 'Auditoría, asesoría o ayuda para elegir.'],
+        ],
     ],
 
     'home' => [

@@ -70,6 +70,12 @@
     }
   }
 
+  /* Hand focus and the scroll lock to the service picker from the drawer. */
+  document.addEventListener("whatsapp:open", function () {
+    if (!desktop.matches && drawer && !drawer.hidden) setDrawer(false, false);
+    setMega(false);
+  });
+
   if (megaButton) {
     megaButton.addEventListener("click", function () {
       setMega(mega.hidden);

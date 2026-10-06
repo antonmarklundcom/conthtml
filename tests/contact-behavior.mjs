@@ -312,7 +312,7 @@ try {
     const quick = page.locator('#consulta-rapida');
     assert.equal(await quick.locator('[name=service]').inputValue(), slug);
     assert.equal(await quick.locator('[name=need][type=radio]').count(), 0);
-    assert.equal(await page.locator('[data-wa-trigger]').count(), 0, 'service actions go directly to WhatsApp');
+    assert.ok(await page.locator('[data-wa-trigger]').count() > 0, 'service actions open the shared picker');
     const ids = await page.locator('[id]').evaluateAll(nodes => nodes.map(node => node.id));
     assert.equal(new Set(ids).size, ids.length, `${slug}: forms have distinct IDs`);
     const data = (await page.locator('script[type="application/ld+json"]').allTextContents()).map(JSON.parse);
@@ -320,12 +320,12 @@ try {
     assert.equal(entity.url, base + '/' + slug + '/');
     assert.equal(entity.provider['@id'], base + '/#organization');
   }
-  pass('buyer FAQ matches visible answers; service forms/schema/direct WhatsApp retain page intent');
+  pass('buyer FAQ matches visible answers; service forms/schema/WhatsApp picker retain page intent');
 
   await configure(`http://127.0.0.1:${crm.address().port}`, 'local-test-only', 'G-LOCALTEST');
   await page.route('https://www.googletagmanager.com/**', route => route.fulfill({ contentType: 'application/javascript', body: '' }));
   await page.goto(base, { waitUntil: 'networkidle' });
-  await page.locator('.wa-fab').click();
+  await page.locator('.hero__copy .btn--whatsapp').click();
   let events = await page.evaluate(() => window.dataLayer.filter(item => item[0] === 'event').map(item => [item[1], item[2]]));
   assert.equal(events.filter(item => item[0] === 'whatsapp_menu_open').length, 1);
   assert.equal(events.filter(item => item[0] === 'whatsapp_click').length, 0, 'opening a chooser is not a chat click');

@@ -73,10 +73,25 @@ return [
         'nextLink' => ['path' => '/herramientas/que-necesita/', 'label' => 'Ver qué necesita en 4 preguntas'],
     ],
 
-    /* The four options the WhatsApp menu offers after the current page's own
-       service (plan §5.3.8b), in this order. Anton's two priority services
-       first (docs/lead-value.md). Slugs, resolved against the records below. */
-    'whatsappMenu' => ['eas', 'ruc', 'contabilidad', 'ekuatia'],
+    /* Four service groups, followed by Other. Related services share their
+       existing `need` so the picker always has exactly five choices. */
+    'whatsappMenu' => ['contabilidad', 'eas', 'ips', 'ekuatia'],
+    'whatsappMenuTexts' => [
+        'es' => [
+            'contabilidad' => 'Hola, quiero consultar sobre contabilidad e impuestos para mi empresa.',
+            'eas' => 'Hola, quiero abrir una empresa o inscribir mi RUC.',
+            'ips' => 'Hola, quiero consultar sobre sueldos, nómina e IPS.',
+            'ekuatia' => "Hola, quiero habilitar la facturación electrónica en SIFEN / Ekuatia'i.",
+            'other' => 'Hola, quiero consultar sobre auditoría, asesoría u otro servicio contable.',
+        ],
+        'en' => [
+            'contabilidad' => 'Hello, I would like help with accounting and taxes for my company.',
+            'eas' => 'Hello, I would like to open a company or register my RUC in Paraguay.',
+            'ips' => 'Hello, I would like help with salaries, payroll and IPS.',
+            'ekuatia' => 'Hello, I would like to set up electronic invoicing through SIFEN.',
+            'other' => 'Hello, I would like to discuss an audit, advice or another accounting service.',
+        ],
+    ],
 
     /* -------------------------------------------------------------- services */
 
@@ -263,6 +278,7 @@ return [
         'irp' => [
             'menuLabel'    => 'IRP — renta personal',
             'need'         => 'otro',
+            'whatsappGroup' => 'contabilidad', // Picker category; CRM classification stays `otro`.
             'tier'         => 'C',
             'whatsappText' => 'Hola, quiero saber si me corresponde presentar el IRP.',
             'nextStep'     => [
@@ -279,8 +295,8 @@ return [
            ticket of all"). The only lead-values record whose whatsappText and
            menuLabel are English, not Spanish — the only pages that ever
            resolve to this slug are the /en/ ones (content/en.php,
-           partials/lead-form-en.php), which never render through the Spanish
-           WhatsApp menu (plan §5.3.8b's whatsappMenu[] does not list it). */
+           partials/lead-form-en.php). The translated picker groups this
+           service under company opening and preserves its English prefill. */
         'empresas-extranjeras' => [
             'menuLabel'    => 'Open a company in Paraguay',
             'need'         => 'apertura',
