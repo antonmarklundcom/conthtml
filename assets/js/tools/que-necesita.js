@@ -86,7 +86,7 @@
       li.appendChild(span);
       linksList.appendChild(li);
     });
-    resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.ToolsShared.showResult(resultBox);
 
     lastResult = { text: recomendacion.text, need: need, service: recomendacion.servicios[0] || "" };
     window.ToolsShared.trackToolUsed("que-necesita", { quien: quien, preocupacion: preocupacion, contador: contador });

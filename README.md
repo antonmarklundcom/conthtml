@@ -53,6 +53,7 @@ SEO and form regression checks:
 cd tests && npm ci && npx playwright install chromium
 node seo-contract.mjs --base http://127.0.0.1:8080  # requires the local preview server
 node contact-behavior.mjs                       # starts an isolated PHP site and mock CRM
+node crm-config.mjs                             # private config/endpoint/phone compatibility
 ```
 
 The SEO fixture records the pre-improvement routes, metadata, sitemap and
@@ -108,6 +109,28 @@ The zip holds exactly what belongs in `public_html/` — no `docs/`, `prompts/`,
    test lead and confirm it reaches VenderCRM → **Contactos**.
 
 `config.php` values, all optional:
+
+CRM credentials can also be installed in an ignored, web-protected
+`public_html/config.crm.php` that returns **only** `VENDERCRM_URL` and
+`VENDERCRM_API_KEY`. This overrides those two settings while preserving an
+existing `config.php`, including email and analytics. Keep the private file out
+of Git, pull requests and the public deployment ZIP. Merge/deploy the code
+first, then upload the CRM-only file once. Ordinary Git pulls preserve it;
+re-upload it if hosting recreates the checkout.
+
+Alternatively, server environment variables `VENDERCRM_URL` / `VENDERCRM_API_KEY`
+(aliases `VCRM_ENDPOINT` / `VCRM_SITE_KEY`) take precedence over files.
+The URL accepts either an HTTPS origin or the complete `/api/v1/leads` endpoint.
+The site derives the attribution-script origin from it. Local HTTP is accepted
+only for loopback regression tests.
+
+Run `php deploy/crm-status.php` through SSH in a Git deployment to inspect
+configuration readiness without displaying credentials. `--check-auth` sends
+an empty validation probe; it cannot prove successful contact/deal delivery.
+After activation, submit a clearly labelled test, verify its contact and deal
+in VenderCRM, then replay the same submission key to confirm deduplication.
+An inline success with `degraded: true` means fallback storage/email accepted
+the enquiry; it does **not** establish CRM delivery.
 
 | Key | Effect when empty |
 |---|---|

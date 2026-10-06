@@ -67,7 +67,7 @@
       "Sobre " + window.PY.fmtGs(total) + " de remuneraciones consideradas (" +
       mesesConsiderados + (mesesConsiderados === 1 ? " mes trabajado" : " meses trabajados") +
       "), dividido entre 12.";
-    resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.ToolsShared.showResult(resultBox);
 
     window.ToolsShared.trackToolUsed("calculadora-aguinaldo", { meses: mesesConsiderados });
   });

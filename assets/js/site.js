@@ -17,6 +17,7 @@
   var megaButton = header.querySelector("[data-mega-toggle]");
   var mega = header.querySelector("[data-mega]");
   var desktop = window.matchMedia("(min-width: 901px)");
+  var savedOverflow = null;
 
   /* Hidden only once JS is running, so a no-JS visitor keeps the full list. */
   if (mega && megaButton) {
@@ -28,6 +29,13 @@
   }
   header.setAttribute("data-enhanced", "");
 
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-print]").forEach(function (button) { button.hidden = false; });
+  });
+  document.addEventListener("click", function (event) {
+    if (event.target.closest("[data-print]")) window.print();
+  });
+
   function setMega(open) {
     if (!mega || !megaButton) {
       return;
@@ -36,16 +44,29 @@
     megaButton.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
-  function setDrawer(open) {
+  function setDrawer(open, restoreFocus) {
     if (!drawer || !toggle) {
       return;
     }
     drawer.hidden = !open;
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     toggle.textContent = open ? toggle.dataset.labelClose : toggle.dataset.labelOpen;
-    document.body.style.overflow = open ? "hidden" : "";
     if (open) {
+      if (savedOverflow === null) savedOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      header.setAttribute("role", "dialog");
+      header.setAttribute("aria-modal", "true");
+      header.setAttribute("aria-label", toggle.dataset.labelOpen);
       setMega(true);
+      var first = drawer.querySelector("button, a[href]");
+      if (first) first.focus();
+    } else {
+      if (savedOverflow !== null) document.body.style.overflow = savedOverflow;
+      savedOverflow = null;
+      header.removeAttribute("role");
+      header.removeAttribute("aria-modal");
+      header.removeAttribute("aria-label");
+      if (restoreFocus !== false) toggle.focus();
     }
   }
 
@@ -62,12 +83,23 @@
   }
 
   document.addEventListener("click", function (e) {
+    if (!desktop.matches && drawer && !drawer.hidden && e.target.closest("[data-nav] a[href]")) {
+      setDrawer(false, false);
+    }
     if (desktop.matches && mega && !mega.hidden && !header.contains(e.target)) {
       setMega(false);
     }
   });
 
   document.addEventListener("keydown", function (e) {
+    if (e.key === "Tab" && !desktop.matches && drawer && !drawer.hidden) {
+      var items = [toggle].concat(Array.from(drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')))
+        .filter(function (el) { return el && el.getClientRects().length > 0; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      return;
+    }
     if (e.key !== "Escape") {
       return;
     }
@@ -83,7 +115,7 @@
   /* Crossing the breakpoint resets both, so a drawer left open on a phone does
      not become a stuck overlay on a rotated tablet. */
   desktop.addEventListener("change", function (e) {
-    document.body.style.overflow = "";
+    setDrawer(false, false);
     if (e.matches) {
       if (drawer) {
         drawer.hidden = false;

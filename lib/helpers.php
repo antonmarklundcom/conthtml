@@ -413,3 +413,36 @@ function quote_contact_path(?string $service = null, ?string $plan = null): stri
 
     return '/contacto/' . ($query !== [] ? '?' . http_build_query($query) : '');
 }
+
+/** Accept either the documented endpoint or the historical CRM base URL. */
+function crm_endpoint(): ?string
+{
+    $configured = cfg('VENDERCRM_URL');
+    if ($configured === null) return null;
+    $parts = parse_url($configured);
+    if (!is_array($parts) || empty($parts['host']) || isset($parts['user']) || isset($parts['pass'])
+        || isset($parts['query']) || isset($parts['fragment'])) return null;
+    $scheme = strtolower($parts['scheme'] ?? '');
+    $local = in_array(strtolower($parts['host']), ['localhost', '127.0.0.1', '[::1]'], true);
+    if ($scheme !== 'https' && !($scheme === 'http' && $local)) return null;
+    $url = rtrim($configured, '/');
+    return str_ends_with($url, '/api/v1/leads') ? $url : $url . '/api/v1/leads';
+}
+
+function crm_base_url(): ?string
+{
+    $endpoint = crm_endpoint();
+    return $endpoint !== null ? substr($endpoint, 0, -strlen('/api/v1/leads')) : null;
+}
+
+/** Normalize local Paraguay input; preserve explicit international numbers. */
+function lead_phone(string $phone): string
+{
+    $digits = preg_replace('/\D+/', '', $phone) ?? '';
+    if (str_starts_with(trim($phone), '+')) return '+' . $digits;
+    if (str_starts_with($digits, '00')) return '+' . substr($digits, 2);
+    if (str_starts_with($digits, '595') && strlen($digits) >= 11) return '+' . $digits;
+    if (str_starts_with($digits, '0') && strlen($digits) >= 8 && strlen($digits) <= 10) return '+595' . substr($digits, 1);
+    if (strlen($digits) === 9) return '+595' . $digits;
+    return $phone;
+}

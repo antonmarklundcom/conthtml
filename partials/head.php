@@ -23,7 +23,7 @@ $currentPath = $page['path'] ?? '/';
 $ga4         = cfg('GA4_ID', '');
 $ads         = cfg('ADS_ID', '');
 $htmlLang    = $page['lang'] ?? 'es-PY';
-$headCrmUrl  = cfg('VENDERCRM_URL');
+$headCrmUrl  = crm_base_url();
 ?>
 <!doctype html>
 <html lang="<?= e($htmlLang) ?>">

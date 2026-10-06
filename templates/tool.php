@@ -43,7 +43,7 @@ $page = [
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
 ?>
-<main id="main">
+<main id="main" class="tool-page">
 
   <section class="page-hero">
     <div class="container">
@@ -63,6 +63,13 @@ require ROOT_DIR . '/partials/header.php';
         <?= e($lastReviewed) ?>. <?= e(ui('tools.orientativo')) ?>
       </p>
 
+      <noscript>
+        <div class="tool-fallback">
+          <p>La calculadora necesita JavaScript. Puede consultar nuestras guías o pedir orientación sobre su caso por el formulario de esta página.</p>
+          <a href="/guias/">Ver las guías paso a paso</a>
+        </div>
+        <style>.tool-form{display:none}</style>
+      </noscript>
       <?= $toolCalcHtml ?>
     </div>
   </section>

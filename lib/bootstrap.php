@@ -25,7 +25,21 @@ function cfg(string $key, ?string $default = null): ?string
     if ($config === null) {
         $defaults = require ROOT_DIR . '/config.example.php';
         $local    = is_file(ROOT_DIR . '/config.php') ? require ROOT_DIR . '/config.php' : [];
-        $config   = array_merge($defaults, is_array($local) ? $local : []);
+        $crmLocal = is_file(ROOT_DIR . '/config.crm.php') ? require ROOT_DIR . '/config.crm.php' : [];
+        // A private CRM-only file can be installed without replacing config.php.
+        $crmKeys = is_array($crmLocal) ? array_intersect_key($crmLocal, array_flip(['VENDERCRM_URL', 'VENDERCRM_API_KEY'])) : [];
+        $config = array_merge($defaults, is_array($local) ? $local : [], $crmKeys);
+    }
+
+    $aliases = [
+        'VENDERCRM_URL' => ['VENDERCRM_URL', 'VCRM_ENDPOINT'],
+        'VENDERCRM_API_KEY' => ['VENDERCRM_API_KEY', 'VCRM_SITE_KEY'],
+    ];
+    foreach ($aliases[$key] ?? [$key] as $name) {
+        $environment = getenv($name);
+        if (is_string($environment) && trim($environment) !== '') {
+            return trim($environment);
+        }
     }
 
     $value = $config[$key] ?? '';

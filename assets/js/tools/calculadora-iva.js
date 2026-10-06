@@ -50,7 +50,7 @@
     baseLine.textContent = window.PY.fmtGs(base);
     ivaLine.textContent = window.PY.fmtGs(iva);
     totalLine.textContent = window.PY.fmtGs(total);
-    resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.ToolsShared.showResult(resultBox);
 
     lastResult = { base: base, iva: iva, total: total, tasa: tasa };
     window.ToolsShared.trackToolUsed("calculadora-iva", { tasa: tasa, sentido: sentido });

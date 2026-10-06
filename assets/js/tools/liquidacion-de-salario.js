@@ -143,7 +143,7 @@
     noteLine.textContent = esDespidoInjustificado
       ? "Incluye preaviso e indemnización porque el motivo indicado es despido sin causa justificada. Antigüedad considerada: " + totalMonths + " meses."
       : "No corresponde preaviso ni indemnización porque el motivo no es un despido sin causa justificada. Antigüedad considerada: " + totalMonths + " meses.";
-    resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.ToolsShared.showResult(resultBox);
 
     lastResult = { total: total, motivo: motivo };
     window.ToolsShared.trackToolUsed("liquidacion-de-salario", { motivo: motivo, meses: totalMonths });

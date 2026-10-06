@@ -108,7 +108,7 @@ if ($page['title'] === '') {
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
 ?>
-<main id="main">
+<main id="main" class="article-page">
 
   <section class="page-hero">
     <div class="container">
@@ -144,8 +144,20 @@ require ROOT_DIR . '/partials/header.php';
   <?php if ($sections !== []): ?>
     <section class="section">
       <div class="container prose stack">
-        <?php foreach ($sections as $articleSection): ?>
-          <div>
+        <?php if (count($sections) > 1): ?>
+          <nav class="article-contents" aria-label="En este artículo">
+            <p><strong>En este artículo</strong></p>
+            <ol>
+              <?php foreach ($sections as $articleSectionIndex => $articleSection): ?>
+                <?php if (!empty($articleSection['h2'])): ?>
+                  <li><a href="#articulo-seccion-<?= (int) $articleSectionIndex + 1 ?>"><?= e($articleSection['h2']) ?></a></li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ol>
+          </nav>
+        <?php endif; ?>
+        <?php foreach ($sections as $articleSectionIndex => $articleSection): ?>
+          <div id="articulo-seccion-<?= (int) $articleSectionIndex + 1 ?>">
             <?php if (!empty($articleSection['h2'])): ?>
               <h2><?= e($articleSection['h2']) ?></h2>
             <?php endif; ?>

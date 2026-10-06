@@ -9,6 +9,7 @@
  */
 (function (window, document) {
   "use strict";
+  var generated = new WeakMap();
 
   /** Fires tool_used through the site analytics helper, a no-op without a GA id. */
   function trackToolUsed(tool, params) {
@@ -44,6 +45,11 @@
     var message = (options && options.message) || "";
     var result = (options && options.result) || "";
     var service = options && options.service;
+    var prior = generated.get(form);
+    var serviceField = form.querySelector('[name="service"]');
+    var checked = form.querySelector('[name="need"]:checked');
+    var originalService = prior ? prior.originalService : (serviceField && serviceField.value);
+    var originalNeed = prior ? prior.originalNeed : (checked && checked.value);
 
     if (need) {
       var radio = form.querySelector('input[name="need"][value="' + need + '"]');
@@ -54,7 +60,10 @@
     if (message) {
       var textarea = form.querySelector('textarea[name="message"]');
       if (textarea) {
-        textarea.value = message;
+        var original = prior ? (textarea.value === prior.complete ? prior.original : textarea.value.replace(prior.chunk, "").trim()) : textarea.value;
+        textarea.value = original ? original + "\n\n" + message : message;
+        generated.set(form, { original: original, complete: textarea.value, chunk: message,
+          originalService: originalService, originalNeed: originalNeed, service: service, need: need });
       }
     }
     if (result) {
@@ -70,7 +79,7 @@
     if (!form) {
       return;
     }
-    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.scrollIntoView({ behavior: motion(), block: "start" });
     var firstField = form.querySelector(
       'input[type="text"], input[type="tel"], input:not([type])'
     );
@@ -79,10 +88,57 @@
     }
   }
 
+  function motion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  }
+
+  function showResult(result) {
+    if (!result) return;
+    result.hidden = false;
+    result.tabIndex = -1;
+    result.scrollIntoView({ behavior: motion(), block: "nearest" });
+    result.focus({ preventScroll: true });
+  }
+
+  document.querySelectorAll(".tool-result").forEach(function (result) {
+    var print = document.createElement("button");
+    print.type = "button";
+    print.className = "btn btn--secondary print-action";
+    print.setAttribute("data-print", "");
+    print.textContent = "Imprimir resultado";
+    result.appendChild(print);
+  });
+
+  document.querySelectorAll(".tool-form").forEach(function (toolForm) {
+    function invalidate() {
+      document.querySelectorAll(".tool-result").forEach(function (result) { result.hidden = true; });
+      document.querySelectorAll('[name="tool_result"]').forEach(function (input) { input.value = ""; });
+      document.querySelectorAll("[data-lead-form]").forEach(function (leadForm) {
+        var prior = generated.get(leadForm);
+        var textarea = leadForm.querySelector('textarea[name="message"]');
+        if (prior && textarea) {
+          textarea.value = textarea.value === prior.complete ? prior.original : textarea.value.replace(prior.chunk, "").trim();
+          var service = leadForm.querySelector('[name="service"]');
+          if (service && prior.service && service.value === prior.service) service.value = prior.originalService || "";
+          var selected = leadForm.querySelector('[name="need"]:checked');
+          if (selected && selected.value === prior.need) {
+            selected.checked = false;
+            leadForm.querySelectorAll('[name="need"]').forEach(function (radio) { radio.checked = radio.value === prior.originalNeed; });
+          }
+          generated.delete(leadForm);
+        }
+      });
+    }
+    // Clear the previous answer before calculators that recompute on change.
+    toolForm.addEventListener("input", invalidate, true);
+    toolForm.addEventListener("change", invalidate, true);
+  });
+
   window.ToolsShared = {
     setHidden: setHidden,
     trackToolUsed: trackToolUsed,
     prefillLeadForm: prefillLeadForm,
-    focusLeadForm: focusLeadForm
+    focusLeadForm: focusLeadForm,
+    showResult: showResult
   };
 })(window, document);

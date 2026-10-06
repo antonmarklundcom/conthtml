@@ -64,7 +64,10 @@ ob_start();
          WhatsApp right now still becomes a tier-C `recordatorio` lead — the
          nurture list is the asset here, not the click. There is no backend
          reminder yet (plan §10); this builds the list. -->
-    <form class="remind" action="/enviar.php" method="post" id="vencimientos-recordatorio">
+    <form class="remind" action="/enviar.php" method="post" id="vencimientos-recordatorio" data-lead-form
+          data-error-phone="<?= e(ui('form.error_phone')) ?>" data-error-email="<?= e(ui('form.error_email')) ?>"
+          data-error-rate="<?= e(ui('form.error_rate')) ?>" data-error-origin="<?= e(ui('form.error_origin')) ?>"
+          data-recovery-title="<?= e(ui('form.recovery_title')) ?>">
       <h3 class="card-title"><?= e(ui('form.remind_title')) ?></h3>
       <p class="note"><?= e(ui('form.remind_text')) ?></p>
 
@@ -74,7 +77,7 @@ ob_start();
           <input type="tel" name="phone" inputmode="tel" autocomplete="tel"
                  placeholder="<?= e(ui('form.phone_hint')) ?>" required>
         </label>
-        <button class="btn btn--primary" type="submit"><?= e(ui('form.remind_submit')) ?></button>
+        <button class="btn btn--primary" type="submit" data-submit data-sending="<?= e(ui('form.sending')) ?>"><?= e(ui('form.remind_submit')) ?></button>
       </div>
 
       <div class="honeypot" aria-hidden="true">
@@ -84,16 +87,21 @@ ob_start();
       <input type="hidden" name="form_id" value="recordatorio-vencimientos">
       <input type="hidden" name="source_page" value="<?= e($tool['path']) ?>">
       <input type="hidden" name="need" value="recordatorio">
+      <input type="hidden" name="service" value="vencimientos">
       <input type="hidden" name="idempotency_key" value="<?= e(bin2hex(random_bytes(16))) ?>">
       <!-- The RUC terminación the visitor picked; vencimientos.js fills it in
            when the calculator runs, and it is empty until then. -->
       <input type="hidden" name="tool_result" value="" id="vencimientos-recordatorio-result">
 
-      <p class="form-status form-status--ok" id="vencimientos-recordatorio-ok" hidden role="status">
+      <p class="form-status form-status--ok" id="vencimientos-recordatorio-ok" hidden role="status" tabindex="-1" data-form-ok>
         <strong><?= e(ui('form.remind_ok')) ?></strong>
       </p>
-      <p class="form-status form-status--error" id="vencimientos-recordatorio-error" hidden role="alert">
-        <strong><?= e(ui('form.error_title')) ?></strong> <?= e(ui('form.error_text')) ?>
+      <p class="form-status form-status--error" id="vencimientos-recordatorio-error" hidden role="alert" tabindex="-1" data-form-error>
+        <strong><?= e(ui('form.error_title')) ?></strong>
+        <span id="vencimientos-recordatorio-error-message" data-form-error-message><?= e(ui('form.error_text')) ?></span>
+        <?php if ($reminderWhatsApp = whatsapp_link($vencimientosBase)): ?>
+          <a href="<?= e($reminderWhatsApp) ?>" data-service="vencimientos"><?= e(ui('form.error_whatsapp')) ?></a>
+        <?php endif; ?>
       </p>
     </form>
   </div>

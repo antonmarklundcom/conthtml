@@ -65,7 +65,7 @@ $page = [
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
 ?>
-<main id="main">
+<main id="main" class="guide-page">
 
   <section class="page-hero">
     <div class="container">
@@ -88,6 +88,7 @@ require ROOT_DIR . '/partials/header.php';
         <?= e(ui('guide.reviewed_prefix')) ?>
         <?= e($guide['lastReviewed']) ?>. <?= e(ui('guide.orientativo')) ?>
       </p>
+      <button class="btn btn--secondary print-action" type="button" data-print hidden>Imprimir guía</button>
 
       <?php if ($guide['intro'] !== []): ?>
         <div class="prose">

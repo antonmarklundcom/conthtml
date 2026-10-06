@@ -22,10 +22,7 @@
   var ipsLine    = document.getElementById("vencimientos-ips");
   var ireLine    = document.getElementById("vencimientos-ire");
   var waLink     = document.getElementById("vencimientos-recordar");
-  var remindForm = document.getElementById("vencimientos-recordatorio");
   var remindResult = document.getElementById("vencimientos-recordatorio-result");
-  var remindOk   = document.getElementById("vencimientos-recordatorio-ok");
-  var remindErr  = document.getElementById("vencimientos-recordatorio-error");
 
   var MESES = [
     "enero", "febrero", "marzo", "abril", "mayo", "junio",
@@ -63,7 +60,7 @@
     ipsLine.textContent = "Del día " + data.ipsMensual.diaDesde + " al " + data.ipsMensual.diaHasta +
       " del mes siguiente al liquidado (no depende de su RUC).";
     ireLine.textContent = data.ireAnual.nota;
-    resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.ToolsShared.showResult(resultBox);
 
     if (waLink.dataset.waConfigured === "1") {
       var mensaje = "Hola, mi RUC termina en " + digito + ". Quiero que me recuerden mis vencimientos " +
@@ -79,47 +76,6 @@
     }
 
     window.ToolsShared.trackToolUsed("vencimientos", { ruc_terminacion: digito });
-  }
-
-  /* Posts the reminder without leaving the page. Without JS it is an ordinary
-     form: enviar.php answers a plain POST with a redirect to /contacto/, where
-     the same tier-C thank-you renders. */
-  if (remindForm) {
-    remindForm.addEventListener("submit", function (e) {
-      if (!remindForm.reportValidity()) {
-        return;
-      }
-      e.preventDefault();
-      remindOk.hidden = true;
-      remindErr.hidden = true;
-
-      fetch(remindForm.action, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(remindForm)
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (!data || !data.ok) {
-            throw new Error("failed");
-          }
-          remindForm.querySelector('input[name="phone"]').value = "";
-          remindOk.hidden = false;
-          if (window.siteAnalytics) {
-            window.siteAnalytics.track("lead_submit", {
-              form_id: "recordatorio-vencimientos",
-              service: data.service || "vencimientos",
-              value_tier: data.value_tier || "C",
-              value: data.value || 0,
-              currency: data.currency || "PYG",
-              degraded: !!data.degraded
-            });
-          }
-        })
-        .catch(function () {
-          remindErr.hidden = false;
-        });
-    });
   }
 
   form.addEventListener("submit", calcular);

@@ -64,7 +64,8 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
       data-error-phone="<?= e(ui('form.error_phone')) ?>"
       data-error-email="<?= e(ui('form.error_email')) ?>"
       data-error-rate="<?= e(ui('form.error_rate')) ?>"
-      data-error-origin="<?= e(ui('form.error_origin')) ?>">
+      data-error-origin="<?= e(ui('form.error_origin')) ?>"
+      data-recovery-title="<?= e(ui('form.recovery_title')) ?>">
 
   <?php if ($formHeading !== ''): ?>
     <h2 class="card-title"><?= e($formHeading) ?></h2>
@@ -97,6 +98,7 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
         <input class="chip-radio" type="radio" name="need"
                id="need-<?= e($formId . '-' . $key) ?>" value="<?= e($key) ?>"
                data-tier="<?= e(lead_value_for_need($key)['tier']) ?>"
+               data-service="<?= e((string) (lead_value_for_need($key)['slug'] ?? '')) ?>"
                <?= $formNeed === $key ? 'checked' : '' ?>>
         <label class="chip" for="need-<?= e($formId . '-' . $key) ?>"><?= e($label) ?></label>
       <?php endforeach; ?>
@@ -171,7 +173,7 @@ $utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content
 
   <p class="form-status form-status--error" data-form-error hidden role="alert" tabindex="-1">
     <strong><?= e(ui('form.error_title')) ?></strong>
-    <span data-form-error-message><?= e(ui('form.error_text')) ?></span>
+    <span id="<?= e($formId) ?>-error-message" data-form-error-message><?= e(ui('form.error_text')) ?></span>
     <?php if ($whatsapp !== null): ?>
       <a href="<?= e($whatsapp) ?>" rel="noopener" data-service="<?= e($formService) ?>"><?= e(ui('form.error_whatsapp')) ?></a>
     <?php endif; ?>
