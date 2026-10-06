@@ -81,6 +81,37 @@ try {
   }
   pass('45 layouts across five viewport widths, including pricing/service/tool/English pages');
 
+  // Closed-menu document width misses negative-left overflow. Exercise the open panel.
+  for (const width of [901, 960, 1024, 1100, 1280, 1366, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 768 });
+    await page.goto(base);
+    await page.evaluate(() => document.fonts.ready);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `closed desktop header fits at ${width}`);
+    const trigger = page.locator('[data-mega-toggle]');
+    await trigger.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await trigger.getAttribute('aria-expanded'), 'true');
+    const bounds = await page.locator('[data-mega]').boundingBox();
+    assert.ok(bounds.x >= 0 && bounds.x + bounds.width <= width + 1, `opened desktop dropdown fits horizontally at ${width}`);
+    assert.ok(bounds.y >= 0 && bounds.y + bounds.height <= 768, `opened desktop dropdown fits vertically at ${width}`);
+    assert.equal(await page.locator('[data-mega] a').count(), 15, 'all 14 services and the directory remain available');
+    await page.keyboard.press('Escape');
+    assert.ok(await trigger.evaluate(el => el === document.activeElement));
+  }
+  // Resize an open panel into a short browser window; its final link remains reachable.
+  await page.locator('[data-mega-toggle]').click();
+  await page.setViewportSize({ width: 1024, height: 360 });
+  const shortBounds = await page.locator('[data-mega]').boundingBox();
+  assert.ok(shortBounds.x >= 0 && shortBounds.x + shortBounds.width <= 1025);
+  assert.ok(shortBounds.y >= 0 && shortBounds.y + shortBounds.height <= 360);
+  const lastServiceLink = page.locator('[data-mega] a[href="/servicios/"]');
+  await lastServiceLink.focus();
+  const lastBounds = await lastServiceLink.boundingBox();
+  assert.ok(lastBounds.y >= 0 && lastBounds.y + lastBounds.height <= 360, 'last menu link can be focused inside the short viewport');
+  assert.ok(await page.locator('[data-mega]').evaluate(el => el.scrollTop > 0), 'short menu scrolls internally');
+  await page.keyboard.press('Escape');
+  pass('opened desktop menu fits eight screen widths and short-window resizing; all service links remain reachable');
+
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto(base);
   const menu = page.locator('[data-nav-toggle]');
