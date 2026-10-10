@@ -20,6 +20,25 @@ define('ROOT_DIR', dirname(__DIR__));
  */
 function cfg(string $key, ?string $default = null): ?string
 {
+    // Prefer the shared private file without reinterpreting existing env aliases.
+    if ($key === 'VENDERCRM_URL' || $key === 'VENDERCRM_API_KEY') {
+        static $privateLoaded = false, $privateCrm = null, $privateInvalid = false;
+        if (!$privateLoaded) {
+            require_once ROOT_DIR . '/lib/vendercrm-config.php';
+            try {
+                $privateCrm = \VenderCRM\Config::optional(ROOT_DIR, [
+                    'VENDERCRM_CONFIG_FILE' => getenv('VENDERCRM_CONFIG_FILE'),
+                ]);
+            } catch (RuntimeException $error) {
+                $privateInvalid = true;
+                error_log('Contador: invalid private CRM configuration');
+            }
+            $privateLoaded = true;
+        }
+        if ($privateInvalid) return $default;
+        if ($privateCrm !== null) return $key === 'VENDERCRM_URL' ? $privateCrm->doctor()['url'] : $privateCrm->apiKey();
+    }
+
     static $config = null;
 
     if ($config === null) {
