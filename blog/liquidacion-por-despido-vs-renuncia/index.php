@@ -38,7 +38,7 @@ $sections = [
             'El preaviso son 30, 45, 60 o 90 días de salario según la antigüedad del trabajador (hasta 1, '
                 . 'hasta 5, hasta 10 o más de 10 años), a cargo de la empresa cuando no avisó con esa '
                 . 'anticipación. La indemnización equivale a 15 salarios diarios por cada año de servicio '
-                . 'o fracción superior a seis meses (Art. 91, Código del Trabajo). Son los dos conceptos '
+                . 'o fracción de seis meses o más (Art. 91, Código del Trabajo). Son los dos conceptos '
                 . 'que multiplican el costo de un despido sin causa frente a una renuncia.',
         ],
     ],

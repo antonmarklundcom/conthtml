@@ -104,8 +104,8 @@ return [
         ],
         'faq' => [
             ['q' => '¿Una renuncia se liquida igual que un despido?', 'a' => 'No. En una renuncia, el trabajador cobra el salario, las vacaciones y el aguinaldo proporcionales, pero no hay preaviso ni indemnización a cargo del empleador. En un despido sin causa justificada sí corresponden ambos.'],
-            ['q' => '¿Qué es el preaviso y cuándo se paga?', 'a' => 'Es el aviso previo que debe dar quien despide sin causa justificada: 30 días de antigüedad hasta 1 año, 45 días de 1 a 5 años, 60 días de 5 a 10 años y 90 días de más de 10 años (Art. 87, Código del Trabajo). Si no se otorgó el aviso, se paga en dinero junto con el finiquito.'],
-            ['q' => '¿Cómo se calcula la indemnización por despido?', 'a' => 'Quince salarios diarios por cada año de servicio, o fracción superior a seis meses, según el Art. 91 del Código del Trabajo. Solo corresponde cuando el despido no tiene causa justificada.'],
+            ['q' => '¿Qué es el preaviso y cuándo se paga?', 'a' => 'Es el aviso previo que debe dar quien despide sin causa justificada: 30 días con antigüedad de hasta 1 año, 45 días con más de 1 y hasta 5 años, 60 días con más de 5 y hasta 10 años, y 90 días con más de 10 años (Art. 87, Código del Trabajo). Si no se otorgó el aviso, se paga en dinero junto con el finiquito.'],
+            ['q' => '¿Cómo se calcula la indemnización por despido?', 'a' => 'Quince salarios diarios por cada año de servicio, o fracción de seis meses o más, según el Art. 91 del Código del Trabajo. Solo corresponde cuando el despido no tiene causa justificada.'],
             ['q' => '¿Se descuenta el 9 % del IPS del finiquito?', 'a' => 'Sí, sobre los conceptos remunerativos (salario y vacaciones); el aguinaldo, la indemnización y el preaviso no forman parte de esa base según la práctica general.'],
         ],
         'related'       => ['ips', 'asesoria', 'contabilidad'],
