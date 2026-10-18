@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 return [
 
-    'lastReviewed' => '2026-09-04',
+    'lastReviewed' => '2026-10-17',
 
     // Ley Nº 417 / Art. 243 Código del Trabajo: el aguinaldo equivale a la
     // doceava parte de las remuneraciones devengadas durante el año civil,
@@ -57,7 +57,7 @@ return [
 
     // Art. 91 Código del Trabajo: indemnización por despido sin causa
     // justificada — 15 salarios diarios por cada año de servicio o
-    // fracción superior a seis meses.
+    // fracción de seis meses o más.
     'indemnizacion' => [
         'diasPorAnio'        => 15,
         'fraccionMinimaMeses' => 6,

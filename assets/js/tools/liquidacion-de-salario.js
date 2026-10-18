@@ -4,9 +4,11 @@
  * law changes:
  *
  *   - Vacaciones (Art. 218 CT): 12 / 18 / 30 días según antigüedad.
+ *     Tiers are "hasta N años" / "más de N años", compared on exact dates.
  *   - Preaviso (Art. 87 CT): 30 / 45 / 60 / 90 días según antigüedad.
  *   - Indemnización (Art. 91 CT): 15 días de salario por año de servicio o
- *     fracción superior a seis meses; solo en despido sin causa justificada.
+ *     fracción de seis meses; solo en despido sin causa justificada. From 10
+ *     years (estabilidad, Art. 94 CT) it can be doubled — shown as a note only.
  *   - Aporte obrero IPS: 9 %, sobre los conceptos remunerativos (salario y
  *     vacaciones proporcionales); no sobre el aguinaldo, el preaviso ni la
  *     indemnización.
@@ -25,6 +27,7 @@
   var DIAS_POR_MES = 30;
   var IPS_OBRERO = 0.09;
   var INDEMNIZACION_DIAS_POR_ANIO = 15;
+  var ESTABILIDAD_ANIOS = 10;
   var VACACIONES = [
     { hasta: 5, dias: 12 },
     { hasta: 10, dias: 18 },
@@ -37,13 +40,33 @@
     { hasta: null, dias: 90 }
   ];
 
-  function tierDias(tiers, anios) {
+  /**
+   * The law's tiers read "hasta N años" / "más de N años": a worker with 1 year
+   * and 1 day is already "más de un año". So the tier is picked from the exact
+   * dates (egreso after ingreso + N years), not from completed years — using
+   * completed years put 1 year 3 months in the 30-day preaviso tier.
+   */
+  function tierDias(tiers, ingreso, egreso) {
     for (var i = 0; i < tiers.length; i++) {
-      if (tiers[i].hasta === null || anios <= tiers[i].hasta) {
+      if (tiers[i].hasta === null || egreso <= addYears(ingreso, tiers[i].hasta)) {
         return tiers[i].dias;
       }
     }
     return tiers[tiers.length - 1].dias;
+  }
+
+  function addYears(date, years) {
+    return new Date(date.getFullYear() + years, date.getMonth(), date.getDate());
+  }
+
+  /**
+   * Parses an <input type="date"> value as a LOCAL date. new Date("2026-03-01")
+   * is UTC midnight, which in Paraguay (UTC-3) is still 28 February — every
+   * date would land one day early.
+   */
+  function parseLocalDate(value) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || "");
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date(NaN);
   }
 
   /** Full completed months of service between two dates, calendar-accurate. */
@@ -65,7 +88,9 @@
       return 0;
     }
     var startDay = Math.min(start.getDate(), DIAS_POR_MES);
-    var endDay = Math.min(end.getDate(), DIAS_POR_MES);
+    // Working through the month's last day is a full 30-day month, also in
+    // February (28/29 days) — otherwise a full February paid 28 days.
+    var endDay = end.getTime() === monthEnd.getTime() ? DIAS_POR_MES : Math.min(end.getDate(), DIAS_POR_MES);
     return Math.max(0, endDay - startDay + 1);
   }
 
@@ -88,8 +113,8 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var ingreso = new Date(document.getElementById("finiquito-ingreso").value);
-    var egreso  = new Date(document.getElementById("finiquito-egreso").value);
+    var ingreso = parseLocalDate(document.getElementById("finiquito-ingreso").value);
+    var egreso  = parseLocalDate(document.getElementById("finiquito-egreso").value);
     var salario = parseFloat(document.getElementById("finiquito-salario").value) || 0;
     var motivo  = document.getElementById("finiquito-motivo").value;
 
@@ -98,14 +123,17 @@
     }
 
     var salarioDiario = salario / DIAS_POR_MES;
-    var totalMonths = monthsBetween(ingreso, egreso);
+    // The egreso date is the last day worked, so service runs up to the
+    // following day: 1 Jan → 31 Dec is a full 12 months, not 11.
+    var finServicio = new Date(egreso.getFullYear(), egreso.getMonth(), egreso.getDate() + 1);
+    var totalMonths = monthsBetween(ingreso, finServicio);
     var aniosCumplidos = Math.floor(totalMonths / 12);
     var mesesResto = totalMonths % 12;
 
     var diasUltimoMes = daysInMonthWorked(egreso.getFullYear(), egreso.getMonth(), ingreso, egreso);
     var salarioProporcional = diasUltimoMes * salarioDiario;
 
-    var diasVacTier = tierDias(VACACIONES, aniosCumplidos);
+    var diasVacTier = tierDias(VACACIONES, ingreso, finServicio);
     var vacacionesProporcional = (diasVacTier / 12) * mesesResto * salarioDiario;
 
     var inicioAnio = new Date(egreso.getFullYear(), 0, 1);
@@ -117,7 +145,7 @@
     var aguinaldoProporcional = (salario / 12) * (diasAguinaldo / DIAS_POR_MES);
 
     var esDespidoInjustificado = motivo === "despido_injustificado";
-    var diasPreaviso = esDespidoInjustificado ? tierDias(PREAVISO, aniosCumplidos) : 0;
+    var diasPreaviso = esDespidoInjustificado ? tierDias(PREAVISO, ingreso, finServicio) : 0;
     var preavisoMonto = diasPreaviso * salarioDiario;
 
     var aniosIndemnizacion = aniosCumplidos + (mesesResto >= 6 ? 1 : 0);
@@ -140,9 +168,15 @@
     addLine("Aporte IPS 9 % (deducción)", -ipsDeduccion);
 
     totalLine.textContent = window.PY.fmtGs(total);
-    noteLine.textContent = esDespidoInjustificado
+    var nota = esDespidoInjustificado
       ? "Incluye preaviso e indemnización porque el motivo indicado es despido sin causa justificada. Antigüedad considerada: " + totalMonths + " meses."
       : "No corresponde preaviso ni indemnización porque el motivo no es un despido sin causa justificada. Antigüedad considerada: " + totalMonths + " meses.";
+    nota += " No incluye vacaciones de años anteriores ya generadas y no gozadas: si las tiene pendientes, se suman aparte.";
+    if (esDespidoInjustificado && aniosCumplidos >= ESTABILIDAD_ANIOS) {
+      nota += " Con 10 años o más de antigüedad rige la estabilidad laboral (Art. 94 CT): un despido sin causa " +
+        "puede dar derecho a reintegro o a indemnización doble, que este cálculo no incluye. Consulte su caso.";
+    }
+    noteLine.textContent = nota;
     window.ToolsShared.showResult(resultBox);
 
     lastResult = { total: total, motivo: motivo };
