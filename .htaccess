@@ -83,4 +83,8 @@ RedirectMatch 404 ^/\.git(/|$)
 
 <IfModule mod_mime.c>
   AddType font/woff2 .woff2
+  # Hostinger served .avif as text/plain (checked 2026-10-18); with nosniff
+  # set above, the type must be right for browsers and image crawlers.
+  AddType image/avif .avif
+  AddType image/webp .webp
 </IfModule>
