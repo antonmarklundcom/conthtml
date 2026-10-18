@@ -76,12 +76,12 @@ return [
         'path'            => '/herramientas/liquidacion-de-salario/',
         'title'           => 'Liquidación de salario y finiquito',
         'navLabel'        => 'Liquidación de salario',
-        'seoTitle'        => 'Liquidación de salario y finiquito',
-        'metaDescription' => 'Calcule su finiquito en Paraguay: salario proporcional, aporte IPS, '
-                            . 'vacaciones, aguinaldo, preaviso e indemnización según el motivo de salida.',
+        'seoTitle'        => 'Calculadora de liquidación laboral',
+        'metaDescription' => 'Calculadora de liquidación laboral en Paraguay: salario proporcional, aporte '
+                            . 'IPS, vacaciones, aguinaldo, preaviso e indemnización según el motivo.',
         'hero' => [
             'eyebrow' => 'Herramientas',
-            'h1'      => 'Calculadora de liquidación de salario y finiquito',
+            'h1'      => 'Calculadora de liquidación laboral y finiquito en Paraguay',
             'lead'    => 'Estime lo que le corresponde cobrar al terminar una relación laboral, según el '
                         . 'motivo: renuncia, despido justificado o injustificado.',
         ],
@@ -107,6 +107,7 @@ return [
             ['q' => '¿Qué es el preaviso y cuándo se paga?', 'a' => 'Es el aviso previo que debe dar quien despide sin causa justificada: 30 días de antigüedad hasta 1 año, 45 días de 1 a 5 años, 60 días de 5 a 10 años y 90 días de más de 10 años (Art. 87, Código del Trabajo). Si no se otorgó el aviso, se paga en dinero junto con el finiquito.'],
             ['q' => '¿Cómo se calcula la indemnización por despido?', 'a' => 'Quince salarios diarios por cada año de servicio, o fracción superior a seis meses, según el Art. 91 del Código del Trabajo. Solo corresponde cuando el despido no tiene causa justificada.'],
             ['q' => '¿Se descuenta el 9 % del IPS del finiquito?', 'a' => 'Sí, sobre los conceptos remunerativos (salario y vacaciones); el aguinaldo, la indemnización y el preaviso no forman parte de esa base según la práctica general.'],
+            ['q' => '¿Calcula la liquidación igual que el Ministerio de Trabajo?', 'a' => 'Usa las mismas reglas del Código del Trabajo que aplica el MTESS: preaviso del Art. 87, indemnización del Art. 91, vacaciones del Art. 218 y aguinaldo proporcional. Las diferencias con una liquidación real suelen venir de horas extra, comisiones u otros conceptos variables del recibo, que esta calculadora no incluye.'],
         ],
         'related'       => ['ips', 'asesoria', 'contabilidad'],
         'ctaWhatsapp'   => '',
@@ -118,12 +119,12 @@ return [
         'path'            => '/herramientas/vencimientos/',
         'title'           => 'Calendario de vencimientos',
         'navLabel'        => 'Vencimientos',
-        'seoTitle'        => 'Calendario de vencimientos DNIT e IPS',
+        'seoTitle'        => 'Calendario perpetuo DNIT: vencimientos',
         'metaDescription' => 'Vea sus próximas fechas de IVA, IRE e IPS según la terminación de su RUC, '
                             . 'con el Calendario Perpetuo de la DNIT. Consulte y reciba el recordatorio.',
         'hero' => [
             'eyebrow' => 'Herramientas',
-            'h1'      => 'Calendario de vencimientos según su RUC',
+            'h1'      => 'Calendario perpetuo DNIT: sus vencimientos según el RUC',
             'lead'    => 'Indique la terminación de su RUC y vea sus próximas fechas de IVA, IRE e IPS.',
         ],
         'intro' => [
@@ -187,12 +188,51 @@ return [
         'faq' => [
             ['q' => '¿Qué productos llevan IVA del 5 %?', 'a' => 'Un listado acotado de bienes de la canasta familiar y ciertas operaciones inmobiliarias y financieras. El listado puede cambiar por reglamentación: consulte el vigente en la DNIT o con nosotros antes de facturar.'],
             ['q' => '¿Cómo se calcula el IVA cuando el monto ya lo incluye?', 'a' => 'El impuesto es el monto multiplicado por la tasa y dividido por (100 + la tasa). Por ejemplo, con 10 %: IVA = monto × 10 ÷ 110.'],
+            ['q' => '¿Cómo se saca el IVA 10 % y el IVA 5 % de un precio?', 'a' => 'Con IVA incluido, el IVA 10 % es el precio dividido por 11 y el IVA 5 % es el precio dividido por 21. Por ejemplo, de un precio de Gs. 110.000 con IVA 10 %, el impuesto es Gs. 10.000; de Gs. 105.000 con IVA 5 %, es Gs. 5.000.'],
             ['q' => '¿Este resultado sirve para mi factura?', 'a' => 'Sirve como referencia de cálculo, no como declaración jurada. Su Formulario 120 mensual se arma con el detalle de todas sus operaciones del período, créditos y débitos incluidos.'],
         ],
         'related'       => ['iva', 'ire-simple', 'asesoria'],
         'ctaWhatsapp'   => '',
         'formNeed'      => 'contabilidad',
         'analyticsTool' => 'calculadora-iva',
+    ],
+
+    'calculadora-ips' => [
+        'path'            => '/herramientas/calculadora-ips/',
+        'title'           => 'Calculadora de aporte IPS',
+        'navLabel'        => 'Calculadora de IPS',
+        'seoTitle'        => 'Calculadora de aporte IPS Paraguay',
+        'metaDescription' => 'Calcule el aporte IPS de un salario en Paraguay: 9 % del trabajador, 16,5 % '
+                            . 'de la empresa, sueldo neto y costo mensual del empleado, en guaraníes.',
+        'hero' => [
+            'eyebrow' => 'Herramientas',
+            'h1'      => 'Calculadora de aporte IPS en Paraguay',
+            'lead'    => 'Cargue un salario y vea cuánto aporta el trabajador, cuánto la empresa y '
+                        . 'cuánto queda de sueldo neto.',
+        ],
+        'intro' => [
+            'Todo trabajador en relación de dependencia del sector privado aporta al IPS el 9 % de su '
+                . 'salario, y su empleador suma un 16,5 % propio: un 25,5 % en total sobre el mismo salario '
+                . 'declarado. El aporte del trabajador se descuenta del recibo; el de la empresa es un '
+                . 'costo adicional al sueldo.',
+            'Esta calculadora hace la cuenta para un salario mensual en guaraníes: el aporte obrero, el '
+                . 'salario neto después del IPS, el aporte patronal, el total que se paga al IPS cada mes '
+                . 'y el costo mensual del empleado para la empresa. Con el botón del salario mínimo carga '
+                . 'el monto vigente desde julio de 2026.',
+            'Es un cálculo sobre un solo salario y no reemplaza la planilla mensual, que suma horas '
+                . 'extra, bonificaciones y novedades de cada empleado. Si quiere que nos encarguemos de su '
+                . 'nómina e IPS, escríbanos por WhatsApp.',
+        ],
+        'faq' => [
+            ['q' => '¿Cuánto es el aporte IPS en Paraguay?', 'a' => 'El 9 % del salario lo aporta el trabajador y el 16,5 % la empresa, sobre el mismo salario declarado: 25,5 % en total, para el régimen general de trabajadores dependientes del sector privado.'],
+            ['q' => '¿Cuánto se descuenta de IPS sobre el salario mínimo?', 'a' => 'Sobre el salario mínimo de Gs. 3.044.000 vigente desde julio de 2026, el descuento del trabajador es de Gs. 273.960 y el aporte de la empresa de Gs. 502.260.'],
+            ['q' => '¿El aguinaldo paga IPS?', 'a' => 'En general no: el aguinaldo está exceptuado del aporte obrero al IPS. Confirme el tratamiento si su actividad tiene un régimen especial.'],
+            ['q' => '¿Cuándo se paga el aporte al IPS?', 'a' => 'Mes a mes, junto con la planilla de la empresa. Un pago fuera de plazo genera intereses y puede dejar al trabajador sin cobertura.'],
+        ],
+        'related'       => ['ips', 'contabilidad', 'asesoria'],
+        'ctaWhatsapp'   => '',
+        'formNeed'      => 'nomina',
+        'analyticsTool' => 'calculadora-ips',
     ],
 
     'comparador-eas-srl-unipersonal' => [

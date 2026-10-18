@@ -367,6 +367,19 @@ return [
             'nextLink' => ['path' => '/iva/', 'label' => 'Declaraciones de IVA'],
         ],
 
+        'calculadora-ips' => [
+            'menuLabel'    => 'Calculadora de aporte IPS',
+            'need'         => 'nomina',
+            'tier'         => 'C',
+            'whatsappText' => 'Hola, usé la calculadora de IPS y quiero ayuda con la planilla de sueldos.',
+            'nextStep'     => [
+                'Le respondemos dentro del siguiente día hábil.',
+                'Tenga a mano: cuántos empleados tiene y si ya están inscriptos en el IPS.',
+            ],
+            'crmTag'   => 'herramienta-ips',
+            'nextLink' => ['path' => '/ips/', 'label' => 'Nómina e IPS para empresas'],
+        ],
+
         /* The comparador is the "abrir empresa" branch: same tier as /eas/ and
            /ruc/, because someone comparing figuras jurídicas is opening one
            (docs/lead-value.md, Anton's priority services). */

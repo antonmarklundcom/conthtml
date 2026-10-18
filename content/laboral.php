@@ -38,6 +38,19 @@ return [
         'patronal' => 0.165,
     ],
 
+    // Decreto N.º 6225/2026: salario mínimo legal para actividades diversas
+    // no especificadas del sector privado, vigente desde el 1 de julio de
+    // 2026 (+5 % sobre Gs. 2.899.048). Read by the IPS calculator through
+    // data attributes; the copy in /guias/salario-minimo-paraguay/ states
+    // the same figures and must change with this block.
+    'salarioMinimo' => [
+        'mensual'   => 3044000,
+        'jornal'    => 117077,
+        'vigencia'  => '2026-07-01',
+        'decreto'   => 'Decreto N.º 6225/2026',
+        'anterior'  => 2899048,
+    ],
+
     // Art. 218 Código del Trabajo: días de vacaciones según antigüedad.
     // Los rangos son "hasta 5 años", "más de 5 y hasta 10", "más de 10".
     'vacaciones' => [

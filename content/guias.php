@@ -151,13 +151,13 @@ return [
         'path'            => '/guias/consulta-de-ruc/',
         'title'           => 'Consulta de RUC',
         'navLabel'        => 'Consulta de RUC',
-        'seoTitle'        => 'Consulta de RUC en Paraguay: cómo hacerla',
-        'metaDescription' => 'Cómo consultar un RUC en Paraguay — el propio o el de otra persona o '
-                            . 'empresa — y qué datos puede ver en cada caso. Guía paso a paso.',
-        'lastReviewed'    => '2026-09-04',
+        'seoTitle'        => 'Consulta de RUC Paraguay: buscar un RUC',
+        'metaDescription' => 'Consulta de RUC en Paraguay: cómo buscar un RUC por número o por nombre, '
+                            . 'cómo saber su propio RUC y qué datos muestra la DNIT en cada caso.',
+        'lastReviewed'    => '2026-10-17',
         'hero' => [
             'eyebrow' => 'Guías',
-            'h1'      => 'Cómo hacer una consulta de RUC',
+            'h1'      => 'Consulta de RUC en Paraguay: cómo buscar un RUC',
             'lead'    => 'Verifique su propio RUC o el de un proveedor, cliente o empleador antes de '
                         . 'facturar, firmar un contrato o presentar una declaración.',
         ],
@@ -188,6 +188,16 @@ return [
                 ],
             ],
             [
+                'title' => 'Si solo tiene el nombre: buscar RUC por nombre',
+                'body'  => [
+                    'Para buscar el RUC de una persona o empresa de la que solo conoce el nombre o la razón '
+                        . 'social, la DNIT publica el listado de contribuyentes con su RUC, dígito verificador '
+                        . 'y estado, en archivos descargables que se actualizan periódicamente. Para un caso '
+                        . 'puntual, lo más simple sigue siendo pedirle el RUC a la persona o empresa: figura '
+                        . 'en cualquier factura que haya emitido.',
+                ],
+            ],
+            [
                 'title' => 'Interprete el resultado',
                 'body'  => [
                     'La consulta pública confirma que el RUC existe, está activo y a qué nombre está '
@@ -209,6 +219,8 @@ return [
         'faq' => [
             ['q' => '¿Puedo ver si un tercero tiene multas de la DNIT solo con su RUC?', 'a' => 'No. La consulta pública muestra si el RUC está activo y a nombre de quién está registrado, pero la situación de multas y declaraciones es información privada, visible solo por el titular dentro de Marangatu.'],
             ['q' => '¿Qué diferencia hay entre consultar el RUC y entrar a Marangatu?', 'a' => 'La consulta de RUC es pública y no requiere clave: solo confirma existencia y titularidad. Marangatu es la cuenta privada donde el titular ve su propia situación completa y presenta declaraciones.'],
+            ['q' => '¿Cómo sé cuál es mi RUC?', 'a' => 'Si es persona física, su RUC es su número de cédula seguido de un guion y el dígito verificador (por ejemplo, 1234567-8). Lo confirma en su constancia de inscripción, en cualquier factura que haya emitido o dentro de Marangatu. Si nunca se inscribió, todavía no tiene RUC: vea la guía de inscripción de RUC.'],
+            ['q' => '¿La consulta de RUC tiene costo?', 'a' => 'No. La consulta pública de la DNIT es gratuita y no pide clave de acceso.'],
             ['q' => '¿El RUC de una persona física y el de una empresa se consultan igual?', 'a' => 'Sí, la consulta pública funciona igual para ambos: solo cambia si el nombre registrado es el de la persona física o la razón social de la empresa.'],
         ],
         'relatedService' => 'ruc',
@@ -855,6 +867,335 @@ return [
         'relatedService' => 'irp',
         'toolLink' => null,
         'related' => ['formulario-120-paso-a-paso', 'inscripcion-de-ruc-paso-a-paso'],
+    ],
+
+    /* === Keyword round 2026-10-17 (KWP export "contador.com.py + EAS") ======
+       salario mínimo 33 760/mo, IPS mis aportes 6 600/mo (+50 %), preaviso
+       1 300/mo, SUACE 2 900/mo (+50 %). Sources in docs/facts-to-verify.md. */
+
+    'salario-minimo-paraguay' => [
+        'path'            => '/guias/salario-minimo-paraguay/',
+        'title'           => 'Salario mínimo en Paraguay',
+        'navLabel'        => 'Salario mínimo 2026',
+        'seoTitle'        => 'Salario mínimo en Paraguay 2026',
+        'metaDescription' => 'El salario mínimo en Paraguay es de Gs. 3.044.000 desde julio de 2026. '
+                            . 'Jornal diario, descuento del IPS, sueldo neto y costo para la empresa.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Salario mínimo en Paraguay 2026: monto, jornal y sueldo neto',
+            'lead'    => 'Gs. 3.044.000 por mes desde el 1 de julio de 2026. Qué cobra el trabajador '
+                        . 'después del IPS y cuánto le cuesta a la empresa.',
+        ],
+        'intro' => [
+            'El salario mínimo legal para actividades diversas no especificadas del sector privado es de '
+                . 'Gs. 3.044.000 por mes desde el 1 de julio de 2026. Lo fijó el Decreto N.º 6225/2026, '
+                . 'que reajustó un 5 % el monto anterior de Gs. 2.899.048. El jornal mínimo diario quedó '
+                . 'en Gs. 117.077.',
+            'El monto es bruto: de ahí sale el aporte del trabajador al IPS. Para las actividades que '
+                . 'tienen un mínimo propio, el Ministerio de Trabajo (MTESS) publica las tablas '
+                . 'actualizadas con el mismo porcentaje de reajuste. Abajo, las cuentas que más se buscan, '
+                . 'paso a paso.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Monto mensual: Gs. 3.044.000',
+                'body'  => [
+                    'Es lo mínimo que puede ganar por mes un trabajador mensualizado con jornada completa. '
+                        . 'Rige desde el 1 de julio de 2026. Hasta el 30 de junio de 2026 el mínimo era de '
+                        . 'Gs. 2.899.048, así que los sueldos de julio en adelante ya deben pagarse con el '
+                        . 'monto nuevo.',
+                ],
+            ],
+            [
+                'title' => 'Jornal mínimo diario: Gs. 117.077',
+                'body'  => [
+                    'Para quien cobra por día trabajado, el mínimo es de Gs. 117.077 por jornal. Sale de '
+                        . 'dividir el mensual por 26 días hábiles. No hay que confundirlo con el salario '
+                        . 'diario que se usa en una liquidación, que divide el mensual por 30.',
+                ],
+            ],
+            [
+                'title' => 'Descuento del IPS y sueldo neto: Gs. 2.770.040',
+                'body'  => [
+                    'El trabajador aporta el 9 % de su salario al IPS: Gs. 273.960 sobre el mínimo. Lo que '
+                        . 'cobra en mano es Gs. 2.770.040, antes de cualquier otro descuento que figure en su '
+                        . 'recibo.',
+                ],
+            ],
+            [
+                'title' => 'Costo para la empresa: Gs. 3.546.260 por mes',
+                'body'  => [
+                    'Además del sueldo, la empresa paga el aporte patronal del 16,5 % al IPS: Gs. 502.260 '
+                        . 'sobre el mínimo. El costo mensual de un empleado con salario mínimo es entonces de '
+                        . 'Gs. 3.546.260, sin contar el aguinaldo ni las vacaciones.',
+                ],
+            ],
+            [
+                'title' => 'Aguinaldo 2026 con salario mínimo: Gs. 2.971.524',
+                'body'  => [
+                    'El aguinaldo es la doceava parte de lo cobrado en el año. Quien ganó el mínimo todo '
+                        . '2026 cobró seis meses a Gs. 2.899.048 y seis a Gs. 3.044.000: Gs. 35.658.288 en '
+                        . 'total, y su aguinaldo es de Gs. 2.971.524. Para otros casos, use la calculadora de '
+                        . 'aguinaldo.',
+                ],
+            ],
+            [
+                'title' => 'Si le pagan menos del mínimo',
+                'body'  => [
+                    'Pagar menos del mínimo legal a un trabajador de jornada completa es una infracción que '
+                        . 'puede denunciarse ante el MTESS. Si es empleador, revise también que el salario '
+                        . 'declarado al IPS sea el que realmente paga: el aporte se calcula sobre ese monto.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Cuánto es el salario mínimo en Paraguay en 2026?', 'a' => 'Gs. 3.044.000 por mes desde el 1 de julio de 2026 (Decreto N.º 6225/2026), para actividades diversas no especificadas. Entre enero y junio de 2026 rigió el monto anterior, Gs. 2.899.048.'],
+            ['q' => '¿El salario mínimo es bruto o neto?', 'a' => 'Bruto. Del mínimo se descuenta el 9 % de aporte obrero al IPS, así que el trabajador cobra Gs. 2.770.040 antes de otros descuentos.'],
+            ['q' => '¿Cuánto es el jornal mínimo?', 'a' => 'Gs. 117.077 por día trabajado, desde el 1 de julio de 2026.'],
+            ['q' => '¿Cuándo cambia el salario mínimo?', 'a' => 'El Poder Ejecutivo lo reajusta por decreto, en general una vez al año y con vigencia desde julio. Revisamos esta guía cada vez que sale un decreto nuevo.'],
+        ],
+        'relatedService' => 'ips',
+        'toolLink' => [
+            'path'  => '/herramientas/calculadora-ips/',
+            'label' => 'Calculadora de aporte IPS',
+            'text'  => 'Cargue un salario y vea el 9 % del trabajador, el 16,5 % de la empresa y el sueldo neto.',
+        ],
+        'related' => ['ver-aportes-ips', 'preaviso-paraguay', 'inscripcion-patronal-ips'],
+    ],
+
+    'ver-aportes-ips' => [
+        'path'            => '/guias/ver-aportes-ips/',
+        'title'           => 'Cómo ver mis aportes en el IPS',
+        'navLabel'        => 'Ver mis aportes IPS',
+        'seoTitle'        => 'IPS mis aportes: cómo ver sus aportes',
+        'metaDescription' => 'Cómo ver sus aportes al IPS en Mi IPS, con su cédula y PIN o con Identidad '
+                            . 'Electrónica, y qué hacer si falta un mes o el salario no coincide.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Cómo ver mis aportes en el IPS',
+            'lead'    => 'Revise mes por mes si su empleador está aportando por usted, y con qué salario, '
+                        . 'desde el sistema Mi IPS.',
+        ],
+        'intro' => [
+            'El IPS muestra los aportes de cada asegurado en Mi IPS, su sistema en línea. Ahí aparece '
+                . 'cada mes aportado, el empleador que lo pagó y el salario declarado. Vale la pena '
+                . 'revisarlo: un mes que falta o un salario declarado más bajo que el real afecta su '
+                . 'cobertura médica, sus subsidios y, a la larga, su jubilación.',
+            'La consulta es gratuita y la hace usted mismo con su cédula. Estos son los pasos.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Entre a Mi IPS',
+                'body'  => [
+                    'Mi IPS está en servicios.ips.gov.py/miips. Desde ahí se consultan los aportes, el estado '
+                        . 'de cuenta, las prestaciones médicas, las citas y los reposos.',
+                ],
+            ],
+            [
+                'title' => 'Elija cómo ingresar: PIN o Identidad Electrónica',
+                'body'  => [
+                    'Si ya tiene PIN de Mi IPS, ingrese con su número de cédula, sin puntos ni guiones, y el '
+                        . 'PIN. Si no tiene PIN, ingrese con su cuenta de Identidad Electrónica del Gobierno; '
+                        . 'si todavía no la tiene, la crea en paraguay.gov.py con su cédula y un correo.',
+                ],
+            ],
+            [
+                'title' => 'Abra la sección Aportes',
+                'body'  => [
+                    'En Aportes ve la consulta de aportes y su estado de cuenta. Revise tres cosas: que '
+                        . 'figuren todos los meses que trabajó, que el empleador sea el correcto y que el '
+                        . 'salario declarado coincida con el de su recibo.',
+                ],
+            ],
+            [
+                'title' => 'Si falta un mes o el salario no coincide',
+                'body'  => [
+                    'Primero consulte a su empleador: puede ser un pago atrasado que todavía no se registró. '
+                        . 'Si no se corrige, puede reclamar ante el IPS o el Ministerio de Trabajo. Guarde sus '
+                        . 'recibos de sueldo: son la prueba de lo que cobró.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Puedo ver mis aportes solo con la cédula, sin clave?', 'a' => 'La consulta de asegurado del IPS confirma con la cédula si su seguro está vigente, pero el detalle mes a mes de los aportes se ve dentro de Mi IPS, con PIN o Identidad Electrónica.'],
+            ['q' => '¿Olvidé mi PIN de Mi IPS, qué hago?', 'a' => 'Mi IPS permite recuperar la contraseña por correo electrónico desde la misma pantalla de ingreso. Si usa Identidad Electrónica, la recupera desde su propio enlace.'],
+            ['q' => '¿Cuánto me tienen que aportar al IPS?', 'a' => 'El 9 % de su salario lo descuenta el empleador de su recibo, y la empresa suma un 16,5 % propio. Los dos aportes deben aparecer juntos sobre el mismo salario declarado.'],
+            ['q' => 'Soy empleador, ¿cómo evito que falten aportes?', 'a' => 'Comunicando cada alta antes de que el empleado empiece a trabajar y pagando la planilla dentro del plazo cada mes. Si prefiere no ocuparse, llevamos su nómina e IPS por usted.'],
+        ],
+        'relatedService' => 'ips',
+        'toolLink' => [
+            'path'  => '/herramientas/calculadora-ips/',
+            'label' => 'Calculadora de aporte IPS',
+            'text'  => 'Calcule cuánto deberían aportar usted y su empleador sobre su salario.',
+        ],
+        'related' => ['salario-minimo-paraguay', 'inscripcion-patronal-ips'],
+    ],
+
+    'preaviso-paraguay' => [
+        'path'            => '/guias/preaviso-paraguay/',
+        'title'           => 'Preaviso en Paraguay',
+        'navLabel'        => 'Preaviso',
+        'seoTitle'        => 'Preaviso en Paraguay: cuántos días',
+        'metaDescription' => 'Preaviso en Paraguay: 30, 45, 60 o 90 días según la antigüedad (Art. 87 del '
+                            . 'Código del Trabajo), cómo se da y cuánto se paga si se omite.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Preaviso en Paraguay: cuántos días corresponden y cómo se paga',
+            'lead'    => 'El aviso previo que debe dar quien termina un contrato por tiempo indefinido, '
+                        . 'según los artículos 87 a 90 del Código del Trabajo.',
+        ],
+        'intro' => [
+            'En un contrato de trabajo por tiempo indefinido, ninguna de las partes puede terminarlo sin '
+                . 'avisar antes a la otra (Art. 87 del Código del Trabajo). Ese aviso es el preaviso, y su '
+                . 'duración depende de la antigüedad del trabajador.',
+            'Se habla del preaviso sobre todo en los despidos sin causa justificada, porque si la empresa '
+                . 'no lo da, lo tiene que pagar en dinero junto con el finiquito. Pero también obliga al '
+                . 'trabajador que renuncia. Un despido con causa justificada no lleva preaviso.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Cuente la antigüedad exacta',
+                'body'  => [
+                    'Los plazos del Art. 87 son 30 días con antigüedad de hasta 1 año; 45 días con más de 1 '
+                        . 'y hasta 5 años; 60 días con más de 5 y hasta 10 años; y 90 días con más de 10 '
+                        . 'años. "Más de un año" significa más de un año cumplido: con exactamente un año, '
+                        . 'corresponden 30 días.',
+                ],
+            ],
+            [
+                'title' => 'Dé el aviso por escrito',
+                'body'  => [
+                    'El preaviso puede darse de cualquier forma, pero tiene que poder probarse por escrito '
+                        . 'o en forma auténtica. También puede hacerse ante la autoridad administrativa del '
+                        . 'trabajo (Art. 88). Una nota firmada con fecha de recibido es lo más simple.',
+                ],
+            ],
+            [
+                'title' => 'Durante el preaviso: dos horas libres por día',
+                'body'  => [
+                    'El trabajador al que se le notificó el despido sigue cobrando su salario completo y '
+                        . 'tiene una licencia de dos horas diarias, dentro de su jornada, para buscar otro '
+                        . 'empleo. Si prefiere, puede juntarlas en un día libre por semana (Art. 89).',
+                ],
+            ],
+            [
+                'title' => 'Si se omite: cuánto se paga',
+                'body'  => [
+                    'La empresa que despide sin dar el preaviso le paga al trabajador el salario '
+                        . 'correspondiente a todo el plazo. El trabajador que renuncia sin avisar le debe a '
+                        . 'la empresa la mitad del salario de ese plazo (Art. 90).',
+                    'Ejemplo: un trabajador con 3 años de antigüedad y un salario de Gs. 4.500.000, '
+                        . 'despedido sin causa y sin aviso, cobra 45 días de preaviso. Su salario diario es '
+                        . 'de Gs. 150.000 (el mensual dividido por 30), así que el preaviso es de '
+                        . 'Gs. 6.750.000.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Cuántos días de preaviso corresponden en Paraguay?', 'a' => '30 días con hasta 1 año de antigüedad, 45 con más de 1 y hasta 5 años, 60 con más de 5 y hasta 10 años, y 90 con más de 10 años (Art. 87 del Código del Trabajo).'],
+            ['q' => '¿El trabajador que renuncia tiene que dar preaviso?', 'a' => 'Sí. El Art. 87 obliga a las dos partes. Si el trabajador renuncia sin avisar, debe a la empresa la mitad del salario del plazo de preaviso (Art. 90).'],
+            ['q' => '¿Hay preaviso en un despido con causa justificada?', 'a' => 'No. El despido por una causa justificada del Código del Trabajo no genera preaviso ni indemnización. Si la causa se discute y no se prueba, el despido pasa a tratarse como injustificado.'],
+            ['q' => '¿El preaviso pagado lleva descuento del IPS?', 'a' => 'Según la práctica general, el preaviso pagado en dinero no forma parte de la base del aporte del 9 % al IPS, igual que la indemnización. Si el trabajador sigue trabajando durante el preaviso, ese salario sí aporta.'],
+        ],
+        'relatedService' => 'ips',
+        'toolLink' => [
+            'path'  => '/herramientas/liquidacion-de-salario/',
+            'label' => 'Calculadora de liquidación laboral',
+            'text'  => 'Calcule el preaviso, la indemnización, las vacaciones y el aguinaldo de un finiquito.',
+        ],
+        'related' => ['salario-minimo-paraguay', 'ver-aportes-ips'],
+    ],
+
+    'suace' => [
+        'path'            => '/guias/suace/',
+        'title'           => 'SUACE',
+        'navLabel'        => 'SUACE: abrir una empresa',
+        'seoTitle'        => 'SUACE: cómo abrir una empresa paso a paso',
+        'metaDescription' => 'Qué es el SUACE y cómo abrir una EAS en línea: identidad electrónica, '
+                            . 'estatutos, plazos de 72 horas u 8 días hábiles y qué recibe al final.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'SUACE: cómo abrir una empresa en Paraguay, paso a paso',
+            'lead'    => 'El Sistema Unificado de Apertura y Cierre de Empresas del MIC, y el trámite en '
+                        . 'línea para constituir una EAS.',
+        ],
+        'intro' => [
+            'El SUACE es el Sistema Unificado de Apertura y Cierre de Empresas del Ministerio de '
+                . 'Industria y Comercio (MIC). Une en un solo trámite lo que antes se hacía por separado '
+                . 'ante varias oficinas. Para la EAS (Empresa por Acciones Simplificada), todo el proceso '
+                . 'es en línea: la apertura, y también los cambios, la disolución y el cierre, se hacen '
+                . 'únicamente por el SUACE.',
+            'Esta guía sigue el circuito de la EAS, que es el que más se usa hoy. Una SRL o una S.A. '
+                . 'siguen otro camino, con escritura pública e inscripción en el Registro Público de '
+                . 'Comercio: si duda entre las tres figuras, use el comparador.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Identidad electrónica del representante legal',
+                'body'  => [
+                    'Al SUACE se entra solo con la identidad electrónica del representante legal principal, '
+                        . 'que tiene que tener cédula paraguaya. Se crea en paraguay.gov.py. Si los socios '
+                        . 'son extranjeros sin cédula, actúan a través de un representante que cumpla ese '
+                        . 'requisito.',
+                ],
+            ],
+            [
+                'title' => 'Elija el tipo de estatuto',
+                'body'  => [
+                    'Hay tres opciones: el estatuto proforma que genera el sistema, un instrumento privado '
+                        . 'con las firmas certificadas por escribano, o una escritura pública. El proforma es '
+                        . 'el más rápido, pero no se puede editar. Un estatuto propio permite adaptar las '
+                        . 'reglas de la empresa a su operación.',
+                ],
+            ],
+            [
+                'title' => 'Cargue la solicitud y firme',
+                'body'  => [
+                    'La solicitud se completa en eas.mic.gov.py con los datos de la empresa, los socios y '
+                        . 'el capital. El proforma se firma con firma digital, o a mano en cada hoja, '
+                        . 'escaneado y subido al sistema. Si hay aporte de capital en efectivo por encima '
+                        . 'del monto que fija la ley, se pide un depósito del 20 % en el Banco Nacional de '
+                        . 'Fomento.',
+                ],
+            ],
+            [
+                'title' => 'Plazos y observaciones',
+                'body'  => [
+                    'Con el estatuto proforma, el SUACE resuelve en 72 horas hábiles si no hay observaciones; '
+                        . 'con otro tipo de estatuto, en 8 días hábiles. Si el sistema hace una observación, '
+                        . 'hay 3 días hábiles para corregirla: si no se corrige, el expediente se cierra y hay '
+                        . 'que empezar de nuevo.',
+                ],
+            ],
+            [
+                'title' => 'Lo que recibe al final, y lo que falta',
+                'body'  => [
+                    'Al aprobarse, recibe la constancia de constitución, el RUC, la constancia de '
+                        . 'beneficiarios finales y la de personas y estructuras jurídicas. La inscripción '
+                        . 'patronal en el IPS y el MTESS se completa en los sitios de cada institución.',
+                    'Quedan fuera del SUACE la habilitación municipal y la patente comercial (en Asunción, '
+                        . 'ante la Municipalidad), la factura electrónica y la rúbrica de los libros '
+                        . 'contables. Son los pasos que más se olvidan en el primer mes.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es el SUACE?', 'a' => 'El Sistema Unificado de Apertura y Cierre de Empresas del Ministerio de Industria y Comercio. Concentra en un solo trámite la constitución de la empresa y su inscripción en los organismos del Estado.'],
+            ['q' => '¿Cuánto tarda abrir una EAS por el SUACE?', 'a' => '72 horas hábiles con el estatuto proforma y 8 días hábiles con un estatuto propio, si no hay observaciones. Cuente aparte el tiempo para crear la identidad electrónica y preparar los estatutos.'],
+            ['q' => '¿Un extranjero puede abrir una EAS por el SUACE?', 'a' => 'Sí, como socio. Pero el trámite lo hace el representante legal principal con cédula paraguaya e identidad electrónica, así que un socio extranjero sin cédula necesita un representante que cumpla ese requisito.'],
+            ['q' => '¿El SUACE me da la patente comercial?', 'a' => 'No. La habilitación municipal y la patente comercial se tramitan en la municipalidad donde funcionará el negocio, después de la constitución.'],
+        ],
+        'relatedService' => 'eas',
+        'toolLink' => [
+            'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+            'label' => 'Comparador EAS, SRL o Unipersonal',
+            'text'  => 'Responda tres preguntas y vea qué figura le conviene antes de entrar al SUACE.',
+        ],
+        'related' => ['inscripcion-de-ruc-paso-a-paso', 'inscripcion-patronal-ips', 'ekuatiai-paso-a-paso'],
     ],
 
 ];

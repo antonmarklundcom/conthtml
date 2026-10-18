@@ -65,7 +65,7 @@ $sections = [
         ],
     ],
     [
-        'h2'   => 'Ejemplo numérico: el mismo trabajador, dos motivos distintos',
+        'h2'   => 'Cómo se calcula: el mismo trabajador, por renuncia y por despido',
         'body' => [
             'Tome un trabajador con 6 años de antigüedad y un salario mensual de Gs. 4.000.000 que se '
                 . 'desvincula el 15 de un mes cualquiera. En una renuncia, cobra el salario proporcional '

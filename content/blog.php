@@ -97,7 +97,7 @@ return [
         'slug'        => 'balance-general-estado-de-resultados-flujo-de-efectivo',
         'title'       => 'Balance general, estado de resultados y flujo de efectivo: cómo leer los '
                        . 'estados financieros de su empresa',
-        'seoTitle'    => 'Cómo leer sus estados financieros',
+        'seoTitle'    => 'Balance general y estado de resultados',
         'description' => 'Qué muestra cada estado financiero — balance general, estado de resultados y '
                        . 'flujo de efectivo — y cómo usarlos para decidir sobre su empresa.',
         'date'        => '2026-09-04',
@@ -110,10 +110,10 @@ return [
 
     [
         'slug'        => 'liquidacion-por-despido-vs-renuncia',
-        'title'       => 'Liquidación por despido vs. renuncia: qué cambia en el finiquito',
-        'seoTitle'    => 'Liquidación: despido vs. renuncia',
-        'description' => 'Qué conceptos cobra un trabajador según renuncie o sea despedido en Paraguay: '
-                       . 'preaviso, indemnización y qué queda igual en los dos casos.',
+        'title'       => 'Liquidación por renuncia o despido: cómo se calcula el finiquito',
+        'seoTitle'    => 'Liquidación por renuncia o despido',
+        'description' => 'Cómo se calcula la liquidación por renuncia o por despido en Paraguay: '
+                       . 'preaviso, indemnización y qué queda igual en los dos casos, con un ejemplo.',
         'date'        => '2026-09-04',
         'updated'     => null,
         'tags'        => ['Liquidación', 'Despido', 'IPS'],

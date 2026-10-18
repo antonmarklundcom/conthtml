@@ -321,12 +321,12 @@ return [
         'navLabel'        => 'Contabilidad mensual',
         'cluster'         => 'gestion',
         'parent'          => null,
-        'seoTitle'        => 'Contabilidad mensual para empresas',
-        'metaDescription' => 'Contabilidad mensual para empresas en Paraguay: libros, conciliaciones y '
-                           . 'estados financieros, con cierre antes del día 5 de cada mes.',
+        'seoTitle'        => 'Contabilidad y gestión contable mensual',
+        'metaDescription' => 'Contabilidad y gestión contable mensual para empresas en Paraguay: libros, '
+                           . 'conciliaciones y estados financieros, con cierre antes del día 5.',
         'hero' => [
             'eyebrow' => '',
-            'h1'      => 'Contabilidad mensual para empresas en Paraguay',
+            'h1'      => 'Contabilidad y gestión contable mensual para empresas en Paraguay',
             'h2'      => 'Un balance que se arma recién en marzo no sirve para decidir en enero: para '
                        . 'entonces ya tomó esas decisiones sin los números.',
             'lead'    => 'Llevamos sus libros al día durante el mes y le entregamos el cierre y un '
@@ -352,6 +352,15 @@ return [
             'Acceso de solo lectura o copia de su sistema de facturación',
         ],
         'sections' => [
+            [
+                'h2'   => 'Gestión contable mensual: qué hacemos cada mes',
+                'body' => [
+                    'La gestión contable es el trabajo de todos los meses: registrar cada comprobante en el '
+                        . 'libro diario y el mayor, conciliar los bancos, revisar que las facturas de compra '
+                        . 'sirvan para el IVA y el IRE, y cerrar el mes con números que usted pueda leer. '
+                        . 'Lo hacemos durante el mes, no a fin de año, para que el cierre llegue antes del día 5.',
+                ],
+            ],
             [
                 'h2'   => 'Balance general y estado de resultados',
                 'body' => [
@@ -401,12 +410,12 @@ return [
         'navLabel'        => 'IVA',
         'cluster'         => 'gestion',
         'parent'          => null,
-        'seoTitle'        => 'Liquidación y declaración de IVA',
-        'metaDescription' => 'Liquidación mensual de IVA y presentación de la declaración jurada ante la '
-                           . 'DNIT, con el libro de compras y ventas siempre conciliado.',
+        'seoTitle'        => 'IVA Paraguay: liquidación y declaración',
+        'metaDescription' => 'IVA en Paraguay: liquidación mensual y declaración jurada ante la DNIT, '
+                           . 'con el libro de compras y ventas siempre conciliado.',
         'hero' => [
             'eyebrow' => '',
-            'h1'      => 'IVA: liquidación y declaración jurada mensual',
+            'h1'      => 'IVA en Paraguay: liquidación y declaración jurada mensual',
             'h2'      => 'Presentar el Formulario 120 fuera del plazo que le corresponde según la '
                        . 'terminación de su RUC genera multa automática, aunque la declaración esté en cero.',
             'lead'    => 'Conciliamos su libro de compras y ventas y presentamos su declaración dentro '
@@ -661,12 +670,12 @@ return [
         'navLabel'        => 'IPS',
         'cluster'         => 'gestion',
         'parent'          => null,
-        'seoTitle'        => 'IPS y planilla de sueldos',
-        'metaDescription' => 'Gestión de IPS y planilla de sueldos: altas y bajas, aportes mensuales, '
-                           . 'planillas del MTESS y recibos listos para firmar.',
+        'seoTitle'        => 'Aporte IPS y planilla de sueldos',
+        'metaDescription' => 'Aporte IPS en Paraguay: 9 % del empleado y 16,5 % de la empresa. Altas y '
+                           . 'bajas, aportes mensuales, planillas del MTESS y recibos listos para firmar.',
         'hero' => [
             'eyebrow' => '',
-            'h1'      => 'IPS: gestión de aportes y planilla de sueldos',
+            'h1'      => 'Aporte IPS y planilla de sueldos para empresas',
             'h2'      => 'Una comunicación de alta que llega tarde a IPS, o un aporte patronal vencido, '
                        . 'genera intereses moratorios y puede dejar a su empleado sin cobertura médica.',
             'lead'    => 'Gestionamos las altas y bajas, calculamos el aporte obrero del 9% y el '
@@ -691,12 +700,15 @@ return [
         ],
         'sections' => [
             [
-                'h2'   => 'Aporte obrero y patronal',
+                'h2'   => '¿Cuánto es el aporte IPS? 9 % obrero y 16,5 % patronal',
                 'body' => [
                     'Todo empleado en relación de dependencia aporta el 9% de su salario a IPS; la '
                         . 'empresa aporta el 16,5% adicional como aporte patronal. Ambos se calculan y '
                         . 'presentan juntos cada mes, y se lo mostramos como una línea separada en el '
                         . 'recibo de sueldo, no como un descuento genérico.',
+                    'Sobre un salario mínimo de Gs. 3.044.000, por ejemplo, el empleado aporta '
+                        . 'Gs. 273.960 y la empresa Gs. 502.260: Gs. 776.220 en total cada mes. La '
+                        . 'calculadora de aporte IPS hace la misma cuenta con cualquier salario.',
                 ],
             ],
             [
@@ -732,9 +744,10 @@ return [
         'toolLinks' => [
             ['path' => '/herramientas/calculadora-aguinaldo/', 'label' => 'Calculadora de aguinaldo', 'text' => 'Calcule el aguinaldo de un empleado, completo o proporcional, en guaraníes.'],
             ['path' => '/herramientas/liquidacion-de-salario/', 'label' => 'Calculadora de liquidación de salario', 'text' => 'Estime un finiquito por renuncia o despido, con el aporte del 9 % al IPS como línea aparte.'],
+            ['path' => '/herramientas/calculadora-ips/', 'label' => 'Calculadora de aporte IPS', 'text' => 'Calcule el aporte obrero del 9 %, el patronal del 16,5 % y el salario neto de un empleado.'],
         ],
         'related' => ['contabilidad', 'asesoria', 'eas'],
-        'guides'  => ['inscripcion-patronal-ips'],
+        'guides'  => ['inscripcion-patronal-ips', 'ver-aportes-ips', 'salario-minimo-paraguay'],
         'articles' => ['como-se-calcula-el-aguinaldo-en-paraguay', 'aguinaldo-cuando-se-cobra-y-proporcional', 'liquidacion-por-despido-vs-renuncia', 'inscripcion-patronal-ips-paso-a-paso'],
     ],
 
@@ -744,12 +757,12 @@ return [
         'navLabel'        => 'EAS',
         'cluster'         => 'gestion',
         'parent'          => null,
-        'seoTitle'        => 'Abrir una EAS en Paraguay',
-        'metaDescription' => 'Abrir una EAS en Paraguay con acompañamiento completo: constitución, RUC, '
-                           . 'patente y registro patronal, operativa en semanas y no en meses.',
+        'seoTitle'        => 'EAS en Paraguay: cómo abrir una',
+        'metaDescription' => 'EAS en Paraguay: qué es la Empresa por Acciones Simplificada y cómo abrir '
+                           . 'una por el SUACE, con estatutos, RUC y registro patronal en IPS y MTESS.',
         'hero' => [
             'eyebrow' => '',
-            'h1'      => 'Abrir una EAS en Paraguay',
+            'h1'      => 'EAS en Paraguay: cómo abrir una Empresa por Acciones Simplificada',
             'h2'      => 'Una EAS con estatutos genéricos o capital mal declarado le complica abrir una '
                        . 'cuenta bancaria o presentarse a una licitación el día que más lo necesita.',
             'lead'    => 'Gestionamos todo el trámite digital ante el SUACE, con estatutos redactados a '
@@ -809,14 +822,15 @@ return [
             ['q' => '¿Necesito un capital mínimo para abrir una EAS?', 'a' => 'No existe un capital mínimo obligatorio por ley para constituir una EAS. Puede definir el capital que realmente requiere su operativa inicial, lo que la hace una figura práctica para independientes, startups y proyectos que recién están arrancando.'],
             ['q' => '¿Puedo transformar mi Unipersonal actual en una EAS?', 'a' => 'Sí. Es un paso habitual para separar sus finanzas personales de las del negocio y mejorar su perfil ante bancos e inversores. Gestionamos toda la transición, desde la baja de la Unipersonal hasta el alta de la nueva estructura.'],
             ['q' => '¿Qué documentos necesito para empezar hoy?', 'a' => 'Solo su cédula de identidad vigente y una descripción básica de su actividad comercial. El resto del proceso —reserva del nombre, redacción de estatutos, obtención del RUC— lo llevamos nosotros de forma remota, sin que tenga que presentarse en ninguna oficina.'],
-            ['q' => '¿Cuánto tarda la apertura de una EAS?', 'a' => 'Al ser un trámite digital por el SUACE, se resuelve en semanas y no en meses como los modelos societarios tradicionales. El plazo exacto depende de la carga del sistema y de que la documentación llegue completa desde el inicio.'],
+            ['q' => '¿Cuánto tarda la apertura de una EAS?', 'a' => 'Según el MIC, el SUACE resuelve en 72 horas hábiles una EAS constituida con el estatuto proforma del sistema, y en 8 días hábiles cuando el estatuto es un documento propio (instrumento privado con firmas certificadas o escritura pública), siempre que no haya observaciones. Si las hay, hay 3 días hábiles para corregirlas. A eso se suma el tiempo de preparar los estatutos y la identidad electrónica del representante.'],
+            ['q' => '¿Es lo mismo una EAS que una sociedad anónima simplificada?', 'a' => 'Mucha gente la busca así, pero en Paraguay el nombre legal es Empresa por Acciones Simplificada (Ley N.º 6480/2020). No es una sociedad anónima: se constituye por el SUACE, admite un solo accionista y tiene reglas propias, más simples que las de una S.A.'],
         ],
         'cta'     => ['label' => 'Iniciar mi apertura', 'whatsappText' => ''],
         'toolLinks' => [
             ['path' => '/herramientas/comparador-eas-srl-unipersonal/', 'label' => 'Comparador EAS / SRL / Unipersonal', 'text' => 'Compare las tres estructuras y responda tres preguntas para saber cuál le conviene.'],
         ],
         'related' => ['ruc', 'ekuatia', 'contabilidad'],
-        'guides'   => ['inscripcion-de-ruc-paso-a-paso'],
+        'guides'   => ['suace', 'inscripcion-de-ruc-paso-a-paso'],
         'articles' => ['abrir-una-eas-en-paraguay', 'eas-vs-srl-vs-unipersonal-cual-conviene'],
     ],
 
