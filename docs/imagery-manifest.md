@@ -124,3 +124,40 @@ weight affects the perf budget — see plan §6.4.2's ≤ 120 KB hero rule).
 credit each) + 3 × `nano_banana_flash` (the account's `nano_banana_2` request
 was auto-routed to `nano_banana_flash`) ≈ 9–13.5 credits total. Well inside the
 skill's monthly-budget guidance and the phase's own ≤ 12 generation cap.
+
+## Keyword-round guide images (2026-10-18)
+
+Ten guide thumbnails (one per new guide), Nano Banana 2.1 (`nano_banana_2_1`) via
+the Higgsfield MCP, `resolution: 2k`, `thinking_level: high`, `aspect_ratio: 4:3`
+(results 2400×1792), with `assets/img/apertura-eas-documentos-paraguay-1920.webp`
+uploaded as an `image_references` style reference (media `de9eefc4-3a92-448a-aef0-c6306a008b89`)
+so the set matches the existing editorial illustrations. Converted with webimg 0.2
+(`--widths 640,1280,1920 --og`), all files inside the default budgets.
+`templates/guide.php` now renders the set as `<picture>` (AVIF/WebP srcset, real
+width/height, `fetchpriority="high"`) and uses `<slug>-og.jpg` as the page's og:image.
+
+Style tail (appended to every prompt): flat editorial vector illustration, soft paper
+grain, thin gold and slate line loops, cream `#F7F1E8`, navy `#1F2A44`, slate
+`#5B6B8C`, mustard `#E3A62F`, ochre `#C8873E`, terracotta `#B5603A`, sage, lapacho
+pink `#E58BA6` accents; Paraguayan touches (lapacho, chipa, tereré, ñandutí, red tile
+roofs); no text, letters, numbers, logos or signage with words; no deformed hands or faces.
+
+| Page | File (`assets/img/`) | Alt (es-PY) | Job ID |
+|---|---|---|---|
+| /guias/salario-minimo-paraguay/ | `salario-minimo-trabajadora-paraguay` | Trabajadora con su sobre de sueldo sube una escalera de monedas hacia una puerta iluminada, junto a un lapacho en flor. | `041ec3db-fa55-4888-b57d-0778400b7e22` |
+| /guias/ver-aportes-ips/ | `aportes-ips-celular-familia-paraguay` | Hombre bajo un lapacho mira su celular, del que surge un paraguas de meses dorados que protege a su familia. | `53b65526-f9a8-4192-b13a-a660dbeccb0d` |
+| /guias/preaviso-paraguay/ | `preaviso-laboral-reloj-arena-paraguay` | Trabajador y empleador se dan la mano frente a un reloj de arena del que sale un camino de calendarios. | `7448f726-a288-4187-836b-bec094bbc65e` |
+| /guias/suace/ | `suace-apertura-empresa-online-paraguay` | Dos emprendedores encajan piezas de rompecabezas que salen de una tableta para armar el frente de su nueva empresa. | `8963c69d-67cf-4e12-aeee-d0db4a082e74` |
+| /guias/kude/ | `kude-factura-electronica-mercado-paraguay` | Cliente escanea con el celular el código QR del comprobante que le entrega un vendedor de chipa en el mercado. | `a2cdf7f2-b414-4332-8c20-85b857e03543` |
+| /guias/nota-de-credito/ | `nota-de-credito-devolucion-comercio` | Cliente devuelve una caja en el mostrador de un comercio mientras las monedas vuelven de la caja, bajo una balanza. | `f86f188a-e0df-40bc-88e2-c31b4db099c3` |
+| /guias/factura-legal-paraguay/ | `factura-legal-almacen-paraguay` | Dueño de un almacén de barrio entrega una factura a una clienta, bajo un sello dorado de ñandutí. | `12687d6f-dc7b-41ef-b1d2-658994c63d2a` |
+| /guias/libro-diario-y-libro-mayor/ | `libro-diario-libro-mayor-contabilidad` | Una fila de personas lleva una cinta de asientos desde el libro diario hasta un libro mayor lleno de cajones ordenados. | `5a1b84d4-c116-4787-bf8f-655fbff58062` |
+| /guias/conciliacion-bancaria/ | `conciliacion-bancaria-banco-libros` | Contadora con una lupa coloca la moneda que faltaba para unir los movimientos del banco con los del libro contable. | `2d9eed62-ed12-41f4-9dec-da79e17e51c8` |
+| /guias/registro-mipymes/ | `mipymes-comercios-barrio-paraguay` | Calle de barrio con panadería de chipa, sastrería, taller de motos y carpintería cada vez más altos, bajo una insignia dorada. | `932f4af1-bd27-465c-92e1-cae8c6228fb2` |
+
+Credits: balance 4,418.75 before; preflight 2 per image (2k) × 10 = 20. Ledger
+2026-10-18: 11 × −2 = 22. The extra charge is one regeneration: the first factura-legal
+image (`dbffdc1e-4a76-4eed-b51c-749bb2045ee4`) showed the readable word "INVOICE" and was
+rejected. Two first submissions hit a 429 rate limit and created no job (no charge).
+Not illustrated: `/srl/` and `/herramientas/calculadora-ips/`, because the service and
+tool templates have no image slot (same as every other service and tool page).

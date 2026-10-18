@@ -151,13 +151,13 @@ return [
         'path'            => '/guias/consulta-de-ruc/',
         'title'           => 'Consulta de RUC',
         'navLabel'        => 'Consulta de RUC',
-        'seoTitle'        => 'Consulta de RUC en Paraguay: cómo hacerla',
-        'metaDescription' => 'Cómo consultar un RUC en Paraguay — el propio o el de otra persona o '
-                            . 'empresa — y qué datos puede ver en cada caso. Guía paso a paso.',
-        'lastReviewed'    => '2026-09-04',
+        'seoTitle'        => 'Consulta de RUC Paraguay: buscar un RUC',
+        'metaDescription' => 'Consulta de RUC en Paraguay: cómo buscar un RUC por número o por nombre, '
+                            . 'cómo saber su propio RUC y qué datos muestra la DNIT en cada caso.',
+        'lastReviewed'    => '2026-10-17',
         'hero' => [
             'eyebrow' => 'Guías',
-            'h1'      => 'Cómo hacer una consulta de RUC',
+            'h1'      => 'Consulta de RUC en Paraguay: cómo buscar un RUC',
             'lead'    => 'Verifique su propio RUC o el de un proveedor, cliente o empleador antes de '
                         . 'facturar, firmar un contrato o presentar una declaración.',
         ],
@@ -188,6 +188,16 @@ return [
                 ],
             ],
             [
+                'title' => 'Si solo tiene el nombre: buscar RUC por nombre',
+                'body'  => [
+                    'Para buscar el RUC de una persona o empresa de la que solo conoce el nombre o la razón '
+                        . 'social, la DNIT publica el listado de contribuyentes con su RUC, dígito verificador '
+                        . 'y estado, en archivos descargables que se actualizan periódicamente. Para un caso '
+                        . 'puntual, lo más simple sigue siendo pedirle el RUC a la persona o empresa: figura '
+                        . 'en cualquier factura que haya emitido.',
+                ],
+            ],
+            [
                 'title' => 'Interprete el resultado',
                 'body'  => [
                     'La consulta pública confirma que el RUC existe, está activo y a qué nombre está '
@@ -209,6 +219,8 @@ return [
         'faq' => [
             ['q' => '¿Puedo ver si un tercero tiene multas de la DNIT solo con su RUC?', 'a' => 'No. La consulta pública muestra si el RUC está activo y a nombre de quién está registrado, pero la situación de multas y declaraciones es información privada, visible solo por el titular dentro de Marangatu.'],
             ['q' => '¿Qué diferencia hay entre consultar el RUC y entrar a Marangatu?', 'a' => 'La consulta de RUC es pública y no requiere clave: solo confirma existencia y titularidad. Marangatu es la cuenta privada donde el titular ve su propia situación completa y presenta declaraciones.'],
+            ['q' => '¿Cómo sé cuál es mi RUC?', 'a' => 'Si es persona física, su RUC es su número de cédula seguido de un guion y el dígito verificador (por ejemplo, 1234567-8). Lo confirma en su constancia de inscripción, en cualquier factura que haya emitido o dentro de Marangatu. Si nunca se inscribió, todavía no tiene RUC: vea la guía de inscripción de RUC.'],
+            ['q' => '¿La consulta de RUC tiene costo?', 'a' => 'No. La consulta pública de la DNIT es gratuita y no pide clave de acceso.'],
             ['q' => '¿El RUC de una persona física y el de una empresa se consultan igual?', 'a' => 'Sí, la consulta pública funciona igual para ambos: solo cambia si el nombre registrado es el de la persona física o la razón social de la empresa.'],
         ],
         'relatedService' => 'ruc',
@@ -855,6 +867,908 @@ return [
         'relatedService' => 'irp',
         'toolLink' => null,
         'related' => ['formulario-120-paso-a-paso', 'inscripcion-de-ruc-paso-a-paso'],
+    ],
+
+    /* === Keyword round 2026-10-17 (KWP export "contador.com.py + EAS") ======
+       salario mínimo 33 760/mo, IPS mis aportes 6 600/mo (+50 %), preaviso
+       1 300/mo, SUACE 2 900/mo (+50 %). Sources in docs/facts-to-verify.md. */
+
+    'salario-minimo-paraguay' => [
+        'path'            => '/guias/salario-minimo-paraguay/',
+        'title'           => 'Salario mínimo en Paraguay',
+        'navLabel'        => 'Salario mínimo 2026',
+        'seoTitle'        => 'Salario mínimo en Paraguay 2026',
+        'metaDescription' => 'El salario mínimo en Paraguay es de Gs. 3.044.000 desde julio de 2026. '
+                            . 'Jornal diario, descuento del IPS, sueldo neto y costo para la empresa.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Salario mínimo en Paraguay 2026: monto, jornal y sueldo neto',
+            'lead'    => 'Gs. 3.044.000 por mes desde el 1 de julio de 2026. Qué cobra el trabajador '
+                        . 'después del IPS y cuánto le cuesta a la empresa.',
+        ],
+        'intro' => [
+            'El salario mínimo legal para actividades diversas no especificadas del sector privado es de '
+                . 'Gs. 3.044.000 por mes desde el 1 de julio de 2026. Lo fijó el Decreto N.º 6225/2026, '
+                . 'que reajustó un 5 % el monto anterior de Gs. 2.899.048. El jornal mínimo diario quedó '
+                . 'en Gs. 117.077.',
+            'El monto es bruto: de ahí sale el aporte del trabajador al IPS. Para las actividades que '
+                . 'tienen un mínimo propio, el Ministerio de Trabajo (MTESS) publica las tablas '
+                . 'actualizadas con el mismo porcentaje de reajuste. Abajo, las cuentas que más se buscan, '
+                . 'paso a paso.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Monto mensual: Gs. 3.044.000',
+                'body'  => [
+                    'Es lo mínimo que puede ganar por mes un trabajador mensualizado con jornada completa. '
+                        . 'Rige desde el 1 de julio de 2026. Hasta el 30 de junio de 2026 el mínimo era de '
+                        . 'Gs. 2.899.048, así que los sueldos de julio en adelante ya deben pagarse con el '
+                        . 'monto nuevo.',
+                ],
+            ],
+            [
+                'title' => 'Jornal mínimo diario: Gs. 117.077',
+                'body'  => [
+                    'Para quien cobra por día trabajado, el mínimo es de Gs. 117.077 por jornal. Sale de '
+                        . 'dividir el mensual por 26 días hábiles. No hay que confundirlo con el salario '
+                        . 'diario que se usa en una liquidación, que divide el mensual por 30.',
+                ],
+            ],
+            [
+                'title' => 'Descuento del IPS y sueldo neto: Gs. 2.770.040',
+                'body'  => [
+                    'El trabajador aporta el 9 % de su salario al IPS: Gs. 273.960 sobre el mínimo. Lo que '
+                        . 'cobra en mano es Gs. 2.770.040, antes de cualquier otro descuento que figure en su '
+                        . 'recibo.',
+                ],
+            ],
+            [
+                'title' => 'Costo para la empresa: Gs. 3.546.260 por mes',
+                'body'  => [
+                    'Además del sueldo, la empresa paga el aporte patronal del 16,5 % al IPS: Gs. 502.260 '
+                        . 'sobre el mínimo. El costo mensual de un empleado con salario mínimo es entonces de '
+                        . 'Gs. 3.546.260, sin contar el aguinaldo ni las vacaciones.',
+                ],
+            ],
+            [
+                'title' => 'Aguinaldo 2026 con salario mínimo: Gs. 2.971.524',
+                'body'  => [
+                    'El aguinaldo es la doceava parte de lo cobrado en el año. Quien ganó el mínimo todo '
+                        . '2026 cobró seis meses a Gs. 2.899.048 y seis a Gs. 3.044.000: Gs. 35.658.288 en '
+                        . 'total, y su aguinaldo es de Gs. 2.971.524. Para otros casos, use la calculadora de '
+                        . 'aguinaldo.',
+                ],
+            ],
+            [
+                'title' => 'Si le pagan menos del mínimo',
+                'body'  => [
+                    'Pagar menos del mínimo legal a un trabajador de jornada completa es una infracción que '
+                        . 'puede denunciarse ante el MTESS. Si es empleador, revise también que el salario '
+                        . 'declarado al IPS sea el que realmente paga: el aporte se calcula sobre ese monto.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Cuánto es el salario mínimo en Paraguay en 2026?', 'a' => 'Gs. 3.044.000 por mes desde el 1 de julio de 2026 (Decreto N.º 6225/2026), para actividades diversas no especificadas. Entre enero y junio de 2026 rigió el monto anterior, Gs. 2.899.048.'],
+            ['q' => '¿El salario mínimo es bruto o neto?', 'a' => 'Bruto. Del mínimo se descuenta el 9 % de aporte obrero al IPS, así que el trabajador cobra Gs. 2.770.040 antes de otros descuentos.'],
+            ['q' => '¿Cuánto es el jornal mínimo?', 'a' => 'Gs. 117.077 por día trabajado, desde el 1 de julio de 2026.'],
+            ['q' => '¿Cuándo cambia el salario mínimo?', 'a' => 'El Poder Ejecutivo lo reajusta por decreto, en general una vez al año y con vigencia desde julio. Revisamos esta guía cada vez que sale un decreto nuevo.'],
+        ],
+        'relatedService' => 'ips',
+        'toolLink' => [
+            'path'  => '/herramientas/calculadora-ips/',
+            'label' => 'Calculadora de aporte IPS',
+            'text'  => 'Cargue un salario y vea el 9 % del trabajador, el 16,5 % de la empresa y el sueldo neto.',
+        ],
+        'related' => ['ver-aportes-ips', 'preaviso-paraguay', 'inscripcion-patronal-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/salario-minimo-trabajadora-paraguay-1280.avif',
+            'alt' => 'Trabajadora con su sobre de sueldo sube una escalera de monedas hacia una puerta iluminada, junto a un lapacho en flor.',
+        ],
+    ],
+
+    'ver-aportes-ips' => [
+        'path'            => '/guias/ver-aportes-ips/',
+        'title'           => 'Cómo ver mis aportes en el IPS',
+        'navLabel'        => 'Ver mis aportes IPS',
+        'seoTitle'        => 'IPS mis aportes: cómo ver sus aportes',
+        'metaDescription' => 'Cómo ver sus aportes al IPS en Mi IPS, con su cédula y PIN o con Identidad '
+                            . 'Electrónica, y qué hacer si falta un mes o el salario no coincide.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Cómo ver mis aportes en el IPS',
+            'lead'    => 'Revise mes por mes si su empleador está aportando por usted, y con qué salario, '
+                        . 'desde el sistema Mi IPS.',
+        ],
+        'intro' => [
+            'El IPS muestra los aportes de cada asegurado en Mi IPS, su sistema en línea. Ahí aparece '
+                . 'cada mes aportado, el empleador que lo pagó y el salario declarado. Vale la pena '
+                . 'revisarlo: un mes que falta o un salario declarado más bajo que el real afecta su '
+                . 'cobertura médica, sus subsidios y, a la larga, su jubilación.',
+            'La consulta es gratuita y la hace usted mismo con su cédula. Estos son los pasos.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Entre a Mi IPS',
+                'body'  => [
+                    'Mi IPS está en servicios.ips.gov.py/miips. Desde ahí se consultan los aportes, el estado '
+                        . 'de cuenta, las prestaciones médicas, las citas y los reposos.',
+                ],
+            ],
+            [
+                'title' => 'Elija cómo ingresar: PIN o Identidad Electrónica',
+                'body'  => [
+                    'Si ya tiene PIN de Mi IPS, ingrese con su número de cédula, sin puntos ni guiones, y el '
+                        . 'PIN. Si no tiene PIN, ingrese con su cuenta de Identidad Electrónica del Gobierno; '
+                        . 'si todavía no la tiene, la crea en paraguay.gov.py con su cédula y un correo.',
+                ],
+            ],
+            [
+                'title' => 'Abra la sección Aportes',
+                'body'  => [
+                    'En Aportes ve la consulta de aportes y su estado de cuenta. Revise tres cosas: que '
+                        . 'figuren todos los meses que trabajó, que el empleador sea el correcto y que el '
+                        . 'salario declarado coincida con el de su recibo.',
+                ],
+            ],
+            [
+                'title' => 'Si falta un mes o el salario no coincide',
+                'body'  => [
+                    'Primero consulte a su empleador: puede ser un pago atrasado que todavía no se registró. '
+                        . 'Si no se corrige, puede reclamar ante el IPS o el Ministerio de Trabajo. Guarde sus '
+                        . 'recibos de sueldo: son la prueba de lo que cobró.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Puedo ver mis aportes solo con la cédula, sin clave?', 'a' => 'La consulta de asegurado del IPS confirma con la cédula si su seguro está vigente, pero el detalle mes a mes de los aportes se ve dentro de Mi IPS, con PIN o Identidad Electrónica.'],
+            ['q' => '¿Olvidé mi PIN de Mi IPS, qué hago?', 'a' => 'Mi IPS permite recuperar la contraseña por correo electrónico desde la misma pantalla de ingreso. Si usa Identidad Electrónica, la recupera desde su propio enlace.'],
+            ['q' => '¿Cuánto me tienen que aportar al IPS?', 'a' => 'El 9 % de su salario lo descuenta el empleador de su recibo, y la empresa suma un 16,5 % propio. Los dos aportes deben aparecer juntos sobre el mismo salario declarado.'],
+            ['q' => 'Soy empleador, ¿cómo evito que falten aportes?', 'a' => 'Comunicando cada alta antes de que el empleado empiece a trabajar y pagando la planilla dentro del plazo cada mes. Si prefiere no ocuparse, llevamos su nómina e IPS por usted.'],
+        ],
+        'relatedService' => 'ips',
+        'toolLink' => [
+            'path'  => '/herramientas/calculadora-ips/',
+            'label' => 'Calculadora de aporte IPS',
+            'text'  => 'Calcule cuánto deberían aportar usted y su empleador sobre su salario.',
+        ],
+        'related' => ['salario-minimo-paraguay', 'inscripcion-patronal-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/aportes-ips-celular-familia-paraguay-1280.avif',
+            'alt' => 'Hombre bajo un lapacho mira su celular, del que surge un paraguas de meses dorados que protege a su familia.',
+        ],
+    ],
+
+    'preaviso-paraguay' => [
+        'path'            => '/guias/preaviso-paraguay/',
+        'title'           => 'Preaviso en Paraguay',
+        'navLabel'        => 'Preaviso',
+        'seoTitle'        => 'Preaviso en Paraguay: cuántos días',
+        'metaDescription' => 'Preaviso en Paraguay: 30, 45, 60 o 90 días según la antigüedad (Art. 87 del '
+                            . 'Código del Trabajo), cómo se da y cuánto se paga si se omite.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Preaviso en Paraguay: cuántos días corresponden y cómo se paga',
+            'lead'    => 'El aviso previo que debe dar quien termina un contrato por tiempo indefinido, '
+                        . 'según los artículos 87 a 90 del Código del Trabajo.',
+        ],
+        'intro' => [
+            'En un contrato de trabajo por tiempo indefinido, ninguna de las partes puede terminarlo sin '
+                . 'avisar antes a la otra (Art. 87 del Código del Trabajo). Ese aviso es el preaviso, y su '
+                . 'duración depende de la antigüedad del trabajador.',
+            'Se habla del preaviso sobre todo en los despidos sin causa justificada, porque si la empresa '
+                . 'no lo da, lo tiene que pagar en dinero junto con el finiquito. Pero también obliga al '
+                . 'trabajador que renuncia. Un despido con causa justificada no lleva preaviso.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Cuente la antigüedad exacta',
+                'body'  => [
+                    'Los plazos del Art. 87 son 30 días con antigüedad de hasta 1 año; 45 días con más de 1 '
+                        . 'y hasta 5 años; 60 días con más de 5 y hasta 10 años; y 90 días con más de 10 '
+                        . 'años. "Más de un año" significa más de un año cumplido: con exactamente un año, '
+                        . 'corresponden 30 días.',
+                ],
+            ],
+            [
+                'title' => 'Dé el aviso por escrito',
+                'body'  => [
+                    'El preaviso puede darse de cualquier forma, pero tiene que poder probarse por escrito '
+                        . 'o en forma auténtica. También puede hacerse ante la autoridad administrativa del '
+                        . 'trabajo (Art. 88). Una nota firmada con fecha de recibido es lo más simple.',
+                ],
+            ],
+            [
+                'title' => 'Durante el preaviso: dos horas libres por día',
+                'body'  => [
+                    'El trabajador al que se le notificó el despido sigue cobrando su salario completo y '
+                        . 'tiene una licencia de dos horas diarias, dentro de su jornada, para buscar otro '
+                        . 'empleo. Si prefiere, puede juntarlas en un día libre por semana (Art. 89).',
+                ],
+            ],
+            [
+                'title' => 'Si se omite: cuánto se paga',
+                'body'  => [
+                    'La empresa que despide sin dar el preaviso le paga al trabajador el salario '
+                        . 'correspondiente a todo el plazo. El trabajador que renuncia sin avisar le debe a '
+                        . 'la empresa la mitad del salario de ese plazo (Art. 90).',
+                    'Ejemplo: un trabajador con 3 años de antigüedad y un salario de Gs. 4.500.000, '
+                        . 'despedido sin causa y sin aviso, cobra 45 días de preaviso. Su salario diario es '
+                        . 'de Gs. 150.000 (el mensual dividido por 30), así que el preaviso es de '
+                        . 'Gs. 6.750.000.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Cuántos días de preaviso corresponden en Paraguay?', 'a' => '30 días con hasta 1 año de antigüedad, 45 con más de 1 y hasta 5 años, 60 con más de 5 y hasta 10 años, y 90 con más de 10 años (Art. 87 del Código del Trabajo).'],
+            ['q' => '¿El trabajador que renuncia tiene que dar preaviso?', 'a' => 'Sí. El Art. 87 obliga a las dos partes. Si el trabajador renuncia sin avisar, debe a la empresa la mitad del salario del plazo de preaviso (Art. 90).'],
+            ['q' => '¿Hay preaviso en un despido con causa justificada?', 'a' => 'No. El despido por una causa justificada del Código del Trabajo no genera preaviso ni indemnización. Si la causa se discute y no se prueba, el despido pasa a tratarse como injustificado.'],
+            ['q' => '¿El preaviso pagado lleva descuento del IPS?', 'a' => 'Según la práctica general, el preaviso pagado en dinero no forma parte de la base del aporte del 9 % al IPS, igual que la indemnización. Si el trabajador sigue trabajando durante el preaviso, ese salario sí aporta.'],
+        ],
+        'relatedService' => 'ips',
+        'toolLink' => [
+            'path'  => '/herramientas/liquidacion-de-salario/',
+            'label' => 'Calculadora de liquidación laboral',
+            'text'  => 'Calcule el preaviso, la indemnización, las vacaciones y el aguinaldo de un finiquito.',
+        ],
+        'related' => ['salario-minimo-paraguay', 'ver-aportes-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/preaviso-laboral-reloj-arena-paraguay-1280.avif',
+            'alt' => 'Trabajador y empleador se dan la mano frente a un reloj de arena del que sale un camino de calendarios.',
+        ],
+    ],
+
+    'suace' => [
+        'path'            => '/guias/suace/',
+        'title'           => 'SUACE',
+        'navLabel'        => 'SUACE: abrir una empresa',
+        'seoTitle'        => 'SUACE: cómo abrir una empresa paso a paso',
+        'metaDescription' => 'Qué es el SUACE y cómo abrir una EAS en línea: identidad electrónica, '
+                            . 'estatutos, plazos de 72 horas u 8 días hábiles y qué recibe al final.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'SUACE: cómo abrir una empresa en Paraguay, paso a paso',
+            'lead'    => 'El Sistema Unificado de Apertura y Cierre de Empresas del MIC, y el trámite en '
+                        . 'línea para constituir una EAS.',
+        ],
+        'intro' => [
+            'El SUACE es el Sistema Unificado de Apertura y Cierre de Empresas del Ministerio de '
+                . 'Industria y Comercio (MIC). Une en un solo trámite lo que antes se hacía por separado '
+                . 'ante varias oficinas. Para la EAS (Empresa por Acciones Simplificada), todo el proceso '
+                . 'es en línea: la apertura, y también los cambios, la disolución y el cierre, se hacen '
+                . 'únicamente por el SUACE.',
+            'Esta guía sigue el circuito de la EAS, que es el que más se usa hoy. Una SRL o una S.A. '
+                . 'siguen otro camino, con escritura pública e inscripción en el Registro Público de '
+                . 'Comercio: si duda entre las tres figuras, use el comparador.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Identidad electrónica del representante legal',
+                'body'  => [
+                    'Al SUACE se entra solo con la identidad electrónica del representante legal principal, '
+                        . 'que tiene que tener cédula paraguaya. Se crea en paraguay.gov.py. Si los socios '
+                        . 'son extranjeros sin cédula, actúan a través de un representante que cumpla ese '
+                        . 'requisito.',
+                ],
+            ],
+            [
+                'title' => 'Elija el tipo de estatuto',
+                'body'  => [
+                    'Hay tres opciones: el estatuto proforma que genera el sistema, un instrumento privado '
+                        . 'con las firmas certificadas por escribano, o una escritura pública. El proforma es '
+                        . 'el más rápido, pero no se puede editar. Un estatuto propio permite adaptar las '
+                        . 'reglas de la empresa a su operación.',
+                ],
+            ],
+            [
+                'title' => 'Cargue la solicitud y firme',
+                'body'  => [
+                    'La solicitud se completa en eas.mic.gov.py con los datos de la empresa, los socios y '
+                        . 'el capital. El proforma se firma con firma digital, o a mano en cada hoja, '
+                        . 'escaneado y subido al sistema. Si hay aporte de capital en efectivo por encima '
+                        . 'del monto que fija la ley, se pide un depósito del 20 % en el Banco Nacional de '
+                        . 'Fomento.',
+                ],
+            ],
+            [
+                'title' => 'Plazos y observaciones',
+                'body'  => [
+                    'Con el estatuto proforma, el SUACE resuelve en 72 horas hábiles si no hay observaciones; '
+                        . 'con otro tipo de estatuto, en 8 días hábiles. Si el sistema hace una observación, '
+                        . 'hay 3 días hábiles para corregirla: si no se corrige, el expediente se cierra y hay '
+                        . 'que empezar de nuevo.',
+                ],
+            ],
+            [
+                'title' => 'Lo que recibe al final, y lo que falta',
+                'body'  => [
+                    'Al aprobarse, recibe la constancia de constitución, el RUC, la constancia de '
+                        . 'beneficiarios finales y la de personas y estructuras jurídicas. La inscripción '
+                        . 'patronal en el IPS y el MTESS se completa en los sitios de cada institución.',
+                    'Quedan fuera del SUACE la habilitación municipal y la patente comercial (en Asunción, '
+                        . 'ante la Municipalidad), la factura electrónica y la rúbrica de los libros '
+                        . 'contables. Son los pasos que más se olvidan en el primer mes.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es el SUACE?', 'a' => 'El Sistema Unificado de Apertura y Cierre de Empresas del Ministerio de Industria y Comercio. Concentra en un solo trámite la constitución de la empresa y su inscripción en los organismos del Estado.'],
+            ['q' => '¿Cuánto tarda abrir una EAS por el SUACE?', 'a' => '72 horas hábiles con el estatuto proforma y 8 días hábiles con un estatuto propio, si no hay observaciones. Cuente aparte el tiempo para crear la identidad electrónica y preparar los estatutos.'],
+            ['q' => '¿Un extranjero puede abrir una EAS por el SUACE?', 'a' => 'Sí, como socio. Pero el trámite lo hace el representante legal principal con cédula paraguaya e identidad electrónica, así que un socio extranjero sin cédula necesita un representante que cumpla ese requisito.'],
+            ['q' => '¿El SUACE me da la patente comercial?', 'a' => 'No. La habilitación municipal y la patente comercial se tramitan en la municipalidad donde funcionará el negocio, después de la constitución.'],
+        ],
+        'relatedService' => 'eas',
+        'toolLink' => [
+            'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+            'label' => 'Comparador EAS, SRL o Unipersonal',
+            'text'  => 'Responda tres preguntas y vea qué figura le conviene antes de entrar al SUACE.',
+        ],
+        'related' => ['inscripcion-de-ruc-paso-a-paso', 'inscripcion-patronal-ips', 'ekuatiai-paso-a-paso'],
+        'thumbnail' => [
+            'src' => '/assets/img/suace-apertura-empresa-online-paraguay-1280.avif',
+            'alt' => 'Dos emprendedores encajan piezas de rompecabezas que salen de una tableta para armar el frente de su nueva empresa.',
+        ],
+    ],
+
+    'kude' => [
+        'path'            => '/guias/kude/',
+        'title'           => 'KuDE de la factura electrónica',
+        'navLabel'        => 'KuDE: verificar una factura',
+        'seoTitle'        => 'KuDE: qué es y cómo verificar la factura',
+        'metaDescription' => 'Qué es el KuDE de la factura electrónica y cómo verificarla con el código QR o el CDC '
+                            . 'de 44 dígitos en la consulta pública de Ekuatia.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'KuDE: qué es y cómo verificar una factura electrónica en Paraguay',
+            'lead'    => 'La representación gráfica de la factura electrónica, y cómo comprobar con el QR o el '
+                        . 'CDC que el documento existe y está aprobado.',
+        ],
+        'intro' => [
+            'El KuDE es la representación gráfica de un documento electrónico del SIFEN: lo que usted '
+                . 'recibe impreso o en PDF cuando le emiten una factura electrónica. El documento con valor '
+                . 'legal es el archivo XML firmado y aprobado por la DNIT (antes SET); el KuDE es su versión '
+                . 'legible.',
+            'Si le entregaron un KuDE y quiere saber si la factura es real, no hace falta ser facturador '
+                . 'electrónico. Basta con el código QR o con el CDC que figura en el documento.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Qué es el KuDE y qué muestra',
+                'body'  => [
+                    'El KuDE reúne los datos de la operación: el emisor, el comprador, el detalle de '
+                        . 'productos o servicios, los totales y el IVA. También trae un código QR y el CDC, '
+                        . 'un código de control de 44 dígitos que identifica ese documento.',
+                    'El título cambia según el tipo de documento, por ejemplo "KuDE de Factura Electrónica" '
+                        . 'o "KuDE de Nota de Crédito Electrónica".',
+                ],
+            ],
+            [
+                'title' => 'Para qué se usa',
+                'body'  => [
+                    'El emisor entrega el KuDE al comprador que no es '
+                        . 'facturador electrónico o que es consumidor final, y le sirve como comprobante de '
+                        . 'la compra. Si el comprador sí es facturador electrónico, lo habitual es enviarle '
+                        . 'el XML.',
+                ],
+            ],
+            [
+                'title' => 'Ver la factura electrónica con el código QR',
+                'body'  => [
+                    'Escanee el QR del KuDE con la cámara o una aplicación lectora del celular. Se abre la '
+                        . 'consulta del SIFEN con los datos del documento. Compare el emisor, la fecha y el '
+                        . 'total con lo que le entregaron.',
+                ],
+            ],
+            [
+                'title' => 'Verificación de la factura electrónica con el CDC',
+                'body'  => [
+                    'Si no puede leer el QR, entre a la consulta pública de Ekuatia de la DNIT, '
+                        . 'escriba los 44 dígitos del CDC sin espacios, complete la verificación de seguridad '
+                        . 'y consulte. El CDC está impreso en el KuDE, debajo del QR.',
+                    'Si el sistema no encuentra el documento, revise primero que no haya un dígito mal '
+                        . 'copiado.',
+                ],
+            ],
+            [
+                'title' => 'Qué hacer si algo no coincide',
+                'body'  => [
+                    'Si el documento no aparece, o los datos no coinciden con lo que le entregaron, pida '
+                        . 'una aclaración al emisor antes de usar la factura como respaldo de un gasto. '
+                        . 'Guarde el KuDE y, si el emisor se lo envía, también el XML. Por cuánto tiempo '
+                        . 'debe conservarlos depende de la reglamentación vigente: consulte con nosotros.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es el KuDE?', 'a' => 'Es la representación gráfica, impresa o en PDF, de un documento electrónico del SIFEN. Lleva un código QR y el CDC de 44 dígitos. El documento legal es el XML firmado y aprobado por la DNIT.'],
+            ['q' => '¿Cómo puedo ver si una factura electrónica es válida?', 'a' => 'Escanee el QR del KuDE o ingrese el CDC de 44 dígitos en la consulta pública de Ekuatia de la DNIT. La consulta muestra si el documento existe y sus datos.'],
+            ['q' => '¿Dónde está el CDC en la factura electrónica?', 'a' => 'Está impreso en el KuDE, debajo del código QR. Son 44 dígitos; los primeros indican el tipo de documento.'],
+            ['q' => '¿Necesito ser facturador electrónico para hacer la verificación de una factura electrónica?', 'a' => 'No. La consulta por QR o por CDC está abierta a cualquier persona que tenga el KuDE.'],
+        ],
+        'relatedService' => 'ekuatia',
+        'toolLink' => null,
+        'related' => ['que-es-sifen', 'ekuatiai-paso-a-paso', 'factura-legal-paraguay'],
+        'thumbnail' => [
+            'src' => '/assets/img/kude-factura-electronica-mercado-paraguay-1280.avif',
+            'alt' => 'Cliente escanea con el celular el código QR del comprobante que le entrega un vendedor de chipa en el mercado.',
+        ],
+    ],
+
+    'nota-de-credito' => [
+        'path'            => '/guias/nota-de-credito/',
+        'title'           => 'Nota de crédito y nota de débito',
+        'navLabel'        => 'Nota de crédito y de débito',
+        'seoTitle'        => 'Nota de crédito y nota de débito',
+        'metaDescription' => 'Nota de crédito y nota de débito en Paraguay: para qué sirven, cuándo se emiten, '
+                            . 'cómo se relacionan con la factura original y un ejemplo.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Nota de crédito y nota de débito: para qué sirven y cuándo se emiten',
+            'lead'    => 'Dos documentos que corrigen una factura ya emitida: uno la reduce, el otro la aumenta.',
+        ],
+        'intro' => [
+            'La nota de crédito sirve para reducir o anular, total o parcialmente, una operación que ya '
+                . 'tiene factura. Es lo que se emite, por ejemplo, ante una devolución o un descuento '
+                . 'posterior a la venta. La nota de débito hace lo contrario: aumenta el importe de una '
+                . 'operación ya documentada.',
+            'En ambos casos la nota se emite sobre una factura existente y la referencia. Esta guía explica '
+                . 'cuándo corresponde cada una, cómo es la nota de crédito electrónica y un ejemplo con IVA.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Nota de crédito: para qué sirve',
+                'body'  => [
+                    'Se usa cuando la factura ya fue emitida y hay que corregirla hacia abajo: el cliente '
+                        . 'devuelve mercadería, se otorga un descuento o una bonificación, o se ajusta un '
+                        . 'precio. Reduce lo que el cliente debe, sin borrar la factura original.',
+                ],
+            ],
+            [
+                'title' => 'Nota de débito: para qué sirve',
+                'body'  => [
+                    'Se usa cuando hay que corregir la factura hacia arriba, por ejemplo por un ajuste de '
+                        . 'precio o por un costo o gasto que se recupera del cliente. Agrega un importe a '
+                        . 'una operación ya documentada.',
+                ],
+            ],
+            [
+                'title' => 'Nota de crédito electrónica: cómo se relaciona con la factura',
+                'body'  => [
+                    'En el SIFEN, la nota de crédito electrónica y la de débito se asocian a la factura '
+                        . 'original mediante su CDC, el código de 44 dígitos del documento. La factura '
+                        . 'tiene que estar aprobada, y la nota no puede acreditar más que su total.',
+                    'Los motivos admitidos y los plazos son los que fija la reglamentación vigente: '
+                        . 'consulte con nosotros antes de emitir una nota en un caso dudoso.',
+                ],
+            ],
+            [
+                'title' => 'Nota de crédito o cancelación de la factura',
+                'body'  => [
+                    'Una factura electrónica aprobada también puede cancelarse, pero solo dentro de un '
+                        . 'plazo corto desde su aprobación. Pasado ese plazo, o si la corrección es '
+                        . 'parcial, se emite una nota de crédito. Verifique el plazo vigente en Ekuatia '
+                        . 'antes de decidir.',
+                ],
+            ],
+            [
+                'title' => 'Ejemplo de nota de crédito',
+                'body'  => [
+                    'Una factura por Gs. 330.000 incluye tres productos de Gs. 110.000 cada uno, con IVA '
+                        . '10 % incluido. El cliente devuelve uno. Se emite una nota de crédito por '
+                        . 'Gs. 110.000 que referencia la factura original. El IVA de esa nota es de '
+                        . 'Gs. 10.000 (110.000 / 11).',
+                    'Para calcular el IVA incluido de cualquier importe, use la calculadora.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Para qué sirve la nota de crédito?', 'a' => 'Para reducir o anular, total o parcialmente, una operación ya facturada: una devolución, un descuento posterior o un ajuste de precio.'],
+            ['q' => '¿Nota de débito para qué sirve?', 'a' => 'Para aumentar el importe de una operación ya documentada, por ejemplo un ajuste de precio o un gasto que se recupera del cliente.'],
+            ['q' => '¿Qué diferencia hay entre la nota de crédito y la nota de débito?', 'a' => 'La nota de crédito reduce lo facturado y la de débito lo aumenta. Las dos se emiten sobre una factura existente y la referencian.'],
+            ['q' => '¿Se puede emitir una nota de crédito electrónica?', 'a' => 'Sí. En el SIFEN existe la nota de crédito electrónica, que se asocia a la factura electrónica original por su CDC. Los detalles y plazos están en la reglamentación vigente.'],
+        ],
+        'relatedService' => 'ekuatia',
+        'toolLink' => [
+            'path'  => '/herramientas/calculadora-iva/',
+            'label' => 'Calculadora de IVA',
+            'text'  => 'Separe el IVA incluido de cualquier importe antes de armar la nota.',
+        ],
+        'related' => ['kude', 'que-es-sifen', 'factura-legal-paraguay'],
+        'thumbnail' => [
+            'src' => '/assets/img/nota-de-credito-devolucion-comercio-1280.avif',
+            'alt' => 'Cliente devuelve una caja en el mostrador de un comercio mientras las monedas vuelven de la caja, bajo una balanza.',
+        ],
+    ],
+
+    'factura-legal-paraguay' => [
+        'path'            => '/guias/factura-legal-paraguay/',
+        'title'           => 'Factura legal en Paraguay',
+        'navLabel'        => 'Factura legal y timbrado',
+        'seoTitle'        => 'Factura legal Paraguay: requisitos',
+        'metaDescription' => 'Qué hace legal a una factura en Paraguay: el timbrado de la DNIT, la factura virtual '
+                            . 'en Marangatu y los requisitos para emitirla.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Factura legal en Paraguay: timbrado, factura virtual y requisitos',
+            'lead'    => 'Qué hace válida a una factura, cómo se relaciona con el timbrado y dónde se emite la '
+                        . 'factura virtual.',
+        ],
+        'intro' => [
+            'Una factura legal en Paraguay es un comprobante emitido con un timbrado autorizado por la DNIT '
+                . '(antes SET). Sin timbrado no es un comprobante tributario válido. Hoy conviven la factura '
+                . 'virtual, que se emite desde Marangatu, y la factura electrónica del SIFEN.',
+            'Esta guía resume los requisitos para tener factura legal, qué es el timbrado y por dónde se '
+                . 'empieza. Los detalles cambian con la reglamentación, por eso le decimos dónde confirmarlos.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Qué hace legal a una factura',
+                'body'  => [
+                    'Una factura es legal cuando se emite bajo un timbrado vigente y dentro de la '
+                        . 'numeración que ese timbrado autoriza. La norma base es el Decreto 6539/2005, que '
+                        . 'aprueba el reglamento general de timbrado y uso de comprobantes de venta.',
+                ],
+            ],
+            [
+                'title' => 'Qué es el timbrado',
+                'body'  => [
+                    'El timbrado es la autorización de la DNIT para emitir comprobantes de venta y '
+                        . 'documentos relacionados. Se expresa como un número. Para la factura electrónica, '
+                        . 'ese número viaja dentro del documento firmado.',
+                    'La vigencia y las condiciones del timbrado de comprobantes en papel dependen de la '
+                        . 'reglamentación vigente: consulte con nosotros o revise la sección Facturación y '
+                        . 'timbrado del sitio de la DNIT.',
+                ],
+            ],
+            [
+                'title' => 'Requisitos para tener factura legal en Paraguay',
+                'body'  => [
+                    'Hace falta estar inscripto en el RUC y tener las obligaciones tributarias al día; luego '
+                        . 'se solicita la autorización y el timbrado en Marangatu. La DNIT puede pedir '
+                        . 'condiciones adicionales según su situación, por ejemplo la comunicación de la '
+                        . 'numeración ya utilizada.',
+                ],
+            ],
+            [
+                'title' => 'Factura virtual en Marangatu',
+                'body'  => [
+                    'La Resolución General 03/18 aprobó la emisión de facturas virtuales a través de '
+                        . 'Marangatu, desde el 1 de noviembre de 2018. La emite el contribuyente, o un '
+                        . 'tercero autorizado, con su clave de acceso, y solo si está autorizado y timbrado '
+                        . 'para esa modalidad. La DNIT publica guías para solicitarla, emitirla y darla de '
+                        . 'baja.',
+                    'Si aún no tiene acceso al sistema, empiece por la guía de ingreso a Marangatu.',
+                ],
+            ],
+            [
+                'title' => 'Boleta legal y factura electrónica',
+                'body'  => [
+                    'En el uso corriente, "boleta legal" suele referirse a un comprobante con timbrado '
+                        . 'válido, como la factura. La factura electrónica del SIFEN es otra modalidad, con su propio timbrado electrónico y '
+                        . 'habilitación. Si no sabe cuál le corresponde, consúltenos antes de cambiar de '
+                        . 'sistema.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es una factura legal en Paraguay?', 'a' => 'Es la factura emitida con un timbrado autorizado por la DNIT, dentro de la numeración que ese timbrado habilita. Sin timbrado no es un comprobante válido.'],
+            ['q' => '¿Cuáles son los requisitos para tener factura legal en Paraguay?', 'a' => 'Estar inscripto en el RUC, tener las obligaciones al día y solicitar la autorización y el timbrado en Marangatu. La DNIT puede pedir condiciones adicionales; consulte con nosotros su caso.'],
+            ['q' => '¿Cómo se emite la factura virtual en Marangatu?', 'a' => 'Con el usuario y la clave de acceso de Marangatu, si el contribuyente está autorizado y timbrado para facturar de forma virtual. La DNIT publica una guía paso a paso.'],
+            ['q' => '¿La factura virtual de la SET es lo mismo que la factura electrónica?', 'a' => 'No. La factura virtual se emite desde Marangatu; la factura electrónica pertenece al SIFEN y se firma digitalmente. La SET hoy se llama DNIT.'],
+        ],
+        'relatedService' => 'ekuatia',
+        'toolLink' => null,
+        'related' => ['como-ingresar-a-marangatu', 'inscripcion-de-ruc-paso-a-paso', 'kude'],
+        'thumbnail' => [
+            'src' => '/assets/img/factura-legal-almacen-paraguay-1280.avif',
+            'alt' => 'Dueño de un almacén de barrio entrega una factura a una clienta, bajo un sello dorado de ñandutí.',
+        ],
+    ],
+
+    'libro-diario-y-libro-mayor' => [
+        'path'            => '/guias/libro-diario-y-libro-mayor/',
+        'title'           => 'Libro diario y libro mayor',
+        'navLabel'        => 'Libro diario y libro mayor',
+        'seoTitle'        => 'Libro diario y libro mayor: qué son',
+        'metaDescription' => 'Qué es el libro diario y el libro mayor, cómo se relacionan y un ejemplo de '
+                            . 'asientos en guaraníes, con los libros que se rubrican en Paraguay.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Libro diario y libro mayor: qué son, cómo se llevan y un ejemplo',
+            'lead'    => 'Los dos libros base de la contabilidad, con un ejemplo de asientos en guaraníes y '
+                        . 'lo que debe saber sobre su rúbrica en Paraguay.',
+        ],
+        'intro' => [
+            'El libro diario es el registro cronológico de todas las operaciones de una empresa: cada '
+                . 'venta, compra, cobro o pago se anota en el día en que ocurre, en forma de asiento '
+                . 'contable. El libro mayor toma esos mismos asientos y los reúne por cuenta, para ver '
+                . 'cuánto entró, cuánto salió y cuánto queda en cada una.',
+            'Uno ordena los hechos por fecha y el otro los ordena por cuenta. Con los dos se pueden armar '
+                . 'el balance y el estado de resultados. Esta guía explica qué es cada uno, cómo se pasa de '
+                . 'uno a otro con un ejemplo corto, y qué libros contables tiene que tener rubricados una '
+                . 'empresa en Paraguay.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Libro diario: qué es y qué lleva',
+                'body'  => [
+                    'El libro diario en contabilidad registra cada operación en orden cronológico. Cada '
+                        . 'anotación se llama asiento y tiene siempre dos partes que suman lo mismo: lo que '
+                        . 'se anota al debe y lo que se anota al haber. Si el asiento no cuadra, hay un error.',
+                    'La Ley 1034/83 del Comerciante dice que en el libro diario se asientan en detalle las '
+                        . 'operaciones diarias, en el orden en que se hicieron (Art. 80). Cada asiento '
+                        . 'necesita su comprobante: factura, recibo, extracto o contrato.',
+                ],
+            ],
+            [
+                'title' => 'Ejemplos del libro diario: tres asientos',
+                'body'  => [
+                    'Asiento 1. Venta de mercaderías al contado por Gs. 1.100.000, con IVA del 10 % '
+                        . 'incluido. Al debe: Caja, Gs. 1.100.000. Al haber: Ventas, Gs. 1.000.000, e IVA '
+                        . 'débito fiscal, Gs. 100.000.',
+                    'Asiento 2. Compra de mercaderías a crédito por Gs. 660.000, con IVA incluido. Al debe: '
+                        . 'Mercaderías, Gs. 600.000, e IVA crédito fiscal, Gs. 60.000. Al haber: '
+                        . 'Proveedores, Gs. 660.000.',
+                    'Asiento 3. Depósito en el banco de Gs. 800.000 retirados de la caja. Al debe: Banco, '
+                        . 'Gs. 800.000. Al haber: Caja, Gs. 800.000.',
+                    'Los tres asientos suman Gs. 2.560.000 al debe y Gs. 2.560.000 al haber: cuadran. Las '
+                        . 'cuentas y los nombres pueden variar según el plan de cuentas de cada empresa.',
+                ],
+            ],
+            [
+                'title' => 'Libro mayor contable: pasar los asientos a cada cuenta',
+                'body'  => [
+                    'El libro mayor tiene una hoja por cuenta. Cada línea del diario se copia en la cuenta '
+                        . 'que corresponde, del lado del debe o del haber, y al final se calcula el saldo.',
+                    'Ejemplo con la cuenta Caja del punto anterior. Debe: Gs. 1.100.000 (asiento 1). Haber: '
+                        . 'Gs. 800.000 (asiento 3). Saldo deudor: Gs. 300.000, que es el efectivo que '
+                        . 'queda en la caja. La cuenta Banco muestra Gs. 800.000 al debe, y Proveedores '
+                        . 'muestra Gs. 660.000 al haber, que es lo que se debe.',
+                    'Al cierre del período se suman los saldos de todas las cuentas del mayor. De ahí sale '
+                        . 'el balance de comprobación, que es el punto de partida del balance general.',
+                ],
+            ],
+            [
+                'title' => 'Diferencia entre libro diario y libro mayor',
+                'body'  => [
+                    'El diario responde a la pregunta cuándo y qué pasó, y se escribe en el momento. El '
+                        . 'mayor responde cuánto hay en cada cuenta, y se arma a partir del diario. Por eso '
+                        . 'los dos tienen que coincidir: el total del debe y del haber del mayor es el '
+                        . 'mismo que el del diario.',
+                    'Hoy casi todas las empresas llevan ambos libros en un sistema contable. El sistema '
+                        . 'pasa los asientos al mayor solo, pero conviene revisar que los saldos tengan '
+                        . 'sentido y que cada asiento tenga su comprobante. Si prefiere no hacerlo usted, '
+                        . 'en nuestro servicio de contabilidad llevamos los libros todos los meses.',
+                ],
+            ],
+            [
+                'title' => 'Libros contables obligatorios y rúbrica en Paraguay',
+                'body'  => [
+                    'La Ley 1034/83 obliga al comerciante a llevar una contabilidad en orden cronológico y '
+                        . 'regular, con los libros necesarios para eso, y a conservarlos cinco años desde la '
+                        . 'última anotación (Arts. 11 y 85). Antes de usarse, los libros se presentan al '
+                        . 'Registro Público de Comercio para su rúbrica (Art. 78). La ley nombra el libro '
+                        . 'diario (Art. 80) y el libro de inventario (Art. 82), y no el libro mayor.',
+                    'Para las empresas por acciones simplificadas, la Ley 6.480/2020 pide, entre otros, '
+                        . 'libro diario y libro de inventario rubricados. Para una SRL o una S.A., los '
+                        . 'libros contables y los libros societarios (actas, registro de acciones) '
+                        . 'dependen del tipo de sociedad y de lo que fijen la ley y los estatutos: consulte '
+                        . 'con nosotros cuáles le corresponden. Los libros de compras y ventas del IVA son '
+                        . 'otro registro, con reglas de la DNIT que se actualizan, y no los reemplaza el '
+                        . 'libro diario.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es el libro diario?', 'a' => 'Es el libro donde se anotan, en orden cronológico, todas las operaciones de la empresa en forma de asientos contables, con su debe y su haber. Es la base de la contabilidad.'],
+            ['q' => '¿Qué es el libro mayor y para qué sirve?', 'a' => 'Es el libro que agrupa los asientos del diario por cuenta (Caja, Banco, Ventas, Proveedores) y muestra el saldo de cada una. Sirve para armar el balance y controlar las cuentas.'],
+            ['q' => '¿Qué libros contables son obligatorios en una SRL o una S.A.?', 'a' => 'La Ley 1034/83 exige llevar los libros necesarios para una contabilidad ordenada y nombra el libro diario y el de inventario. Los demás libros, como los societarios, dependen del tipo de sociedad: consulte con nosotros según su caso.'],
+            ['q' => '¿Se puede llevar el libro diario en Excel?', 'a' => 'Muchas empresas lo trabajan en planilla o en un sistema contable. Para que sirva como libro, hay que cumplir las formalidades de la ley, como la rúbrica del Registro Público de Comercio. Consulte cómo hacerlo antes de empezar.'],
+        ],
+        'relatedService' => 'contabilidad',
+        'toolLink' => null,
+        'related' => ['conciliacion-bancaria', 'formulario-120-paso-a-paso', 'suace'],
+        'thumbnail' => [
+            'src' => '/assets/img/libro-diario-libro-mayor-contabilidad-1280.avif',
+            'alt' => 'Una fila de personas lleva una cinta de asientos desde el libro diario hasta un libro mayor lleno de cajones ordenados.',
+        ],
+    ],
+
+    'conciliacion-bancaria' => [
+        'path'            => '/guias/conciliacion-bancaria/',
+        'title'           => 'Conciliación bancaria',
+        'navLabel'        => 'Conciliación bancaria',
+        'seoTitle'        => 'Conciliación bancaria: qué es y ejemplo',
+        'metaDescription' => 'Conciliación bancaria: qué es, cómo hacerla paso a paso y un ejemplo con depósito en '
+                            . 'tránsito, cheque pendiente y comisión del banco, con su asiento.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Conciliación bancaria: qué es, cómo se hace y un ejemplo',
+            'lead'    => 'Cómo comparar el extracto del banco con sus libros, explicar la diferencia y '
+                        . 'registrar lo que falta.',
+        ],
+        'intro' => [
+            'La conciliación bancaria es la comparación entre el saldo de la cuenta del banco en su '
+                . 'contabilidad y el saldo que figura en el extracto del banco. Rara vez coinciden el '
+                . 'mismo día, y la conciliación explica por qué: qué partidas están de un lado y todavía '
+                . 'no en el otro.',
+            'Se hace todos los meses y sirve para detectar errores, comisiones sin registrar y cheques '
+                . 'que no se cobraron. Esta guía muestra el método y un ejemplo con cifras que cierran.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Junte el extracto y el mayor del banco',
+                'body'  => [
+                    'Necesita dos documentos del mismo período: el extracto que entrega el banco y la '
+                        . 'cuenta Banco del libro mayor de su contabilidad. Anote el saldo final de cada '
+                        . 'uno. En el ejemplo de esta guía, el mayor muestra Gs. 10.000.000 y el extracto, '
+                        . 'Gs. 8.850.000.',
+                ],
+            ],
+            [
+                'title' => 'Marque lo que coincide y detecte las diferencias',
+                'body'  => [
+                    'Compare movimiento por movimiento, con fecha e importe. Lo que está en los dos lados '
+                        . 'queda tildado. Lo que sobra en uno de ellos es una partida conciliatoria. Hay '
+                        . 'dos grupos: las que el banco todavía no registró (depósitos en tránsito, '
+                        . 'cheques emitidos que no se cobraron) y las que usted todavía no registró '
+                        . '(comisiones, intereses, débitos automáticos, errores).',
+                ],
+            ],
+            [
+                'title' => 'Conciliación bancaria, ejemplo con cifras',
+                'body'  => [
+                    'Datos. Saldo según el extracto: Gs. 8.850.000. Depósito en tránsito (hecho el último '
+                        . 'día, el banco lo acredita después): Gs. 1.500.000. Cheque emitido que todavía no '
+                        . 'se cobró: Gs. 400.000. Comisión de mantenimiento del banco, que no está en los '
+                        . 'libros: Gs. 50.000.',
+                    'Del lado del banco: Gs. 8.850.000 más el depósito en tránsito de Gs. 1.500.000, menos '
+                        . 'el cheque pendiente de Gs. 400.000, da un saldo conciliado de Gs. 9.950.000.',
+                    'Del lado de los libros: Gs. 10.000.000 menos la comisión de Gs. 50.000 también da '
+                        . 'Gs. 9.950.000. Los dos lados coinciden, entonces la conciliación cierra.',
+                ],
+            ],
+            [
+                'title' => 'Asiento de conciliación bancaria',
+                'body'  => [
+                    'Las partidas del banco (depósito en tránsito, cheque pendiente) no llevan asiento: '
+                        . 'se resuelven solas cuando el banco las registra. Solo se asienta lo que falta en '
+                        . 'sus libros. En el ejemplo, la comisión: al debe, Gastos bancarios, Gs. 50.000; '
+                        . 'al haber, Banco, Gs. 50.000.',
+                    'Después del asiento, la cuenta Banco del mayor queda en Gs. 9.950.000, igual al saldo '
+                        . 'conciliado. Guarde la planilla de conciliación firmada junto al extracto.',
+                ],
+            ],
+            [
+                'title' => 'Conciliación bancaria en Excel y cada cuánto',
+                'body'  => [
+                    'Una planilla con cuatro bloques alcanza: saldo del extracto, partidas del banco, '
+                        . 'saldo de libros y partidas de libros. La diferencia final tiene que ser cero. '
+                        . 'Hágala una vez por mes, con cada cuenta bancaria por separado, y antes de '
+                        . 'cerrar el mes contable.',
+                    'Si la diferencia no cierra, revise primero los importes con cifras invertidas (por '
+                        . 'ejemplo, 45.000 en vez de 54.000) y los movimientos de otro mes. Si prefiere no '
+                        . 'hacerlo usted, en nuestro servicio de contabilidad conciliamos las cuentas '
+                        . 'todos los meses.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es la conciliación bancaria?', 'a' => 'Es el control que compara el saldo de la cuenta del banco en su contabilidad con el del extracto, y explica cada diferencia entre ambos. Se hace una vez por mes.'],
+            ['q' => '¿Cómo se hace una conciliación bancaria paso a paso?', 'a' => 'Se toman el extracto y el mayor del banco, se tildan los movimientos que coinciden, se listan las diferencias y se ajusta cada lado hasta llegar al mismo saldo. Lo que falta en libros se registra con un asiento.'],
+            ['q' => '¿Qué es un depósito en tránsito?', 'a' => 'Es un depósito que usted ya registró en sus libros, pero que el banco todavía no acreditó en el extracto porque se hizo al cierre del período. No lleva asiento.'],
+            ['q' => '¿Con qué frecuencia hay que conciliar el banco?', 'a' => 'Lo habitual es una vez por mes, antes de cerrar la contabilidad. Una empresa con muchos movimientos puede conciliar con más frecuencia.'],
+        ],
+        'relatedService' => 'contabilidad',
+        'toolLink' => null,
+        'related' => ['libro-diario-y-libro-mayor', 'formulario-120-paso-a-paso'],
+        'thumbnail' => [
+            'src' => '/assets/img/conciliacion-bancaria-banco-libros-1280.avif',
+            'alt' => 'Contadora con una lupa coloca la moneda que faltaba para unir los movimientos del banco con los del libro contable.',
+        ],
+    ],
+
+    'registro-mipymes' => [
+        'path'            => '/guias/registro-mipymes/',
+        'title'           => 'Registro MIPYMES',
+        'navLabel'        => 'Registro MIPYMES y cédula',
+        'seoTitle'        => 'MIPYMES Paraguay: cédula y registro',
+        'metaDescription' => 'MIPYMES en Paraguay: qué categorías existen, cómo obtener la cédula MIPYMES en '
+                            . 'mipymes.gov.py, qué beneficios da y qué hacer si su empresa no la recibió.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'MIPYMES en Paraguay: registro y cédula MIPYMES, paso a paso',
+            'lead'    => 'Cómo saber si su empresa es micro, pequeña o mediana, cómo descargar la cédula y '
+                        . 'qué beneficios trae.',
+        ],
+        'intro' => [
+            'Las MIPYMES (micro, pequeñas y medianas empresas) se rigen por la Ley N.º 4457/2012, '
+                . 'modificada por la Ley N.º 7444, publicada en enero de 2025. Las categorías se definen '
+                . 'por la cantidad de trabajadores y la facturación anual, y las administra el '
+                . 'Viceministerio de MIPYMES del Ministerio de Industria y Comercio (MIC).',
+            'Con la ley vigente, el registro ya no es un trámite que cada empresa inicia desde cero: el '
+                . 'MIC arma el Registro Nacional de MIPYMES cruzando datos de la DNIT, el IPS y el MTESS. '
+                . 'Esta guía explica cómo comprobar si su empresa figura y qué hacer si no. Es orientativa: '
+                . 'los topes de facturación pueden actualizarse por decreto.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Confirme que su RUC está activo',
+                'body'  => [
+                    'La base del registro es el RUC. La cédula se genera para empresas con RUC activo; sin '
+                        . 'RUC, la empresa no entra. Si todavía no lo tiene, primero hay que inscribirlo.',
+                ],
+            ],
+            [
+                'title' => 'Identifique su categoría',
+                'body'  => [
+                    'La ley define tres categorías: microempresa (hasta diez trabajadores), pequeña (de once '
+                        . 'a treinta) y mediana (de treinta y uno a cincuenta), cada una con su tope de '
+                        . 'facturación anual. Los topes en guaraníes los fija y actualiza el MIC, y las '
+                        . 'cifras publicadas varían entre fuentes: confírmelos en el sitio del MIC antes de '
+                        . 'decidir nada.',
+                    'Si hay discrepancia entre los parámetros, la ley da prioridad a la facturación bruta '
+                        . 'anual. Para empresas recién creadas se toma en cuenta el activo patrimonial '
+                        . 'declarado.',
+                ],
+            ],
+            [
+                'title' => 'Descargue la cédula MIPYMES en línea',
+                'body'  => [
+                    'La cédula MIPYMES se obtiene en la página web del MIC, en mipymes.gov.py, y la '
+                        . 'inclusión en el registro es gratuita, sin trámites presenciales. Como el registro '
+                        . 'se arma con datos de la DNIT, el IPS y el MTESS, su empresa puede figurar ya sin '
+                        . 'haberlo pedido.',
+                ],
+            ],
+            [
+                'title' => 'Si no figura o la categoría no es la correcta',
+                'body'  => [
+                    'Verifique que el RUC esté activo y que sus declaraciones y su registro patronal estén '
+                        . 'al día, porque el sistema se alimenta de esos datos. Si la categoría asignada no '
+                        . 'es la adecuada, la ley permite pedir al Viceministerio de MIPYMES que la '
+                        . 'modifique, con la documentación de respaldo.',
+                    'La ley deja fuera a las empresas de intermediación financiera y de seguros, y a '
+                        . 'ciertas personas físicas contribuyentes del impuesto a la renta personal.',
+                ],
+            ],
+            [
+                'title' => 'Aproveche los beneficios y renueve cada año',
+                'body'  => [
+                    'La ley prevé trato preferencial en contrataciones públicas, descuentos en la patente '
+                        . 'comercial y exoneración o descuento de tasas por servicios del Estado para micro '
+                        . 'y pequeñas empresas. La cédula se actualiza cada año, y eso puede cambiar su '
+                        . 'categoría o sacarla del registro si supera los límites.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es la cédula MIPYMES?', 'a' => 'Es el documento que acredita que una empresa está formalizada y registrada como micro, pequeña o mediana. Según la ley, sirve ante cualquier institución pública o privada como constancia de entidad jurídica formalizada, y se actualiza todos los años.'],
+            ['q' => '¿Tiene costo registrarse como MIPYME?', 'a' => 'No. La Ley N.º 7444 establece que la inclusión en el Registro Nacional de MIPYMES es gratuita, y la cédula se descarga sin costo en mipymes.gov.py.'],
+            ['q' => '¿Cuál es el tope de facturación de cada categoría?', 'a' => 'Lo fija el MIC y se actualiza según el índice de precios al consumidor, así que cambia. La ley fija los tramos de trabajadores: hasta 10, de 11 a 30 y de 31 a 50. Para los montos en guaraníes, consulte los topes vigentes en el sitio del MIC.'],
+            ['q' => '¿Una persona física con RUC puede ser MIPYME?', 'a' => 'Depende de su situación tributaria. La ley excluye a ciertas personas físicas contribuyentes del impuesto a la renta personal. Revise su caso con su contador antes de contar con los beneficios.'],
+        ],
+        'relatedService' => 'eas',
+        'toolLink' => [
+            'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+            'label' => 'Comparador EAS, SRL o Unipersonal',
+            'text'  => 'Si todavía no tiene empresa, compare las formas de constituirla antes de registrarla como MIPYME.',
+        ],
+        'related' => ['suace', 'inscripcion-de-ruc-paso-a-paso'],
+        'thumbnail' => [
+            'src' => '/assets/img/mipymes-comercios-barrio-paraguay-1280.avif',
+            'alt' => 'Calle de barrio con panadería de chipa, sastrería, taller de motos y carpintería cada vez más altos, bajo una insignia dorada.',
+        ],
     ],
 
 ];

@@ -76,6 +76,10 @@
       "status": 200,
       "location": null
     },
+    "/srl/": {
+      "status": 200,
+      "location": null
+    },
     "/asesoria/": {
       "status": 200,
       "location": null
@@ -109,6 +113,10 @@
       "location": null
     },
     "/herramientas/calculadora-iva/": {
+      "status": 200,
+      "location": null
+    },
+    "/herramientas/calculadora-ips/": {
       "status": 200,
       "location": null
     },
@@ -157,6 +165,46 @@
       "location": null
     },
     "/guias/irp-quien-debe-pagar/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/salario-minimo-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/ver-aportes-ips/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/preaviso-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/suace/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/kude/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/nota-de-credito/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/factura-legal-paraguay/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/libro-diario-y-libro-mayor/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/conciliacion-bancaria/": {
+      "status": 200,
+      "location": null
+    },
+    "/guias/registro-mipymes/": {
       "status": 200,
       "location": null
     },
@@ -1022,13 +1070,13 @@
       ]
     },
     "/contabilidad/": {
-      "title": "Contabilidad mensual para empresas | Contador.com.py",
-      "description": "Contabilidad mensual para empresas en Paraguay: libros, conciliaciones y estados financieros, con cierre antes del día 5 de cada mes.",
+      "title": "Contabilidad y gestión contable mensual | Contador.com.py",
+      "description": "Contabilidad y gestión contable mensual para empresas en Paraguay: libros, conciliaciones y estados financieros, con cierre antes del día 5.",
       "canonical": "/contabilidad/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "Contabilidad mensual para empresas en Paraguay"
+        "Contabilidad y gestión contable mensual para empresas en Paraguay"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -1073,13 +1121,13 @@
       ]
     },
     "/iva/": {
-      "title": "Liquidación y declaración de IVA | Contador.com.py",
-      "description": "Liquidación mensual de IVA y presentación de la declaración jurada ante la DNIT, con el libro de compras y ventas siempre conciliado.",
+      "title": "IVA Paraguay: liquidación y declaración | Contador.com.py",
+      "description": "IVA en Paraguay: liquidación mensual y declaración jurada ante la DNIT, con el libro de compras y ventas siempre conciliado.",
       "canonical": "/iva/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "IVA: liquidación y declaración jurada mensual"
+        "IVA en Paraguay: liquidación y declaración jurada mensual"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -1226,13 +1274,13 @@
       ]
     },
     "/ips/": {
-      "title": "IPS y planilla de sueldos | Contador.com.py",
-      "description": "Gestión de IPS y planilla de sueldos: altas y bajas, aportes mensuales, planillas del MTESS y recibos listos para firmar.",
+      "title": "Aporte IPS y planilla de sueldos | Contador.com.py",
+      "description": "Aporte IPS en Paraguay: 9 % del empleado y 16,5 % de la empresa. Altas y bajas, aportes mensuales, planillas del MTESS y recibos listos para firmar.",
       "canonical": "/ips/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "IPS: gestión de aportes y planilla de sueldos"
+        "Aporte IPS y planilla de sueldos para empresas"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -1280,13 +1328,13 @@
       ]
     },
     "/eas/": {
-      "title": "Abrir una EAS en Paraguay | Contador.com.py",
-      "description": "Abrir una EAS en Paraguay con acompañamiento completo: constitución, RUC, patente y registro patronal, operativa en semanas y no en meses.",
+      "title": "EAS en Paraguay: cómo abrir una | Contador.com.py",
+      "description": "EAS en Paraguay: qué es la Empresa por Acciones Simplificada y cómo abrir una por el SUACE, con estatutos, RUC y registro patronal en IPS y MTESS.",
       "canonical": "/eas/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "Abrir una EAS en Paraguay"
+        "EAS en Paraguay: cómo abrir una Empresa por Acciones Simplificada"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -1328,6 +1376,63 @@
         "/privacidad/",
         "/ruc/",
         "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/srl/": {
+      "title": "SRL en Paraguay: cómo constituirla | Contador.com.py",
+      "description": "Constitución de una SRL en Paraguay: contrato social, escritura pública, inscripción en el Registro Público de Comercio, RUC y beneficiarios finales.",
+      "canonical": "/srl/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "SRL en Paraguay: cómo constituir una Sociedad de Responsabilidad Limitada"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness",
+        "Service"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/blog/eas-vs-srl-vs-unipersonal-cual-conviene/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=srl",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/guias/inscripcion-patronal-ips/",
+        "/guias/suace/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
         "/terminos/"
       ]
     },
@@ -1636,13 +1741,13 @@
       ]
     },
     "/herramientas/liquidacion-de-salario/": {
-      "title": "Liquidación de salario y finiquito | Contador.com.py",
-      "description": "Calcule su finiquito en Paraguay: salario proporcional, aporte IPS, vacaciones, aguinaldo, preaviso e indemnización según el motivo de salida.",
+      "title": "Calculadora de liquidación laboral | Contador.com.py",
+      "description": "Calculadora de liquidación laboral en Paraguay: salario proporcional, aporte IPS, vacaciones, aguinaldo, preaviso e indemnización según el motivo.",
       "canonical": "/herramientas/liquidacion-de-salario/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "Calculadora de liquidación de salario y finiquito"
+        "Calculadora de liquidación laboral y finiquito en Paraguay"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -1685,13 +1790,13 @@
       ]
     },
     "/herramientas/vencimientos/": {
-      "title": "Calendario de vencimientos DNIT e IPS | Contador.com.py",
+      "title": "Calendario perpetuo DNIT: vencimientos | Contador.com.py",
       "description": "Vea sus próximas fechas de IVA, IRE e IPS según la terminación de su RUC, con el Calendario Perpetuo de la DNIT. Consulte y reciba el recordatorio.",
       "canonical": "/herramientas/vencimientos/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "Calendario de vencimientos según su RUC"
+        "Calendario perpetuo DNIT: sus vencimientos según el RUC"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -1764,6 +1869,57 @@
         "/guias/",
         "/herramientas/",
         "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/herramientas/calculadora-ips/": {
+      "title": "Calculadora de aporte IPS Paraguay | Contador.com.py",
+      "description": "Calcule el aporte IPS de un salario en Paraguay: 9 % del trabajador, 16,5 % de la empresa, sueldo neto y costo mensual del empleado, en guaraníes.",
+      "canonical": "/herramientas/calculadora-ips/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Calculadora de aporte IPS en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=calculadora-ips",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
         "/herramientas/calculadora-iva/",
         "/herramientas/comparador-eas-srl-unipersonal/",
         "/herramientas/liquidacion-de-salario/",
@@ -1934,13 +2090,13 @@
       ]
     },
     "/guias/consulta-de-ruc/": {
-      "title": "Consulta de RUC en Paraguay: cómo hacerla | Contador.com.py",
-      "description": "Cómo consultar un RUC en Paraguay — el propio o el de otra persona o empresa — y qué datos puede ver en cada caso. Guía paso a paso.",
+      "title": "Consulta de RUC Paraguay: buscar un RUC | Contador.com.py",
+      "description": "Consulta de RUC en Paraguay: cómo buscar un RUC por número o por nombre, cómo saber su propio RUC y qué datos muestra la DNIT en cada caso.",
       "canonical": "/guias/consulta-de-ruc/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "Cómo hacer una consulta de RUC"
+        "Consulta de RUC en Paraguay: cómo buscar un RUC"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -2401,6 +2557,558 @@
         "/terminos/"
       ]
     },
+    "/guias/salario-minimo-paraguay/": {
+      "title": "Salario mínimo en Paraguay 2026 | Contador.com.py",
+      "description": "El salario mínimo en Paraguay es de Gs. 3.044.000 desde julio de 2026. Jornal diario, descuento del IPS, sueldo neto y costo para la empresa.",
+      "canonical": "/guias/salario-minimo-paraguay/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Salario mínimo en Paraguay 2026: monto, jornal y sueldo neto"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=ips",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-patronal-ips/",
+        "/guias/preaviso-paraguay/",
+        "/guias/ver-aportes-ips/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/ver-aportes-ips/": {
+      "title": "IPS mis aportes: cómo ver sus aportes | Contador.com.py",
+      "description": "Cómo ver sus aportes al IPS en Mi IPS, con su cédula y PIN o con Identidad Electrónica, y qué hacer si falta un mes o el salario no coincide.",
+      "canonical": "/guias/ver-aportes-ips/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Cómo ver mis aportes en el IPS"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=ips",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-patronal-ips/",
+        "/guias/salario-minimo-paraguay/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/preaviso-paraguay/": {
+      "title": "Preaviso en Paraguay: cuántos días | Contador.com.py",
+      "description": "Preaviso en Paraguay: 30, 45, 60 o 90 días según la antigüedad (Art. 87 del Código del Trabajo), cómo se da y cuánto se paga si se omite.",
+      "canonical": "/guias/preaviso-paraguay/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Preaviso en Paraguay: cuántos días corresponden y cómo se paga"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=ips",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/salario-minimo-paraguay/",
+        "/guias/ver-aportes-ips/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/suace/": {
+      "title": "SUACE: cómo abrir una empresa paso a paso | Contador.com.py",
+      "description": "Qué es el SUACE y cómo abrir una EAS en línea: identidad electrónica, estatutos, plazos de 72 horas u 8 días hábiles y qué recibe al final.",
+      "canonical": "/guias/suace/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "SUACE: cómo abrir una empresa en Paraguay, paso a paso"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=eas",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/ekuatiai-paso-a-paso/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/guias/inscripcion-patronal-ips/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/terminos/"
+      ]
+    },
+    "/guias/kude/": {
+      "title": "KuDE: qué es y cómo verificar la factura | Contador.com.py",
+      "description": "Qué es el KuDE de la factura electrónica y cómo verificarla con el código QR o el CDC de 44 dígitos en la consulta pública de Ekuatia.",
+      "canonical": "/guias/kude/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "KuDE: qué es y cómo verificar una factura electrónica en Paraguay"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=ekuatia",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/ekuatiai-paso-a-paso/",
+        "/guias/factura-legal-paraguay/",
+        "/guias/que-es-sifen/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
+        "/terminos/"
+      ]
+    },
+    "/guias/nota-de-credito/": {
+      "title": "Nota de crédito y nota de débito | Contador.com.py",
+      "description": "Nota de crédito y nota de débito en Paraguay: para qué sirven, cuándo se emiten, cómo se relacionan con la factura original y un ejemplo.",
+      "canonical": "/guias/nota-de-credito/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Nota de crédito y nota de débito: para qué sirven y cuándo se emiten"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=ekuatia",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/factura-legal-paraguay/",
+        "/guias/kude/",
+        "/guias/que-es-sifen/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
+        "/terminos/"
+      ]
+    },
+    "/guias/factura-legal-paraguay/": {
+      "title": "Factura legal Paraguay: requisitos | Contador.com.py",
+      "description": "Qué hace legal a una factura en Paraguay: el timbrado de la DNIT, la factura virtual en Marangatu y los requisitos para emitirla.",
+      "canonical": "/guias/factura-legal-paraguay/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Factura legal en Paraguay: timbrado, factura virtual y requisitos"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=ekuatia",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/como-ingresar-a-marangatu/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/guias/kude/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
+        "/terminos/"
+      ]
+    },
+    "/guias/libro-diario-y-libro-mayor/": {
+      "title": "Libro diario y libro mayor: qué son | Contador.com.py",
+      "description": "Qué es el libro diario y el libro mayor, cómo se relacionan y un ejemplo de asientos en guaraníes, con los libros que se rubrican en Paraguay.",
+      "canonical": "/guias/libro-diario-y-libro-mayor/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Libro diario y libro mayor: qué son, cómo se llevan y un ejemplo"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=contabilidad",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/conciliacion-bancaria/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/guias/suace/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
+        "/terminos/"
+      ]
+    },
+    "/guias/conciliacion-bancaria/": {
+      "title": "Conciliación bancaria: qué es y ejemplo | Contador.com.py",
+      "description": "Conciliación bancaria: qué es, cómo hacerla paso a paso y un ejemplo con depósito en tránsito, cheque pendiente y comisión del banco, con su asiento.",
+      "canonical": "/guias/conciliacion-bancaria/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "Conciliación bancaria: qué es, cómo se hace y un ejemplo"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=contabilidad",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/formulario-120-paso-a-paso/",
+        "/guias/libro-diario-y-libro-mayor/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
+        "/terminos/"
+      ]
+    },
+    "/guias/registro-mipymes/": {
+      "title": "MIPYMES Paraguay: cédula y registro | Contador.com.py",
+      "description": "MIPYMES en Paraguay: qué categorías existen, cómo obtener la cédula MIPYMES en mipymes.gov.py, qué beneficios da y qué hacer si su empresa no la recibió.",
+      "canonical": "/guias/registro-mipymes/",
+      "robots": "",
+      "lang": "es-PY",
+      "h1": [
+        "MIPYMES en Paraguay: registro y cédula MIPYMES, paso a paso"
+      ],
+      "alternates": [],
+      "schemaTypes": [
+        "AccountingService",
+        "BreadcrumbList",
+        "FAQPage",
+        "HowTo",
+        "LocalBusiness"
+      ],
+      "internalLinks": [
+        "/",
+        "/asesoria/",
+        "/auditoria-auditoria-forense/",
+        "/auditoria-auditoria-impositiva/",
+        "/auditoria-auditoria-interna/",
+        "/auditoria/",
+        "/blog/",
+        "/contabilidad/",
+        "/contacto/",
+        "/contacto/?servicio=eas",
+        "/eas/",
+        "/ekuatia/",
+        "/guias/",
+        "/guias/inscripcion-de-ruc-paso-a-paso/",
+        "/guias/suace/",
+        "/herramientas/",
+        "/herramientas/calculadora-aguinaldo/",
+        "/herramientas/calculadora-ips/",
+        "/herramientas/calculadora-iva/",
+        "/herramientas/comparador-eas-srl-unipersonal/",
+        "/herramientas/liquidacion-de-salario/",
+        "/herramientas/que-necesita/",
+        "/herramientas/vencimientos/",
+        "/ips/",
+        "/ire-simple/",
+        "/irp/",
+        "/iva/",
+        "/marangatu/",
+        "/nosotros/",
+        "/precios/",
+        "/privacidad/",
+        "/ruc/",
+        "/servicios/",
+        "/srl/",
+        "/terminos/"
+      ]
+    },
     "/blog/como-se-calcula-el-aguinaldo-en-paraguay/": {
       "title": "Cómo se calcula el aguinaldo en Paraguay | Contador.com.py",
       "description": "Cómo se calcula el aguinaldo o décimo tercer salario en Paraguay, con ejemplos de sueldo fijo, sueldo variable y aguinaldo proporcional.",
@@ -2652,7 +3360,7 @@
       ]
     },
     "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/": {
-      "title": "Cómo leer sus estados financieros | Contador.com.py",
+      "title": "Balance general y estado de resultados | Contador.com.py",
       "description": "Qué muestra cada estado financiero — balance general, estado de resultados y flujo de efectivo — y cómo usarlos para decidir sobre su empresa.",
       "canonical": "/blog/balance-general-estado-de-resultados-flujo-de-efectivo/",
       "robots": "",
@@ -2702,13 +3410,13 @@
       ]
     },
     "/blog/liquidacion-por-despido-vs-renuncia/": {
-      "title": "Liquidación: despido vs. renuncia | Contador.com.py",
-      "description": "Qué conceptos cobra un trabajador según renuncie o sea despedido en Paraguay: preaviso, indemnización y qué queda igual en los dos casos.",
+      "title": "Liquidación por renuncia o despido | Contador.com.py",
+      "description": "Cómo se calcula la liquidación por renuncia o por despido en Paraguay: preaviso, indemnización y qué queda igual en los dos casos, con un ejemplo.",
       "canonical": "/blog/liquidacion-por-despido-vs-renuncia/",
       "robots": "",
       "lang": "es-PY",
       "h1": [
-        "Liquidación por despido vs. renuncia: qué cambia en el finiquito"
+        "Liquidación por renuncia o despido: cómo se calcula el finiquito"
       ],
       "alternates": [],
       "schemaTypes": [
@@ -3829,16 +4537,27 @@
     "/guias/",
     "/guias/certificado-de-cumplimiento-tributario/",
     "/guias/como-ingresar-a-marangatu/",
+    "/guias/conciliacion-bancaria/",
     "/guias/consulta-de-ruc/",
     "/guias/ekuatiai-paso-a-paso/",
+    "/guias/factura-legal-paraguay/",
     "/guias/formulario-120-paso-a-paso/",
     "/guias/inscripcion-de-ruc-paso-a-paso/",
     "/guias/inscripcion-patronal-ips/",
     "/guias/irp-quien-debe-pagar/",
+    "/guias/kude/",
+    "/guias/libro-diario-y-libro-mayor/",
     "/guias/multas-dnit-como-regularizar/",
+    "/guias/nota-de-credito/",
+    "/guias/preaviso-paraguay/",
     "/guias/que-es-sifen/",
+    "/guias/registro-mipymes/",
+    "/guias/salario-minimo-paraguay/",
+    "/guias/suace/",
+    "/guias/ver-aportes-ips/",
     "/herramientas/",
     "/herramientas/calculadora-aguinaldo/",
+    "/herramientas/calculadora-ips/",
     "/herramientas/calculadora-iva/",
     "/herramientas/comparador-eas-srl-unipersonal/",
     "/herramientas/liquidacion-de-salario/",
@@ -3854,6 +4573,7 @@
     "/privacidad/",
     "/ruc/",
     "/servicios/",
+    "/srl/",
     "/terminos/"
   ],
   "robots": "# contador.com.py\nUser-agent: *\nAllow: /\n\n# Application internals — never useful to a crawler.\nDisallow: /content/\nDisallow: /lib/\nDisallow: /partials/\nDisallow: /templates/\nDisallow: /logs/\nDisallow: /enviar.php\nDisallow: /*?enviado=\nDisallow: /*?error=\n\nSitemap: https://contador.com.py/sitemap.xml\n"

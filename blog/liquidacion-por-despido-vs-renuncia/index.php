@@ -65,7 +65,7 @@ $sections = [
         ],
     ],
     [
-        'h2'   => 'Ejemplo numérico: el mismo trabajador, dos motivos distintos',
+        'h2'   => 'Cómo se calcula: el mismo trabajador, por renuncia y por despido',
         'body' => [
             'Tome un trabajador con 6 años de antigüedad y un salario mensual de Gs. 4.000.000 que se '
                 . 'desvincula el 15 de un mes cualquiera. En una renuncia, cobra el salario proporcional '
@@ -138,6 +138,11 @@ $toolLink = [
         'label' => 'Calculadora de liquidación de salario',
         'text'  => 'Elija renuncia o despido y obtenga el finiquito completo: proporcionales, preaviso e '
                  . 'indemnización si corresponden, con el aporte del 9 % al IPS como línea aparte.',
+    ],
+    [
+        'path'  => '/guias/preaviso-paraguay/',
+        'label' => 'Preaviso en Paraguay: cuántos días corresponden',
+        'text'  => 'Vea el plazo de preaviso según la antigüedad del trabajador y cómo se calcula en la liquidación.',
     ],
 ];
 

@@ -49,6 +49,26 @@ $howTo = [
     'step'        => $howToSteps,
 ];
 
+/* The thumbnail is a webimg set: <base>-<width>.avif/.webp plus <base>-og.jpg.
+   content/guias.php names one file of the set; the widths on disk decide the
+   srcset, and the -og.jpg (when present) becomes this page's og:image. */
+$guideThumb = null;
+if (!empty($guide['thumbnail']['src'])) {
+    $guideThumbBase = preg_replace('/-\d+\.(avif|webp)$/', '', $guide['thumbnail']['src']);
+    $guideThumbWidths = array_values(array_filter(
+        [640, 1280, 1920],
+        static fn (int $w): bool => is_file(ROOT_DIR . $guideThumbBase . '-' . $w . '.webp')
+    ));
+    if ($guideThumbWidths !== []) {
+        $guideThumb = [
+            'base'   => $guideThumbBase,
+            'widths' => $guideThumbWidths,
+            'og'     => is_file(ROOT_DIR . $guideThumbBase . '-og.jpg') ? $guideThumbBase . '-og.jpg' : null,
+            'size'   => @getimagesize(ROOT_DIR . $guideThumbBase . '-1280.webp') ?: [1280, 960],
+        ];
+    }
+}
+
 $page = [
     'title'       => $guide['seoTitle'] !== '' ? $guide['seoTitle'] : $guide['title'],
     'description' => $guide['metaDescription'],
@@ -61,6 +81,9 @@ $page = [
     'leadSlug' => $delegateSlug,
     'jsonld'   => [$howTo],
 ];
+if ($guideThumb !== null && $guideThumb['og'] !== null) {
+    $page['ogImage'] = $guideThumb['og'];
+}
 
 require ROOT_DIR . '/partials/head.php';
 require ROOT_DIR . '/partials/header.php';
@@ -74,9 +97,21 @@ require ROOT_DIR . '/partials/header.php';
         <p class="eyebrow"><?= e($guide['hero']['eyebrow']) ?></p>
         <h1><?= e($guide['hero']['h1']) ?></h1>
         <p class="lead"><?= e($guide['hero']['lead']) ?></p>
-        <?php if (!empty($guide['thumbnail']['src'])): ?>
-          <img class="article-thumbnail" src="<?= e(asset($guide['thumbnail']['src'])) ?>"
-               alt="<?= e($guide['thumbnail']['alt'] ?? '') ?>" width="1280" height="960" loading="lazy">
+        <?php if ($guideThumb !== null): ?>
+          <picture>
+            <?php foreach (['avif', 'webp'] as $guideThumbType): ?>
+              <?php $guideThumbSet = []; ?>
+              <?php foreach ($guideThumb['widths'] as $guideThumbWidth): ?>
+                <?php $guideThumbSet[] = asset($guideThumb['base'] . '-' . $guideThumbWidth . '.' . $guideThumbType) . ' ' . $guideThumbWidth . 'w'; ?>
+              <?php endforeach; ?>
+              <source type="image/<?= $guideThumbType ?>" srcset="<?= e(implode(', ', $guideThumbSet)) ?>"
+                      sizes="(min-width: 1024px) 760px, 100vw">
+            <?php endforeach; ?>
+            <img class="article-thumbnail" src="<?= e(asset($guideThumb['base'] . '-1280.webp')) ?>"
+                 alt="<?= e($guide['thumbnail']['alt'] ?? '') ?>"
+                 width="<?= (int) $guideThumb['size'][0] ?>" height="<?= (int) $guideThumb['size'][1] ?>"
+                 fetchpriority="high" decoding="async">
+          </picture>
         <?php endif; ?>
       </div>
     </div>

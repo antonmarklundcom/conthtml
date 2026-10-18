@@ -140,6 +140,11 @@ $toolLink = [
         'text'  => 'Compare las tres estructuras en una tabla y responda tres preguntas para saber cuál '
                  . 'le conviene.',
     ],
+    [
+        'path'  => '/guias/suace/',
+        'label' => 'SUACE: cómo abrir una empresa paso a paso',
+        'text'  => 'Siga el trámite de una EAS en el SUACE, desde la identidad electrónica hasta el RUC.',
+    ],
 ];
 
 require ROOT_DIR . '/templates/article.php';
