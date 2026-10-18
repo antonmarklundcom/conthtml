@@ -962,6 +962,10 @@ return [
             'text'  => 'Cargue un salario y vea el 9 % del trabajador, el 16,5 % de la empresa y el sueldo neto.',
         ],
         'related' => ['ver-aportes-ips', 'preaviso-paraguay', 'inscripcion-patronal-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/salario-minimo-trabajadora-paraguay-1280.avif',
+            'alt' => 'Trabajadora con su sobre de sueldo sube una escalera de monedas hacia una puerta iluminada, junto a un lapacho en flor.',
+        ],
     ],
 
     'ver-aportes-ips' => [
@@ -1031,6 +1035,10 @@ return [
             'text'  => 'Calcule cuánto deberían aportar usted y su empleador sobre su salario.',
         ],
         'related' => ['salario-minimo-paraguay', 'inscripcion-patronal-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/aportes-ips-celular-familia-paraguay-1280.avif',
+            'alt' => 'Hombre bajo un lapacho mira su celular, del que surge un paraguas de meses dorados que protege a su familia.',
+        ],
     ],
 
     'preaviso-paraguay' => [
@@ -1107,6 +1115,10 @@ return [
             'text'  => 'Calcule el preaviso, la indemnización, las vacaciones y el aguinaldo de un finiquito.',
         ],
         'related' => ['salario-minimo-paraguay', 'ver-aportes-ips'],
+        'thumbnail' => [
+            'src' => '/assets/img/preaviso-laboral-reloj-arena-paraguay-1280.avif',
+            'alt' => 'Trabajador y empleador se dan la mano frente a un reloj de arena del que sale un camino de calendarios.',
+        ],
     ],
 
     'suace' => [
@@ -1196,6 +1208,10 @@ return [
             'text'  => 'Responda tres preguntas y vea qué figura le conviene antes de entrar al SUACE.',
         ],
         'related' => ['inscripcion-de-ruc-paso-a-paso', 'inscripcion-patronal-ips', 'ekuatiai-paso-a-paso'],
+        'thumbnail' => [
+            'src' => '/assets/img/suace-apertura-empresa-online-paraguay-1280.avif',
+            'alt' => 'Dos emprendedores encajan piezas de rompecabezas que salen de una tableta para armar el frente de su nueva empresa.',
+        ],
     ],
 
     'kude' => [
@@ -1277,6 +1293,10 @@ return [
         'relatedService' => 'ekuatia',
         'toolLink' => null,
         'related' => ['que-es-sifen', 'ekuatiai-paso-a-paso', 'factura-legal-paraguay'],
+        'thumbnail' => [
+            'src' => '/assets/img/kude-factura-electronica-mercado-paraguay-1280.avif',
+            'alt' => 'Cliente escanea con el celular el código QR del comprobante que le entrega un vendedor de chipa en el mercado.',
+        ],
     ],
 
     'nota-de-credito' => [
@@ -1360,6 +1380,10 @@ return [
             'text'  => 'Separe el IVA incluido de cualquier importe antes de armar la nota.',
         ],
         'related' => ['kude', 'que-es-sifen', 'factura-legal-paraguay'],
+        'thumbnail' => [
+            'src' => '/assets/img/nota-de-credito-devolucion-comercio-1280.avif',
+            'alt' => 'Cliente devuelve una caja en el mostrador de un comercio mientras las monedas vuelven de la caja, bajo una balanza.',
+        ],
     ],
 
     'factura-legal-paraguay' => [
@@ -1442,6 +1466,10 @@ return [
         'relatedService' => 'ekuatia',
         'toolLink' => null,
         'related' => ['como-ingresar-a-marangatu', 'inscripcion-de-ruc-paso-a-paso', 'kude'],
+        'thumbnail' => [
+            'src' => '/assets/img/factura-legal-almacen-paraguay-1280.avif',
+            'alt' => 'Dueño de un almacén de barrio entrega una factura a una clienta, bajo un sello dorado de ñandutí.',
+        ],
     ],
 
     'libro-diario-y-libro-mayor' => [
@@ -1548,6 +1576,10 @@ return [
         'relatedService' => 'contabilidad',
         'toolLink' => null,
         'related' => ['conciliacion-bancaria', 'formulario-120-paso-a-paso', 'suace'],
+        'thumbnail' => [
+            'src' => '/assets/img/libro-diario-libro-mayor-contabilidad-1280.avif',
+            'alt' => 'Una fila de personas lleva una cinta de asientos desde el libro diario hasta un libro mayor lleno de cajones ordenados.',
+        ],
     ],
 
     'conciliacion-bancaria' => [
@@ -1639,6 +1671,10 @@ return [
         'relatedService' => 'contabilidad',
         'toolLink' => null,
         'related' => ['libro-diario-y-libro-mayor', 'formulario-120-paso-a-paso'],
+        'thumbnail' => [
+            'src' => '/assets/img/conciliacion-bancaria-banco-libros-1280.avif',
+            'alt' => 'Contadora con una lupa coloca la moneda que faltaba para unir los movimientos del banco con los del libro contable.',
+        ],
     ],
 
     'registro-mipymes' => [
@@ -1729,6 +1765,10 @@ return [
             'text'  => 'Si todavía no tiene empresa, compare las formas de constituirla antes de registrarla como MIPYME.',
         ],
         'related' => ['suace', 'inscripcion-de-ruc-paso-a-paso'],
+        'thumbnail' => [
+            'src' => '/assets/img/mipymes-comercios-barrio-paraguay-1280.avif',
+            'alt' => 'Calle de barrio con panadería de chipa, sastrería, taller de motos y carpintería cada vez más altos, bajo una insignia dorada.',
+        ],
     ],
 
 ];
