@@ -139,6 +139,11 @@ $toolLink = [
         'text'  => 'Elija renuncia o despido y obtenga el finiquito completo: proporcionales, preaviso e '
                  . 'indemnización si corresponden, con el aporte del 9 % al IPS como línea aparte.',
     ],
+    [
+        'path'  => '/guias/preaviso-paraguay/',
+        'label' => 'Preaviso en Paraguay: cuántos días corresponden',
+        'text'  => 'Vea el plazo de preaviso según la antigüedad del trabajador y cómo se calcula en la liquidación.',
+    ],
 ];
 
 require ROOT_DIR . '/templates/article.php';

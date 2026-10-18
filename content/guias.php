@@ -1198,4 +1198,537 @@ return [
         'related' => ['inscripcion-de-ruc-paso-a-paso', 'inscripcion-patronal-ips', 'ekuatiai-paso-a-paso'],
     ],
 
+    'kude' => [
+        'path'            => '/guias/kude/',
+        'title'           => 'KuDE de la factura electrónica',
+        'navLabel'        => 'KuDE: verificar una factura',
+        'seoTitle'        => 'KuDE: qué es y cómo verificar la factura',
+        'metaDescription' => 'Qué es el KuDE de la factura electrónica y cómo verificarla con el código QR o el CDC '
+                            . 'de 44 dígitos en la consulta pública de Ekuatia.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'KuDE: qué es y cómo verificar una factura electrónica en Paraguay',
+            'lead'    => 'La representación gráfica de la factura electrónica, y cómo comprobar con el QR o el '
+                        . 'CDC que el documento existe y está aprobado.',
+        ],
+        'intro' => [
+            'El KuDE es la representación gráfica de un documento electrónico del SIFEN: lo que usted '
+                . 'recibe impreso o en PDF cuando le emiten una factura electrónica. El documento con valor '
+                . 'legal es el archivo XML firmado y aprobado por la DNIT (antes SET); el KuDE es su versión '
+                . 'legible.',
+            'Si le entregaron un KuDE y quiere saber si la factura es real, no hace falta ser facturador '
+                . 'electrónico. Basta con el código QR o con el CDC que figura en el documento.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Qué es el KuDE y qué muestra',
+                'body'  => [
+                    'El KuDE reúne los datos de la operación: el emisor, el comprador, el detalle de '
+                        . 'productos o servicios, los totales y el IVA. También trae un código QR y el CDC, '
+                        . 'un código de control de 44 dígitos que identifica ese documento.',
+                    'El título cambia según el tipo de documento, por ejemplo "KuDE de Factura Electrónica" '
+                        . 'o "KuDE de Nota de Crédito Electrónica".',
+                ],
+            ],
+            [
+                'title' => 'Para qué se usa',
+                'body'  => [
+                    'El emisor entrega el KuDE al comprador que no es '
+                        . 'facturador electrónico o que es consumidor final, y le sirve como comprobante de '
+                        . 'la compra. Si el comprador sí es facturador electrónico, lo habitual es enviarle '
+                        . 'el XML.',
+                ],
+            ],
+            [
+                'title' => 'Ver la factura electrónica con el código QR',
+                'body'  => [
+                    'Escanee el QR del KuDE con la cámara o una aplicación lectora del celular. Se abre la '
+                        . 'consulta del SIFEN con los datos del documento. Compare el emisor, la fecha y el '
+                        . 'total con lo que le entregaron.',
+                ],
+            ],
+            [
+                'title' => 'Verificación de la factura electrónica con el CDC',
+                'body'  => [
+                    'Si no puede leer el QR, entre a la consulta pública de Ekuatia de la DNIT, '
+                        . 'escriba los 44 dígitos del CDC sin espacios, complete la verificación de seguridad '
+                        . 'y consulte. El CDC está impreso en el KuDE, debajo del QR.',
+                    'Si el sistema no encuentra el documento, revise primero que no haya un dígito mal '
+                        . 'copiado.',
+                ],
+            ],
+            [
+                'title' => 'Qué hacer si algo no coincide',
+                'body'  => [
+                    'Si el documento no aparece, o los datos no coinciden con lo que le entregaron, pida '
+                        . 'una aclaración al emisor antes de usar la factura como respaldo de un gasto. '
+                        . 'Guarde el KuDE y, si el emisor se lo envía, también el XML. Por cuánto tiempo '
+                        . 'debe conservarlos depende de la reglamentación vigente: consulte con nosotros.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es el KuDE?', 'a' => 'Es la representación gráfica, impresa o en PDF, de un documento electrónico del SIFEN. Lleva un código QR y el CDC de 44 dígitos. El documento legal es el XML firmado y aprobado por la DNIT.'],
+            ['q' => '¿Cómo puedo ver si una factura electrónica es válida?', 'a' => 'Escanee el QR del KuDE o ingrese el CDC de 44 dígitos en la consulta pública de Ekuatia de la DNIT. La consulta muestra si el documento existe y sus datos.'],
+            ['q' => '¿Dónde está el CDC en la factura electrónica?', 'a' => 'Está impreso en el KuDE, debajo del código QR. Son 44 dígitos; los primeros indican el tipo de documento.'],
+            ['q' => '¿Necesito ser facturador electrónico para hacer la verificación de una factura electrónica?', 'a' => 'No. La consulta por QR o por CDC está abierta a cualquier persona que tenga el KuDE.'],
+        ],
+        'relatedService' => 'ekuatia',
+        'toolLink' => null,
+        'related' => ['que-es-sifen', 'ekuatiai-paso-a-paso', 'factura-legal-paraguay'],
+    ],
+
+    'nota-de-credito' => [
+        'path'            => '/guias/nota-de-credito/',
+        'title'           => 'Nota de crédito y nota de débito',
+        'navLabel'        => 'Nota de crédito y de débito',
+        'seoTitle'        => 'Nota de crédito y nota de débito',
+        'metaDescription' => 'Nota de crédito y nota de débito en Paraguay: para qué sirven, cuándo se emiten, '
+                            . 'cómo se relacionan con la factura original y un ejemplo.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Nota de crédito y nota de débito: para qué sirven y cuándo se emiten',
+            'lead'    => 'Dos documentos que corrigen una factura ya emitida: uno la reduce, el otro la aumenta.',
+        ],
+        'intro' => [
+            'La nota de crédito sirve para reducir o anular, total o parcialmente, una operación que ya '
+                . 'tiene factura. Es lo que se emite, por ejemplo, ante una devolución o un descuento '
+                . 'posterior a la venta. La nota de débito hace lo contrario: aumenta el importe de una '
+                . 'operación ya documentada.',
+            'En ambos casos la nota se emite sobre una factura existente y la referencia. Esta guía explica '
+                . 'cuándo corresponde cada una, cómo es la nota de crédito electrónica y un ejemplo con IVA.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Nota de crédito: para qué sirve',
+                'body'  => [
+                    'Se usa cuando la factura ya fue emitida y hay que corregirla hacia abajo: el cliente '
+                        . 'devuelve mercadería, se otorga un descuento o una bonificación, o se ajusta un '
+                        . 'precio. Reduce lo que el cliente debe, sin borrar la factura original.',
+                ],
+            ],
+            [
+                'title' => 'Nota de débito: para qué sirve',
+                'body'  => [
+                    'Se usa cuando hay que corregir la factura hacia arriba, por ejemplo por un ajuste de '
+                        . 'precio o por un costo o gasto que se recupera del cliente. Agrega un importe a '
+                        . 'una operación ya documentada.',
+                ],
+            ],
+            [
+                'title' => 'Nota de crédito electrónica: cómo se relaciona con la factura',
+                'body'  => [
+                    'En el SIFEN, la nota de crédito electrónica y la de débito se asocian a la factura '
+                        . 'original mediante su CDC, el código de 44 dígitos del documento. La factura '
+                        . 'tiene que estar aprobada, y la nota no puede acreditar más que su total.',
+                    'Los motivos admitidos y los plazos son los que fija la reglamentación vigente: '
+                        . 'consulte con nosotros antes de emitir una nota en un caso dudoso.',
+                ],
+            ],
+            [
+                'title' => 'Nota de crédito o cancelación de la factura',
+                'body'  => [
+                    'Una factura electrónica aprobada también puede cancelarse, pero solo dentro de un '
+                        . 'plazo corto desde su aprobación. Pasado ese plazo, o si la corrección es '
+                        . 'parcial, se emite una nota de crédito. Verifique el plazo vigente en Ekuatia '
+                        . 'antes de decidir.',
+                ],
+            ],
+            [
+                'title' => 'Ejemplo de nota de crédito',
+                'body'  => [
+                    'Una factura por Gs. 330.000 incluye tres productos de Gs. 110.000 cada uno, con IVA '
+                        . '10 % incluido. El cliente devuelve uno. Se emite una nota de crédito por '
+                        . 'Gs. 110.000 que referencia la factura original. El IVA de esa nota es de '
+                        . 'Gs. 10.000 (110.000 / 11).',
+                    'Para calcular el IVA incluido de cualquier importe, use la calculadora.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Para qué sirve la nota de crédito?', 'a' => 'Para reducir o anular, total o parcialmente, una operación ya facturada: una devolución, un descuento posterior o un ajuste de precio.'],
+            ['q' => '¿Nota de débito para qué sirve?', 'a' => 'Para aumentar el importe de una operación ya documentada, por ejemplo un ajuste de precio o un gasto que se recupera del cliente.'],
+            ['q' => '¿Qué diferencia hay entre la nota de crédito y la nota de débito?', 'a' => 'La nota de crédito reduce lo facturado y la de débito lo aumenta. Las dos se emiten sobre una factura existente y la referencian.'],
+            ['q' => '¿Se puede emitir una nota de crédito electrónica?', 'a' => 'Sí. En el SIFEN existe la nota de crédito electrónica, que se asocia a la factura electrónica original por su CDC. Los detalles y plazos están en la reglamentación vigente.'],
+        ],
+        'relatedService' => 'ekuatia',
+        'toolLink' => [
+            'path'  => '/herramientas/calculadora-iva/',
+            'label' => 'Calculadora de IVA',
+            'text'  => 'Separe el IVA incluido de cualquier importe antes de armar la nota.',
+        ],
+        'related' => ['kude', 'que-es-sifen', 'factura-legal-paraguay'],
+    ],
+
+    'factura-legal-paraguay' => [
+        'path'            => '/guias/factura-legal-paraguay/',
+        'title'           => 'Factura legal en Paraguay',
+        'navLabel'        => 'Factura legal y timbrado',
+        'seoTitle'        => 'Factura legal Paraguay: requisitos',
+        'metaDescription' => 'Qué hace legal a una factura en Paraguay: el timbrado de la DNIT, la factura virtual '
+                            . 'en Marangatu y los requisitos para emitirla.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Factura legal en Paraguay: timbrado, factura virtual y requisitos',
+            'lead'    => 'Qué hace válida a una factura, cómo se relaciona con el timbrado y dónde se emite la '
+                        . 'factura virtual.',
+        ],
+        'intro' => [
+            'Una factura legal en Paraguay es un comprobante emitido con un timbrado autorizado por la DNIT '
+                . '(antes SET). Sin timbrado no es un comprobante tributario válido. Hoy conviven la factura '
+                . 'virtual, que se emite desde Marangatu, y la factura electrónica del SIFEN.',
+            'Esta guía resume los requisitos para tener factura legal, qué es el timbrado y por dónde se '
+                . 'empieza. Los detalles cambian con la reglamentación, por eso le decimos dónde confirmarlos.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Qué hace legal a una factura',
+                'body'  => [
+                    'Una factura es legal cuando se emite bajo un timbrado vigente y dentro de la '
+                        . 'numeración que ese timbrado autoriza. La norma base es el Decreto 6539/2005, que '
+                        . 'aprueba el reglamento general de timbrado y uso de comprobantes de venta.',
+                ],
+            ],
+            [
+                'title' => 'Qué es el timbrado',
+                'body'  => [
+                    'El timbrado es la autorización de la DNIT para emitir comprobantes de venta y '
+                        . 'documentos relacionados. Se expresa como un número. Para la factura electrónica, '
+                        . 'ese número viaja dentro del documento firmado.',
+                    'La vigencia y las condiciones del timbrado de comprobantes en papel dependen de la '
+                        . 'reglamentación vigente: consulte con nosotros o revise la sección Facturación y '
+                        . 'timbrado del sitio de la DNIT.',
+                ],
+            ],
+            [
+                'title' => 'Requisitos para tener factura legal en Paraguay',
+                'body'  => [
+                    'Hace falta estar inscripto en el RUC y tener las obligaciones tributarias al día; luego '
+                        . 'se solicita la autorización y el timbrado en Marangatu. La DNIT puede pedir '
+                        . 'condiciones adicionales según su situación, por ejemplo la comunicación de la '
+                        . 'numeración ya utilizada.',
+                ],
+            ],
+            [
+                'title' => 'Factura virtual en Marangatu',
+                'body'  => [
+                    'La Resolución General 03/18 aprobó la emisión de facturas virtuales a través de '
+                        . 'Marangatu, desde el 1 de noviembre de 2018. La emite el contribuyente, o un '
+                        . 'tercero autorizado, con su clave de acceso, y solo si está autorizado y timbrado '
+                        . 'para esa modalidad. La DNIT publica guías para solicitarla, emitirla y darla de '
+                        . 'baja.',
+                    'Si aún no tiene acceso al sistema, empiece por la guía de ingreso a Marangatu.',
+                ],
+            ],
+            [
+                'title' => 'Boleta legal y factura electrónica',
+                'body'  => [
+                    'En el uso corriente, "boleta legal" suele referirse a un comprobante con timbrado '
+                        . 'válido, como la factura. La factura electrónica del SIFEN es otra modalidad, con su propio timbrado electrónico y '
+                        . 'habilitación. Si no sabe cuál le corresponde, consúltenos antes de cambiar de '
+                        . 'sistema.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es una factura legal en Paraguay?', 'a' => 'Es la factura emitida con un timbrado autorizado por la DNIT, dentro de la numeración que ese timbrado habilita. Sin timbrado no es un comprobante válido.'],
+            ['q' => '¿Cuáles son los requisitos para tener factura legal en Paraguay?', 'a' => 'Estar inscripto en el RUC, tener las obligaciones al día y solicitar la autorización y el timbrado en Marangatu. La DNIT puede pedir condiciones adicionales; consulte con nosotros su caso.'],
+            ['q' => '¿Cómo se emite la factura virtual en Marangatu?', 'a' => 'Con el usuario y la clave de acceso de Marangatu, si el contribuyente está autorizado y timbrado para facturar de forma virtual. La DNIT publica una guía paso a paso.'],
+            ['q' => '¿La factura virtual de la SET es lo mismo que la factura electrónica?', 'a' => 'No. La factura virtual se emite desde Marangatu; la factura electrónica pertenece al SIFEN y se firma digitalmente. La SET hoy se llama DNIT.'],
+        ],
+        'relatedService' => 'ekuatia',
+        'toolLink' => null,
+        'related' => ['como-ingresar-a-marangatu', 'inscripcion-de-ruc-paso-a-paso', 'kude'],
+    ],
+
+    'libro-diario-y-libro-mayor' => [
+        'path'            => '/guias/libro-diario-y-libro-mayor/',
+        'title'           => 'Libro diario y libro mayor',
+        'navLabel'        => 'Libro diario y libro mayor',
+        'seoTitle'        => 'Libro diario y libro mayor: qué son',
+        'metaDescription' => 'Qué es el libro diario y el libro mayor, cómo se relacionan y un ejemplo de '
+                            . 'asientos en guaraníes, con los libros que se rubrican en Paraguay.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Libro diario y libro mayor: qué son, cómo se llevan y un ejemplo',
+            'lead'    => 'Los dos libros base de la contabilidad, con un ejemplo de asientos en guaraníes y '
+                        . 'lo que debe saber sobre su rúbrica en Paraguay.',
+        ],
+        'intro' => [
+            'El libro diario es el registro cronológico de todas las operaciones de una empresa: cada '
+                . 'venta, compra, cobro o pago se anota en el día en que ocurre, en forma de asiento '
+                . 'contable. El libro mayor toma esos mismos asientos y los reúne por cuenta, para ver '
+                . 'cuánto entró, cuánto salió y cuánto queda en cada una.',
+            'Uno ordena los hechos por fecha y el otro los ordena por cuenta. Con los dos se pueden armar '
+                . 'el balance y el estado de resultados. Esta guía explica qué es cada uno, cómo se pasa de '
+                . 'uno a otro con un ejemplo corto, y qué libros contables tiene que tener rubricados una '
+                . 'empresa en Paraguay.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Libro diario: qué es y qué lleva',
+                'body'  => [
+                    'El libro diario en contabilidad registra cada operación en orden cronológico. Cada '
+                        . 'anotación se llama asiento y tiene siempre dos partes que suman lo mismo: lo que '
+                        . 'se anota al debe y lo que se anota al haber. Si el asiento no cuadra, hay un error.',
+                    'La Ley 1034/83 del Comerciante dice que en el libro diario se asientan en detalle las '
+                        . 'operaciones diarias, en el orden en que se hicieron (Art. 80). Cada asiento '
+                        . 'necesita su comprobante: factura, recibo, extracto o contrato.',
+                ],
+            ],
+            [
+                'title' => 'Ejemplos del libro diario: tres asientos',
+                'body'  => [
+                    'Asiento 1. Venta de mercaderías al contado por Gs. 1.100.000, con IVA del 10 % '
+                        . 'incluido. Al debe: Caja, Gs. 1.100.000. Al haber: Ventas, Gs. 1.000.000, e IVA '
+                        . 'débito fiscal, Gs. 100.000.',
+                    'Asiento 2. Compra de mercaderías a crédito por Gs. 660.000, con IVA incluido. Al debe: '
+                        . 'Mercaderías, Gs. 600.000, e IVA crédito fiscal, Gs. 60.000. Al haber: '
+                        . 'Proveedores, Gs. 660.000.',
+                    'Asiento 3. Depósito en el banco de Gs. 800.000 retirados de la caja. Al debe: Banco, '
+                        . 'Gs. 800.000. Al haber: Caja, Gs. 800.000.',
+                    'Los tres asientos suman Gs. 2.560.000 al debe y Gs. 2.560.000 al haber: cuadran. Las '
+                        . 'cuentas y los nombres pueden variar según el plan de cuentas de cada empresa.',
+                ],
+            ],
+            [
+                'title' => 'Libro mayor contable: pasar los asientos a cada cuenta',
+                'body'  => [
+                    'El libro mayor tiene una hoja por cuenta. Cada línea del diario se copia en la cuenta '
+                        . 'que corresponde, del lado del debe o del haber, y al final se calcula el saldo.',
+                    'Ejemplo con la cuenta Caja del punto anterior. Debe: Gs. 1.100.000 (asiento 1). Haber: '
+                        . 'Gs. 800.000 (asiento 3). Saldo deudor: Gs. 300.000, que es el efectivo que '
+                        . 'queda en la caja. La cuenta Banco muestra Gs. 800.000 al debe, y Proveedores '
+                        . 'muestra Gs. 660.000 al haber, que es lo que se debe.',
+                    'Al cierre del período se suman los saldos de todas las cuentas del mayor. De ahí sale '
+                        . 'el balance de comprobación, que es el punto de partida del balance general.',
+                ],
+            ],
+            [
+                'title' => 'Diferencia entre libro diario y libro mayor',
+                'body'  => [
+                    'El diario responde a la pregunta cuándo y qué pasó, y se escribe en el momento. El '
+                        . 'mayor responde cuánto hay en cada cuenta, y se arma a partir del diario. Por eso '
+                        . 'los dos tienen que coincidir: el total del debe y del haber del mayor es el '
+                        . 'mismo que el del diario.',
+                    'Hoy casi todas las empresas llevan ambos libros en un sistema contable. El sistema '
+                        . 'pasa los asientos al mayor solo, pero conviene revisar que los saldos tengan '
+                        . 'sentido y que cada asiento tenga su comprobante. Si prefiere no hacerlo usted, '
+                        . 'en nuestro servicio de contabilidad llevamos los libros todos los meses.',
+                ],
+            ],
+            [
+                'title' => 'Libros contables obligatorios y rúbrica en Paraguay',
+                'body'  => [
+                    'La Ley 1034/83 obliga al comerciante a llevar una contabilidad en orden cronológico y '
+                        . 'regular, con los libros necesarios para eso, y a conservarlos cinco años desde la '
+                        . 'última anotación (Arts. 11 y 85). Antes de usarse, los libros se presentan al '
+                        . 'Registro Público de Comercio para su rúbrica (Art. 78). La ley nombra el libro '
+                        . 'diario (Art. 80) y el libro de inventario (Art. 82), y no el libro mayor.',
+                    'Para las empresas por acciones simplificadas, la Ley 6.480/2020 pide, entre otros, '
+                        . 'libro diario y libro de inventario rubricados. Para una SRL o una S.A., los '
+                        . 'libros contables y los libros societarios (actas, registro de acciones) '
+                        . 'dependen del tipo de sociedad y de lo que fijen la ley y los estatutos: consulte '
+                        . 'con nosotros cuáles le corresponden. Los libros de compras y ventas del IVA son '
+                        . 'otro registro, con reglas de la DNIT que se actualizan, y no los reemplaza el '
+                        . 'libro diario.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es el libro diario?', 'a' => 'Es el libro donde se anotan, en orden cronológico, todas las operaciones de la empresa en forma de asientos contables, con su debe y su haber. Es la base de la contabilidad.'],
+            ['q' => '¿Qué es el libro mayor y para qué sirve?', 'a' => 'Es el libro que agrupa los asientos del diario por cuenta (Caja, Banco, Ventas, Proveedores) y muestra el saldo de cada una. Sirve para armar el balance y controlar las cuentas.'],
+            ['q' => '¿Qué libros contables son obligatorios en una SRL o una S.A.?', 'a' => 'La Ley 1034/83 exige llevar los libros necesarios para una contabilidad ordenada y nombra el libro diario y el de inventario. Los demás libros, como los societarios, dependen del tipo de sociedad: consulte con nosotros según su caso.'],
+            ['q' => '¿Se puede llevar el libro diario en Excel?', 'a' => 'Muchas empresas lo trabajan en planilla o en un sistema contable. Para que sirva como libro, hay que cumplir las formalidades de la ley, como la rúbrica del Registro Público de Comercio. Consulte cómo hacerlo antes de empezar.'],
+        ],
+        'relatedService' => 'contabilidad',
+        'toolLink' => null,
+        'related' => ['conciliacion-bancaria', 'formulario-120-paso-a-paso', 'suace'],
+    ],
+
+    'conciliacion-bancaria' => [
+        'path'            => '/guias/conciliacion-bancaria/',
+        'title'           => 'Conciliación bancaria',
+        'navLabel'        => 'Conciliación bancaria',
+        'seoTitle'        => 'Conciliación bancaria: qué es y ejemplo',
+        'metaDescription' => 'Conciliación bancaria: qué es, cómo hacerla paso a paso y un ejemplo con depósito en '
+                            . 'tránsito, cheque pendiente y comisión del banco, con su asiento.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'Conciliación bancaria: qué es, cómo se hace y un ejemplo',
+            'lead'    => 'Cómo comparar el extracto del banco con sus libros, explicar la diferencia y '
+                        . 'registrar lo que falta.',
+        ],
+        'intro' => [
+            'La conciliación bancaria es la comparación entre el saldo de la cuenta del banco en su '
+                . 'contabilidad y el saldo que figura en el extracto del banco. Rara vez coinciden el '
+                . 'mismo día, y la conciliación explica por qué: qué partidas están de un lado y todavía '
+                . 'no en el otro.',
+            'Se hace todos los meses y sirve para detectar errores, comisiones sin registrar y cheques '
+                . 'que no se cobraron. Esta guía muestra el método y un ejemplo con cifras que cierran.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Junte el extracto y el mayor del banco',
+                'body'  => [
+                    'Necesita dos documentos del mismo período: el extracto que entrega el banco y la '
+                        . 'cuenta Banco del libro mayor de su contabilidad. Anote el saldo final de cada '
+                        . 'uno. En el ejemplo de esta guía, el mayor muestra Gs. 10.000.000 y el extracto, '
+                        . 'Gs. 8.850.000.',
+                ],
+            ],
+            [
+                'title' => 'Marque lo que coincide y detecte las diferencias',
+                'body'  => [
+                    'Compare movimiento por movimiento, con fecha e importe. Lo que está en los dos lados '
+                        . 'queda tildado. Lo que sobra en uno de ellos es una partida conciliatoria. Hay '
+                        . 'dos grupos: las que el banco todavía no registró (depósitos en tránsito, '
+                        . 'cheques emitidos que no se cobraron) y las que usted todavía no registró '
+                        . '(comisiones, intereses, débitos automáticos, errores).',
+                ],
+            ],
+            [
+                'title' => 'Conciliación bancaria, ejemplo con cifras',
+                'body'  => [
+                    'Datos. Saldo según el extracto: Gs. 8.850.000. Depósito en tránsito (hecho el último '
+                        . 'día, el banco lo acredita después): Gs. 1.500.000. Cheque emitido que todavía no '
+                        . 'se cobró: Gs. 400.000. Comisión de mantenimiento del banco, que no está en los '
+                        . 'libros: Gs. 50.000.',
+                    'Del lado del banco: Gs. 8.850.000 más el depósito en tránsito de Gs. 1.500.000, menos '
+                        . 'el cheque pendiente de Gs. 400.000, da un saldo conciliado de Gs. 9.950.000.',
+                    'Del lado de los libros: Gs. 10.000.000 menos la comisión de Gs. 50.000 también da '
+                        . 'Gs. 9.950.000. Los dos lados coinciden, entonces la conciliación cierra.',
+                ],
+            ],
+            [
+                'title' => 'Asiento de conciliación bancaria',
+                'body'  => [
+                    'Las partidas del banco (depósito en tránsito, cheque pendiente) no llevan asiento: '
+                        . 'se resuelven solas cuando el banco las registra. Solo se asienta lo que falta en '
+                        . 'sus libros. En el ejemplo, la comisión: al debe, Gastos bancarios, Gs. 50.000; '
+                        . 'al haber, Banco, Gs. 50.000.',
+                    'Después del asiento, la cuenta Banco del mayor queda en Gs. 9.950.000, igual al saldo '
+                        . 'conciliado. Guarde la planilla de conciliación firmada junto al extracto.',
+                ],
+            ],
+            [
+                'title' => 'Conciliación bancaria en Excel y cada cuánto',
+                'body'  => [
+                    'Una planilla con cuatro bloques alcanza: saldo del extracto, partidas del banco, '
+                        . 'saldo de libros y partidas de libros. La diferencia final tiene que ser cero. '
+                        . 'Hágala una vez por mes, con cada cuenta bancaria por separado, y antes de '
+                        . 'cerrar el mes contable.',
+                    'Si la diferencia no cierra, revise primero los importes con cifras invertidas (por '
+                        . 'ejemplo, 45.000 en vez de 54.000) y los movimientos de otro mes. Si prefiere no '
+                        . 'hacerlo usted, en nuestro servicio de contabilidad conciliamos las cuentas '
+                        . 'todos los meses.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es la conciliación bancaria?', 'a' => 'Es el control que compara el saldo de la cuenta del banco en su contabilidad con el del extracto, y explica cada diferencia entre ambos. Se hace una vez por mes.'],
+            ['q' => '¿Cómo se hace una conciliación bancaria paso a paso?', 'a' => 'Se toman el extracto y el mayor del banco, se tildan los movimientos que coinciden, se listan las diferencias y se ajusta cada lado hasta llegar al mismo saldo. Lo que falta en libros se registra con un asiento.'],
+            ['q' => '¿Qué es un depósito en tránsito?', 'a' => 'Es un depósito que usted ya registró en sus libros, pero que el banco todavía no acreditó en el extracto porque se hizo al cierre del período. No lleva asiento.'],
+            ['q' => '¿Con qué frecuencia hay que conciliar el banco?', 'a' => 'Lo habitual es una vez por mes, antes de cerrar la contabilidad. Una empresa con muchos movimientos puede conciliar con más frecuencia.'],
+        ],
+        'relatedService' => 'contabilidad',
+        'toolLink' => null,
+        'related' => ['libro-diario-y-libro-mayor', 'formulario-120-paso-a-paso'],
+    ],
+
+    'registro-mipymes' => [
+        'path'            => '/guias/registro-mipymes/',
+        'title'           => 'Registro MIPYMES',
+        'navLabel'        => 'Registro MIPYMES y cédula',
+        'seoTitle'        => 'MIPYMES Paraguay: cédula y registro',
+        'metaDescription' => 'MIPYMES en Paraguay: qué categorías existen, cómo obtener la cédula MIPYMES en '
+                            . 'mipymes.gov.py, qué beneficios da y qué hacer si su empresa no la recibió.',
+        'lastReviewed'    => '2026-10-17',
+        'hero' => [
+            'eyebrow' => 'Guías',
+            'h1'      => 'MIPYMES en Paraguay: registro y cédula MIPYMES, paso a paso',
+            'lead'    => 'Cómo saber si su empresa es micro, pequeña o mediana, cómo descargar la cédula y '
+                        . 'qué beneficios trae.',
+        ],
+        'intro' => [
+            'Las MIPYMES (micro, pequeñas y medianas empresas) se rigen por la Ley N.º 4457/2012, '
+                . 'modificada por la Ley N.º 7444, publicada en enero de 2025. Las categorías se definen '
+                . 'por la cantidad de trabajadores y la facturación anual, y las administra el '
+                . 'Viceministerio de MIPYMES del Ministerio de Industria y Comercio (MIC).',
+            'Con la ley vigente, el registro ya no es un trámite que cada empresa inicia desde cero: el '
+                . 'MIC arma el Registro Nacional de MIPYMES cruzando datos de la DNIT, el IPS y el MTESS. '
+                . 'Esta guía explica cómo comprobar si su empresa figura y qué hacer si no. Es orientativa: '
+                . 'los topes de facturación pueden actualizarse por decreto.',
+        ],
+        'steps' => [
+            [
+                'title' => 'Confirme que su RUC está activo',
+                'body'  => [
+                    'La base del registro es el RUC. La cédula se genera para empresas con RUC activo; sin '
+                        . 'RUC, la empresa no entra. Si todavía no lo tiene, primero hay que inscribirlo.',
+                ],
+            ],
+            [
+                'title' => 'Identifique su categoría',
+                'body'  => [
+                    'La ley define tres categorías: microempresa (hasta diez trabajadores), pequeña (de once '
+                        . 'a treinta) y mediana (de treinta y uno a cincuenta), cada una con su tope de '
+                        . 'facturación anual. Los topes en guaraníes los fija y actualiza el MIC, y las '
+                        . 'cifras publicadas varían entre fuentes: confírmelos en el sitio del MIC antes de '
+                        . 'decidir nada.',
+                    'Si hay discrepancia entre los parámetros, la ley da prioridad a la facturación bruta '
+                        . 'anual. Para empresas recién creadas se toma en cuenta el activo patrimonial '
+                        . 'declarado.',
+                ],
+            ],
+            [
+                'title' => 'Descargue la cédula MIPYMES en línea',
+                'body'  => [
+                    'La cédula MIPYMES se obtiene en la página web del MIC, en mipymes.gov.py, y la '
+                        . 'inclusión en el registro es gratuita, sin trámites presenciales. Como el registro '
+                        . 'se arma con datos de la DNIT, el IPS y el MTESS, su empresa puede figurar ya sin '
+                        . 'haberlo pedido.',
+                ],
+            ],
+            [
+                'title' => 'Si no figura o la categoría no es la correcta',
+                'body'  => [
+                    'Verifique que el RUC esté activo y que sus declaraciones y su registro patronal estén '
+                        . 'al día, porque el sistema se alimenta de esos datos. Si la categoría asignada no '
+                        . 'es la adecuada, la ley permite pedir al Viceministerio de MIPYMES que la '
+                        . 'modifique, con la documentación de respaldo.',
+                    'La ley deja fuera a las empresas de intermediación financiera y de seguros, y a '
+                        . 'ciertas personas físicas contribuyentes del impuesto a la renta personal.',
+                ],
+            ],
+            [
+                'title' => 'Aproveche los beneficios y renueve cada año',
+                'body'  => [
+                    'La ley prevé trato preferencial en contrataciones públicas, descuentos en la patente '
+                        . 'comercial y exoneración o descuento de tasas por servicios del Estado para micro '
+                        . 'y pequeñas empresas. La cédula se actualiza cada año, y eso puede cambiar su '
+                        . 'categoría o sacarla del registro si supera los límites.',
+                ],
+            ],
+        ],
+        'faq' => [
+            ['q' => '¿Qué es la cédula MIPYMES?', 'a' => 'Es el documento que acredita que una empresa está formalizada y registrada como micro, pequeña o mediana. Según la ley, sirve ante cualquier institución pública o privada como constancia de entidad jurídica formalizada, y se actualiza todos los años.'],
+            ['q' => '¿Tiene costo registrarse como MIPYME?', 'a' => 'No. La Ley N.º 7444 establece que la inclusión en el Registro Nacional de MIPYMES es gratuita, y la cédula se descarga sin costo en mipymes.gov.py.'],
+            ['q' => '¿Cuál es el tope de facturación de cada categoría?', 'a' => 'Lo fija el MIC y se actualiza según el índice de precios al consumidor, así que cambia. La ley fija los tramos de trabajadores: hasta 10, de 11 a 30 y de 31 a 50. Para los montos en guaraníes, consulte los topes vigentes en el sitio del MIC.'],
+            ['q' => '¿Una persona física con RUC puede ser MIPYME?', 'a' => 'Depende de su situación tributaria. La ley excluye a ciertas personas físicas contribuyentes del impuesto a la renta personal. Revise su caso con su contador antes de contar con los beneficios.'],
+        ],
+        'relatedService' => 'eas',
+        'toolLink' => [
+            'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+            'label' => 'Comparador EAS, SRL o Unipersonal',
+            'text'  => 'Si todavía no tiene empresa, compare las formas de constituirla antes de registrarla como MIPYME.',
+        ],
+        'related' => ['suace', 'inscripcion-de-ruc-paso-a-paso'],
+    ],
+
 ];

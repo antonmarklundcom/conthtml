@@ -131,6 +131,25 @@ return [
             ],
         ],
 
+        'srl' => [
+            'menuLabel'    => 'Constituir una SRL',
+            'need'         => 'apertura',
+            'tier'         => 'A',
+            'whatsappText' => 'Hola, quiero constituir una SRL.',
+            'nextStep'     => [
+                'Le respondemos dentro del siguiente día hábil con el presupuesto y los pasos de la constitución.',
+                'Tenga a mano: cédula de cada socio (son dos como mínimo), el nombre que prefiere, el domicilio '
+                    . 'y el capital que aportará cada uno.',
+                '¿Ya tiene contador para después? Una SRL declara desde el primer mes; podemos dejar la '
+                    . 'contabilidad mensual armada junto con la constitución.',
+            ],
+            'crmTag'   => 'constituir-srl',
+            'nextLink' => [
+                'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+                'label' => 'Comparar EAS, SRL y unipersonal',
+            ],
+        ],
+
         'ruc' => [
             'menuLabel'    => 'Inscribir mi RUC',
             'need'         => 'apertura',

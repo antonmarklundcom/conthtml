@@ -104,6 +104,59 @@ No figure beyond what B1/B3 already whitelisted was introduced. IRP brackets/rat
 | `/guias/consulta-de-ruc/` | DNIT publishes the contribuyentes list (RUC, DV, estado) as downloadable files, so a name search is possible | Third-party guide (yo-facturo.com), not confirmed on dnit.gov.py | Medium. The guide states it without a URL; confirm the files still exist. |
 | `/guias/consulta-de-ruc/` | A persona física's RUC is the cédula number plus a check digit | General knowledge, consistent with the modulo-11 check in `assets/js/py.js` | High. |
 
+## Keyword round, batch 2 — factura, libros, SRL, MIPYMES (2026-10-17)
+
+Drafted by Sonnet 5.5 subagents, reviewed by the Opus session. Medium-confidence rows come from secondary sources and are hedged in the copy.
+
+Open: MIPYMES guaraní thresholds (Ley 7444 transitional text vs. press figures disagree; none stated on the page). The `/srl/` excludes line about escribano and registry fees being billed apart is an assumption about the firm's offer: confirm. KuDE lookup by QR/CDC: test by hand once.
+
+| Page(s) | Statement | Source | Confidence / action |
+|---|---|---|---|
+| kude | KuDE = representación gráfica (papel/PDF) de un documento electrónico del SIFEN; el documento legal es el XML firmado y aprobado | https://yo-facturo.com/blog/kude-que-es-factura-electronica-paraguay/ (cita a la DNIT) | Media. Fuente comercial; confirmar en e-Kuatia |
+| kude | El KuDE trae QR y CDC de 44 dígitos, impreso bajo el QR; los primeros dígitos indican el tipo | https://yo-facturo.com/blog/cdc-codigo-de-control-factura-electronica-paraguay/ y blog KuDE | Media |
+| kude | Verificación pública por QR o por CDC en la consulta de e-Kuatia, abierta a cualquiera | https://yo-facturo.com/blog/kude-que-es-factura-electronica-paraguay/ ; https://ekuatia.set.gov.py/consultas/ (la página existe, el formulario no se pudo leer) | Media. Probar la consulta a mano antes de publicar |
+| kude | Se entrega KuDE a comprador no facturador o consumidor final; al facturador electrónico se le envía el XML | yo-facturo blog KuDE (cita DNIT) | Media |
+| kude | Conservación del KuDE/XML: no se afirma plazo | n/a | Cubierto con "consulte con nosotros" |
+| nota-de-credito | Nota de crédito reduce/anula total o parcialmente una operación ya documentada (devolución, descuento, ajuste de precio) | https://yo-facturo.com/blog/nota-de-credito-electronica-paraguay-cancelacion/ (cita FAQ DNIT y Manual Técnico v150) | Media |
+| nota-de-credito | Nota de débito aumenta el importe de una operación ya documentada (ajuste de precio, recupero de costo/gasto) | misma fuente | Media-baja: sin criterio oficial de emisión; texto genérico |
+| nota-de-credito | Cada nota se asocia a una factura aprobada por su CDC; el total acreditado no supera el de la factura | misma fuente | Media |
+| nota-de-credito | Cancelación de la factura solo en plazo corto; pasado ese plazo se usa nota de crédito. Plazos NO indicados en el texto | misma fuente (48 h / 168 h) | Cubierto con "verifique el plazo vigente" |
+| nota-de-credito | Ejemplo: Gs. 330.000, 3 x 110.000, devolución de uno, IVA 10 % incluido = 10.000 (110.000/11) | Aritmética propia; mismo ejemplo en la fuente | Alta |
+| factura-legal-paraguay | Comprobante sin timbrado no es válido; factura legal = emitida bajo timbrado vigente y numeración autorizada | https://yo-facturo.com/blog/timbrado-paraguay-que-es/ | Media |
+| factura-legal-paraguay | Decreto 6539/2005: reglamento general de timbrado y uso de comprobantes de venta | https://www.dnit.gov.py/web/portal-institucional/facturacion-y-timbrado | Alta (DNIT) |
+| factura-legal-paraguay | RG 03/18 (3/10/2018) aprueba la factura virtual por Marangatu, vigente desde 1/11/2018; con clave de acceso, solo contribuyentes autorizados y timbrados; Tesakâ sigue vigente | https://www.dnit.gov.py/web/portal-institucional/w/resolucion-general-n-03-18-1 | Alta (DNIT) |
+| factura-legal-paraguay | La DNIT publica guías para solicitar timbrado de factura virtual, emitirla y darla de baja; se pide antes la comunicación de numeración utilizada | https://www.dnit.gov.py/web/portal-institucional/facturacion-y-timbrado | Alta |
+| factura-legal-paraguay | Requisitos: RUC activo y obligaciones al día (para el timbrado electrónico según la fuente) | https://yo-facturo.com/blog/timbrado-paraguay-que-es/ | Media-baja: la fuente lo dice del timbrado electrónico; el texto lo generaliza con cautela. Revisar con el contador |
+| factura-legal-paraguay | Vigencia del timbrado en papel, requisitos de contenido de la factura, plazos | No encontrados en fuente fetched | No afirmado; "consulte con nosotros". Completar con las RG/Decreto si se quiere |
+| factura-legal-paraguay | "Boleta legal" = comprobante con timbrado válido (uso corriente) | Sin fuente directa | Baja: redactado como uso corriente; revisar |
+| factura-legal-paraguay | La factura virtual no es la electrónica del SIFEN (sin firma digital) | https://edicomgroup.com/es/factura-electronica/paraguay y yo-facturo | Media |
+| libro-diario-y-libro-mayor | Comerciante must keep chronological, regular accounting with the necessary books and keep them (Art. 11 c, d) | Ley 1034/83, http://paraguay.justia.com/nacionales/leyes/ley-1034-dec-16-1983/gdoc/ | High (law text; Justia copy, verify against bacn.gov.py) |
+| libro-diario-y-libro-mayor | Books are presented to the Registro Publico de Comercio for rubrica before use (Art. 78) | Ley 1034/83 (Justia, same URL); https://www.pj.gov.py/contenido/465-rubrica-de-libros-de-contables/465 | High |
+| libro-diario-y-libro-mayor | Libro diario records daily operations in order (Art. 80); libro de inventario named (Art. 82) | Ley 1034/83 (Justia) | High |
+| libro-diario-y-libro-mayor | Books and records kept five years from last entry (Art. 85) | Ley 1034/83 (Justia) | High |
+| libro-diario-y-libro-mayor | Libro mayor not named in Ley 1034/83 (it is auxiliary) | Ley 1034/83 text as fetched (Arts. 79-85); OCR copy | Medium: phrased only as "la ley no lo nombra" |
+| libro-diario-y-libro-mayor | EAS (Ley 6.480/2020) must keep rubricated libro diario and libro de inventario, among five books | https://infonegocios.com.py/default/la-rubrica-de-libros-para-las-eas-un-paso-ineludible | Medium: secondary source; confirm against Ley 6.480/2020 text |
+| libro-diario-y-libro-mayor | SRL / S.A. specific book lists | Not confirmed | Hedged: "depende del tipo de sociedad ... consulte con nosotros" |
+| libro-diario-y-libro-mayor | Libros de compras y ventas del IVA are a separate DNIT registry with rules that change | https://www.dnit.gov.py/web/portal-institucional/w/resolucion-general-n-55-20 (2020 exception only) | Hedged: no current rule or rubrica requirement stated |
+| libro-diario-y-libro-mayor (FAQ) | Excel as libro: needs rubrica and communication of accounting system (formulario registral 18) | https://www.pj.gov.py/contenido/465-rubrica-de-libros-de-contables/465 (hojas sueltas / formularios continuos after registering system) | Medium: stated generally, hedged with "consulte" |
+| conciliacion-bancaria | No legal facts; accounting method and example only | n/a | Arithmetic checked: 8.850.000+1.500.000-400.000 = 9.950.000 = 10.000.000-50.000 |
+| srl, lead-values | SRL regulated by Código Civil arts. 1160-1178 (Ley 1183/85) | https://www.pj.gov.py/ebook/monografias/nacional/civil/Monografia_SRL_Sistema_Paraguayo.pdf (secondary, PJ e-book monograph) | High |
+| srl | 2 socios minimum, 25 maximum (art. 1160 CC sets max 25) | MIC comparative table https://www.mic.gov.py/wp-content/uploads/2025/05/COMPARATIVO-DE-SOCIEDADES-2.pdf ; monograph above | High. Existing site claim of "two or more" confirmed; max 25 is new |
+| srl | No legal minimum capital; capital must suffice for the object | MIC comparative table (same URL) | High. Existing claim confirmed |
+| srl | Constitution by escritura pública, inscription in Registro Público de Comercio (DGRP, Sección Personas Jurídicas y Comercio) | MIC comparative table; monograph (personality from inscription; escritura pública art. 700 d CC when aporte exceeds 100 jornales mínimos) | High for escritura pública per MIC; monograph nuance (threshold) not stated on page. Existing claim confirmed |
+| srl | Part of cash contributions integrated by bank deposit at constitution (MIC table: min 50%, BCP; remainder within 2 years) | MIC comparative table | Medium (table text garbled in PDF extraction). Page says only "una parte"; confirm exact rule before quoting 50% |
+| srl | Beneficiarios finales / personas y estructuras jurídicas registry (Ley 6446/2019; SRLs obligated) | https://www.bcp.gov.py/web/institucional/w/bolet%C3%ADn-n%C2%B05-entendiendo-la-ley-n%C2%B0-6.446/2019 ; https://ferrere.com/en/news/the-government-enacted-a-new-law-requiring-registration-and-notification-of-final-beneficiaries-among-other-new-obligations/ | Medium. Registry body name not stated on page (was Ministerio de Hacienda, now MEF); confirm filing deadlines before adding |
+| srl | Books: rubrication of libros contables at Registro Público de Comercio (Art. 78 Ley 1034/83; DTR 06/2023) | https://www.pj.gov.py/contenido/465-libro-de-contabilidad/465 | Medium. Which books an SRL must keep was NOT sourced; page only says libros contables. Do not list libros obligatorios without Código de Comercio/CC check |
+| srl | Exclusion of banking/insurance activity (art. 1162 CC) | Monograph above | Medium |
+| srl | Not stated (unsourced): timeline for SRL constitution; honorarios del escribano and tasas not included in firm fee | n/a | Timeline deliberately left open. The "excludes" line about escribano/tasas is a scope assumption: Anton to confirm |
+| registro-mipymes | Ley 4457/2012 modified by Ley 7444 (Gaceta 7 Jan 2025); categories MIE/PE/ME; workers up to 10 / 11-30 / 31-50 | https://www.mic.gov.py/wp-content/uploads/2025/06/LEY-145193.pdf (law text) | High |
+| registro-mipymes | Facturación thresholds: law text transitional values G 646.045.491 / 3.230.227.453 / 7.752.545.886 (Decreto 3698/2020) "until the reglamentario decree"; press (La Nación 12 Nov 2025) reports G 1.000 / 5.000 / 10.000 millones | law text above; https://www.lanacion.com.py/negocios/2025/11/12/pena-anuncia-emision-automatica-de-340-mil-cedulas-mipymes/ | CONFLICT. No amounts published on the page (hedged "según el MIC"). Confirm at mipymes.gov.py before adding |
+| registro-mipymes | Viceministerio de MIPYMES (MIC) runs RENAMIPYMES; data from DNIT, IPS, MTESS; inclusion free; cédula obtainable on MIC website; renewed annually; category appeal to Viceministerio | Ley 7444 text (arts. 21-27 modified) | High |
+| registro-mipymes | Cédula downloaded free at www.mipymes.gov.py by firms with active RUC; auto-issued ~340,000; old cédulas lost validity | La Nación URL above; https://www.ultimahora.com/mas-de-340-000-mipymes-ya-obtuvieron-su-cedula-digital-mediante-nueva-ley | Medium-high (press). Page says "RUC activo" without the 31 Oct 2025 cutoff; check what newly formed firms must do |
+| registro-mipymes | Exclusions: financial intermediation, insurance, certain personas físicas IRP taxpayers | Ley 7444 art. 6 (OCR text garbled) | Medium; wording hedged ("ciertas") |
+| registro-mipymes | Benefits: preferential public procurement; micro 3-year patente comercial exemption, small 75% discount; fee exemptions/discounts for services of the State | Ley 7444 arts. 23, 39 | High; page summarised in general terms |
+| registro-mipymes | Categorisation of new firms by activo patrimonial; priority to facturación on discrepancy | Ley 7444 art. 5 | High |
+
 ## Notes on method
 
 - Two figures the copy brief explicitly named as reusable (`site.stats`-style

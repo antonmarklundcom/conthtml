@@ -269,7 +269,7 @@ return [
             ['q' => '¿La EAS necesita escritura pública notarial?', 'a' => 'No. Se constituye a través del Sistema Unificado de Apertura y Cierre de Empresas (SUACE), sin necesidad de escritura pública, lo que la hace más rápida que una SRL.'],
             ['q' => '¿Cuál de las tres paga menos impuestos?', 'a' => 'La forma societaria en sí no define una tasa distinta: las tres tributan IRE (o IRP, la Unipersonal) según su régimen y su facturación anual, no según si son EAS, SRL o Unipersonal.'],
         ],
-        'related'       => ['eas', 'ruc', 'asesoria'],
+        'related'       => ['eas', 'srl', 'ruc', 'asesoria'],
         'ctaWhatsapp'   => '',
         'formNeed'      => 'apertura',
         'analyticsTool' => 'comparador-eas-srl-unipersonal',

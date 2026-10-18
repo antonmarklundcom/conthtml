@@ -141,7 +141,7 @@ return [
         ],
         'cta'     => ['label' => 'Habilitar mi facturación electrónica', 'whatsappText' => ''],
         'related' => ['marangatu', 'ruc', 'iva'],
-        'guides'  => ['ekuatiai-paso-a-paso', 'que-es-sifen'],
+        'guides'  => ['ekuatiai-paso-a-paso', 'que-es-sifen', 'kude', 'nota-de-credito', 'factura-legal-paraguay'],
         'articles' => ['como-habilitarse-en-sifen-factura-electronica-ekuatia'],
     ],
 
@@ -309,7 +309,7 @@ return [
         ],
         'cta'     => ['label' => 'Inscribir mi RUC', 'whatsappText' => ''],
         'related' => ['eas', 'marangatu', 'ekuatia'],
-        'guides'  => ['inscripcion-de-ruc-paso-a-paso', 'consulta-de-ruc'],
+        'guides'  => ['inscripcion-de-ruc-paso-a-paso', 'consulta-de-ruc', 'suace'],
         'articles' => ['marangatu-2-0-que-cambio'],
     ],
 
@@ -400,7 +400,7 @@ return [
         ],
         'cta'     => ['label' => 'Ordenar mi contabilidad mensual', 'whatsappText' => ''],
         'related' => ['iva', 'ire-simple', 'asesoria'],
-        'guides'   => ['formulario-120-paso-a-paso'],
+        'guides'   => ['formulario-120-paso-a-paso', 'libro-diario-y-libro-mayor', 'conciliacion-bancaria'],
         'articles' => ['balance-general-estado-de-resultados-flujo-de-efectivo'],
     ],
 
@@ -484,7 +484,7 @@ return [
             ['path' => '/herramientas/vencimientos/', 'label' => 'Calendario de vencimientos', 'text' => 'Ingrese la terminación de su RUC y vea cuándo vence su Formulario 120 este mes.'],
         ],
         'related' => ['ire-simple', 'contabilidad', 'marangatu'],
-        'guides'  => ['formulario-120-paso-a-paso'],
+        'guides'  => ['formulario-120-paso-a-paso', 'nota-de-credito'],
         'articles' => ['iva-10-y-5-que-lleva-cada-uno'],
     ],
 
@@ -747,7 +747,7 @@ return [
             ['path' => '/herramientas/calculadora-ips/', 'label' => 'Calculadora de aporte IPS', 'text' => 'Calcule el aporte obrero del 9 %, el patronal del 16,5 % y el salario neto de un empleado.'],
         ],
         'related' => ['contabilidad', 'asesoria', 'eas'],
-        'guides'  => ['inscripcion-patronal-ips', 'ver-aportes-ips', 'salario-minimo-paraguay'],
+        'guides'  => ['inscripcion-patronal-ips', 'ver-aportes-ips', 'salario-minimo-paraguay', 'preaviso-paraguay'],
         'articles' => ['como-se-calcula-el-aguinaldo-en-paraguay', 'aguinaldo-cuando-se-cobra-y-proporcional', 'liquidacion-por-despido-vs-renuncia', 'inscripcion-patronal-ips-paso-a-paso'],
     ],
 
@@ -830,8 +830,95 @@ return [
             ['path' => '/herramientas/comparador-eas-srl-unipersonal/', 'label' => 'Comparador EAS / SRL / Unipersonal', 'text' => 'Compare las tres estructuras y responda tres preguntas para saber cuál le conviene.'],
         ],
         'related' => ['ruc', 'ekuatia', 'contabilidad'],
-        'guides'   => ['suace', 'inscripcion-de-ruc-paso-a-paso'],
+        'guides'   => ['suace', 'inscripcion-de-ruc-paso-a-paso', 'registro-mipymes'],
         'articles' => ['abrir-una-eas-en-paraguay', 'eas-vs-srl-vs-unipersonal-cual-conviene'],
+    ],
+
+    'srl' => [
+        'path'            => '/srl/',
+        'title'           => 'SRL',
+        'navLabel'        => 'SRL',
+        'cluster'         => 'gestion',
+        'parent'          => null,
+        'seoTitle'        => 'SRL en Paraguay: cómo constituirla',
+        'metaDescription' => 'Constitución de una SRL en Paraguay: contrato social, escritura pública, inscripción '
+                           . 'en el Registro Público de Comercio, RUC y beneficiarios finales.',
+        'hero' => [
+            'eyebrow' => '',
+            'h1'      => 'SRL en Paraguay: cómo constituir una Sociedad de Responsabilidad Limitada',
+            'h2'      => 'Una SRL sin inscribir en el Registro Público de Comercio, o con un contrato social '
+                       . 'que no dice quién decide qué, trae el problema cuando los socios discrepan o el '
+                       . 'banco pide papeles.',
+            'lead'    => 'Redactamos el contrato social con los socios, coordinamos la escritura pública y '
+                       . 'dejamos la sociedad inscripta, con RUC y lista para operar.',
+        ],
+        'includes' => [
+            'Contrato social redactado con los socios: cuotas, administración y salida de un socio',
+            'Coordinación con el escribano para la escritura pública de constitución',
+            'Inscripción de la sociedad en el Registro Público de Comercio',
+            'Inscripción del RUC y de los beneficiarios finales',
+            'Rúbrica de libros y registro patronal en IPS, si va a contratar personal',
+        ],
+        'excludes' => [
+            'No incluye los honorarios del escribano ni las tasas de los registros, que se abonan aparte',
+            'No incluye la contabilidad mensual posterior a la constitución (ver Contabilidad mensual)',
+            'No gestionamos el depósito del capital ni la apertura de la cuenta bancaria, solo los documentos que le pedirán',
+        ],
+        'weNeed' => [
+            'Cédula de identidad o documentos de cada socio (dos como mínimo)',
+            'Nombre propuesto, actividad y domicilio de la sociedad',
+            'Capital que aporta cada socio y quién la va a administrar',
+        ],
+        'sections' => [
+            [
+                'h2'   => 'Qué exige el Código Civil para una SRL',
+                'body' => [
+                    'La SRL está regulada en los artículos 1160 y siguientes del Código Civil (Ley N.º '
+                        . '1183/85). Su capital se divide en cuotas y los socios responden por el valor de '
+                        . 'sus aportes. Necesita al menos dos socios y no puede tener más de veinticinco. '
+                        . 'No existe un capital mínimo legal, pero el capital tiene que alcanzar para el '
+                        . 'objeto de la sociedad.',
+                ],
+            ],
+            [
+                'h2'   => 'Escritura pública y registro: lo que la distingue de la EAS',
+                'body' => [
+                    'A diferencia de la EAS, que se abre en línea por el SUACE, la SRL se constituye con '
+                        . 'escritura pública ante escribano y se inscribe en el Registro Público de Comercio, '
+                        . 'de la Dirección General de los Registros Públicos. Hasta que se inscribe, la '
+                        . 'sociedad no queda regularmente constituida. Preparamos el expediente completo '
+                        . 'para que el registro no lo devuelva con observaciones.',
+                ],
+            ],
+            [
+                'h2'   => 'Después de inscribirla: RUC, beneficiarios finales y libros',
+                'body' => [
+                    'Con la sociedad inscripta se tramita el RUC ante la DNIT y se declara a los '
+                        . 'beneficiarios finales en el registro de personas y estructuras jurídicas, que '
+                        . 'los bancos suelen pedir al abrir la cuenta. Luego se rubrican los libros '
+                        . 'contables en el Registro Público de Comercio. Le entregamos la lista de lo que '
+                        . 'queda pendiente y los plazos que corren.',
+                ],
+            ],
+        ],
+        'benefits' => [
+            ['title' => 'Contrato social a medida', 'text' => 'Las reglas entre socios quedan escritas antes de que hagan falta.'],
+            ['title' => 'Un solo interlocutor', 'text' => 'Nosotros coordinamos escribano, registro y DNIT; usted firma y aporta documentos.'],
+            ['title' => 'Sociedad lista para operar', 'text' => 'Se entrega inscripta, con RUC y los registros que el banco le va a pedir.'],
+        ],
+        'faq' => [
+            ['q' => '¿Cuántos socios necesita una SRL?', 'a' => 'Como mínimo dos y como máximo veinticinco, según el artículo 1160 del Código Civil. Si va a ser el único dueño, la figura que corresponde es la EAS o la Unipersonal.'],
+            ['q' => '¿Hay un capital mínimo para constituir una SRL?', 'a' => 'No hay un monto mínimo fijado por ley. El capital se divide en cuotas y debe ser suficiente para el objeto de la sociedad. Según el MIC, una parte de los aportes en dinero se integra al constituirla mediante depósito bancario; le indicamos el monto exacto para su caso.'],
+            ['q' => '¿Es obligatoria la escritura pública?', 'a' => 'Sí. La SRL se constituye por escritura pública, seguida de su inscripción en el Registro Público de Comercio. Es la diferencia de trámite más importante frente a la EAS, que se constituye en línea por el SUACE.'],
+            ['q' => '¿Cuánto tarda constituir una SRL?', 'a' => 'Depende de la rapidez de los socios en firmar, de la agenda del escribano y de si el Registro Público de Comercio hace observaciones. No prometemos un plazo fijo; le damos una estimación al revisar sus documentos.'],
+        ],
+        'cta'     => ['label' => 'Constituir mi SRL', 'whatsappText' => ''],
+        'toolLinks' => [
+            ['path' => '/herramientas/comparador-eas-srl-unipersonal/', 'label' => 'Comparador EAS / SRL / Unipersonal', 'text' => 'Compare las tres estructuras y responda tres preguntas para saber cuál le conviene.'],
+        ],
+        'related' => ['ruc', 'contabilidad', 'ips'],
+        'guides'   => ['suace', 'inscripcion-de-ruc-paso-a-paso', 'inscripcion-patronal-ips'],
+        'articles' => ['eas-vs-srl-vs-unipersonal-cual-conviene'],
     ],
 
     'asesoria' => [

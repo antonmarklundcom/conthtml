@@ -128,9 +128,16 @@ $faq = [
 ];
 
 $toolLink = [
-    'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
-    'label' => 'Compare EAS, SRL y Unipersonal',
-    'text'  => 'Vea la tabla comparativa y responda tres preguntas para saber cuál estructura le conviene.',
+    [
+        'path'  => '/herramientas/comparador-eas-srl-unipersonal/',
+        'label' => 'Compare EAS, SRL y Unipersonal',
+        'text'  => 'Vea la tabla comparativa y responda tres preguntas para saber cuál estructura le conviene.',
+    ],
+    [
+        'path'  => '/guias/suace/',
+        'label' => 'SUACE: cómo abrir una empresa paso a paso',
+        'text'  => 'Siga el trámite de una EAS en el SUACE, desde la identidad electrónica hasta el RUC.',
+    ],
 ];
 
 require ROOT_DIR . '/templates/article.php';
