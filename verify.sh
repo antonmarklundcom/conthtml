@@ -35,6 +35,8 @@ while [ $# -gt 0 ]; do
   esac
 done
 
+# Embedded PHP strings need a native path on Windows, unlike ordinary argv.
+if command -v cygpath >/dev/null 2>&1; then SITE_ROOT="$(cygpath -m "$SITE_ROOT")"; fi
 BASE="http://127.0.0.1:${PORT}"
 LOG="$(mktemp)"
 FAILURES=0
