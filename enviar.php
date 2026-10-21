@@ -28,10 +28,9 @@
  *   the same thank-you server-side — so the form works with JavaScript
  *   disabled.
  *
- * DEGRADED MODE: with no VENDERCRM_URL / VENDERCRM_API_KEY in config.php, or
- * when the CRM is unreachable, acceptance by the local log or notification
- * email returns success with degraded: true. If all channels fail, return an
- * error so the visitor can retry or use WhatsApp; never claim an unsaved lead.
+ * DEGRADED MODE: accepted enquiries are retained in a private durable outbox
+ * before sending. A validated CRM receipt is the only alternative if that
+ * storage is unavailable. Unconfirmed delivery remains pending for retry.
  *
  * Locked for B-phases (plan §4.7).
  */
@@ -323,13 +322,10 @@ $sourcePage = field('source_page', 2000) ?: '/';
 $need       = field('need', 100);
 $company    = field('company', 200);
 
-/* A stable key so a double-click or a network retry replays the same lead
-   instead of creating a duplicate. The form supplies one per render; the
-   phone-plus-hour fallback covers callers that do not. */
+/* Keep a form's supplied identity through retries. Legacy forms get a fresh
+   identity, never a phone/hour bucket that discards different messages. */
 $idempotencyKey = field('idempotency_key', 100);
-if (strlen($idempotencyKey) < 8) {
-    $idempotencyKey = hash('sha256', $digits . '|' . gmdate('Y-m-d-H'));
-}
+if (strlen($idempotencyKey) < 8) $idempotencyKey = bin2hex(random_bytes(16));
 
 /* --- The lead value model (plan §5.3.3, docs/lead-value.md) ---------------
    The page names its service; the tier, the CRM tag and the thank-you copy all
@@ -394,8 +390,7 @@ $payload = array_filter([
 ], static fn ($v) => $v !== '' && $v !== null);
 
 if (($requestedPlan = quote_plan(field('plan', 40))) !== null) {
-    $payload['message'] = mb_substr('Plan solicitado: ' . $requestedPlan['name']
-        . (!empty($payload['message']) ? "\n" . $payload['message'] : ''), 0, 5000);
+    $fields['plan_solicitado'] = $requestedPlan['name'];
 }
 
 $payload += $attribution;
@@ -403,53 +398,21 @@ if ($fields !== []) {
     $payload['fields'] = $fields;
 }
 
-// --- 7. Forward, or degrade gracefully --------------------------------------
-$crmUrl = crm_endpoint();
-$apiKey = cfg('VENDERCRM_API_KEY');
-
-if ($crmUrl === null || $apiKey === null || !function_exists('curl_init')) {
-    $stored = log_lead($payload, 'degraded:not-configured');
-    $emailed = notify_by_email($payload, 'degraded:not-configured');
-    if (!$stored && !$emailed) {
-        error_log('Lead delivery unavailable: no CRM, local record or notification accepted.');
-        respond(false, false, 'delivery');
-    }
-    respond(true, true, null, $leadResult);
-}
-
-$ch = curl_init($crmUrl);
-curl_setopt_array($ch, [
-    CURLOPT_POST           => true,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => LEAD_CRM_TIMEOUT,
-    CURLOPT_CONNECTTIMEOUT => 5,
-    CURLOPT_HTTPHEADER     => [
-        'Content-Type: application/json',
-        'X-Api-Key: ' . $apiKey,
-    ],
-    CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE),
-]);
-
-$response = curl_exec($ch);
-$status   = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$curlErr  = curl_error($ch);
-curl_close($ch);
-
-/* 201 created, 200 idempotency replay — both are the system working. */
-if ($status === 201 || $status === 200) {
-    log_lead($payload, 'crm:' . $status);
-    notify_by_email($payload, 'crm:' . $status);
-    respond(true, false, null, $leadResult);
-}
-
-/* Anything else is our problem, not the visitor's. The body names the failing
-   field on a 422 and the misconfiguration on a 401/403, so log all of it. */
-error_log(sprintf('VenderCRM lead failed [%d] %s %s', $status, (string) $response, $curlErr));
-$stored = log_lead($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
-$emailed = notify_by_email($payload, 'degraded:crm-' . ($status ?: 'unreachable'));
-if (!$stored && !$emailed) {
-    error_log('Lead delivery unavailable: CRM and fallback channels did not accept it.');
+// --- 7. Retain before delivery; only a saved receipt confirms CRM storage. ---
+try {
+    $delivery = require __DIR__ . '/lib/lead-delivery-config.php';
+    $result = $delivery->accept($payload);
+} catch (RuntimeException $error) {
+    error_log('Lead identity/storage configuration rejected.');
     respond(false, false, 'delivery');
 }
-
-respond(true, true, null, $leadResult);
+if (empty($result['retained']) && empty($result['received'])) {
+    error_log('Lead delivery unavailable: neither private outbox nor CRM accepted it.');
+    respond(false, false, 'delivery');
+}
+if (($result['code'] ?? '') !== 'already-received') {
+    $outcome = !empty($result['received']) ? 'crm:received' : 'pending:delivery';
+    log_lead($payload, $outcome);
+    notify_by_email($payload, $outcome);
+}
+respond(true, empty($result['received']), null, $leadResult);
